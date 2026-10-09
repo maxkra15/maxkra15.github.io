@@ -1,0 +1,201 @@
+{
+  "title": "Sample efficiency and training speed for G1 locomotion",
+  "author": "Maximilian Krause",
+  "report_date": "2026-10-09",
+  "url": "https://maxkra15.github.io/reports/2026-10-09-g1-learning/",
+  "dataset_kind": "Derived numeric extracts, not original raw measurement JSON.",
+  "original_summary_sha256": "e8921b605345c720e06c837fe08366f1e58c4d0442f0c13441b0ddd9f592958c",
+  "original_report_sha256": "2b44a37f7a6b1f637b6f06bf60a9be97cf8e18aaf81261c97be37af83dc81560",
+  "original_audit_dashboard_sha256": "216f418913b1516bbe11a89259fa977ff4d8e6cc3cb5a68d313be2f48fc7391e",
+  "mdp_sha256": "6029a53fd7d2da35a1e4bad2af8ec67cfcacddf207dec3a817d7863fe2ecd153",
+  "budget": {
+    "seeds_per_algorithm": 3,
+    "environments": 1024,
+    "steps_per_iteration": 24,
+    "iterations_per_run": 2050,
+    "transitions_per_run": 50380800,
+    "evaluation_checkpoints": [
+      250,
+      500,
+      1000,
+      1500,
+      2050
+    ],
+    "common_evaluations": 90
+  },
+  "capture_scope": "Torch MDP, Newton MJWarp physics graph, separate Warp PPO learner graph and compiled Torch FlashSAC; no unified physics-MDP-learning graph.",
+  "archive_status": "Nine SHA256-verified bundles; budget, checkpoint, optimizer, finite-weight and common-evaluation audits passed. Originals unchanged and native checkpoints preserved separately.",
+  "publication_note": "Local paths and infrastructure identifiers removed. Full-precision numeric values retained, including foot-contact aggregates. Large contact traces, checkpoints and full logs are not part of this static site.",
+  "timing_scope": "Training follows a mandatory preparation smoke with caches retained. Complete command totals exclude queueing, container bootstrap and artifact retrieval.",
+  "current_integration": {
+    "robolearn": "acad3a36cb96a29871de9ed575ce117a94bbc0bd",
+    "version": "0.2.0",
+    "note": "Postmeasurement adapter ownership fix; learner math unchanged, no new timing claim."
+  },
+  "measured_software": {
+    "Python": "3.12.14",
+    "Torch": "2.12.0+cu130",
+    "CUDA": "13.0",
+    "RSL-RL": "5.5.1",
+    "Warp": "1.17.0",
+    "Warp-NN": "0.4.0",
+    "Newton": "1.6.1",
+    "MuJoCo Warp": "3.12.0",
+    "RoboLearn": "0.1.0"
+  },
+  "source_repositories": {
+    "robolearn": "https://github.com/maxkra15/RoboLearn",
+    "isaaclab": "https://github.com/maxkra15/IsaacLab"
+  },
+  "original_sources": [
+    {
+      "algorithm": "rsl_rl_ppo",
+      "seed": 0,
+      "original_comparison_sha256": "d68b565d6fae2c1287178782be1180909b76908fe118063228114ba12f2da8c6",
+      "original_retrieval_audit_sha256": "3d6804bbcbfa7143359f6bb22ba7c915189207ed599ca225e50b0431dfd0a0f6",
+      "retrieval_audit_status": "PASS",
+      "published_extract": "data/seeds/rsl_rl_ppo-seed0.json",
+      "source_pins": {
+        "isaaclab": "de5c84d81091e6d48e05c64b47366a4d95d1a75f",
+        "robolearn": "dc772f9d65c21441c9bdb70ed905557074e00f7e",
+        "mdp_sha256": "6029a53fd7d2da35a1e4bad2af8ec67cfcacddf207dec3a817d7863fe2ecd153",
+        "mdp_source_sha256": "8c3f63b08f958161a19a0420839ac661b98f69d744c189c9f8bdc3b6dbfcbab4",
+        "harness_sha256": "4910f2ffb6c7a10a12918c00806c7fc30f6c4b4caaaf40f16875306e591e7df7"
+      }
+    },
+    {
+      "algorithm": "rsl_rl_ppo",
+      "seed": 1,
+      "original_comparison_sha256": "abe616ec33777391945c67678833bb3b4c0dfedac829b00975ca171db70f149f",
+      "original_retrieval_audit_sha256": "97902c2c4514477855fc8581b3cc68a54eee120628256b69b5ed7696c0f266bd",
+      "retrieval_audit_status": "PASS",
+      "published_extract": "data/seeds/rsl_rl_ppo-seed1.json",
+      "source_pins": {
+        "isaaclab": "de5c84d81091e6d48e05c64b47366a4d95d1a75f",
+        "robolearn": "dc772f9d65c21441c9bdb70ed905557074e00f7e",
+        "mdp_sha256": "6029a53fd7d2da35a1e4bad2af8ec67cfcacddf207dec3a817d7863fe2ecd153",
+        "mdp_source_sha256": "8c3f63b08f958161a19a0420839ac661b98f69d744c189c9f8bdc3b6dbfcbab4",
+        "harness_sha256": "4910f2ffb6c7a10a12918c00806c7fc30f6c4b4caaaf40f16875306e591e7df7"
+      }
+    },
+    {
+      "algorithm": "rsl_rl_ppo",
+      "seed": 2,
+      "original_comparison_sha256": "62d974485e4eccf86ee5974307043741ecae879a3791dcf7b501a20a6f1c9c73",
+      "original_retrieval_audit_sha256": "18558cc5797f01c7394e70fc77dcdb92652b0e7014c58e00ccad716650241c47",
+      "retrieval_audit_status": "PASS",
+      "published_extract": "data/seeds/rsl_rl_ppo-seed2.json",
+      "source_pins": {
+        "isaaclab": "de5c84d81091e6d48e05c64b47366a4d95d1a75f",
+        "robolearn": "dc772f9d65c21441c9bdb70ed905557074e00f7e",
+        "mdp_sha256": "6029a53fd7d2da35a1e4bad2af8ec67cfcacddf207dec3a817d7863fe2ecd153",
+        "mdp_source_sha256": "8c3f63b08f958161a19a0420839ac661b98f69d744c189c9f8bdc3b6dbfcbab4",
+        "harness_sha256": "4910f2ffb6c7a10a12918c00806c7fc30f6c4b4caaaf40f16875306e591e7df7"
+      }
+    },
+    {
+      "algorithm": "warp_ppo",
+      "seed": 0,
+      "original_comparison_sha256": "a73485d40ef6a3af26ca0f8a729d087ffa694366f4fe014a9367f735f3f285bf",
+      "original_retrieval_audit_sha256": "3b6786bddb1f93ff5f9deb3b3ee1f9be6776d5fb6215bd0e2700bae81ba56a90",
+      "retrieval_audit_status": "PASS",
+      "published_extract": "data/seeds/warp_ppo-seed0.json",
+      "source_pins": {
+        "isaaclab": "de5c84d81091e6d48e05c64b47366a4d95d1a75f",
+        "robolearn": "dc772f9d65c21441c9bdb70ed905557074e00f7e",
+        "mdp_sha256": "6029a53fd7d2da35a1e4bad2af8ec67cfcacddf207dec3a817d7863fe2ecd153",
+        "mdp_source_sha256": "8c3f63b08f958161a19a0420839ac661b98f69d744c189c9f8bdc3b6dbfcbab4",
+        "harness_sha256": "4910f2ffb6c7a10a12918c00806c7fc30f6c4b4caaaf40f16875306e591e7df7"
+      }
+    },
+    {
+      "algorithm": "warp_ppo",
+      "seed": 1,
+      "original_comparison_sha256": "8bf2e3cd26f8955aa15c5da009d3b5f5dc84f45e64e690c9596440e984e18214",
+      "original_retrieval_audit_sha256": "bfce7348a268fb008c9972a4ae7eeb09456f699085384487a825fc7ce1c0cba8",
+      "retrieval_audit_status": "PASS",
+      "published_extract": "data/seeds/warp_ppo-seed1.json",
+      "source_pins": {
+        "isaaclab": "de5c84d81091e6d48e05c64b47366a4d95d1a75f",
+        "robolearn": "dc772f9d65c21441c9bdb70ed905557074e00f7e",
+        "mdp_sha256": "6029a53fd7d2da35a1e4bad2af8ec67cfcacddf207dec3a817d7863fe2ecd153",
+        "mdp_source_sha256": "8c3f63b08f958161a19a0420839ac661b98f69d744c189c9f8bdc3b6dbfcbab4",
+        "harness_sha256": "4910f2ffb6c7a10a12918c00806c7fc30f6c4b4caaaf40f16875306e591e7df7"
+      }
+    },
+    {
+      "algorithm": "warp_ppo",
+      "seed": 2,
+      "original_comparison_sha256": "c1756d7ea644112c97845acdf38b50378848cdbf557f6c755ffb796d0dc153a9",
+      "original_retrieval_audit_sha256": "3bd66a8ff09ed88ae241f4472cd443b82f21271285659ddf7624d26742c2eb5d",
+      "retrieval_audit_status": "PASS",
+      "published_extract": "data/seeds/warp_ppo-seed2.json",
+      "source_pins": {
+        "isaaclab": "de5c84d81091e6d48e05c64b47366a4d95d1a75f",
+        "robolearn": "dc772f9d65c21441c9bdb70ed905557074e00f7e",
+        "mdp_sha256": "6029a53fd7d2da35a1e4bad2af8ec67cfcacddf207dec3a817d7863fe2ecd153",
+        "mdp_source_sha256": "8c3f63b08f958161a19a0420839ac661b98f69d744c189c9f8bdc3b6dbfcbab4",
+        "harness_sha256": "4910f2ffb6c7a10a12918c00806c7fc30f6c4b4caaaf40f16875306e591e7df7"
+      }
+    },
+    {
+      "algorithm": "flashsac",
+      "seed": 0,
+      "original_comparison_sha256": "e61632514194b96ab541ee3d0650dafd6d5844c8ffd333672885fa1cf1af64b0",
+      "original_retrieval_audit_sha256": "8ef7cfce63e0e1e1ac0200ee46ce070e216856f0f431cebfc06e059bcf9ed2fd",
+      "retrieval_audit_status": "PASS",
+      "published_extract": "data/seeds/flashsac-seed0.json",
+      "source_pins": {
+        "isaaclab": "734ad065e13c33d564ff86e1a22a138ce678c781",
+        "robolearn": "dc772f9d65c21441c9bdb70ed905557074e00f7e",
+        "mdp_sha256": "6029a53fd7d2da35a1e4bad2af8ec67cfcacddf207dec3a817d7863fe2ecd153",
+        "mdp_source_sha256": "8c3f63b08f958161a19a0420839ac661b98f69d744c189c9f8bdc3b6dbfcbab4",
+        "harness_sha256": "4910f2ffb6c7a10a12918c00806c7fc30f6c4b4caaaf40f16875306e591e7df7"
+      }
+    },
+    {
+      "algorithm": "flashsac",
+      "seed": 1,
+      "original_comparison_sha256": "2c24a633f53f5315560478ddd5039137cb9ec35c7da7b1b0e756f58aeefe9a54",
+      "original_retrieval_audit_sha256": "8f2b91db7b9eec0fde4b35d4472b543e6a2e653c7aecedd825dffccf40d71726",
+      "retrieval_audit_status": "PASS",
+      "published_extract": "data/seeds/flashsac-seed1.json",
+      "source_pins": {
+        "isaaclab": "734ad065e13c33d564ff86e1a22a138ce678c781",
+        "robolearn": "dc772f9d65c21441c9bdb70ed905557074e00f7e",
+        "mdp_sha256": "6029a53fd7d2da35a1e4bad2af8ec67cfcacddf207dec3a817d7863fe2ecd153",
+        "mdp_source_sha256": "8c3f63b08f958161a19a0420839ac661b98f69d744c189c9f8bdc3b6dbfcbab4",
+        "harness_sha256": "4910f2ffb6c7a10a12918c00806c7fc30f6c4b4caaaf40f16875306e591e7df7"
+      }
+    },
+    {
+      "algorithm": "flashsac",
+      "seed": 2,
+      "original_comparison_sha256": "4ed4a5b26f46af9f78809fbf6615350ce38f28240615dc9e60fb7e721bbb05d2",
+      "original_retrieval_audit_sha256": "b7be4345e3492703550d10583fbad7c3ea73f7f0270195dc57a351eb991f7366",
+      "retrieval_audit_status": "PASS",
+      "published_extract": "data/seeds/flashsac-seed2.json",
+      "source_pins": {
+        "isaaclab": "734ad065e13c33d564ff86e1a22a138ce678c781",
+        "robolearn": "dc772f9d65c21441c9bdb70ed905557074e00f7e",
+        "mdp_sha256": "6029a53fd7d2da35a1e4bad2af8ec67cfcacddf207dec3a817d7863fe2ecd153",
+        "mdp_source_sha256": "8c3f63b08f958161a19a0420839ac661b98f69d744c189c9f8bdc3b6dbfcbab4",
+        "harness_sha256": "4910f2ffb6c7a10a12918c00806c7fc30f6c4b4caaaf40f16875306e591e7df7"
+      }
+    }
+  ],
+  "published_measurement_sha256": {
+    "data/seeds/flashsac-seed0.json": "3cca98a7809439d9cdd12c1c35b6e143c0cd5f9a2216996ff53b654af290cd5e",
+    "data/seeds/flashsac-seed1.json": "5331a04ce76ce7957d651a5a20d6fa0059e0a428cbfcc721980943d5605830a4",
+    "data/seeds/flashsac-seed2.json": "c2373f520eb89dfc9ca012e071a0132fcbfc56b7812c4939e904d87bfe9425d9",
+    "data/seeds/rsl_rl_ppo-seed0.json": "bb8336ce1590a037c3ab1bf43a881ddaaef63517f13775bc46de56b8a9f277a2",
+    "data/seeds/rsl_rl_ppo-seed1.json": "afc90a50d1a2af9952c753232edeec844b29769aac9178f767297e827db4bef1",
+    "data/seeds/rsl_rl_ppo-seed2.json": "3d0290a02a03e93f1f73f0a6566da586448d47cfc6532f9d84b92455f8a0f8f2",
+    "data/seeds/warp_ppo-seed0.json": "ad8f9fccbc2bed99fd00b42b87a0e4221e8745296d578869ea2a713bd0572e66",
+    "data/seeds/warp_ppo-seed1.json": "379589b31be11b7603bce01d96f276e28fc2583c62ec9694ab026cda87c10d6e",
+    "data/seeds/warp_ppo-seed2.json": "855f977f347644d1f185a461b311b17bbd62caf3f7cda9f048e57ca79ac846d0",
+    "data/summary.json": "4051864fc3b169f44adaba5f46f31147ee271d4e0e3a7ebef4b5bf4710671382",
+    "data/evaluations.csv": "8957bc85a7589813031f76a5d36c666e9b994d62fb52e569e588eaf7535c4f9d"
+  },
+  "credits": "See report references, CITATIONS.bib, and retained Isaac Lab BSD-3-Clause license."
+}

@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Research reports by Maximilian Krause on robotics, learning, and simulation.">
+  <meta name="color-scheme" content="light">
+  <link rel="canonical" href="https://maxkra15.github.io/">
+  <title>Research reports · Maximilian Krause</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #fafaf8;
+      --ink: #192333;
+      --muted: #536174;
+      --blue: #245cab;
+      --line: #d9dfe5;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 1rem/1.65 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    a { color: var(--blue); text-underline-offset: .2em; }
+    a:hover { text-decoration-thickness: 2px; }
+    a:focus-visible, [tabindex]:focus-visible {
+      outline: 3px solid var(--blue);
+      outline-offset: 5px;
+    }
+    .skip-link {
+      position: absolute;
+      top: 12px;
+      left: 16px;
+      z-index: 1;
+      padding: 8px 14px;
+      background: white;
+      transform: translateY(-160%);
+    }
+    .skip-link:focus { transform: none; }
+    .wrap { max-width: 1160px; margin-inline: auto; padding-inline: clamp(20px, 5vw, 48px); }
+    .masthead {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding-block: 30px;
+      border-bottom: 1px solid var(--line);
+    }
+    .name { margin: 0; font-weight: 600; }
+    .masthead a { font-size: .9rem; }
+    .intro { padding-block: clamp(42px, 7vw, 76px) 34px; }
+    h1, h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -.025em;
+    }
+    h1 { margin: 0 0 18px; font-size: clamp(2.7rem, 6vw, 4rem); }
+    .intro p { margin: 0; color: var(--muted); font-size: 1.125rem; }
+    .report-card {
+      min-width: 0;
+      margin-block: 8px 44px;
+      padding: clamp(20px, 4vw, 36px);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: white;
+    }
+    .date { margin: 0; color: var(--muted); font-size: .875rem; }
+    h2 { max-width: 850px; margin: 15px 0 18px; font-size: clamp(1.8rem, 4vw, 2.5rem); }
+    h2 a { color: var(--ink); text-decoration: none; }
+    h2 a:hover { color: var(--blue); text-decoration: underline; }
+    .summary { max-width: 780px; margin: 0 0 20px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 18px; padding: 0; list-style: none; }
+    .chips li {
+      padding: 3px 10px;
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      color: var(--muted);
+      font-size: .875rem;
+    }
+    .method { margin: 0; color: var(--muted); font-size: .9rem; }
+    .read-report { display: inline-block; margin-block: 21px 26px; font-weight: 600; }
+    figure { margin: 0; padding-top: 24px; border-top: 1px solid var(--line); }
+    .figure-preview { max-width: 100%; overflow-x: auto; }
+    .figure-preview img {
+      display: block;
+      width: 100%;
+      min-width: 900px;
+      height: auto;
+    }
+    figcaption { margin-top: 12px; color: var(--muted); font-size: .875rem; }
+    figcaption a { display: inline-block; margin-top: 5px; }
+    .figure-help { display: block; margin-top: 4px; }
+    footer {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px 24px;
+      padding-block: 0 36px;
+      color: var(--muted);
+      font-size: .875rem;
+    }
+    footer p { margin: 0; }
+    footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
+    @media (max-width: 480px) {
+      .masthead { align-items: baseline; }
+      .masthead a { font-size: .875rem; }
+      .intro p { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#reports">Skip to reports</a>
+  <div class="wrap">
+    <header class="masthead">
+      <p class="name">Maximilian Krause</p>
+      <a href="https://github.com/maxkra15/maxkra15.github.io">Site source on GitHub</a>
+    </header>
+    <main id="reports">
+      <section class="intro" aria-labelledby="page-title">
+        <h1 id="page-title">Research reports</h1>
+        <p>Short technical reports on robotics, learning, and simulation.</p>
+      </section>
+      <article class="report-card" aria-labelledby="g1-title">
+        <p class="date"><time datetime="2026-10-09">9 October 2026</time></p>
+        <h2 id="g1-title">
+          <a href="reports/2026-10-09-g1-learning/">G1 locomotion: sample efficiency and training speed</a>
+        </h2>
+        <p class="summary">
+          FlashSAC reached the first observed walking pass with fewer samples on average.
+          Warp PPO reduced learner update time, with a much smaller gain in the complete training loop.
+          The report compares learning quality, production speed, and preparation and evaluation costs.
+        </p>
+        <ul class="chips" aria-label="Algorithms compared">
+          <li>RSL-RL PPO</li>
+          <li>Warp PPO</li>
+          <li>FlashSAC</li>
+        </ul>
+        <p class="method">3 training seeds per learner · 50.38 million transitions per run</p>
+        <p class="method">Isaac Lab G1 walking · Torch MDP · no unified physics–learning graph</p>
+        <a class="read-report" href="reports/2026-10-09-g1-learning/">Read the interactive report <span aria-hidden="true">→</span></a>
+        <figure>
+          <div class="figure-preview" tabindex="0" role="region" aria-label="Scrollable forward walking comparison figure">
+            <img src="reports/2026-10-09-g1-learning/figures/sample-efficiency-forward.svg"
+                 alt="Forward walking success and planar velocity error against collected transitions for the three learners."
+                 loading="lazy" decoding="async">
+          </div>
+          <figcaption>
+            Forward command: 0.5 m/s. Three-seed ranges describe observed spread, not confidence intervals.
+            <span class="figure-help">Scroll horizontally on smaller screens to keep the figure labels readable.</span>
+            <a href="reports/2026-10-09-g1-learning/figures/sample-efficiency-forward.svg">Open the figure at full size</a>
+          </figcaption>
+        </figure>
+      </article>
+    </main>
+    <footer>
+      <p>Maximilian Krause · Research reports</p>
+      <nav aria-label="Source repositories">
+        <a href="https://github.com/maxkra15/RoboLearn">RoboLearn</a>
+        <a href="https://github.com/maxkra15/maxkra15.github.io">Website repository</a>
+      </nav>
+    </footer>
+  </div>
+</body>
+</html>

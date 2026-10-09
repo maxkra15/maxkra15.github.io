@@ -1,0 +1,33 @@
+{
+  "summary_sha256": "e8921b605345c720e06c837fe08366f1e58c4d0442f0c13441b0ddd9f592958c",
+  "figures": [
+    {
+      "id": "sample-efficiency-forward",
+      "caption": "Forward 0.5 m/s evaluations. Dark thin lines show seeds; colored lines are means and bands are three-seed min–max ranges, not confidence intervals. Lines connect five measured checkpoints; intermediate values were not evaluated. Episode walking success requires survival, planar error below 0.25 m/s, yaw error below 0.4 rad/s and forward speed above 0.25 m/s. Dashed 80% success and 0.2 m/s mean-error thresholds are two aggregate gate conditions; survival of at least 90% is also required.",
+      "svg": "sample-efficiency-forward.svg",
+      "pdf": "sample-efficiency-forward.pdf",
+      "png": "sample-efficiency-forward.png"
+    },
+    {
+      "id": "sample-efficiency-native",
+      "caption": "Native commands retain commanded standing and resampling. Tracking success requires survival, mean planar error below 0.5 m/s and mean yaw error below 0.8 rad/s; standing success is included. Thin lines show seeds, colored lines means, and bands three-seed min–max ranges, not confidence intervals. Lines connect measured checkpoints and do not establish exact crossing times.",
+      "svg": "sample-efficiency-native.svg",
+      "pdf": "sample-efficiency-native.pdf",
+      "png": "sample-efficiency-native.png"
+    },
+    {
+      "id": "runtime-costs",
+      "caption": "Means and total-time min–max whiskers over three seeds. Left: synchronized training-loop phases. Flash interleaves learning and attributes updates using CUDA events; host launch overhead remains in the collection remainder. Algorithm-specific learning work differs. Right: measured smoke, training and offline-evaluation command costs. These are not fully cold timings; OSMO queue, checkout/bootstrap and artifact retrieval are excluded.",
+      "svg": "runtime-costs.svg",
+      "pdf": "runtime-costs.pdf",
+      "png": "runtime-costs.png"
+    },
+    {
+      "id": "final-quality",
+      "caption": "Final 50.38M-transition checkpoints, with 64 evaluation worlds per scenario and seed. Large points are means, faint points individual seeds, and whiskers three-seed min–max ranges, not confidence intervals. Filled circles show native commands including standing; open squares show forward 0.5 m/s. Survival measures completion of the native 20-second episode independently of velocity tracking.",
+      "svg": "final-quality.svg",
+      "pdf": "final-quality.pdf",
+      "png": "final-quality.png"
+    }
+  ]
+}
