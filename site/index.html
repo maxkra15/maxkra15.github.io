@@ -123,6 +123,38 @@
         <h1 id="page-title">Research reports</h1>
         <p>Short technical reports on robotics, learning, and simulation.</p>
       </section>
+      <article class="report-card" aria-labelledby="cartpole-title">
+        <p class="date"><time datetime="2026-10-09">9 October 2026</time></p>
+        <h2 id="cartpole-title">
+          <a href="reports/2026-10-09-cartpole-flashsac/">FlashSAC on Cartpole: learning quality and runtime</a>
+        </h2>
+        <p class="summary">
+          Learning quality varied across three seeds in every recipe.
+          The experimental Warp FP32 learner had slower warm updates than compiled Torch.
+          Compilation and preparation costs are reported separately from warm training speed.
+        </p>
+        <ul class="chips" aria-label="FlashSAC execution recipes compared">
+          <li>Torch FP32 eager</li>
+          <li>Torch FP32 compiled</li>
+          <li>Torch FP16 compiled</li>
+          <li>Warp FP32 captured</li>
+        </ul>
+        <p class="method">4 recipes · 3 training seeds per recipe · 4.9152 million transitions per run</p>
+        <p class="method">Isaac Lab Cartpole · Torch MDP · separate physics and learner graphs</p>
+        <a class="read-report" href="reports/2026-10-09-cartpole-flashsac/">Read the interactive report <span aria-hidden="true">→</span></a>
+        <figure>
+          <div class="figure-preview" tabindex="0" role="region" aria-label="Scrollable Cartpole learning and runtime comparison figure">
+            <img src="reports/2026-10-09-cartpole-flashsac/figures/runtime.svg"
+                 alt="Production process, first-use costs, warm collection and update time, and steady throughput for four FlashSAC recipes."
+                 loading="lazy" decoding="async">
+          </div>
+          <figcaption>
+            Warm update costs and compiler startup answer different runtime questions. Dots show individual seeds.
+            <span class="figure-help">Scroll horizontally on smaller screens to keep the figure labels readable.</span>
+            <a href="reports/2026-10-09-cartpole-flashsac/figures/runtime.svg">Open the figure at full size</a>
+          </figcaption>
+        </figure>
+      </article>
       <article class="report-card" aria-labelledby="g1-title">
         <p class="date"><time datetime="2026-10-09">9 October 2026</time></p>
         <h2 id="g1-title">
