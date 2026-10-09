@@ -1,0 +1,180 @@
+{
+  "renderer_sha256": "fe33e09a61486d7ac43ef88914aaedb2041390f0315702650f3c017bf81054cf",
+  "sources": [
+    {
+      "path": "comparison.json",
+      "name": "measurements.json",
+      "sha256": "2060594812bc265139a7d650851f4ac13f199d89046c618b7a99f04a5f3aff3f",
+      "original_input_sha256": "6180178817857404af14ea2dbfe63531fde8e89be348e1755e5e7a3bb5b8cfa2"
+    }
+  ],
+  "contexts": [],
+  "artifact_transfer": {
+    "workflow_id": "robolearn-cartpole-flashsac-20261009-3",
+    "original_receipt_sha256": "6bba023c405d53e76de5e7bbd8ed4b37829e88cb32330fdc08112d3a78f227f7",
+    "started_utc": "2026-10-09T17:38:28.204386Z",
+    "finished_utc": "2026-10-09T18:22:44.034348Z",
+    "completed_runs_at_start": 8,
+    "exit_code": 0,
+    "staged_bytes": 2567949235,
+    "public_disclosure": "Network and disk artifact-transfer traffic overlapped later training runs. The transfer ran no GPU profiling or computation; host or disk overhead may affect later timings. Recorded timing values are unchanged. Staged bytes describe retained files, not measured wire traffic."
+  },
+  "runs": [
+    {
+      "recipe": "torch-fp32-eager",
+      "seed": 0,
+      "transitions": 4915200,
+      "fixture_sha256": "0cbd4e11579fac95bdf27fe45774657bcf4cc6017c1f67d4f22f1bfff2ecd409",
+      "evaluated_iterations": [
+        0,
+        50,
+        100,
+        150,
+        200
+      ]
+    },
+    {
+      "recipe": "torch-fp32-eager",
+      "seed": 1,
+      "transitions": 4915200,
+      "fixture_sha256": "e5dff81e4845b5b5ef2860ed8e990f43aeeaad935b6f50baf95331d8cf837ff2",
+      "evaluated_iterations": [
+        0,
+        50,
+        100,
+        150,
+        200
+      ]
+    },
+    {
+      "recipe": "torch-fp32-eager",
+      "seed": 2,
+      "transitions": 4915200,
+      "fixture_sha256": "939656401f905c323cd90533fed39e70cb8ed4aa5b9928ddec7e3fef39340b03",
+      "evaluated_iterations": [
+        0,
+        50,
+        100,
+        150,
+        200
+      ]
+    },
+    {
+      "recipe": "torch-fp32-compiled",
+      "seed": 0,
+      "transitions": 4915200,
+      "fixture_sha256": "0cbd4e11579fac95bdf27fe45774657bcf4cc6017c1f67d4f22f1bfff2ecd409",
+      "evaluated_iterations": [
+        0,
+        50,
+        100,
+        150,
+        200
+      ]
+    },
+    {
+      "recipe": "torch-fp32-compiled",
+      "seed": 1,
+      "transitions": 4915200,
+      "fixture_sha256": "e5dff81e4845b5b5ef2860ed8e990f43aeeaad935b6f50baf95331d8cf837ff2",
+      "evaluated_iterations": [
+        0,
+        50,
+        100,
+        150,
+        200
+      ]
+    },
+    {
+      "recipe": "torch-fp32-compiled",
+      "seed": 2,
+      "transitions": 4915200,
+      "fixture_sha256": "939656401f905c323cd90533fed39e70cb8ed4aa5b9928ddec7e3fef39340b03",
+      "evaluated_iterations": [
+        0,
+        50,
+        100,
+        150,
+        200
+      ]
+    },
+    {
+      "recipe": "torch-fp16-compiled",
+      "seed": 0,
+      "transitions": 4915200,
+      "fixture_sha256": "0cbd4e11579fac95bdf27fe45774657bcf4cc6017c1f67d4f22f1bfff2ecd409",
+      "evaluated_iterations": [
+        0,
+        50,
+        100,
+        150,
+        200
+      ]
+    },
+    {
+      "recipe": "torch-fp16-compiled",
+      "seed": 1,
+      "transitions": 4915200,
+      "fixture_sha256": "e5dff81e4845b5b5ef2860ed8e990f43aeeaad935b6f50baf95331d8cf837ff2",
+      "evaluated_iterations": [
+        0,
+        50,
+        100,
+        150,
+        200
+      ]
+    },
+    {
+      "recipe": "torch-fp16-compiled",
+      "seed": 2,
+      "transitions": 4915200,
+      "fixture_sha256": "939656401f905c323cd90533fed39e70cb8ed4aa5b9928ddec7e3fef39340b03",
+      "evaluated_iterations": [
+        0,
+        50,
+        100,
+        150,
+        200
+      ]
+    },
+    {
+      "recipe": "warp-fp32-captured",
+      "seed": 0,
+      "transitions": 4915200,
+      "fixture_sha256": "0cbd4e11579fac95bdf27fe45774657bcf4cc6017c1f67d4f22f1bfff2ecd409",
+      "evaluated_iterations": [
+        0,
+        50,
+        100,
+        150,
+        200
+      ]
+    },
+    {
+      "recipe": "warp-fp32-captured",
+      "seed": 1,
+      "transitions": 4915200,
+      "fixture_sha256": "e5dff81e4845b5b5ef2860ed8e990f43aeeaad935b6f50baf95331d8cf837ff2",
+      "evaluated_iterations": [
+        0,
+        50,
+        100,
+        150,
+        200
+      ]
+    },
+    {
+      "recipe": "warp-fp32-captured",
+      "seed": 2,
+      "transitions": 4915200,
+      "fixture_sha256": "939656401f905c323cd90533fed39e70cb8ed4aa5b9928ddec7e3fef39340b03",
+      "evaluated_iterations": [
+        0,
+        50,
+        100,
+        150,
+        200
+      ]
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+% Publication draft: bibliography only; no experimental result claims.
+% Dependency versions come from the experiment's frozen environment.
+% Published Isaac Lab/RoboLearn feature revisions must be added to report provenance.
+
+@article{kim2026flashsac,
+  title = {{FlashSAC}: Fast and Stable Off-Policy Reinforcement Learning for High-Dimensional Robot Control},
+  author = {Kim, Donghu and Lee, Youngdo and Park, Minho and Kim, Kinam and Nahendra, I Made Aswin and Seno, Takuma and Min, Sehee and Palenicek, Daniel and Vogt, Florian and Kragic, Danica and Peters, Jan and Choo, Jaegul and Lee, Hojoon},
+  journal = {arXiv preprint arXiv:2604.04539},
+  year = {2026},
+  doi = {10.48550/arXiv.2604.04539},
+  url = {https://arxiv.org/abs/2604.04539}
+}
+
+@misc{flashsac_authors_code,
+  title = {{FlashSAC}: Authors' Implementation},
+  author = {{Holiday Robotics}},
+  year = {2026},
+  howpublished = {GitHub repository},
+  url = {https://github.com/Holiday-Robot/FlashSAC/tree/87edc9061150ae9e962dd84e6544e27a1554b3ab},
+  note = {Pinned upstream source commit 87edc9061150ae9e962dd84e6544e27a1554b3ab. MIT license; copyright Holiday Robotics. Original algorithm authors are credited in the paper citation.}
+}
+
+@article{haarnoja2018sac,
+  title = {Soft Actor-Critic: Off-Policy Maximum Entropy Deep Reinforcement Learning with a Stochastic Actor},
+  author = {Haarnoja, Tuomas and Zhou, Aurick and Abbeel, Pieter and Levine, Sergey},
+  journal = {arXiv preprint arXiv:1801.01290},
+  year = {2018},
+  doi = {10.48550/arXiv.1801.01290},
+  url = {https://arxiv.org/abs/1801.01290}
+}
+
+@article{kingma2014adam,
+  title = {{Adam}: A Method for Stochastic Optimization},
+  author = {Kingma, Diederik P. and Ba, Jimmy},
+  journal = {arXiv preprint arXiv:1412.6980},
+  year = {2014},
+  doi = {10.48550/arXiv.1412.6980},
+  url = {https://arxiv.org/abs/1412.6980}
+}
+
+@article{mittal2025isaaclab,
+  title = {{Isaac Lab}: A GPU-Accelerated Simulation Framework for Multi-Modal Robot Learning},
+  author = {Mittal, Mayank and Roth, Pascal and Tigue, James and Richard, Antoine and Zhang, Octi and Du, Peter and others},
+  journal = {arXiv preprint arXiv:2511.04831},
+  year = {2025},
+  doi = {10.48550/arXiv.2511.04831},
+  url = {https://arxiv.org/abs/2511.04831},
+  note = {Preferred citation specified by the Isaac Lab project. The complete author list is available in the paper and project CITATION.cff.}
+}
+
+@misc{isaaclab_software,
+  title = {{Isaac Lab}},
+  author = {{Isaac Lab Project Developers}},
+  howpublished = {GitHub repository},
+  url = {https://github.com/isaac-sim/IsaacLab},
+  note = {Isaac Lab 3 development checkout with the RoboLearn integration. BSD-3-Clause. Exact source snapshot and published feature revision belong in the report provenance, rather than implying a released upstream tag.}
+}
+
+@misc{macklin2022warp,
+  title = {{Warp}: A High-performance Python Framework for GPU Simulation and Graphics},
+  author = {Macklin, Miles},
+  year = {2022},
+  month = mar,
+  howpublished = {NVIDIA GPU Technology Conference (GTC)},
+  url = {https://github.com/NVIDIA/warp/tree/v1.17.0},
+  note = {Upstream preferred citation from v1.17.0/CITATION.cff. Software used: warp-lang 1.17.0; Apache-2.0.}
+}
+
+@misc{warpnn_software,
+  title = {{Warp-NN}: CUDA Graphable Neural Networks for NVIDIA Warp},
+  author = {{NVIDIA Corporation}},
+  year = {2026},
+  howpublished = {GitHub repository},
+  url = {https://github.com/NVIDIA/warp-nn/tree/v0.4.0},
+  note = {Version 0.4.0; Apache-2.0. Author metadata from the pinned pyproject.toml. Warp-NN has its own project maintainers; it is separate from the Warp core library.}
+}
+
+@misc{newton_software,
+  title = {{Newton}: GPU-accelerated physics simulation for robotics and simulation research},
+  author = {{The Newton Contributors}},
+  year = {2025},
+  howpublished = {GitHub repository},
+  url = {https://github.com/newton-physics/newton/tree/v1.6.1},
+  note = {Version 1.6.1; Apache-2.0. Citation metadata from the pinned CITATION.cff; year refers to its original software release.}
+}
+
+@misc{mujocowarp_software,
+  title = {{MuJoCo Warp} ({MJWarp})},
+  author = {{MuJoCo Warp Contributors}},
+  organization = {Google DeepMind and NVIDIA},
+  howpublished = {GitHub repository},
+  url = {https://github.com/google-deepmind/mujoco_warp/tree/v3.12.0},
+  note = {Version 3.12.0; Apache-2.0. The pinned README credits Google DeepMind and NVIDIA as maintainers within the Newton project.}
+}
+
+@misc{robolearn_software,
+  title = {{RoboLearn}},
+  author = {{RoboLearn contributors}},
+  howpublished = {GitHub repository},
+  url = {https://github.com/maxkra15/RoboLearn},
+  note = {Independent integration and implementation project; MIT license. The experimental FP32 Warp-NN FlashSAC backend is derived from the credited authors' implementation. Exact experimental and published revisions belong in the report provenance.}
+}
