@@ -1,0 +1,167 @@
+{
+  "dataset_kind": "derived public learner profile",
+  "original_input_sha256": "3463408b6a8a6c4355a9d8d22afc3ac4011a49ab38b007f7caad9a0ffde525e0",
+  "scope": "Synthetic replay shape diagnostic at production Cartpole learner dimensions; no trained-policy, task-quality, physics or MDP result",
+  "shape": {
+    "observations": 4,
+    "actions": 1,
+    "num_envs": 1024,
+    "batch_size": 2048
+  },
+  "versions": {
+    "warp": "1.17.0",
+    "warp_nn": "0.4.0",
+    "robolearn": "0.2.0"
+  },
+  "gpu": "NVIDIA L40",
+  "method": {
+    "warmup_updates": 32,
+    "control_updates_per_block": 64,
+    "control_blocks": 4,
+    "profiled_eager_updates": 6,
+    "profiled_actor_updates": 3,
+    "profiled_critic_updates": 6,
+    "profiled_temperature_updates": 3,
+    "activity_aggregation": "GPU activity durations summed across three actor/critic and three critic-only calls, then divided by six; percentages use the same summed activities.",
+    "coverage": "Captured controls measure the full real update graph. Individual activities are recorded from eager execution of that learner because Warp 1.17 excludes timing during stream capture. These are candidate kernel rankings, not measured inner-node shares of the captured graph."
+  },
+  "controls": [
+    {
+      "captured": true,
+      "updates": 64,
+      "actual_optimizer_steps": {
+        "actor": 32,
+        "critic": 64,
+        "temperature": 32
+      },
+      "wall_ms_per_update": 32.26541882031597,
+      "gpu_ms_per_update": 32.264793395996094,
+      "instrumentation": "One outer CUDA event pair per block; no per-kernel events",
+      "event_window": "The stream interval includes host idle or dispatch gaps; it is not a sum of kernel durations",
+      "name": "captured-before",
+      "finite_parameters": true
+    },
+    {
+      "captured": false,
+      "updates": 64,
+      "actual_optimizer_steps": {
+        "actor": 32,
+        "critic": 64,
+        "temperature": 32
+      },
+      "wall_ms_per_update": 32.647834697854705,
+      "gpu_ms_per_update": 32.647315979003906,
+      "instrumentation": "One outer CUDA event pair per block; no per-kernel events",
+      "event_window": "The stream interval includes host idle or dispatch gaps; it is not a sum of kernel durations",
+      "name": "eager-before",
+      "finite_parameters": true
+    },
+    {
+      "captured": false,
+      "updates": 64,
+      "actual_optimizer_steps": {
+        "actor": 32,
+        "critic": 64,
+        "temperature": 32
+      },
+      "wall_ms_per_update": 32.64633446815424,
+      "gpu_ms_per_update": 32.64579391479492,
+      "instrumentation": "One outer CUDA event pair per block; no per-kernel events",
+      "event_window": "The stream interval includes host idle or dispatch gaps; it is not a sum of kernel durations",
+      "name": "eager-after",
+      "finite_parameters": true
+    },
+    {
+      "captured": true,
+      "updates": 64,
+      "actual_optimizer_steps": {
+        "actor": 32,
+        "critic": 64,
+        "temperature": 32
+      },
+      "wall_ms_per_update": 32.268175680655986,
+      "gpu_ms_per_update": 32.26764678955078,
+      "instrumentation": "One outer CUDA event pair per block; no per-kernel events",
+      "event_window": "The stream interval includes host idle or dispatch gaps; it is not a sum of kernel durations",
+      "name": "captured-after",
+      "finite_parameters": true
+    }
+  ],
+  "control_summary": {
+    "captured_mean_wall_ms_per_update": 32.26679725048598,
+    "eager_mean_wall_ms_per_update": 32.64708458300447,
+    "captured_wall_reduction_percent": 1.1648431624931788
+  },
+  "category_totals": [
+    {
+      "category": "linear",
+      "activity_count": 558,
+      "observed_total_ms": 141.59599971445277,
+      "mean_ms_per_profiled_update": 23.59933328574213,
+      "percent_of_observed_activity_time": 69.32659019710601
+    },
+    {
+      "category": "normalization",
+      "activity_count": 1311,
+      "observed_total_ms": 28.54067201935686,
+      "mean_ms_per_profiled_update": 4.75677866989281,
+      "percent_of_observed_activity_time": 13.973752627377396
+    },
+    {
+      "category": "parameter_projection",
+      "activity_count": 183,
+      "observed_total_ms": 15.383872026810423,
+      "mean_ms_per_profiled_update": 2.5639786711350703,
+      "percent_of_observed_activity_time": 7.532072896114095
+    },
+    {
+      "category": "other",
+      "activity_count": 606,
+      "observed_total_ms": 9.296064015710726,
+      "mean_ms_per_profiled_update": 1.5493440026184544,
+      "percent_of_observed_activity_time": 4.551430985076483
+    },
+    {
+      "category": "copy_fill_zero",
+      "activity_count": 807,
+      "observed_total_ms": 4.400512000080198,
+      "mean_ms_per_profiled_update": 0.733418666680033,
+      "percent_of_observed_activity_time": 2.154527618733768
+    },
+    {
+      "category": "log_softmax",
+      "activity_count": 108,
+      "observed_total_ms": 1.997184016276151,
+      "mean_ms_per_profiled_update": 0.33286400271269184,
+      "percent_of_observed_activity_time": 0.977838061271547
+    },
+    {
+      "category": "optimizer_schedule",
+      "activity_count": 315,
+      "observed_total_ms": 1.8176319894846529,
+      "mean_ms_per_profiled_update": 0.3029386649141088,
+      "percent_of_observed_activity_time": 0.8899278815663542
+    },
+    {
+      "category": "target_ema",
+      "activity_count": 216,
+      "observed_total_ms": 1.0737600037828088,
+      "mean_ms_per_profiled_update": 0.17896000063046813,
+      "percent_of_observed_activity_time": 0.5257219123591925
+    },
+    {
+      "category": "replay_sampling_reward_normalization",
+      "activity_count": 18,
+      "observed_total_ms": 0.13916799845173955,
+      "mean_ms_per_profiled_update": 0.02319466640862326,
+      "percent_of_observed_activity_time": 0.06813782039515098
+    }
+  ],
+  "mean_observed_activity_ms_per_profiled_update": 34.04081063073439,
+  "instrumented_single_update_vs_uninstrumented_block": {
+    "instrumented_single_update_wall_ms": 37.112284917384386,
+    "uninstrumented_block_average_wall_ms_per_update": 32.64708458300447,
+    "single_update_to_block_average_wall_ratio": 1.1367717942172522,
+    "interpretation": "Includes per-update synchronization, host dispatch and event instrumentation differences; event overhead is not isolated. Raw rankings are preserved."
+  }
+}
