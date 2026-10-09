@@ -202,5 +202,11 @@
     "date": "2026-10-09",
     "settings_and_hashes": "videos/provenance.json",
     "description": "Newton RTX recordings of the final seed-0 policies, synchronized at 50 fps, added to HTML and PDF. Training measurements, figures and source archives are unchanged."
+  },
+  "collection_timing_clarification": {
+    "date": "2026-10-09",
+    "analysis": "data/collection-timing.json",
+    "sha256": "de3a1792106caff2a88ee51a8eb898df1291cd8c2e869893e99c2a72fb54c13c",
+    "note": "Document first-five-iteration actor autotuning and subsequent collection means. Original timings, figures, and raw archives remain unchanged."
   }
 }

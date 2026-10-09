@@ -1,0 +1,205 @@
+{
+  "protocol": "g1_collection_startup_audit_v1",
+  "created_at": "2026-10-09T12:07:14.049028+00:00",
+  "source": "Reanalysis of the unchanged nine primary production metrics.jsonl files and FlashSAC compiler logs; no new training or profiling.",
+  "selection": "First five iterations (1\u20135) versus subsequent iterations (6\u20132050), applied identically to all learners. The first FlashSAC actor and replay updates start during iteration 5 after the 100000-transition replay threshold.",
+  "timer_scope": {
+    "ppo": "Synchronized rollout wall time includes policy calls, environment/MDP work and rollout bookkeeping.",
+    "flashsac": "Synchronized interleaved rollout/update wall time minus CUDA-event replay-update spans. Remaining time includes actor inference/compilation, transition replay processing, reward normalization, episode bookkeeping and host overhead outside update event spans.",
+    "comparison_limit": "These are not isolated physics timings. Different learned trajectories can also change contact and reset work. The phase split cannot attribute the entire residual difference to individual components."
+  },
+  "means": {
+    "rsl_rl_ppo": {
+      "full_collection_seconds": 681.6818348479768,
+      "first5_collection_seconds": 4.089773927504818,
+      "subsequent_collection_ms_per_iteration": 331.3408610858054,
+      "iteration5_collection_seconds": 0.3397171099980672
+    },
+    "warp_ppo": {
+      "full_collection_seconds": 690.153930073604,
+      "first5_collection_seconds": 4.050572213406364,
+      "subsequent_collection_ms_per_iteration": 335.50286447931427,
+      "iteration5_collection_seconds": 0.3457765346392989
+    },
+    "flashsac": {
+      "full_collection_seconds": 816.143952692228,
+      "first5_collection_seconds": 127.02167066242546,
+      "subsequent_collection_ms_per_iteration": 336.9791110170184,
+      "iteration5_collection_seconds": 123.0687464863062
+    }
+  },
+  "flash_vs_rsl": {
+    "full_collection_excess_seconds": 134.46211784425122,
+    "first5_excess_seconds": 122.93189673492064,
+    "fraction_of_full_excess_in_first5": 0.9142492971686929,
+    "subsequent_collection_ratio": 1.0170164642921988
+  },
+  "runs": [
+    {
+      "algorithm": "rsl_rl_ppo",
+      "seed": 0,
+      "iterations": 2050,
+      "original_comparison_sha256": "d68b565d6fae2c1287178782be1180909b76908fe118063228114ba12f2da8c6",
+      "metrics_jsonl_sha256": "86d31c9911988d7215da2697900a125ece3ecbf3ba36dd53713eae6c7b02e3c3",
+      "full_collection_seconds": 682.1741669829935,
+      "first5_collection_seconds": 4.0628318367525935,
+      "subsequent_collection_seconds": 678.1113351462409,
+      "subsequent_collection_ms_per_iteration": 331.5947849125873,
+      "iteration5_collection_seconds": 0.34222225565463305,
+      "iteration5_update_seconds": 0.07756307255476713
+    },
+    {
+      "algorithm": "rsl_rl_ppo",
+      "seed": 1,
+      "iterations": 2050,
+      "original_comparison_sha256": "abe616ec33777391945c67678833bb3b4c0dfedac829b00975ca171db70f149f",
+      "metrics_jsonl_sha256": "8f1b144b0781da9697ced78d19a743cd77f102d76f13b1bdb443ea94939aef1b",
+      "full_collection_seconds": 678.4777052374557,
+      "first5_collection_seconds": 3.676600874401629,
+      "subsequent_collection_seconds": 674.801104363054,
+      "subsequent_collection_ms_per_iteration": 329.9760901530827,
+      "iteration5_collection_seconds": 0.3383877528831363,
+      "iteration5_update_seconds": 0.07533710356801748
+    },
+    {
+      "algorithm": "rsl_rl_ppo",
+      "seed": 2,
+      "iterations": 2050,
+      "original_comparison_sha256": "62d974485e4eccf86ee5974307043741ecae879a3791dcf7b501a20a6f1c9c73",
+      "metrics_jsonl_sha256": "e3453b5b8944bfaae7dee0b924a9ed9576545bb836abe92dca27f3d7671beec1",
+      "full_collection_seconds": 684.3936323234811,
+      "first5_collection_seconds": 4.5298890713602304,
+      "subsequent_collection_seconds": 679.8637432521209,
+      "subsequent_collection_ms_per_iteration": 332.4517081917462,
+      "iteration5_collection_seconds": 0.33854132145643234,
+      "iteration5_update_seconds": 0.07533038035035133
+    },
+    {
+      "algorithm": "warp_ppo",
+      "seed": 0,
+      "iterations": 2050,
+      "original_comparison_sha256": "a73485d40ef6a3af26ca0f8a729d087ffa694366f4fe014a9367f735f3f285bf",
+      "metrics_jsonl_sha256": "86d9da376ffc6ba96de46aae897568aa8be225e144894210f960ec62cdad743c",
+      "full_collection_seconds": 690.2679879395291,
+      "first5_collection_seconds": 3.67415139824152,
+      "subsequent_collection_seconds": 686.5938365412876,
+      "subsequent_collection_ms_per_iteration": 335.7427073551529,
+      "iteration5_collection_seconds": 0.3508566077798605,
+      "iteration5_update_seconds": 0.061296879313886166
+    },
+    {
+      "algorithm": "warp_ppo",
+      "seed": 1,
+      "iterations": 2050,
+      "original_comparison_sha256": "8bf2e3cd26f8955aa15c5da009d3b5f5dc84f45e64e690c9596440e984e18214",
+      "metrics_jsonl_sha256": "91eb4877123ad80c800a2c3d1d539731e98b82801abc4a4609f9380d1500266a",
+      "full_collection_seconds": 688.0093534840271,
+      "first5_collection_seconds": 3.9946753066033125,
+      "subsequent_collection_seconds": 684.0146781774238,
+      "subsequent_collection_ms_per_iteration": 334.4815052212341,
+      "iteration5_collection_seconds": 0.3418960617855191,
+      "iteration5_update_seconds": 0.06117126066237688
+    },
+    {
+      "algorithm": "warp_ppo",
+      "seed": 2,
+      "iterations": 2050,
+      "original_comparison_sha256": "c1756d7ea644112c97845acdf38b50378848cdbf557f6c755ffb796d0dc153a9",
+      "metrics_jsonl_sha256": "5e611e888aded60e37ec638691526f32407da7cff9417c022425d16e2ff372d1",
+      "full_collection_seconds": 692.1844487972558,
+      "first5_collection_seconds": 4.48288993537426,
+      "subsequent_collection_seconds": 687.7015588618815,
+      "subsequent_collection_ms_per_iteration": 336.28438086155575,
+      "iteration5_collection_seconds": 0.34457693435251713,
+      "iteration5_update_seconds": 0.06120653823018074
+    },
+    {
+      "algorithm": "flashsac",
+      "seed": 0,
+      "iterations": 2050,
+      "original_comparison_sha256": "e61632514194b96ab541ee3d0650dafd6d5844c8ffd333672885fa1cf1af64b0",
+      "metrics_jsonl_sha256": "35c092937eb06ce1a7cc23e832487f467b327047205c2a5880c9490b1ec1ef4d",
+      "full_collection_seconds": 815.3669295059293,
+      "first5_collection_seconds": 127.79548505841196,
+      "subsequent_collection_seconds": 687.5714444475174,
+      "subsequent_collection_ms_per_iteration": 336.22075523105985,
+      "iteration5_collection_seconds": 124.389198870942,
+      "iteration5_update_seconds": 3.5884265903532504,
+      "autotuning_evidence": {
+        "log_sha256": "af19b1dcf7fdc6dbf39df8cff9b3c61479f850ba95e4117eff3395eacb465325",
+        "between_completed_iterations": [
+          4,
+          5
+        ],
+        "matrix_shapes": [
+          "1024x128, 128x512",
+          "1024x512, 512x128",
+          "1024x128, 128x37",
+          "1024x123, 123x128"
+        ],
+        "reported_benchmarking_seconds": 99.3655,
+        "reported_precompiling_seconds": 7.94,
+        "scope": "Batch 1024 actor action-sampling shapes. Compiler logs establish startup cost; the entire iteration is not profiled into components."
+      }
+    },
+    {
+      "algorithm": "flashsac",
+      "seed": 1,
+      "iterations": 2050,
+      "original_comparison_sha256": "2c24a633f53f5315560478ddd5039137cb9ec35c7da7b1b0e756f58aeefe9a54",
+      "metrics_jsonl_sha256": "19ed131a78dc74a118b94a98a82dce0cb5a6f3a6ca37138306d4bbad4b8e949c",
+      "full_collection_seconds": 819.7816414571703,
+      "first5_collection_seconds": 126.30193198862672,
+      "subsequent_collection_seconds": 693.4797094685435,
+      "subsequent_collection_ms_per_iteration": 339.10988238070587,
+      "iteration5_collection_seconds": 122.10406218487024,
+      "iteration5_update_seconds": 4.378194212734699,
+      "autotuning_evidence": {
+        "log_sha256": "a191c69b895d07d8334bb98a3f82bdf25eea6db15defc30fac974d138c473899",
+        "between_completed_iterations": [
+          4,
+          5
+        ],
+        "matrix_shapes": [
+          "1024x128, 128x512",
+          "1024x512, 512x128",
+          "1024x128, 128x37",
+          "1024x123, 123x128"
+        ],
+        "reported_benchmarking_seconds": 100.7493,
+        "reported_precompiling_seconds": 8.0115,
+        "scope": "Batch 1024 actor action-sampling shapes. Compiler logs establish startup cost; the entire iteration is not profiled into components."
+      }
+    },
+    {
+      "algorithm": "flashsac",
+      "seed": 2,
+      "iterations": 2050,
+      "original_comparison_sha256": "4ed4a5b26f46af9f78809fbf6615350ce38f28240615dc9e60fb7e721bbb05d2",
+      "metrics_jsonl_sha256": "5f20c7c6c100c52269fc025e1a2f552f18cd094190fa9130982f9500a0b57502",
+      "full_collection_seconds": 813.2832871135846,
+      "first5_collection_seconds": 126.9675949402377,
+      "subsequent_collection_seconds": 686.3156921733469,
+      "subsequent_collection_ms_per_iteration": 335.60669543928947,
+      "iteration5_collection_seconds": 122.71297840310633,
+      "iteration5_update_seconds": 4.331188339717686,
+      "autotuning_evidence": {
+        "log_sha256": "eb55bb121cfecab0630e60e3aa0f99e9b6a5e603aab20e7009adff26257707a7",
+        "between_completed_iterations": [
+          4,
+          5
+        ],
+        "matrix_shapes": [
+          "1024x128, 128x512",
+          "1024x512, 512x128",
+          "1024x128, 128x37",
+          "1024x123, 123x128"
+        ],
+        "reported_benchmarking_seconds": 101.01050000000001,
+        "reported_precompiling_seconds": 7.996,
+        "scope": "Batch 1024 actor action-sampling shapes. Compiler logs establish startup cost; the entire iteration is not profiled into components."
+      }
+    }
+  ],
+  "interpretation": "The large full-run FlashSAC collection excess is predominantly startup, with directly logged actor-shape autotuning at iteration 5. Subsequent measured collection times are similar. Full pipeline totals remain valid; no costs are removed or reassigned in the original measurements."
+}
