@@ -1,0 +1,238 @@
+{
+  "title": "Final G1 policies: synchronized RSL PPO, Warp PPO, and FlashSAC replay",
+  "recorded_at": "2026-10-09",
+  "composed_at": "2026-10-09T11:45:08.503678+00:00",
+  "scope": "Illustrative final seed-0 replays. These are separate from the unchanged three-seed training measurements and common evaluations; playback is not a performance benchmark.",
+  "checkpoint_selection": "The final checkpoint after 2050 completed training iterations for learner seed 0 from each algorithm. RSL model_2049.pt uses a zero-based iteration index.",
+  "task": "Isaac-Velocity-Flat-G1",
+  "physics": "Newton MJWarp",
+  "mdp": "Existing Isaac Lab Torch MDP",
+  "renderer": "Newton RTX (OVRTX)",
+  "recording_gpu": "NVIDIA GeForce RTX 4090",
+  "simulated_worlds": 64,
+  "visible_world": 0,
+  "evaluation_seed": 10000,
+  "policy_actions": "deterministic inference",
+  "command": {
+    "forward_velocity_mps": 0.5,
+    "lateral_velocity_mps": 0.0,
+    "yaw_rate_radps": 0.0,
+    "heading_command": false,
+    "standing_probability": 0.0
+  },
+  "observation_noise_enabled": false,
+  "pushes_enabled": false,
+  "startup_and_reset_randomization": "Native task randomization retained.",
+  "initial_state_match": {
+    "observation_world0_exact_equal": true,
+    "root_position_world0_exact_equal": true,
+    "root_quaternion_world0_exact_equal": true,
+    "note": "Verified pairwise across all three recordings before the first step."
+  },
+  "camera": {
+    "eye_offset_xy": [
+      2.5,
+      -3.5
+    ],
+    "eye_z": 2.0,
+    "target_z": 0.75,
+    "focal_length_mm": 24,
+    "tracking": "Follow world-0 XY with a fixed world-axis eye offset and fixed eye/target heights."
+  },
+  "rtx_environment": "studio",
+  "background_rgb": [
+    0.93,
+    0.94,
+    0.96
+  ],
+  "recording": {
+    "frames": 999,
+    "fps": 50,
+    "step_dt_seconds": 0.02,
+    "duration_seconds": 19.98,
+    "playback_speed": 1.0,
+    "source_frame_size": [
+      640,
+      720
+    ],
+    "montage_frame_size": [
+      1920,
+      848
+    ],
+    "captured_simulation_times_seconds": [
+      0.02,
+      19.98
+    ],
+    "trace_time_reference": "before_env_step",
+    "captured_time_reference": "after_env_step",
+    "episode_reset_excluded": true,
+    "resampling_or_frame_duplication": false,
+    "audio": false,
+    "labels_cover_policy_geometry": false
+  },
+  "recording_source_revisions": {
+    "isaaclab": "ba8a21a95d83b04650f19586278dede3ea716881",
+    "robolearn": "acad3a36cb96a29871de9ed575ce117a94bbc0bd"
+  },
+  "recording_software": {
+    "Warp": "1.17.0",
+    "Warp-NN": "0.4.0",
+    "Newton": "1.6.1",
+    "OVRTX": "0.5.0.377615",
+    "OVStage": "0.2.0.377349",
+    "ImageIO FFmpeg": "0.6.0",
+    "Torch": "2.12.0+cu130",
+    "Python": "3.12.14"
+  },
+  "recording_robolearn_module_version": "0.2.0",
+  "script_sha256": {
+    "recording": "e1765cc2c9138fe16be8aa031fbd05c1b8e3c1c0a82b1e04705eaef01926770d",
+    "composition": "a90663cf54e0e4ca775fa88e47c5b14812021ed8428468edf1ecf27135bda863"
+  },
+  "policies": [
+    {
+      "algorithm": "rsl_rl_ppo",
+      "learner_seed": 0,
+      "completed_training_iterations": 2050,
+      "evaluation_seed": 10000,
+      "video": "rsl-ppo-seed0.mp4",
+      "checkpoint_sha256": {
+        "model_2049.pt": "a2367b6ffc816f1b8d82f82bc3e05178d36a6e3eaa70988ab236ee3839e6cbfb"
+      },
+      "original_comparison_sha256": "d68b565d6fae2c1287178782be1180909b76908fe118063228114ba12f2da8c6",
+      "original_recording_sha256": "ca0320b8bd6bf72dcc1d6a9fecc6a6bb38912c4cdcf1ea155a7dfa791c4b27a1",
+      "recording_receipt_sha256": "f7f6f1f4d72ffdc9a4bdd4cb4f396b2bc265fda11615b1ec84ea3c0b584cb4dd",
+      "trace_audit": {
+        "frame_count": 999,
+        "trace_time_reference": "before_env_step",
+        "first_pre_step_simulated_time_seconds": 0.0,
+        "last_pre_step_simulated_time_seconds": 19.96,
+        "first_captured_simulated_time_seconds": 0.02,
+        "last_captured_simulated_time_seconds": 19.98,
+        "world0_termination_count": 0,
+        "world0_truncation_count": 0,
+        "forward_command_mps": 0.5
+      }
+    },
+    {
+      "algorithm": "warp_ppo",
+      "learner_seed": 0,
+      "completed_training_iterations": 2050,
+      "evaluation_seed": 10000,
+      "video": "warp-ppo-seed0.mp4",
+      "checkpoint_sha256": {
+        "model_2050.json": "cabb6c3972a28a3b41fe72afd85884ab93b2e526c852101b9002357530678fa9",
+        "model_2050/policy.npz": "6af2504b3a962e17df37e57163777a4f248cdb194b8781692114fac9c89db64e"
+      },
+      "original_comparison_sha256": "a73485d40ef6a3af26ca0f8a729d087ffa694366f4fe014a9367f735f3f285bf",
+      "original_recording_sha256": "278c532fe3d3384aef3d6192189a02e4a38f45e1ae7b0575a630f9b326e6ab4e",
+      "recording_receipt_sha256": "d098e4bcb5febda94f59c891d0ff00fa6b74677855d263bc232d62835b442925",
+      "trace_audit": {
+        "frame_count": 999,
+        "trace_time_reference": "before_env_step",
+        "first_pre_step_simulated_time_seconds": 0.0,
+        "last_pre_step_simulated_time_seconds": 19.96,
+        "first_captured_simulated_time_seconds": 0.02,
+        "last_captured_simulated_time_seconds": 19.98,
+        "world0_termination_count": 0,
+        "world0_truncation_count": 0,
+        "forward_command_mps": 0.5
+      }
+    },
+    {
+      "algorithm": "flashsac",
+      "learner_seed": 0,
+      "completed_training_iterations": 2050,
+      "evaluation_seed": 10000,
+      "video": "flashsac-seed0.mp4",
+      "checkpoint_sha256": {
+        "model_2050.json": "27802013dc43c5947304c4a10a0dc98b93c29a30d20898283335949e11e7b862",
+        "model_2050/actor.pt": "fce7d3e7eea69fd639c218299d57729bcfd45fc6846d938f0fa89554d1477634",
+        "model_2050/agent_state.pt": "a92d681bd37c5a3e30a18ef1aba1a859c762739b1f4f8e39e7f5e2f968aded96",
+        "model_2050/config.json": "53c4c6983e909e71a8c45b9b2fadf52548237660bde407f8ab3146e1ff5785af",
+        "model_2050/critic.pt": "d9cf9615c721065c29de9bb41375743cc4ae080e3b04c550fb89a75c73792400",
+        "model_2050/reward_normalizer.pt": "e7f59807a35e1324c8b520ff29fcadfce2535b82cdc95af8d69402caaf65ff8c",
+        "model_2050/target_critic.pt": "d2e7558d59076cbb69c07ac76a651e47d82a6c9fa85dbfda12c62d1b1e3a7a46",
+        "model_2050/temperature.pt": "4c7ba76dcb3f564d527cd9027442a9dd6ac3041864ffef4f7939da94a79b5f43"
+      },
+      "original_comparison_sha256": "e61632514194b96ab541ee3d0650dafd6d5844c8ffd333672885fa1cf1af64b0",
+      "original_recording_sha256": "e082adc504d5b649207b60e4611f5f85c2af29e3875268e088f25259ae3b4bd4",
+      "recording_receipt_sha256": "8ed30f26545fb7fbea523d2313fd8349752cbdbc3615cb1aff9508e0d196b057",
+      "trace_audit": {
+        "frame_count": 999,
+        "trace_time_reference": "before_env_step",
+        "first_pre_step_simulated_time_seconds": 0.0,
+        "last_pre_step_simulated_time_seconds": 19.96,
+        "first_captured_simulated_time_seconds": 0.02,
+        "last_captured_simulated_time_seconds": 19.98,
+        "world0_termination_count": 0,
+        "world0_truncation_count": 0,
+        "forward_command_mps": 0.5
+      }
+    }
+  ],
+  "published_media": {
+    "g1-final-seed0-side-by-side.mp4": {
+      "sha256": "4fefb8d83469fdaeef1dc4e8c5238acd1370db77aba4a5c437135ff0a0d6c992",
+      "bytes": 6473090,
+      "decoded_frame_count": 999,
+      "duration_seconds": 19.98,
+      "fast_start": true,
+      "codec": "h264",
+      "pix_fmt": "yuv420p(progressive)",
+      "fps": 50.0,
+      "size": [
+        1920,
+        848
+      ]
+    },
+    "rsl-ppo-seed0.mp4": {
+      "sha256": "87008f1f3df2f267ffc880a61c427000758ee8e2b494615eb52d943d73f0b9ed",
+      "bytes": 1951239,
+      "decoded_frame_count": 999,
+      "duration_seconds": 19.98,
+      "fast_start": true,
+      "codec": "h264",
+      "pix_fmt": "yuv420p(progressive)",
+      "fps": 50.0,
+      "size": [
+        640,
+        720
+      ]
+    },
+    "warp-ppo-seed0.mp4": {
+      "sha256": "3fdeae0a52a3a5c95b99b22f5fa33cf52d57f7fd0ae52fd87783b8a82b468de1",
+      "bytes": 2165216,
+      "decoded_frame_count": 999,
+      "duration_seconds": 19.98,
+      "fast_start": true,
+      "codec": "h264",
+      "pix_fmt": "yuv420p(progressive)",
+      "fps": 50.0,
+      "size": [
+        640,
+        720
+      ]
+    },
+    "flashsac-seed0.mp4": {
+      "sha256": "29f582fdb1762001c0858c800645b5fa3d9b0812d66a2fc52a81cce950d91dca",
+      "bytes": 2281844,
+      "decoded_frame_count": 999,
+      "duration_seconds": 19.98,
+      "fast_start": true,
+      "codec": "h264",
+      "pix_fmt": "yuv420p(progressive)",
+      "fps": 50.0,
+      "size": [
+        640,
+        720
+      ]
+    },
+    "g1-final-seed0-side-by-side.jpg": {
+      "frame_index": 149,
+      "captured_simulated_time_seconds": 3.0,
+      "sha256": "9966b097cb6334ed7cb8a93138b8b9b7044651c3312140f5c7a045672c61926e"
+    }
+  },
+  "attribution": "Algorithm authors and simulator credits are retained in the report references and CITATIONS.bib."
+}

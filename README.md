@@ -17,6 +17,7 @@ site/
       report.pdf
       figures/
       data/
+      videos/          # Optional MP4s, poster, and recording provenance
       SHA256SUMS
 ```
 
@@ -28,6 +29,8 @@ The first report compares RSL PPO, Warp PPO, and FlashSAC for G1 locomotion.
 Its JSON/CSV downloads are compact derived measurements; their provenance
 records the hashes of the unchanged original sources. Native checkpoints and
 full execution logs remain in the experiment archive.
+The report also includes synchronized Newton RTX recordings of the three final
+seed-0 policies, with individual MP4 downloads and separate recording provenance.
 
 ## Add a report
 
@@ -35,6 +38,8 @@ full execution logs remain in the experiment archive.
 2. Add the report to a new dated directory under `site/reports/`. Include a title,
    date, methods, figure captions, limitations, source revisions, and original
    algorithm attribution. Export reusable figures and a PDF when useful.
+   For policy videos, document checkpoint selection, replay settings, and playback
+   speed; use browser-compatible MP4s with a poster and native playback controls.
 3. Use relative links within the report. Include only the files intended for
    publication, and keep the report's measurement version explicit.
 4. Add a report card to `site/index.html`.

@@ -197,5 +197,10 @@
     "data/summary.json": "4051864fc3b169f44adaba5f46f31147ee271d4e0e3a7ebef4b5bf4710671382",
     "data/evaluations.csv": "8957bc85a7589813031f76a5d36c666e9b994d62fb52e569e588eaf7535c4f9d"
   },
-  "credits": "See report references, CITATIONS.bib, and retained Isaac Lab BSD-3-Clause license."
+  "credits": "See report references, CITATIONS.bib, and retained Isaac Lab BSD-3-Clause license.",
+  "video_addition": {
+    "date": "2026-10-09",
+    "settings_and_hashes": "videos/provenance.json",
+    "description": "Newton RTX recordings of the final seed-0 policies, synchronized at 50 fps, added to HTML and PDF. Training measurements, figures and source archives are unchanged."
+  }
 }
