@@ -123,6 +123,38 @@
         <h1 id="page-title">Research reports</h1>
         <p>Short technical reports on robotics, learning, and simulation.</p>
       </section>
+      <article class="report-card" aria-labelledby="g1-main-title">
+        <p class="date"><time datetime="2026-10-20">20 October 2026</time></p>
+        <h2 id="g1-main-title">
+          <a href="reports/2026-10-20-g1-main-baselines/">G1 locomotion on the updated Isaac Lab stack</a>
+        </h2>
+        <p class="summary">
+          FlashSAC passed the walking gate at the 500-iteration checkpoint in all three seeds;
+          RSL PPO first passed at 1,000 / 1,500 / 1,500 iterations.
+          Warp PPO's measured learning-phase cost was 26.1% lower and its recorded loop cost 4.5% lower,
+          while its full successful smoke, training and evaluation protocol took 7.1% longer.
+        </p>
+        <ul class="chips" aria-label="Algorithms compared">
+          <li>RSL-RL PPO</li>
+          <li>Warp PPO</li>
+          <li>Torch FlashSAC</li>
+        </ul>
+        <p class="method">3 training seeds per learner · 50.38 million transitions per run · 108 common evaluations</p>
+        <p class="method">Current Isaac Lab main · separate L40 allocations · Torch MDP and separate physics/learner graphs</p>
+        <a class="read-report" href="reports/2026-10-20-g1-main-baselines/">Read the interactive report <span aria-hidden="true">→</span></a>
+        <figure>
+          <div class="figure-preview" tabindex="0" role="region" aria-label="Scrollable updated G1 forward walking comparison figure">
+            <img src="reports/2026-10-20-g1-main-baselines/figures/learning-forward_0_5.svg"
+                 alt="Forward walking success and planar velocity error against collected transitions for RSL PPO, Warp PPO and Torch FlashSAC on the updated Isaac Lab stack."
+                 loading="lazy" decoding="async">
+          </div>
+          <figcaption>
+            Forward command: 0.5 m/s. Thin lines show seeds; bands show the three-seed range, not confidence intervals.
+            <span class="figure-help">Scroll horizontally on smaller screens to keep the figure labels readable.</span>
+            <a href="reports/2026-10-20-g1-main-baselines/figures/learning-forward_0_5.svg">Open the figure at full size</a>
+          </figcaption>
+        </figure>
+      </article>
       <article class="report-card" aria-labelledby="cartpole-title">
         <p class="date"><time datetime="2026-10-09">9 October 2026</time></p>
         <h2 id="cartpole-title">

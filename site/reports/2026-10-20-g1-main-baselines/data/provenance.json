@@ -1,0 +1,21 @@
+{
+  "public_path": "2026-10-20-g1-main-baselines",
+  "source_sha256": {
+    "renderer": "ca34d07ac9786a7c5bcae3a4312a929071eaadadd110e08c6e33c8a973577aa0",
+    "plot_helpers": "b652fc9635be6d27814102a75b372c599af7b5b86051bc6f53e41803a366778e",
+    "template": "7620a1628bf99da02d4cdd318b3409240968d5ecd763482f2036abde21b4fa4f",
+    "css": "2247032405495ec197e96834b87fa9c0d80b08b4fa5af90f7b1ad0447f47908a",
+    "input_summary": "4d80d065ff4327f8718031bff6fa95f8388cf38c90bd12a12447ff7bca6d78cc",
+    "previous_summary": "e8921b605345c720e06c837fe08366f1e58c4d0442f0c13441b0ddd9f592958c",
+    "command_receipts": {
+      "rsl_rl_ppo": "4fa7b6e3fec8274ee1463aec3ad1e9b7462e5ba7e22e036b04d66517dfc30d49",
+      "warp_ppo": "9b3006d98344f4b2c48041ca1c1b92d7e85f45bdbca6e6c40230434eb4a7356a",
+      "flashsac": "cbc34962aeabf812614f63dd6c69526cc507e2562f2fadb83d7029a60305f0c5"
+    }
+  },
+  "notes": [
+    "Raw inputs are unmodified.",
+    "Report input hashes identify full private evidence; public measurements are an explicit subset.",
+    "Native policy checkpoints remain in the retrieved artifact bundles."
+  ]
+}
