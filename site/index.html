@@ -123,6 +123,37 @@
         <h1 id="page-title">Research reports</h1>
         <p>Short technical reports on robotics, learning, and simulation.</p>
       </section>
+      <article class="report-card" aria-labelledby="flashsac-cuda-title">
+        <p class="date"><time datetime="2026-10-24">24 October 2026</time></p>
+        <h2 id="flashsac-cuda-title">
+          <a href="reports/2026-10-24-flashsac-cuda/">FlashSAC: native CUDA learner optimizations</a>
+        </h2>
+        <p class="summary">
+          The optimized native mixed-precision learner took 3.794 and 3.798 ms per complete critic-update call;
+          pristine official Torch AMP took 4.045 and 3.858 ms in the two ordered passes.
+          The report separates warm execution, compiler startup and observed timing variation.
+        </p>
+        <ul class="chips" aria-label="FlashSAC implementations compared">
+          <li>Official Torch AMP</li>
+          <li>RoboLearn Torch port</li>
+          <li>Native CUDA mixed precision</li>
+        </ul>
+        <p class="method">NVIDIA L40 · fixed synthetic G1-shaped data · 5 timing blocks per row</p>
+        <p class="method">Standalone learner benchmark · preserved networks and losses · no policy-quality measurement</p>
+        <a class="read-report" href="reports/2026-10-24-flashsac-cuda/">Read the learner report <span aria-hidden="true">→</span></a>
+        <figure>
+          <div class="figure-preview" tabindex="0" role="region" aria-label="Scrollable native CUDA and official Torch AMP learner timing comparison">
+            <img src="reports/2026-10-24-flashsac-cuda/figures/amp-comparison.svg"
+                 alt="Complete FlashSAC learner-call times for native CUDA controls, official Torch AMP and the RoboLearn Torch port across two ordered process passes."
+                 loading="lazy" decoding="async">
+          </div>
+          <figcaption>
+            Bars and ranges describe five timing blocks on one allocation, not independent seeds or confidence intervals.
+            <span class="figure-help">Scroll horizontally on smaller screens to keep the figure labels readable.</span>
+            <a href="reports/2026-10-24-flashsac-cuda/figures/amp-comparison.svg">Open the figure at full size</a>
+          </figcaption>
+        </figure>
+      </article>
       <article class="report-card" aria-labelledby="g1-main-title">
         <p class="date"><time datetime="2026-10-20">20 October 2026</time></p>
         <h2 id="g1-main-title">

@@ -1,0 +1,33 @@
+{
+  "public_path": "2026-10-24-flashsac-cuda",
+  "scope": "Synthetic complete learner updates; no policy-quality measurement",
+  "source_commits": {
+    "optimized_commit": "69941d39ef987f43a9052a576b1f679ce4db2a05",
+    "baseline_commit": "33c5ba95cb02ae1c74e56b20b3489cacc5be8d10",
+    "official_commit": "87edc9061150ae9e962dd84e6544e27a1554b3ab"
+  },
+  "original_artifacts": {
+    "sha256sums_sha256": "6ba53a19a7f9b9bf40fc3be5ab4a7856fc38331a4fd76305fa2c0357eb160b9a",
+    "files_including_manifest": 143,
+    "bytes_including_manifest": 884129621,
+    "whole_tree_sha256_verified": true
+  },
+  "source_sha256": {
+    "input_summary": "8e977331c1a81260728bc7c37c75295c8bd71b8f0d94582782e924708067ded7",
+    "original_report_html": "a2f0f9e8ba9918411d5d6c68c22a8814c8070cfdf081252c3cd080491d42ec17",
+    "raw_json": {
+      "runs/baseline-pre.json": "6ced7807941c46e2f4ae4f964b19d19e3c6d7a8e9d16ca0fb596e791d1d85147",
+      "runs/optimized-first.json": "0e70414a81de8b8d0296e3645ddaa26e2ad197dc333b844a41ab13fdec447495",
+      "runs/baseline-post.json": "dc75269840098897bbb095bd09ae5e59bbaa4f5792df3079953b7ef3163dcbe1",
+      "runs/optimized-repeat.json": "e9da7a4b1cbf614362ced3ab8d400ceab040d2bb8aa1c74cfa3349c6569d68e0",
+      "runs/focused-validation.json": "583cc1983718457b0df3b57cbc1fadda262cc08ed7b5d57eb5ba5eabbb33a7c5",
+      "metadata/commands.json": "5b5ff7721b8d070e86baf485d4c9d74257d162699ee0c7f631964f851bd6d16a"
+    }
+  },
+  "notes": [
+    "The original summary and all six figure exports are published byte-for-byte unchanged.",
+    "The publication HTML adds public implementation links and expands the existing FlashSAC paper credit.",
+    "SHA256SUMS identifies the published files; original source hashes identify the preserved experiment inputs.",
+    "Raw logs, compiler caches and native checkpoints remain in the verified experiment archive."
+  ]
+}

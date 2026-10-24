@@ -1,0 +1,1049 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>FlashSAC gradient-clear and BatchNorm follow-up</title><style>body{margin:0;background:#f2f5f7;color:#172b3b;font:16px/1.6 Georgia,serif}main{max-width:1200px;margin:auto;background:white;padding:48px 5%}h1,h2,table,summary,.meta{font-family:system-ui,sans-serif}h1{font-size:2.5rem;line-height:1.15}h2{border-top:1px solid #dce3e9;padding-top:1rem;margin-top:2rem}.meta,figcaption{font-size:.85rem;color:#536678}p{max-width:95ch}.table{overflow:auto}table{border-collapse:collapse;width:100%;font-size:.78rem;margin:15px 0}td,th{text-align:left;vertical-align:top;padding:9px;border-bottom:1px solid #dce3e9}th{background:#edf3f8}figure{margin:22px 0}svg{width:100%;height:auto}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:.7rem}summary{cursor:pointer}a{color:#275b8b}.note{background:#edf3f8;border-left:4px solid #315c8b;padding:12px 18px}@media print{main{padding:0}figure{break-inside:avoid}body{background:white}}</style><main>
+<div class="meta">RoboLearn · 24 October 2026 · standalone learner systems</div><h1>FlashSAC gradient-clear and BatchNorm follow-up</h1>
+<p class="meta">NVIDIA L40 · Torch 2.11.0+cu130 · Warp 1.17.0 · Warp-NN 0.4.1</p>
+<p>We measure complete FlashSAC learner calls after a focused native BatchNorm backward and grouped gradient-clear change. Networks and losses are preserved. Fixed synthetic G1-shaped data isolate learner execution; this experiment neither trains nor evaluates a walking policy.</p>
+<h2>1. Measured results</h2><p><b>First pass.</b> Official Torch AMP: 4.045 ms; Torch port AMP: 4.206 ms; optimized native mixed precision: 3.794 ms. Native/official time is 0.938×.</p><p><b>Repeat pass.</b> Official Torch AMP: 3.858 ms; Torch port AMP: 4.007 ms; optimized native mixed precision: 3.798 ms. Native/official time is 0.984×.</p><p><b>Old native controls.</b> Before: 3.825 ms; after the first optimized pass: 3.838 ms (post/pre 1.003×). The separately measured optimized FP32 control takes 6.129 ms.</p><p class="note">Ratios divide median times; below 1 means less time for the numerator. Whiskers are observed min–max block means. Two ordered process passes and five blocks per row describe timing variation on one allocation, not independent seeds, confidence intervals or statistical significance.</p>
+<figure><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="864pt" height="561.6pt" viewBox="0 0 864 561.6" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>RoboLearn report renderer</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 561.6 
+L 864 561.6 
+L 864 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 221.043209 516.994838 
+L 860.99976 516.994838 
+L 860.99976 25.206553 
+L 221.043209 25.206553 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <path d="M 221.043209 516.994838 
+L 221.043209 25.206553 
+" clip-path="url(#p48d47f3142)" style="fill: none; stroke: #dce3e9; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_2">
+      <defs>
+       <path id="mdd53498ffa" d="M 0 0 
+L 0 3.5 
+" style="stroke: #000000; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#mdd53498ffa" x="221.043209" y="516.994838" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="221.043209" y="530.832729" transform="rotate(-0 221.043209 530.832729)">0</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_3">
+      <path d="M 342.57532 516.994838 
+L 342.57532 25.206553 
+" clip-path="url(#p48d47f3142)" style="fill: none; stroke: #dce3e9; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#mdd53498ffa" x="342.57532" y="516.994838" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="342.57532" y="530.832729" transform="rotate(-0 342.57532 530.832729)">1</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_5">
+      <path d="M 464.107432 516.994838 
+L 464.107432 25.206553 
+" clip-path="url(#p48d47f3142)" style="fill: none; stroke: #dce3e9; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_6">
+      <g>
+       <use xlink:href="#mdd53498ffa" x="464.107432" y="516.994838" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="464.107432" y="530.832729" transform="rotate(-0 464.107432 530.832729)">2</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_7">
+      <path d="M 585.639544 516.994838 
+L 585.639544 25.206553 
+" clip-path="url(#p48d47f3142)" style="fill: none; stroke: #dce3e9; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_8">
+      <g>
+       <use xlink:href="#mdd53498ffa" x="585.639544" y="516.994838" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="585.639544" y="530.832729" transform="rotate(-0 585.639544 530.832729)">3</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_9">
+      <path d="M 707.171655 516.994838 
+L 707.171655 25.206553 
+" clip-path="url(#p48d47f3142)" style="fill: none; stroke: #dce3e9; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_10">
+      <g>
+       <use xlink:href="#mdd53498ffa" x="707.171655" y="516.994838" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="707.171655" y="530.832729" transform="rotate(-0 707.171655 530.832729)">4</text>
+     </g>
+    </g>
+    <g id="xtick_6">
+     <g id="line2d_11">
+      <path d="M 828.703767 516.994838 
+L 828.703767 25.206553 
+" clip-path="url(#p48d47f3142)" style="fill: none; stroke: #dce3e9; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_12">
+      <g>
+       <use xlink:href="#mdd53498ffa" x="828.703767" y="516.994838" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_6">
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="828.703767" y="530.832729" transform="rotate(-0 828.703767 530.832729)">5</text>
+     </g>
+    </g>
+    <g id="text_7">
+     <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(446.224766 544.734311)">Complete FlashSAC critic-update call (ms)</text>
+     <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(376.278594 555.536772)">Median of five block means; observed min–max, not confidence intervals</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_13">
+      <defs>
+       <path id="m8cbfa1567b" d="M 0 0 
+L -3.5 0 
+" style="stroke: #000000; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m8cbfa1567b" x="221.043209" y="63.018128" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_8">
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(144.438052 61.486634)">Old native · pre</text>
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(56.735865 72.289094)">FP16 dense / FP32 state · captured</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_14">
+      <g>
+       <use xlink:href="#m8cbfa1567b" x="221.043209" y="122.47029" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_9">
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(88.550865 120.938796)">Official FlashSAC · first pass</text>
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(3.00024 131.741257)">Torch FP16 AMP · compiled nets · TF32 allowed</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_15">
+      <g>
+       <use xlink:href="#m8cbfa1567b" x="221.043209" y="181.922452" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_10">
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(68.878834 180.390958)">RoboLearn Torch port · first pass</text>
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(3.00024 191.193419)">Torch FP16 AMP · compiled nets · TF32 allowed</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_16">
+      <g>
+       <use xlink:href="#m8cbfa1567b" x="221.043209" y="241.374614" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_11">
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(87.369615 239.84312)">Optimized native · first pass</text>
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(56.735865 250.645581)">FP16 dense / FP32 state · captured</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_17">
+      <g>
+       <use xlink:href="#m8cbfa1567b" x="221.043209" y="300.826776" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_12">
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(139.753834 299.295282)">Old native · post</text>
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(56.735865 310.097743)">FP16 dense / FP32 state · captured</text>
+     </g>
+    </g>
+    <g id="ytick_6">
+     <g id="line2d_18">
+      <g>
+       <use xlink:href="#m8cbfa1567b" x="221.043209" y="360.278939" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_13">
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(76.801646 358.747444)">Official FlashSAC · repeat pass</text>
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(3.00024 369.549905)">Torch FP16 AMP · compiled nets · TF32 allowed</text>
+     </g>
+    </g>
+    <g id="ytick_7">
+     <g id="line2d_19">
+      <g>
+       <use xlink:href="#m8cbfa1567b" x="221.043209" y="419.731101" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_14">
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(57.129615 418.199607)">RoboLearn Torch port · repeat pass</text>
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(3.00024 429.002068)">Torch FP16 AMP · compiled nets · TF32 allowed</text>
+     </g>
+    </g>
+    <g id="ytick_8">
+     <g id="line2d_20">
+      <g>
+       <use xlink:href="#m8cbfa1567b" x="221.043209" y="479.183263" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_15">
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(75.620396 477.651769)">Optimized native · repeat pass</text>
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(56.735865 488.45423)">FP16 dense / FP32 state · captured</text>
+     </g>
+    </g>
+   </g>
+   <g id="patch_3">
+    <path d="M 221.043209 47.560565 
+L 685.848871 47.560565 
+L 685.848871 78.47569 
+L 221.043209 78.47569 
+z
+" clip-path="url(#p48d47f3142)" style="fill: #83909c"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 221.043209 107.012728 
+L 712.614525 107.012728 
+L 712.614525 137.927852 
+L 221.043209 137.927852 
+z
+" clip-path="url(#p48d47f3142)" style="fill: #315c8b"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 221.043209 166.46489 
+L 732.227403 166.46489 
+L 732.227403 197.380014 
+L 221.043209 197.380014 
+z
+" clip-path="url(#p48d47f3142)" style="fill: #34796e"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 221.043209 225.917052 
+L 682.132454 225.917052 
+L 682.132454 256.832176 
+L 221.043209 256.832176 
+z
+" clip-path="url(#p48d47f3142)" style="fill: #ba622f"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 221.043209 285.369214 
+L 687.456671 285.369214 
+L 687.456671 316.284339 
+L 221.043209 316.284339 
+z
+" clip-path="url(#p48d47f3142)" style="fill: #83909c"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 221.043209 344.821376 
+L 689.953039 344.821376 
+L 689.953039 375.736501 
+L 221.043209 375.736501 
+z
+" clip-path="url(#p48d47f3142)" style="fill: #315c8b"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 221.043209 404.273539 
+L 708.011141 404.273539 
+L 708.011141 435.188663 
+L 221.043209 435.188663 
+z
+" clip-path="url(#p48d47f3142)" style="fill: #34796e"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 221.043209 463.725701 
+L 682.58303 463.725701 
+L 682.58303 494.640825 
+L 221.043209 494.640825 
+z
+" clip-path="url(#p48d47f3142)" style="fill: #ba622f"/>
+   </g>
+   <g id="LineCollection_1">
+    <path d="M 685.303281 63.018128 
+L 686.39242 63.018128 
+" clip-path="url(#p48d47f3142)" style="fill: none; stroke: #172b3b; stroke-width: 1.5"/>
+    <path d="M 700.126832 122.47029 
+L 718.223143 122.47029 
+" clip-path="url(#p48d47f3142)" style="fill: none; stroke: #172b3b; stroke-width: 1.5"/>
+    <path d="M 715.926675 181.922452 
+L 745.597759 181.922452 
+" clip-path="url(#p48d47f3142)" style="fill: none; stroke: #172b3b; stroke-width: 1.5"/>
+    <path d="M 682.043065 241.374614 
+L 683.65084 241.374614 
+" clip-path="url(#p48d47f3142)" style="fill: none; stroke: #172b3b; stroke-width: 1.5"/>
+    <path d="M 686.823351 300.826776 
+L 688.084888 300.826776 
+" clip-path="url(#p48d47f3142)" style="fill: none; stroke: #172b3b; stroke-width: 1.5"/>
+    <path d="M 678.447747 360.278939 
+L 705.812558 360.278939 
+" clip-path="url(#p48d47f3142)" style="fill: none; stroke: #172b3b; stroke-width: 1.5"/>
+    <path d="M 703.791652 419.731101 
+L 721.522806 419.731101 
+" clip-path="url(#p48d47f3142)" style="fill: none; stroke: #172b3b; stroke-width: 1.5"/>
+    <path d="M 682.360544 479.183263 
+L 684.183428 479.183263 
+" clip-path="url(#p48d47f3142)" style="fill: none; stroke: #172b3b; stroke-width: 1.5"/>
+   </g>
+   <g id="line2d_21">
+    <defs>
+     <path id="md961dbef91" d="M 0 3 
+L 0 -3 
+" style="stroke: #172b3b"/>
+    </defs>
+    <g clip-path="url(#p48d47f3142)">
+     <use xlink:href="#md961dbef91" x="685.303281" y="63.018128" style="fill: #1f77b4; stroke: #172b3b"/>
+     <use xlink:href="#md961dbef91" x="700.126832" y="122.47029" style="fill: #1f77b4; stroke: #172b3b"/>
+     <use xlink:href="#md961dbef91" x="715.926675" y="181.922452" style="fill: #1f77b4; stroke: #172b3b"/>
+     <use xlink:href="#md961dbef91" x="682.043065" y="241.374614" style="fill: #1f77b4; stroke: #172b3b"/>
+     <use xlink:href="#md961dbef91" x="686.823351" y="300.826776" style="fill: #1f77b4; stroke: #172b3b"/>
+     <use xlink:href="#md961dbef91" x="678.447747" y="360.278939" style="fill: #1f77b4; stroke: #172b3b"/>
+     <use xlink:href="#md961dbef91" x="703.791652" y="419.731101" style="fill: #1f77b4; stroke: #172b3b"/>
+     <use xlink:href="#md961dbef91" x="682.360544" y="479.183263" style="fill: #1f77b4; stroke: #172b3b"/>
+    </g>
+   </g>
+   <g id="line2d_22">
+    <g clip-path="url(#p48d47f3142)">
+     <use xlink:href="#md961dbef91" x="686.39242" y="63.018128" style="fill: #1f77b4; stroke: #172b3b"/>
+     <use xlink:href="#md961dbef91" x="718.223143" y="122.47029" style="fill: #1f77b4; stroke: #172b3b"/>
+     <use xlink:href="#md961dbef91" x="745.597759" y="181.922452" style="fill: #1f77b4; stroke: #172b3b"/>
+     <use xlink:href="#md961dbef91" x="683.65084" y="241.374614" style="fill: #1f77b4; stroke: #172b3b"/>
+     <use xlink:href="#md961dbef91" x="688.084888" y="300.826776" style="fill: #1f77b4; stroke: #172b3b"/>
+     <use xlink:href="#md961dbef91" x="705.812558" y="360.278939" style="fill: #1f77b4; stroke: #172b3b"/>
+     <use xlink:href="#md961dbef91" x="721.522806" y="419.731101" style="fill: #1f77b4; stroke: #172b3b"/>
+     <use xlink:href="#md961dbef91" x="684.183428" y="479.183263" style="fill: #1f77b4; stroke: #172b3b"/>
+    </g>
+   </g>
+   <g id="patch_11">
+    <path d="M 221.043209 516.994838 
+L 860.99976 516.994838 
+" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_16">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="692.39242" y="65.356018" transform="rotate(-0 692.39242 65.356018)">3.825 ms</text>
+   </g>
+   <g id="text_17">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="724.223143" y="124.80818" transform="rotate(-0 724.223143 124.80818)">4.045 ms</text>
+   </g>
+   <g id="text_18">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="751.597759" y="184.260343" transform="rotate(-0 751.597759 184.260343)">4.206 ms</text>
+   </g>
+   <g id="text_19">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="689.65084" y="243.712505" transform="rotate(-0 689.65084 243.712505)">3.794 ms</text>
+   </g>
+   <g id="text_20">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="694.084888" y="303.164667" transform="rotate(-0 694.084888 303.164667)">3.838 ms</text>
+   </g>
+   <g id="text_21">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="711.812558" y="362.616829" transform="rotate(-0 711.812558 362.616829)">3.858 ms</text>
+   </g>
+   <g id="text_22">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="727.522806" y="422.068991" transform="rotate(-0 727.522806 422.068991)">4.007 ms</text>
+   </g>
+   <g id="text_23">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="690.183428" y="481.521154" transform="rotate(-0 690.183428 481.521154)">3.798 ms</text>
+   </g>
+   <g id="text_24">
+    <text style="font-weight: 700; font-size: 10.8px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="221.043209" y="11.206553" transform="rotate(-0 221.043209 11.206553)">Torch AMP and native mixed precision: two passes plus old controls</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p48d47f3142">
+   <rect x="221.043209" y="25.206553" width="639.956551" height="491.788286"/>
+  </clipPath>
+ </defs>
+</svg>
+<figcaption>Download <a href="figures/amp-comparison.svg">SVG</a> · <a href="figures/amp-comparison.pdf">PDF</a> · <a href="figures/amp-comparison.png">PNG</a>. Same allocation and caches; blocks are not independent seeds.</figcaption></figure><figure><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="864pt" height="183.6pt" viewBox="0 0 864 183.6" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>RoboLearn report renderer</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 183.6 
+L 864 183.6 
+L 864 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 195.646334 138.994838 
+L 860.99976 138.994838 
+L 860.99976 25.206552 
+L 195.646334 25.206552 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <path d="M 195.646334 138.994838 
+L 195.646334 25.206552 
+" clip-path="url(#p70621b0b3c)" style="fill: none; stroke: #dce3e9; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_2">
+      <defs>
+       <path id="m2d703aaa77" d="M 0 0 
+L 0 3.5 
+" style="stroke: #000000; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m2d703aaa77" x="195.646334" y="138.994838" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="195.646334" y="152.832729" transform="rotate(-0 195.646334 152.832729)">0</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_3">
+      <path d="M 284.337897 138.994838 
+L 284.337897 25.206552 
+" clip-path="url(#p70621b0b3c)" style="fill: none; stroke: #dce3e9; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#m2d703aaa77" x="284.337897" y="138.994838" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="284.337897" y="152.832729" transform="rotate(-0 284.337897 152.832729)">1</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_5">
+      <path d="M 373.02946 138.994838 
+L 373.02946 25.206552 
+" clip-path="url(#p70621b0b3c)" style="fill: none; stroke: #dce3e9; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_6">
+      <g>
+       <use xlink:href="#m2d703aaa77" x="373.02946" y="138.994838" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="373.02946" y="152.832729" transform="rotate(-0 373.02946 152.832729)">2</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_7">
+      <path d="M 461.721023 138.994838 
+L 461.721023 25.206552 
+" clip-path="url(#p70621b0b3c)" style="fill: none; stroke: #dce3e9; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_8">
+      <g>
+       <use xlink:href="#m2d703aaa77" x="461.721023" y="138.994838" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="461.721023" y="152.832729" transform="rotate(-0 461.721023 152.832729)">3</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_9">
+      <path d="M 550.412587 138.994838 
+L 550.412587 25.206552 
+" clip-path="url(#p70621b0b3c)" style="fill: none; stroke: #dce3e9; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_10">
+      <g>
+       <use xlink:href="#m2d703aaa77" x="550.412587" y="138.994838" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="550.412587" y="152.832729" transform="rotate(-0 550.412587 152.832729)">4</text>
+     </g>
+    </g>
+    <g id="xtick_6">
+     <g id="line2d_11">
+      <path d="M 639.10415 138.994838 
+L 639.10415 25.206552 
+" clip-path="url(#p70621b0b3c)" style="fill: none; stroke: #dce3e9; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_12">
+      <g>
+       <use xlink:href="#m2d703aaa77" x="639.10415" y="138.994838" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_6">
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="639.10415" y="152.832729" transform="rotate(-0 639.10415 152.832729)">5</text>
+     </g>
+    </g>
+    <g id="xtick_7">
+     <g id="line2d_13">
+      <path d="M 727.795713 138.994838 
+L 727.795713 25.206552 
+" clip-path="url(#p70621b0b3c)" style="fill: none; stroke: #dce3e9; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_14">
+      <g>
+       <use xlink:href="#m2d703aaa77" x="727.795713" y="138.994838" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_7">
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="727.795713" y="152.832729" transform="rotate(-0 727.795713 152.832729)">6</text>
+     </g>
+    </g>
+    <g id="xtick_8">
+     <g id="line2d_15">
+      <path d="M 816.487276 138.994838 
+L 816.487276 25.206552 
+" clip-path="url(#p70621b0b3c)" style="fill: none; stroke: #dce3e9; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_16">
+      <g>
+       <use xlink:href="#m2d703aaa77" x="816.487276" y="138.994838" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_8">
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="816.487276" y="152.832729" transform="rotate(-0 816.487276 152.832729)">7</text>
+     </g>
+    </g>
+    <g id="text_9">
+     <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(433.526328 166.734311)">Complete FlashSAC critic-update call (ms)</text>
+     <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(363.580156 177.536772)">Median of five block means; observed min–max, not confidence intervals</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_17">
+      <defs>
+       <path id="m3ff844bc14" d="M 0 0 
+L -3.5 0 
+" style="stroke: #000000; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m3ff844bc14" x="195.646334" y="82.100695" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_10">
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(3.00024 80.569201)">Optimized native FP32 control · first pass</text>
+      <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif" transform="translate(117.847271 91.371662)">FP32 · captured</text>
+     </g>
+    </g>
+   </g>
+   <g id="patch_3">
+    <path d="M 195.646334 30.378747 
+L 739.24011 30.378747 
+L 739.24011 133.822643 
+L 195.646334 133.822643 
+z
+" clip-path="url(#p70621b0b3c)" style="fill: #ba622f"/>
+   </g>
+   <g id="LineCollection_1">
+    <path d="M 737.683671 82.100695 
+L 741.017995 82.100695 
+" clip-path="url(#p70621b0b3c)" style="fill: none; stroke: #172b3b; stroke-width: 1.5"/>
+   </g>
+   <g id="line2d_18">
+    <defs>
+     <path id="m3dc1da021f" d="M 0 3 
+L 0 -3 
+" style="stroke: #172b3b"/>
+    </defs>
+    <g clip-path="url(#p70621b0b3c)">
+     <use xlink:href="#m3dc1da021f" x="737.683671" y="82.100695" style="fill: #1f77b4; stroke: #172b3b"/>
+    </g>
+   </g>
+   <g id="line2d_19">
+    <g clip-path="url(#p70621b0b3c)">
+     <use xlink:href="#m3dc1da021f" x="741.017995" y="82.100695" style="fill: #1f77b4; stroke: #172b3b"/>
+    </g>
+   </g>
+   <g id="patch_4">
+    <path d="M 195.646334 138.994838 
+L 860.99976 138.994838 
+" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 9px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="747.017995" y="84.438586" transform="rotate(-0 747.017995 84.438586)">6.129 ms</text>
+   </g>
+   <g id="text_12">
+    <text style="font-weight: 700; font-size: 10.8px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="195.646334" y="11.206552" transform="rotate(-0 195.646334 11.206552)">Separate FP32 control: optimized native learner</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p70621b0b3c">
+   <rect x="195.646334" y="25.206552" width="665.353426" height="113.788286"/>
+  </clipPath>
+ </defs>
+</svg>
+<figcaption>Download <a href="figures/fp32-control.svg">SVG</a> · <a href="figures/fp32-control.pdf">PDF</a> · <a href="figures/fp32-control.png">PNG</a>. Same allocation and caches; blocks are not independent seeds.</figcaption></figure><div class="table"><table><thead><tr><th>Implementation</th><th>Precision</th><th>Networks / helpers</th><th>Median [min,max] ms</th><th>Setup s</th><th>First warmup s</th><th>All warmups s</th><th>Action µs/call</th></tr></thead><tbody><tr><td>Old native · pre</td><td>FP16 dense / FP32 state · captured</td><td>none / native CUDA / Warp JIT</td><td>3.825 [3.820, 3.829]</td><td>5.81</td><td>0.09</td><td>0.44</td><td>420.0</td></tr><tr><td>Official FlashSAC · first pass</td><td>Torch FP16 AMP · compiled nets · TF32 allowed</td><td>max-autotune / categorical, reward, zeta compiled</td><td>4.045 [3.942, 4.091]</td><td>19.85</td><td>424.41</td><td>424.77</td><td>398.5</td></tr><tr><td>RoboLearn Torch port · first pass</td><td>Torch FP16 AMP · compiled nets · TF32 allowed</td><td>max-autotune / normalization, EMA, sampler compiled; categorical/reward eager</td><td>4.206 [4.072, 4.316]</td><td>3.21</td><td>42.36</td><td>42.72</td><td>223.0</td></tr><tr><td>Optimized native · first pass</td><td>FP16 dense / FP32 state · captured</td><td>none / native CUDA / Warp JIT</td><td>3.794 [3.793, 3.806]</td><td>1.28</td><td>0.09</td><td>0.43</td><td>439.4</td></tr><tr><td>Optimized native FP32 control · first pass</td><td>FP32 · captured</td><td>none / native CUDA / Warp JIT</td><td>6.129 [6.111, 6.149]</td><td>1.03</td><td>0.13</td><td>0.64</td><td>451.2</td></tr><tr><td>Old native · post</td><td>FP16 dense / FP32 state · captured</td><td>none / native CUDA / Warp JIT</td><td>3.838 [3.833, 3.843]</td><td>1.30</td><td>0.09</td><td>0.44</td><td>439.5</td></tr><tr><td>Official FlashSAC · repeat pass</td><td>Torch FP16 AMP · compiled nets · TF32 allowed</td><td>max-autotune / categorical, reward, zeta compiled</td><td>3.858 [3.764, 3.989]</td><td>16.66</td><td>13.23</td><td>13.57</td><td>400.7</td></tr><tr><td>RoboLearn Torch port · repeat pass</td><td>Torch FP16 AMP · compiled nets · TF32 allowed</td><td>max-autotune / normalization, EMA, sampler compiled; categorical/reward eager</td><td>4.007 [3.972, 4.118]</td><td>2.34</td><td>7.67</td><td>8.01</td><td>224.6</td></tr><tr><td>Optimized native · repeat pass</td><td>FP16 dense / FP32 state · captured</td><td>none / native CUDA / Warp JIT</td><td>3.798 [3.796, 3.811]</td><td>1.39</td><td>0.09</td><td>0.43</td><td>423.4</td></tr></tbody></table></div>
+<h2>2. Protocol and controls</h2><p>Every call samples replay, updates the critic, updates actor and temperature every second call, applies parameter projections and target EMA, and returns the default 7/2 CPU scalar metrics. All rows use 1,024 synthetic environments, 123 observations, 37 actions and batch size 2,048. Each of five blocks has 20 warm calls and 200 measured calls; state continues across blocks. The measured budget per row is 1,000 critic, 500 actor and 500 temperature optimizer attempts. AMP skips remain explicit below.</p>
+<p>All four benchmark processes use exactly the same canonical initial arrays and bit-identical transition fixtures, verified with per-array hashes. Each implementation reads back its loaded arrays exactly in the authors’ layout. Replay populations are checked against the pristine authors’ replay implementation. Fixtures contain no terminal or timeout transitions, so timeout-discount semantics are not validated. Common initialization does not imply identical random draws or optimizer trajectories.</p>
+<p>Process order is old native pre, optimized first pass, old native post, optimized repeat. Old-native processes still construct the pristine official learner and ingest the shared fixture as an untimed reference, with zero author optimizer updates. Inside each optimized process, official Torch, the Torch port and native implementations run in that order. Compiler caches are retained across processes; this is not an independent cold-start comparison. No locked-clock crossover study or task-quality measurement is provided.</p>
+<p>Native mixed precision uses FP16 dense operands with FP32 accumulation, outputs, activations, normalization, master weights and Adam. Torch AMP rounds more intermediate values to FP16 and allows the authors’ TF32/high matmul policy; native FP32 uses pedantic FP32. These are different numerical recipes with matched architecture and losses. The FP32 row is a separate precision control.</p>
+<p>The follow-up reduces BatchNorm backward channel coefficients once before coalesced gradient application, and groups each learning phase’s gradient clears into one native launch. The prior categorical and FP16 weight-shadow fusions remain in both native versions. Scheduled parameter projections and target EMA still run after attempted updates, including AMP skips. These timings compare the combined follow-up rather than isolating each change’s causal contribution.</p>
+<p>Setup includes native/learner construction, common-weight loading and its CPU readback audit, replay ingestion and preparation; it excludes block warmups. First and total warmups expose observed compilation/preparation costs. Separate action timings include the public action API and a CPU NumPy copy on every call. Checkpoint writing, replay audits and profiler traces are outside update bars. Reference-only author construction is outside the old-native setup value; full command wall times below include it, plus imports, fixture work and all rows in that process, but exclude environment installation.</p>
+<div class="table"><table><thead><tr><th>Successful command</th><th>Process wall seconds</th></tr></thead><tbody><tr><td>focused-validation</td><td>24.02</td></tr><tr><td>baseline-pre</td><td>60.51</td></tr><tr><td>optimized-first</td><td>529.65</td></tr><tr><td>baseline-post</td><td>35.94</td></tr><tr><td>optimized-repeat</td><td>69.07</td></tr></tbody></table></div>
+<details><summary>Attempted, completed and skipped optimizer updates</summary><div class="table"><table><thead><tr><th>Implementation</th><th>Optimizer</th><th>Attempted</th><th>Completed</th><th>Skipped</th></tr></thead><tbody><tr><td>Old native · pre</td><td>critic</td><td>1000</td><td>1000</td><td>0</td></tr><tr><td>Old native · pre</td><td>actor</td><td>500</td><td>500</td><td>0</td></tr><tr><td>Old native · pre</td><td>temperature</td><td>500</td><td>500</td><td>0</td></tr><tr><td>Official FlashSAC · first pass</td><td>critic</td><td>1000</td><td>1000</td><td>0</td></tr><tr><td>Official FlashSAC · first pass</td><td>actor</td><td>500</td><td>500</td><td>0</td></tr><tr><td>Official FlashSAC · first pass</td><td>temperature</td><td>500</td><td>500</td><td>0</td></tr><tr><td>RoboLearn Torch port · first pass</td><td>critic</td><td>1000</td><td>1000</td><td>0</td></tr><tr><td>RoboLearn Torch port · first pass</td><td>actor</td><td>500</td><td>500</td><td>0</td></tr><tr><td>RoboLearn Torch port · first pass</td><td>temperature</td><td>500</td><td>500</td><td>0</td></tr><tr><td>Optimized native · first pass</td><td>critic</td><td>1000</td><td>1000</td><td>0</td></tr><tr><td>Optimized native · first pass</td><td>actor</td><td>500</td><td>500</td><td>0</td></tr><tr><td>Optimized native · first pass</td><td>temperature</td><td>500</td><td>500</td><td>0</td></tr><tr><td>Optimized native FP32 control · first pass</td><td>critic</td><td>1000</td><td>1000</td><td>0</td></tr><tr><td>Optimized native FP32 control · first pass</td><td>actor</td><td>500</td><td>500</td><td>0</td></tr><tr><td>Optimized native FP32 control · first pass</td><td>temperature</td><td>500</td><td>500</td><td>0</td></tr><tr><td>Old native · post</td><td>critic</td><td>1000</td><td>1000</td><td>0</td></tr><tr><td>Old native · post</td><td>actor</td><td>500</td><td>500</td><td>0</td></tr><tr><td>Old native · post</td><td>temperature</td><td>500</td><td>500</td><td>0</td></tr><tr><td>Official FlashSAC · repeat pass</td><td>critic</td><td>1000</td><td>1000</td><td>0</td></tr><tr><td>Official FlashSAC · repeat pass</td><td>actor</td><td>500</td><td>500</td><td>0</td></tr><tr><td>Official FlashSAC · repeat pass</td><td>temperature</td><td>500</td><td>500</td><td>0</td></tr><tr><td>RoboLearn Torch port · repeat pass</td><td>critic</td><td>1000</td><td>1000</td><td>0</td></tr><tr><td>RoboLearn Torch port · repeat pass</td><td>actor</td><td>500</td><td>500</td><td>0</td></tr><tr><td>RoboLearn Torch port · repeat pass</td><td>temperature</td><td>500</td><td>500</td><td>0</td></tr><tr><td>Optimized native · repeat pass</td><td>critic</td><td>1000</td><td>1000</td><td>0</td></tr><tr><td>Optimized native · repeat pass</td><td>actor</td><td>500</td><td>500</td><td>0</td></tr><tr><td>Optimized native · repeat pass</td><td>temperature</td><td>500</td><td>500</td><td>0</td></tr></tbody></table></div></details>
+<h2>3. Numerical and persistence checks</h2><p>All twelve focused diagnostic stages pass before this report is produced. They cover exercised dense, normalization, projection/EMA, categorical, scaler, grouped-clear, eager/capture and checkpoint fixtures, including a short G1-shaped learner check. Fused learner fixtures require native gradient-clear plans for all three phases and verify that their adjoints are zero after clearing. All benchmark checkpoints are present and hashed; benchmark weights remain finite and updated. Reload validation applies to the focused fixtures, and these checks do not establish identical full training trajectories or learned-policy quality.</p>
+<div class="table"><table><thead><tr><th>Focused stage</th><th>Passed checks</th><th>Diagnostic wall seconds</th></tr></thead><tbody><tr><td>dense</td><td>20</td><td>3.43</td></tr><tr><td>scaler</td><td>82</td><td>0.02</td></tr><tr><td>grouped-zero</td><td>16</td><td>0.01</td></tr><tr><td>projection-ema</td><td>12</td><td>0.01</td></tr><tr><td>normalization</td><td>34</td><td>1.59</td></tr><tr><td>categorical</td><td>13</td><td>1.24</td></tr><tr><td>categorical-wide</td><td>13</td><td>0.01</td></tr><tr><td>small-amp0-fused0</td><td>518</td><td>5.06</td></tr><tr><td>small-amp0-fused1</td><td>521</td><td>0.86</td></tr><tr><td>small-amp1-fused0</td><td>566</td><td>1.77</td></tr><tr><td>small-amp1-fused1</td><td>569</td><td>0.79</td></tr><tr><td>g1-shaped-amp-fused</td><td>741</td><td>3.79</td></tr></tbody></table></div>
+<h2>4. Untimed profiles</h2><p>Requested native profiles execute after timing and restore the complete learner state exactly. Tables summarize instrumented durations, not end-to-end latency or a causal decomposition of speed changes. Completed-duration events tagged cat=kernel and ph=X only; gpu_memset/gpu_memcpy categories excluded. Category assignment differs across variants, so this is not a conserved total of all GPU or algorithm operations. Overlap and instrumentation overhead make duration sums unsuitable as replacement wall-time measurements.</p><details><summary>Optimized native · first pass: RECORDED; 8 calls; 2,928 selected kernel events</summary><div class="table"><table><thead><tr><th>Kernel</th><th>Events</th><th>Summed µs</th><th>Share of selected duration %</th></tr></thead><tbody><tr><td>(anonymous namespace)::flash_native::bn_backward_apply(float const*, float const*, float const*, float const*, float const*, float const*, float const*, float*, int, int, float, bool, bool)</td><td>136</td><td>2,621.6</td><td>8.9</td></tr><tr><td>(anonymous namespace)::zero_native::clear((anonymous namespace)::zero_native::Block const*)</td><td>16</td><td>2,592.9</td><td>8.8</td></tr><tr><td>(anonymous namespace)::flash_native::bn_gradient_partials(float const*, float const*, float const*, float const*, float const*, float*, int, int, int, float, bool)</td><td>100</td><td>2,441.0</td><td>8.3</td></tr><tr><td>void cutlass::Kernel2&lt;cutlass_80_tensorop_s16816gemm_f16_128x64_64x3_tn_align2&gt;(cutlass_80_tensorop_s16816gemm_f16_128x64_64x3_tn_align2::Params)</td><td>112</td><td>2,225.4</td><td>7.6</td></tr><tr><td>void cutlass::Kernel2&lt;cutlass_80_tensorop_s16816gemm_f16_128x256_32x3_tn_align2&gt;(cutlass_80_tensorop_s16816gemm_f16_128x256_32x3_tn_align2::Params)</td><td>64</td><td>1,509.8</td><td>5.1</td></tr><tr><td>void cutlass::Kernel2&lt;cutlass_80_tensorop_s16816gemm_f16_128x256_32x3_nn_align2&gt;(cutlass_80_tensorop_s16816gemm_f16_128x256_32x3_nn_align2::Params)</td><td>32</td><td>1,462.0</td><td>5.0</td></tr><tr><td>void cutlass::Kernel2&lt;cutlass_80_tensorop_s16816gemm_f16_128x64_64x3_nt_align2&gt;(cutlass_80_tensorop_s16816gemm_f16_128x64_64x3_nt_align2::Params)</td><td>80</td><td>1,443.9</td><td>4.9</td></tr><tr><td>(anonymous namespace)::flash_native::bn_apply(float const*, float const*, float const*, float const*, float const*, float*, int, int, float, bool)</td><td>260</td><td>1,401.2</td><td>4.8</td></tr><tr><td>(anonymous namespace)::flash_native::bn_moments(float const*, float*, int, int, int)</td><td>180</td><td>1,398.9</td><td>4.8</td></tr><tr><td>(anonymous namespace)::cast_float_to_half4(float const*, __half*, unsigned long)</td><td>496</td><td>1,368.4</td><td>4.7</td></tr></tbody></table></div></details><details><summary>Optimized native FP32 control · first pass: RECORDED; 8 calls; 2,408 selected kernel events</summary><div class="table"><table><thead><tr><th>Kernel</th><th>Events</th><th>Summed µs</th><th>Share of selected duration %</th></tr></thead><tbody><tr><td>ampere_sgemm_128x64_tn</td><td>144</td><td>10,213.6</td><td>23.6</td></tr><tr><td>ampere_sgemm_128x64_nn</td><td>80</td><td>5,174.1</td><td>12.0</td></tr><tr><td>(anonymous namespace)::flash_native::bn_backward_apply(float const*, float const*, float const*, float const*, float const*, float const*, float const*, float*, int, int, float, bool, bool)</td><td>136</td><td>2,667.5</td><td>6.2</td></tr><tr><td>(anonymous namespace)::zero_native::clear((anonymous namespace)::zero_native::Block const*)</td><td>16</td><td>2,516.2</td><td>5.8</td></tr><tr><td>(anonymous namespace)::flash_native::bn_gradient_partials(float const*, float const*, float const*, float const*, float const*, float*, int, int, int, float, bool)</td><td>100</td><td>2,362.3</td><td>5.5</td></tr><tr><td>(anonymous namespace)::flash_native::bn_moments(float const*, float*, int, int, int)</td><td>180</td><td>2,278.5</td><td>5.3</td></tr><tr><td>ampere_sgemm_128x32_sliced1x4_nt</td><td>32</td><td>2,171.6</td><td>5.0</td></tr><tr><td>void cutlass::Kernel2&lt;cutlass_80_simt_sgemm_64x128_8x5_nt_align1&gt;(cutlass_80_simt_sgemm_64x128_8x5_nt_align1::Params)</td><td>32</td><td>1,781.1</td><td>4.1</td></tr><tr><td>ampere_sgemm_32x128_tn</td><td>108</td><td>1,575.4</td><td>3.6</td></tr><tr><td>(anonymous namespace)::flash_native::bn_apply(float const*, float const*, float const*, float const*, float const*, float*, int, int, float, bool)</td><td>260</td><td>1,556.6</td><td>3.6</td></tr></tbody></table></div></details>
+<h2>5. Provenance and attribution</h2><p>The old native RoboLearn library is pinned to <a href="https://github.com/maxkra15/RoboLearn/commit/33c5ba95cb02ae1c74e56b20b3489cacc5be8d10"><code>33c5ba95cb02ae1c74e56b20b3489cacc5be8d10</code></a>; the optimized library is pinned to <a href="https://github.com/maxkra15/RoboLearn/commit/69941d39ef987f43a9052a576b1f679ce4db2a05"><code>69941d39ef987f43a9052a576b1f679ce4db2a05</code></a>. The benchmark driver comes from the optimized source in every process, while imported package paths and hashes independently verify the selected library. Source hashes, canonical fixture hashes, scaler states and checkpoint hashes are available in <a href="summary.json">summary.json</a>; <a href="data/provenance.json">publication provenance</a> records the verified original artifact manifest and input JSON hashes.</p>
+<p>Pristine <a href="https://github.com/Holiday-Robot/FlashSAC/tree/87edc9061150ae9e962dd84e6544e27a1554b3ab">Holiday Robotics FlashSAC</a> implements <a href="https://arxiv.org/abs/2604.04539">FlashSAC: Fast and Stable Off-Policy Reinforcement Learning for High-Dimensional Robot Control</a>, by Donghu Kim and coauthors (2026). Official source is hash-verified with no patches or monkeypatches. Upstream’s declared Python matrix excludes Python 3.12; this standalone runtime uses Python 3.12.14, with CPU JAX only for upstream type imports. Native dense products use cuBLASLt. Raw data remain unchanged; this offline HTML and derived summary are separate outputs.</p>
+<details><summary>Public source and data provenance</summary><pre>{
+  &quot;optimized_commit&quot;: &quot;69941d39ef987f43a9052a576b1f679ce4db2a05&quot;,
+  &quot;baseline_commit&quot;: &quot;33c5ba95cb02ae1c74e56b20b3489cacc5be8d10&quot;,
+  &quot;official_commit&quot;: &quot;87edc9061150ae9e962dd84e6544e27a1554b3ab&quot;,
+  &quot;runtime&quot;: {
+    &quot;python&quot;: &quot;3.12.14&quot;,
+    &quot;torch&quot;: &quot;2.11.0+cu130&quot;,
+    &quot;warp&quot;: &quot;1.17.0&quot;,
+    &quot;warp_nn&quot;: &quot;0.4.1&quot;,
+    &quot;gpu&quot;: &quot;NVIDIA L40&quot;
+  },
+  &quot;canonical_initial_weights_npz_sha256&quot;: &quot;0cad5e104e684621d6ae142550da0e486ed2f2ffb026f3d32464a6ec1f2c4a0f&quot;,
+  &quot;common_initial_weight_arrays_sha256&quot;: {
+    &quot;actor.embedder.norm.weight&quot;: &quot;b458f34d505806eed86568c944ac60843a47c709ec09e259c1e0239f8dc6b4cc&quot;,
+    &quot;actor.embedder.norm.bias&quot;: &quot;60dc71cbff4cbc4c2c79f008599f8e44e6230dc1289495334cf42956a3e8aad7&quot;,
+    &quot;actor.embedder.norm.running_mean&quot;: &quot;60dc71cbff4cbc4c2c79f008599f8e44e6230dc1289495334cf42956a3e8aad7&quot;,
+    &quot;actor.embedder.norm.running_var&quot;: &quot;ccab4cd47ac1fa1d45b60ced9a984d7b002a8efe7aec583b027e5d864d753a8f&quot;,
+    &quot;actor.embedder.w.w.weight&quot;: &quot;26d205023380be5ee395e0fcf38f4ad9abb172ff517ca541d982c6f66491ccaf&quot;,
+    &quot;actor.encoder.0.w1.w.weight&quot;: &quot;c7d88513cf1f68dffc05afcb4377c95534230c2eb06e94ce5e6b08e5d4c57a69&quot;,
+    &quot;actor.encoder.0.w2.w.weight&quot;: &quot;31eae7afb34b89a43617f3154eca0a98bd78a6181aaf074085630773c693bdd4&quot;,
+    &quot;actor.encoder.0.norm1.weight&quot;: &quot;a2685db8f0717c2c627a34ae6a61420828f5715444cb3daf7a2a9b0608391837&quot;,
+    &quot;actor.encoder.0.norm1.bias&quot;: &quot;21952057e42389fe88ef4991dc048c4dc42df6339be1247d2361f40ca43a4925&quot;,
+    &quot;actor.encoder.0.norm1.running_mean&quot;: &quot;21952057e42389fe88ef4991dc048c4dc42df6339be1247d2361f40ca43a4925&quot;,
+    &quot;actor.encoder.0.norm1.running_var&quot;: &quot;094b4ab946b275d2aaf5b0baf3f694f56404738e02a43e5005026b4d2add501a&quot;,
+    &quot;actor.encoder.0.norm2.weight&quot;: &quot;6aff67ec9e40b7d04b079aa475551cc091a174482776cf79b32460a6160b7d61&quot;,
+    &quot;actor.encoder.0.norm2.bias&quot;: &quot;5db2274d076d48a67745b93bf32843ae9d407f41c26babea5637ce83efabdca1&quot;,
+    &quot;actor.encoder.0.norm2.running_mean&quot;: &quot;5db2274d076d48a67745b93bf32843ae9d407f41c26babea5637ce83efabdca1&quot;,
+    &quot;actor.encoder.0.norm2.running_var&quot;: &quot;f88f7b52936a843eb8dcb551729d69c1e33d1ebe349638afaa8f3e22fbaaa4bc&quot;,
+    &quot;actor.encoder.1.w1.w.weight&quot;: &quot;fd65e6eb71ee395a5fcd6e11722a8ebd3703d2baa7d15aef99d5fdf6ddb626da&quot;,
+    &quot;actor.encoder.1.w2.w.weight&quot;: &quot;0f54879f34d9b2f5bb1e376bb7078780d0f7c30a4835ed866b96d0d6af071837&quot;,
+    &quot;actor.encoder.1.norm1.weight&quot;: &quot;a2685db8f0717c2c627a34ae6a61420828f5715444cb3daf7a2a9b0608391837&quot;,
+    &quot;actor.encoder.1.norm1.bias&quot;: &quot;21952057e42389fe88ef4991dc048c4dc42df6339be1247d2361f40ca43a4925&quot;,
+    &quot;actor.encoder.1.norm1.running_mean&quot;: &quot;21952057e42389fe88ef4991dc048c4dc42df6339be1247d2361f40ca43a4925&quot;,
+    &quot;actor.encoder.1.norm1.running_var&quot;: &quot;094b4ab946b275d2aaf5b0baf3f694f56404738e02a43e5005026b4d2add501a&quot;,
+    &quot;actor.encoder.1.norm2.weight&quot;: &quot;6aff67ec9e40b7d04b079aa475551cc091a174482776cf79b32460a6160b7d61&quot;,
+    &quot;actor.encoder.1.norm2.bias&quot;: &quot;5db2274d076d48a67745b93bf32843ae9d407f41c26babea5637ce83efabdca1&quot;,
+    &quot;actor.encoder.1.norm2.running_mean&quot;: &quot;5db2274d076d48a67745b93bf32843ae9d407f41c26babea5637ce83efabdca1&quot;,
+    &quot;actor.encoder.1.norm2.running_var&quot;: &quot;f88f7b52936a843eb8dcb551729d69c1e33d1ebe349638afaa8f3e22fbaaa4bc&quot;,
+    &quot;actor.post_norm.weight&quot;: &quot;6aff67ec9e40b7d04b079aa475551cc091a174482776cf79b32460a6160b7d61&quot;,
+    &quot;actor.predictor.mean_bias&quot;: &quot;4f70b356b189ff904ea57e455bc0e00c5e8f893e2cb95749880f813300a5b177&quot;,
+    &quot;actor.predictor.std_bias&quot;: &quot;4f70b356b189ff904ea57e455bc0e00c5e8f893e2cb95749880f813300a5b177&quot;,
+    &quot;actor.predictor.mean_w.w.weight&quot;: &quot;6b6db8a6b8e1801563c78f4ae5cb5182008b1a31a2d7cbc64d6838f8816fc14c&quot;,
+    &quot;actor.predictor.std_w.w.weight&quot;: &quot;ca9fe81f229676249fcac29e51615e4777692649c958dbbbd21855a91aaf45fc&quot;,
+    &quot;critic.embedder.norm.weight&quot;: &quot;d491915c4cb9150acd5cb61bddd91b997d6b2a4d443372bae35a93fef38c11d3&quot;,
+    &quot;critic.embedder.norm.bias&quot;: &quot;ad24271bba5687347e16b624d609127df6ac5078d4308da66c2868d857e86332&quot;,
+    &quot;critic.embedder.norm.running_mean&quot;: &quot;ad24271bba5687347e16b624d609127df6ac5078d4308da66c2868d857e86332&quot;,
+    &quot;critic.embedder.norm.running_var&quot;: &quot;d491915c4cb9150acd5cb61bddd91b997d6b2a4d443372bae35a93fef38c11d3&quot;,
+    &quot;critic.embedder.w.weight&quot;: &quot;3b6dabf459db46a88037c4978674ec8690167075e354ea793285f67b3f809bd1&quot;,
+    &quot;critic.encoder.0.w1.weight&quot;: &quot;50b087eab9160ea25820e410fcd41f9955b074dc3f17f357c3ab65ea7e7fdb78&quot;,
+    &quot;critic.encoder.0.w2.weight&quot;: &quot;f405d72b3823408a1f28509a2ca61b1ddf5bada1d5b71d70f33e81e5cc53a7e7&quot;,
+    &quot;critic.encoder.0.norm1.weight&quot;: &quot;de4757da8ad3d7ad779e2f71717cb5e8840561e125ca3e8de63aac80c57a5dd6&quot;,
+    &quot;critic.encoder.0.norm1.bias&quot;: &quot;dcf7bda6688cc13cb22d234dad9c96a369114ddd95ac3b2fac759f3e77275b76&quot;,
+    &quot;critic.encoder.0.norm1.running_mean&quot;: &quot;dcf7bda6688cc13cb22d234dad9c96a369114ddd95ac3b2fac759f3e77275b76&quot;,
+    &quot;critic.encoder.0.norm1.running_var&quot;: &quot;de4757da8ad3d7ad779e2f71717cb5e8840561e125ca3e8de63aac80c57a5dd6&quot;,
+    &quot;critic.encoder.0.norm2.weight&quot;: &quot;4434f802ff4f95b2f6dbdde69f1cf1736566de5fea1b612eed0c2ef85ccbe36a&quot;,
+    &quot;critic.encoder.0.norm2.bias&quot;: &quot;483e2d3183d2de087a74f5992913ae84378b9c5ac4986f2fabfbc3510339a804&quot;,
+    &quot;critic.encoder.0.norm2.running_mean&quot;: &quot;483e2d3183d2de087a74f5992913ae84378b9c5ac4986f2fabfbc3510339a804&quot;,
+    &quot;critic.encoder.0.norm2.running_var&quot;: &quot;4434f802ff4f95b2f6dbdde69f1cf1736566de5fea1b612eed0c2ef85ccbe36a&quot;,
+    &quot;critic.encoder.1.w1.weight&quot;: &quot;ee32253088548677f71b6eb425b2efcf7b2352de104f90a437664e6e83ea097b&quot;,
+    &quot;critic.encoder.1.w2.weight&quot;: &quot;ffa36b3f8ff399ac97e29b3ff395e4d5c666087f7a43acb69992d32162fd63d6&quot;,
+    &quot;critic.encoder.1.norm1.weight&quot;: &quot;de4757da8ad3d7ad779e2f71717cb5e8840561e125ca3e8de63aac80c57a5dd6&quot;,
+    &quot;critic.encoder.1.norm1.bias&quot;: &quot;dcf7bda6688cc13cb22d234dad9c96a369114ddd95ac3b2fac759f3e77275b76&quot;,
+    &quot;critic.encoder.1.norm1.running_mean&quot;: &quot;dcf7bda6688cc13cb22d234dad9c96a369114ddd95ac3b2fac759f3e77275b76&quot;,
+    &quot;critic.encoder.1.norm1.running_var&quot;: &quot;de4757da8ad3d7ad779e2f71717cb5e8840561e125ca3e8de63aac80c57a5dd6&quot;,
+    &quot;critic.encoder.1.norm2.weight&quot;: &quot;4434f802ff4f95b2f6dbdde69f1cf1736566de5fea1b612eed0c2ef85ccbe36a&quot;,
+    &quot;critic.encoder.1.norm2.bias&quot;: &quot;483e2d3183d2de087a74f5992913ae84378b9c5ac4986f2fabfbc3510339a804&quot;,
+    &quot;critic.encoder.1.norm2.running_mean&quot;: &quot;483e2d3183d2de087a74f5992913ae84378b9c5ac4986f2fabfbc3510339a804&quot;,
+    &quot;critic.encoder.1.norm2.running_var&quot;: &quot;4434f802ff4f95b2f6dbdde69f1cf1736566de5fea1b612eed0c2ef85ccbe36a&quot;,
+    &quot;critic.post_norm.weight&quot;: &quot;4434f802ff4f95b2f6dbdde69f1cf1736566de5fea1b612eed0c2ef85ccbe36a&quot;,
+    &quot;critic.predictor.bias&quot;: &quot;6e88d85f8a5caa65751a73ac43c6143330e57f3a48ff575b68efd642c16893a4&quot;,
+    &quot;critic.predictor.bin_values&quot;: &quot;760d691eb204f5cfb87d5172f0387b43d80b13c0761cd115baa6de8815a666a9&quot;,
+    &quot;critic.predictor.w.weight&quot;: &quot;369403d8077bef35b66a4d37610b8be32d4e1a3c535ec94ffc46fbb7aa671edd&quot;,
+    &quot;target_critic.embedder.norm.weight&quot;: &quot;d491915c4cb9150acd5cb61bddd91b997d6b2a4d443372bae35a93fef38c11d3&quot;,
+    &quot;target_critic.embedder.norm.bias&quot;: &quot;ad24271bba5687347e16b624d609127df6ac5078d4308da66c2868d857e86332&quot;,
+    &quot;target_critic.embedder.norm.running_mean&quot;: &quot;ad24271bba5687347e16b624d609127df6ac5078d4308da66c2868d857e86332&quot;,
+    &quot;target_critic.embedder.norm.running_var&quot;: &quot;d491915c4cb9150acd5cb61bddd91b997d6b2a4d443372bae35a93fef38c11d3&quot;,
+    &quot;target_critic.embedder.w.weight&quot;: &quot;3b6dabf459db46a88037c4978674ec8690167075e354ea793285f67b3f809bd1&quot;,
+    &quot;target_critic.encoder.0.w1.weight&quot;: &quot;50b087eab9160ea25820e410fcd41f9955b074dc3f17f357c3ab65ea7e7fdb78&quot;,
+    &quot;target_critic.encoder.0.w2.weight&quot;: &quot;f405d72b3823408a1f28509a2ca61b1ddf5bada1d5b71d70f33e81e5cc53a7e7&quot;,
+    &quot;target_critic.encoder.0.norm1.weight&quot;: &quot;de4757da8ad3d7ad779e2f71717cb5e8840561e125ca3e8de63aac80c57a5dd6&quot;,
+    &quot;target_critic.encoder.0.norm1.bias&quot;: &quot;dcf7bda6688cc13cb22d234dad9c96a369114ddd95ac3b2fac759f3e77275b76&quot;,
+    &quot;target_critic.encoder.0.norm1.running_mean&quot;: &quot;dcf7bda6688cc13cb22d234dad9c96a369114ddd95ac3b2fac759f3e77275b76&quot;,
+    &quot;target_critic.encoder.0.norm1.running_var&quot;: &quot;de4757da8ad3d7ad779e2f71717cb5e8840561e125ca3e8de63aac80c57a5dd6&quot;,
+    &quot;target_critic.encoder.0.norm2.weight&quot;: &quot;4434f802ff4f95b2f6dbdde69f1cf1736566de5fea1b612eed0c2ef85ccbe36a&quot;,
+    &quot;target_critic.encoder.0.norm2.bias&quot;: &quot;483e2d3183d2de087a74f5992913ae84378b9c5ac4986f2fabfbc3510339a804&quot;,
+    &quot;target_critic.encoder.0.norm2.running_mean&quot;: &quot;483e2d3183d2de087a74f5992913ae84378b9c5ac4986f2fabfbc3510339a804&quot;,
+    &quot;target_critic.encoder.0.norm2.running_var&quot;: &quot;4434f802ff4f95b2f6dbdde69f1cf1736566de5fea1b612eed0c2ef85ccbe36a&quot;,
+    &quot;target_critic.encoder.1.w1.weight&quot;: &quot;ee32253088548677f71b6eb425b2efcf7b2352de104f90a437664e6e83ea097b&quot;,
+    &quot;target_critic.encoder.1.w2.weight&quot;: &quot;ffa36b3f8ff399ac97e29b3ff395e4d5c666087f7a43acb69992d32162fd63d6&quot;,
+    &quot;target_critic.encoder.1.norm1.weight&quot;: &quot;de4757da8ad3d7ad779e2f71717cb5e8840561e125ca3e8de63aac80c57a5dd6&quot;,
+    &quot;target_critic.encoder.1.norm1.bias&quot;: &quot;dcf7bda6688cc13cb22d234dad9c96a369114ddd95ac3b2fac759f3e77275b76&quot;,
+    &quot;target_critic.encoder.1.norm1.running_mean&quot;: &quot;dcf7bda6688cc13cb22d234dad9c96a369114ddd95ac3b2fac759f3e77275b76&quot;,
+    &quot;target_critic.encoder.1.norm1.running_var&quot;: &quot;de4757da8ad3d7ad779e2f71717cb5e8840561e125ca3e8de63aac80c57a5dd6&quot;,
+    &quot;target_critic.encoder.1.norm2.weight&quot;: &quot;4434f802ff4f95b2f6dbdde69f1cf1736566de5fea1b612eed0c2ef85ccbe36a&quot;,
+    &quot;target_critic.encoder.1.norm2.bias&quot;: &quot;483e2d3183d2de087a74f5992913ae84378b9c5ac4986f2fabfbc3510339a804&quot;,
+    &quot;target_critic.encoder.1.norm2.running_mean&quot;: &quot;483e2d3183d2de087a74f5992913ae84378b9c5ac4986f2fabfbc3510339a804&quot;,
+    &quot;target_critic.encoder.1.norm2.running_var&quot;: &quot;4434f802ff4f95b2f6dbdde69f1cf1736566de5fea1b612eed0c2ef85ccbe36a&quot;,
+    &quot;target_critic.post_norm.weight&quot;: &quot;4434f802ff4f95b2f6dbdde69f1cf1736566de5fea1b612eed0c2ef85ccbe36a&quot;,
+    &quot;target_critic.predictor.bias&quot;: &quot;6e88d85f8a5caa65751a73ac43c6143330e57f3a48ff575b68efd642c16893a4&quot;,
+    &quot;target_critic.predictor.bin_values&quot;: &quot;760d691eb204f5cfb87d5172f0387b43d80b13c0761cd115baa6de8815a666a9&quot;,
+    &quot;target_critic.predictor.w.weight&quot;: &quot;369403d8077bef35b66a4d37610b8be32d4e1a3c535ec94ffc46fbb7aa671edd&quot;,
+    &quot;temperature.log_temp&quot;: &quot;fc93833ff6e976a84560859b81a8ce3c6a36d1d3b614af427b74253b5411c689&quot;
+  },
+  &quot;common_transition_arrays_sha256&quot;: {
+    &quot;0.observation&quot;: &quot;d5cd1f52ada6ed6527107a9bcb31745a3b27127396485941ec075a82b02da68f&quot;,
+    &quot;0.next_observation&quot;: &quot;aeb96ebd8e5c32181d335d2769653eb60cb0d0592156ddd883639eb0b931e315&quot;,
+    &quot;0.action&quot;: &quot;4d142cf7a1dcd11e7be4262fe792c9911b39482629202baa68e71dabc1978abb&quot;,
+    &quot;0.reward&quot;: &quot;06cf2e2e4f2d229a5346fc4996ceacbdd34333fe7361a904c8c2e8399106cfc8&quot;,
+    &quot;0.terminated&quot;: &quot;67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318&quot;,
+    &quot;0.truncated&quot;: &quot;67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318&quot;,
+    &quot;1.observation&quot;: &quot;d23c11b548dac3a9834c9385eb28407255edd8c142a47b5f6b9456f3c17d75a7&quot;,
+    &quot;1.next_observation&quot;: &quot;77e10be6841128119ce7decd2c32054c2014bd9f4569ac8668e7010448a49293&quot;,
+    &quot;1.action&quot;: &quot;c63ad90091fb91dc21245adb57282ef69fb0f0f0711093aba5177e5dff0ac483&quot;,
+    &quot;1.reward&quot;: &quot;f6688cf3dfc0ef90cc8096a1f533c7b5a21382f32d85e1313a2cdf0fe83ae099&quot;,
+    &quot;1.terminated&quot;: &quot;67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318&quot;,
+    &quot;1.truncated&quot;: &quot;67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318&quot;,
+    &quot;2.observation&quot;: &quot;2304f2dda313ef9ca715bf7725395a460cc2e631eea2ba375b7786651a88e77f&quot;,
+    &quot;2.next_observation&quot;: &quot;20a8ae2b9fa39aa28c26fafa991c28d27d7b0948354711412b04e3d16d455a1d&quot;,
+    &quot;2.action&quot;: &quot;e6162a5fc2e1c378dbbf0cf346067308f23bdc1f20ce199a86771cd182a43e69&quot;,
+    &quot;2.reward&quot;: &quot;ab1db5b686b76f9f28982cb9fc708b9ee9813fa8cc15cacad7977f0ad3501ef7&quot;,
+    &quot;2.terminated&quot;: &quot;67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318&quot;,
+    &quot;2.truncated&quot;: &quot;67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318&quot;,
+    &quot;3.observation&quot;: &quot;8cc6f82fb5017702e34640078e1c83ddfd624cab38a193b8b8b2b2fad7df758b&quot;,
+    &quot;3.next_observation&quot;: &quot;1fdb686ac31758457954eca403ff4a3c3b8bb5070a99b8b0b4c85899581585da&quot;,
+    &quot;3.action&quot;: &quot;5666ff844f52023fbbf3d64bfc7c4e55b9c5440e71a36a251cc3b3e2892f7d87&quot;,
+    &quot;3.reward&quot;: &quot;25598ee1e2744df5a8b9e0d578a48e83505c055252ed889713d7c1759bb3e902&quot;,
+    &quot;3.terminated&quot;: &quot;67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318&quot;,
+    &quot;3.truncated&quot;: &quot;67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318&quot;,
+    &quot;4.observation&quot;: &quot;8ffc7fc048e10b148164b696bdf5cc8e623b0fba14b472e6dd49aaaa7613ae3a&quot;,
+    &quot;4.next_observation&quot;: &quot;5e502706fcb0fb50db4c54c6dc35d1e5eba8665e8c8d93ccf6d5b0b43ca51662&quot;,
+    &quot;4.action&quot;: &quot;e55f16085866f5a737bd2f8d8d86c1d18045dbe2ffeb725b52a1e29c64cce63c&quot;,
+    &quot;4.reward&quot;: &quot;54443ad849d913fa6a2fc1de7d05919d671982b50206baef2824c692e0bc0051&quot;,
+    &quot;4.terminated&quot;: &quot;67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318&quot;,
+    &quot;4.truncated&quot;: &quot;67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318&quot;,
+    &quot;5.observation&quot;: &quot;71928dc97f16d53b52db9c78e4b64a144572533e8c0735f9f57bf6d4c3dab2d7&quot;,
+    &quot;5.next_observation&quot;: &quot;2b9127f5d342f98bdb63d0898a09810d8375f9681008cd54f83add06f2cc630b&quot;,
+    &quot;5.action&quot;: &quot;2d42871d11ee10241840b1c2f67df9c7034b3d0d13e299aa3773e60225453cd4&quot;,
+    &quot;5.reward&quot;: &quot;95668426732350bca014e1ff0865877f9c29c3db0c68ab25644f324c499eee8f&quot;,
+    &quot;5.terminated&quot;: &quot;67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318&quot;,
+    &quot;5.truncated&quot;: &quot;67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318&quot;,
+    &quot;6.observation&quot;: &quot;9dede880333dde4f4710970e912336e83cf16679b9293554d273ae1fe720f561&quot;,
+    &quot;6.next_observation&quot;: &quot;3591802945aeed2662cb855d3fa39f8e03590f8830b91d6039a588c9e3eda9b0&quot;,
+    &quot;6.action&quot;: &quot;8610923f14679db16f1867cda4ac9c5ba488c8ce33c768850a86e8dd648fc9cc&quot;,
+    &quot;6.reward&quot;: &quot;7b91c50482783d8f847b60d8191175385b042e6d0164f41e893d4d6ff362d5c3&quot;,
+    &quot;6.terminated&quot;: &quot;67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318&quot;,
+    &quot;6.truncated&quot;: &quot;67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318&quot;,
+    &quot;7.observation&quot;: &quot;0dc2d6df83dcc688d1a3de47469c3cc9e1391d88c21d5334aa01af69b50e0b10&quot;,
+    &quot;7.next_observation&quot;: &quot;75ae9337e237b5e7b66ec536f21bc4cd8bdc7776313817a9ceadc1316654cc68&quot;,
+    &quot;7.action&quot;: &quot;1c25ab954e72d33162fba0138fa1157b4ccce7f6e63b72357b849eb4e406f3b6&quot;,
+    &quot;7.reward&quot;: &quot;973325f7a0349863ecd2ec06d8e5f92ec766aeed0ce6a9384a3844e5e21d64d3&quot;,
+    &quot;7.terminated&quot;: &quot;67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318&quot;,
+    &quot;7.truncated&quot;: &quot;67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318&quot;,
+    &quot;8.observation&quot;: &quot;75d3768d7d57be0080434739accab6836b7063088c7bf4ac015d96102f2f2951&quot;,
+    &quot;8.next_observation&quot;: &quot;d7dd398024fcad75c1c0a6228c2f0b6cf3139a96edd138a32bf8d2dfb86417d1&quot;,
+    &quot;8.action&quot;: &quot;e35dbcd0ec93e1cc30a130b2e301ab23a57a2035c09f7480176b082e9cdce8fb&quot;,
+    &quot;8.reward&quot;: &quot;5bce84f9d05455ada1028b6af7bafdc727b334e4cf426654f5143c6128a8fc71&quot;,
+    &quot;8.terminated&quot;: &quot;67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318&quot;,
+    &quot;8.truncated&quot;: &quot;67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318&quot;,
+    &quot;9.observation&quot;: &quot;23e157a9941ea8f3bd0fd4bba10524fbcf1ed80ed92bd3235eaa495ea2eaa1f4&quot;,
+    &quot;9.next_observation&quot;: &quot;dab0a80ba0260340faf7608a62600c067b39f798628a3fbbb189b24ad56b01f6&quot;,
+    &quot;9.action&quot;: &quot;601b4380272ede1a455a710832ca2826cb790f80cccc87be083940b4d09c324e&quot;,
+    &quot;9.reward&quot;: &quot;df3a98d2a97d96c134d6ef7c195236cd910e686efdbc617c845e73ca9a1682e7&quot;,
+    &quot;9.terminated&quot;: &quot;67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318&quot;,
+    &quot;9.truncated&quot;: &quot;67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318&quot;,
+    &quot;10.observation&quot;: &quot;e8f63ae4a62165fd1cc7c6853fb23d5b69562db33b2beda84692213beec9e0e9&quot;,
+    &quot;10.next_observation&quot;: &quot;f9bb27569526f68b32543e1c06e23062e07fe552228fa724fe7f7a2c5c0dab63&quot;,
+    &quot;10.action&quot;: &quot;94a49173f51c5438ae973d3f5d40330b167f8e0421dac523d9e6474c1b073714&quot;,
+    &quot;10.reward&quot;: &quot;c9609803d596085ef2ea79290a26906386bb3cb48f36de6fbcdd7cfa867904c0&quot;,
+    &quot;10.terminated&quot;: &quot;67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318&quot;,
+    &quot;10.truncated&quot;: &quot;67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318&quot;,
+    &quot;11.observation&quot;: &quot;014f61fefa093b328405bbf35dab7c015857f92fb621e0998acdcd8523f761af&quot;,
+    &quot;11.next_observation&quot;: &quot;e5bf0939fe11f01871ad73ec7668c28b34b53d4d8ecb42b1385175f74c6f3cf0&quot;,
+    &quot;11.action&quot;: &quot;b82ddcd12ea48300328485c8a4fcc0f2a53980358e088fa940415b2b368780f8&quot;,
+    &quot;11.reward&quot;: &quot;47c546ac8b328bfbc63a50cb3190dccd5e079021b3ca06a11eb594fe066da1ca&quot;,
+    &quot;11.terminated&quot;: &quot;67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318&quot;,
+    &quot;11.truncated&quot;: &quot;67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318&quot;,
+    &quot;12.observation&quot;: &quot;229f6300f30ed5722b82da240324a9d1f6a3223a5dcabd3160b26b247081d9aa&quot;,
+    &quot;12.next_observation&quot;: &quot;02985e76d07c4cbbbf4a9d292732e9346de9ea16767c45046c5873a951244dcd&quot;,
+    &quot;12.action&quot;: &quot;7b381c32a193c53d5d085c7555c0743d580716c1a01537ab6d0909bd88f267fa&quot;,
+    &quot;12.reward&quot;: &quot;61fea9c028fac317b4af9e30b0fdc02d0353471fd8057eb007d87313e14c0a8c&quot;,
+    &quot;12.terminated&quot;: &quot;67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318&quot;,
+    &quot;12.truncated&quot;: &quot;67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318&quot;,
+    &quot;13.observation&quot;: &quot;967cfc9540f31ba6c63da9ff42b1cae5c284c6dc6322489c855563d0d3444a02&quot;,
+    &quot;13.next_observation&quot;: &quot;1b5c4701e47995457818469a9513e9590a7283f5586f3ebbde7f02ac6d5c6665&quot;,
+    &quot;13.action&quot;: &quot;df3a53d5b17349e5aaa0c57efc6e55d2b7b388ae6e3c4fcc6046094a81541317&quot;,
+    &quot;13.reward&quot;: &quot;25912f294eece033f80a1be5244da3ee786a7bc6a7344afd3c0b448c206d402e&quot;,
+    &quot;13.terminated&quot;: &quot;67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318&quot;,
+    &quot;13.truncated&quot;: &quot;67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318&quot;,
+    &quot;14.observation&quot;: &quot;410a8d2af789941c224873525093ffa89eb02906c43f778f550257f91b11665d&quot;,
+    &quot;14.next_observation&quot;: &quot;83e9b0d55c734bdeb9fc86f0ae2ee460df73f42ec998b6e7cc9c6871476b60ac&quot;,
+    &quot;14.action&quot;: &quot;7d18edc79bc49cf697d0cd35d909d351af894e457dfd7d73afdb9d6daabe934b&quot;,
+    &quot;14.reward&quot;: &quot;e1f08d9af45adcd3bf66153663ec503f2810bd455814ca1e131c33740c28d6d3&quot;,
+    &quot;14.terminated&quot;: &quot;67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318&quot;,
+    &quot;14.truncated&quot;: &quot;67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318&quot;,
+    &quot;15.observation&quot;: &quot;52557e836e273f678d76a18b7b73bbb86b5470918cb69c997363e3494df7a3e7&quot;,
+    &quot;15.next_observation&quot;: &quot;a5e1e6d787bae72fb5775971a97f8f0dfaaa250d892c1ce1b6a382fa3335147e&quot;,
+    &quot;15.action&quot;: &quot;eb621f41107721dbeab3424601fcc384acbbcd0421dfe0c11887739d8a030ee9&quot;,
+    &quot;15.reward&quot;: &quot;98257ff7dc23a7a12a8ac2f60571513cd8866a870d69a4742864af639cce20d5&quot;,
+    &quot;15.terminated&quot;: &quot;67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318&quot;,
+    &quot;15.truncated&quot;: &quot;67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318&quot;
+  },
+  &quot;command_sources&quot;: {
+    &quot;baseline-pre&quot;: {
+      &quot;library_role&quot;: &quot;baseline&quot;,
+      &quot;library_commit&quot;: &quot;33c5ba95cb02ae1c74e56b20b3489cacc5be8d10&quot;,
+      &quot;imported_package_path_verified&quot;: true,
+      &quot;driver_sha256&quot;: &quot;ed43da1d0fbf3a06a2f779ac7b292498b3992da21a2c9d219c79ffa8f22c1201&quot;,
+      &quot;library_source_sha256&quot;: {
+        &quot;__init__.py&quot;: &quot;7afa072ae89e78e406be110aab5a9d934d3799f50f01645c81705da81d34bf5e&quot;,
+        &quot;cuda/__init__.py&quot;: &quot;e720f9bac9566829d274d22a02fc5c996bce34a0223cef018498c2bd1deea851&quot;,
+        &quot;cuda/_runtime.py&quot;: &quot;8da7ecc34b8c9945eb4295af7b7e45f367dc6eddcaf0b7885993e1542a0fef1a&quot;,
+        &quot;cuda/adam.py&quot;: &quot;7570cf3451d662a09aa949099c696ee6bb4d883a9d64f3e70c006315ab9d146f&quot;,
+        &quot;cuda/categorical.py&quot;: &quot;105bc2ddbdb43c7d90ee0aa5f0b5358da5aff3b6f39dea5e14cc5fdcfa8965c3&quot;,
+        &quot;cuda/categorical_kernels.cuh&quot;: &quot;527970add392e78820d3deb717d01d12ae8add3fdc059ac7c5a649a77b26f853&quot;,
+        &quot;cuda/flash.py&quot;: &quot;e41f7f8ec4d582b2f8a67b00e68f81ae121e8898f327d797be2814f3d873f698&quot;,
+        &quot;cuda/flash_kernels.cuh&quot;: &quot;2e3900320f6a5ec3e1fb6e4982a1fea163a2583c9655ed4fed6fe1504cf016c9&quot;,
+        &quot;cuda/kernels.cu&quot;: &quot;36773a706b2fc3d29da3e6e9b47be7510cfcb3de4dc1778cad5ed4758e03134b&quot;,
+        &quot;cuda/linear.py&quot;: &quot;804cf4b8b7045d609e921fccced3fe2716e6c86d7137b432741cc7b9d1d016ca&quot;,
+        &quot;cuda/normalization.py&quot;: &quot;8f77dd2a2d8bd7cf2a81113eae4063d9a6441739d09b83a2ced1362eac9bcb3a&quot;,
+        &quot;flashsac/__init__.py&quot;: &quot;2fb211f8bca462cb041b6aaf3587eb69d6f432f860d4abdc7505691f8111f049&quot;,
+        &quot;flashsac/_base.py&quot;: &quot;cfd923b07a62697dca833fa48e3109649ae50380d927be7715b15c05e30c794a&quot;,
+        &quot;flashsac/_buffer_base.py&quot;: &quot;ab5bca7119c53523d50b1dda53ec748d906c172456b0702e8c148028fe108736&quot;,
+        &quot;flashsac/_types.py&quot;: &quot;18800a4c24612363098e373cd9815a6018a708a78872b4baf7f26d57d43cdd24&quot;,
+        &quot;flashsac/_utils/__init__.py&quot;: &quot;e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855&quot;,
+        &quot;flashsac/_utils/distribution.py&quot;: &quot;b25e4d82258e77f0d2931881c24ade2753cd27d61ff960cad8d641b5300c13ad&quot;,
+        &quot;flashsac/_utils/network.py&quot;: &quot;509145bca5a1b3635ffe9da544dc36660ae0502a0762d71a05d2e0f9dc2d71fc&quot;,
+        &quot;flashsac/_utils/reward_normalization.py&quot;: &quot;29f2ecc549b6d5310c01bc7ef06dd646ccd8a2521e96384e5ebac1326f873f6e&quot;,
+        &quot;flashsac/_utils/scheduler.py&quot;: &quot;e0f1bff64c6026b3872d09aa8594f8e30581876f4f6d008a0f847a0953023bec&quot;,
+        &quot;flashsac/agent.py&quot;: &quot;31583f7913332f527510cd05a0e89d68dd95bb3bf28c6c70013abac4fb40f99a&quot;,
+        &quot;flashsac/config.py&quot;: &quot;eee34ec3ea37c20ae641d0415865541aed518567fd2ca67b2ceeb1f727c6a74e&quot;,
+        &quot;flashsac/layers.py&quot;: &quot;4f51d0addb76eec98bc4486d42e431254f9d4bb0f59dc9eea1d747f8a82bc0f5&quot;,
+        &quot;flashsac/networks.py&quot;: &quot;ac46486e7b22100a0c561827a101dcfbe80112b0284a6f121feeb41be38b165c&quot;,
+        &quot;flashsac/replay.py&quot;: &quot;7a7f24d17e5035fa76df0c596964a63f762d9922f887cb0ede730a34a03957b4&quot;,
+        &quot;flashsac/updates.py&quot;: &quot;5688929548f45ec2bc5e564c7988a52c51c0823da725a8a9e75f7c7bc286c4ba&quot;,
+        &quot;isaaclab.py&quot;: &quot;38bbfb596f130755ca15fa497a4a2e89203d3c86712e38e5e693be7eb5adb171&quot;,
+        &quot;warp/__init__.py&quot;: &quot;66559dde7682a099006e5a51467b76200384e03930e2340a46f9d3909a974056&quot;,
+        &quot;warp/_flash_networks.py&quot;: &quot;d2c90d836cece368f7546c321ec2388b8229b5a88e61c0faefac59b55797c69f&quot;,
+        &quot;warp/_flash_normalization.py&quot;: &quot;7b927ea608eda28eb8e32950a14fa4199179e76066e4eb67aa802e297d62002f&quot;,
+        &quot;warp/_flash_replay.py&quot;: &quot;e2fc2320867bd1569cf8056bf90bb2c734c85659df293f945b17924792a95c1b&quot;,
+        &quot;warp/_linear.py&quot;: &quot;fb33f8e8ff187557cdae63566bac27cb6091d1d8663fc1fd6869e8918b623847&quot;,
+        &quot;warp/config.py&quot;: &quot;8cf187dfac4e8870122a7677ee65e27d5de84438db1ba6415a40093b5c6c69ca&quot;,
+        &quot;warp/flashsac.py&quot;: &quot;1f832eec0f13043a46d4bd55b26db5b06cb8cfdbe6aa42099316006d98deabf0&quot;,
+        &quot;warp/ppo.py&quot;: &quot;7478356168e6e6896be0c7587bb5749009897766658bb38fdd0b8492238d1974&quot;
+      },
+      &quot;input_json_sha256&quot;: &quot;6ced7807941c46e2f4ae4f964b19d19e3c6d7a8e9d16ca0fb596e791d1d85147&quot;
+    },
+    &quot;optimized-first&quot;: {
+      &quot;library_role&quot;: &quot;optimized&quot;,
+      &quot;library_commit&quot;: &quot;69941d39ef987f43a9052a576b1f679ce4db2a05&quot;,
+      &quot;imported_package_path_verified&quot;: true,
+      &quot;driver_sha256&quot;: &quot;ed43da1d0fbf3a06a2f779ac7b292498b3992da21a2c9d219c79ffa8f22c1201&quot;,
+      &quot;library_source_sha256&quot;: {
+        &quot;__init__.py&quot;: &quot;7afa072ae89e78e406be110aab5a9d934d3799f50f01645c81705da81d34bf5e&quot;,
+        &quot;cuda/__init__.py&quot;: &quot;e720f9bac9566829d274d22a02fc5c996bce34a0223cef018498c2bd1deea851&quot;,
+        &quot;cuda/_runtime.py&quot;: &quot;8da7ecc34b8c9945eb4295af7b7e45f367dc6eddcaf0b7885993e1542a0fef1a&quot;,
+        &quot;cuda/adam.py&quot;: &quot;7570cf3451d662a09aa949099c696ee6bb4d883a9d64f3e70c006315ab9d146f&quot;,
+        &quot;cuda/categorical.py&quot;: &quot;105bc2ddbdb43c7d90ee0aa5f0b5358da5aff3b6f39dea5e14cc5fdcfa8965c3&quot;,
+        &quot;cuda/categorical_kernels.cuh&quot;: &quot;527970add392e78820d3deb717d01d12ae8add3fdc059ac7c5a649a77b26f853&quot;,
+        &quot;cuda/flash.py&quot;: &quot;e41f7f8ec4d582b2f8a67b00e68f81ae121e8898f327d797be2814f3d873f698&quot;,
+        &quot;cuda/flash_kernels.cuh&quot;: &quot;5b83dadb154981d2b4c2717096904a5d6ea458303951abf671829d5b9132d318&quot;,
+        &quot;cuda/kernels.cu&quot;: &quot;5906d167492d54c37886fa8aff776542329f2d3ace46ecc25058e2864c7e4dce&quot;,
+        &quot;cuda/linear.py&quot;: &quot;804cf4b8b7045d609e921fccced3fe2716e6c86d7137b432741cc7b9d1d016ca&quot;,
+        &quot;cuda/normalization.py&quot;: &quot;8f77dd2a2d8bd7cf2a81113eae4063d9a6441739d09b83a2ced1362eac9bcb3a&quot;,
+        &quot;cuda/zero.py&quot;: &quot;248c0638ab4bb0ea47d0af8ce0189ef8b46b63c1de1b65fc907c1591b2365fbd&quot;,
+        &quot;cuda/zero_kernels.cuh&quot;: &quot;02c2f9a828ca7404be4659741103bc989439ee2f9531d8241377caf26b3bdf5f&quot;,
+        &quot;flashsac/__init__.py&quot;: &quot;2fb211f8bca462cb041b6aaf3587eb69d6f432f860d4abdc7505691f8111f049&quot;,
+        &quot;flashsac/_base.py&quot;: &quot;cfd923b07a62697dca833fa48e3109649ae50380d927be7715b15c05e30c794a&quot;,
+        &quot;flashsac/_buffer_base.py&quot;: &quot;ab5bca7119c53523d50b1dda53ec748d906c172456b0702e8c148028fe108736&quot;,
+        &quot;flashsac/_types.py&quot;: &quot;18800a4c24612363098e373cd9815a6018a708a78872b4baf7f26d57d43cdd24&quot;,
+        &quot;flashsac/_utils/__init__.py&quot;: &quot;e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855&quot;,
+        &quot;flashsac/_utils/distribution.py&quot;: &quot;b25e4d82258e77f0d2931881c24ade2753cd27d61ff960cad8d641b5300c13ad&quot;,
+        &quot;flashsac/_utils/network.py&quot;: &quot;509145bca5a1b3635ffe9da544dc36660ae0502a0762d71a05d2e0f9dc2d71fc&quot;,
+        &quot;flashsac/_utils/reward_normalization.py&quot;: &quot;29f2ecc549b6d5310c01bc7ef06dd646ccd8a2521e96384e5ebac1326f873f6e&quot;,
+        &quot;flashsac/_utils/scheduler.py&quot;: &quot;e0f1bff64c6026b3872d09aa8594f8e30581876f4f6d008a0f847a0953023bec&quot;,
+        &quot;flashsac/agent.py&quot;: &quot;31583f7913332f527510cd05a0e89d68dd95bb3bf28c6c70013abac4fb40f99a&quot;,
+        &quot;flashsac/config.py&quot;: &quot;eee34ec3ea37c20ae641d0415865541aed518567fd2ca67b2ceeb1f727c6a74e&quot;,
+        &quot;flashsac/layers.py&quot;: &quot;4f51d0addb76eec98bc4486d42e431254f9d4bb0f59dc9eea1d747f8a82bc0f5&quot;,
+        &quot;flashsac/networks.py&quot;: &quot;ac46486e7b22100a0c561827a101dcfbe80112b0284a6f121feeb41be38b165c&quot;,
+        &quot;flashsac/replay.py&quot;: &quot;7a7f24d17e5035fa76df0c596964a63f762d9922f887cb0ede730a34a03957b4&quot;,
+        &quot;flashsac/updates.py&quot;: &quot;5688929548f45ec2bc5e564c7988a52c51c0823da725a8a9e75f7c7bc286c4ba&quot;,
+        &quot;isaaclab.py&quot;: &quot;38bbfb596f130755ca15fa497a4a2e89203d3c86712e38e5e693be7eb5adb171&quot;,
+        &quot;warp/__init__.py&quot;: &quot;66559dde7682a099006e5a51467b76200384e03930e2340a46f9d3909a974056&quot;,
+        &quot;warp/_flash_networks.py&quot;: &quot;d2c90d836cece368f7546c321ec2388b8229b5a88e61c0faefac59b55797c69f&quot;,
+        &quot;warp/_flash_normalization.py&quot;: &quot;7b927ea608eda28eb8e32950a14fa4199179e76066e4eb67aa802e297d62002f&quot;,
+        &quot;warp/_flash_replay.py&quot;: &quot;e2fc2320867bd1569cf8056bf90bb2c734c85659df293f945b17924792a95c1b&quot;,
+        &quot;warp/_linear.py&quot;: &quot;fb33f8e8ff187557cdae63566bac27cb6091d1d8663fc1fd6869e8918b623847&quot;,
+        &quot;warp/config.py&quot;: &quot;8cf187dfac4e8870122a7677ee65e27d5de84438db1ba6415a40093b5c6c69ca&quot;,
+        &quot;warp/flashsac.py&quot;: &quot;7ad328ee170b44ba01da14ae280e7a76ae25f089acc80dd10b86bab710a3645f&quot;,
+        &quot;warp/ppo.py&quot;: &quot;7478356168e6e6896be0c7587bb5749009897766658bb38fdd0b8492238d1974&quot;
+      },
+      &quot;input_json_sha256&quot;: &quot;0e70414a81de8b8d0296e3645ddaa26e2ad197dc333b844a41ab13fdec447495&quot;
+    },
+    &quot;baseline-post&quot;: {
+      &quot;library_role&quot;: &quot;baseline&quot;,
+      &quot;library_commit&quot;: &quot;33c5ba95cb02ae1c74e56b20b3489cacc5be8d10&quot;,
+      &quot;imported_package_path_verified&quot;: true,
+      &quot;driver_sha256&quot;: &quot;ed43da1d0fbf3a06a2f779ac7b292498b3992da21a2c9d219c79ffa8f22c1201&quot;,
+      &quot;library_source_sha256&quot;: {
+        &quot;__init__.py&quot;: &quot;7afa072ae89e78e406be110aab5a9d934d3799f50f01645c81705da81d34bf5e&quot;,
+        &quot;cuda/__init__.py&quot;: &quot;e720f9bac9566829d274d22a02fc5c996bce34a0223cef018498c2bd1deea851&quot;,
+        &quot;cuda/_runtime.py&quot;: &quot;8da7ecc34b8c9945eb4295af7b7e45f367dc6eddcaf0b7885993e1542a0fef1a&quot;,
+        &quot;cuda/adam.py&quot;: &quot;7570cf3451d662a09aa949099c696ee6bb4d883a9d64f3e70c006315ab9d146f&quot;,
+        &quot;cuda/categorical.py&quot;: &quot;105bc2ddbdb43c7d90ee0aa5f0b5358da5aff3b6f39dea5e14cc5fdcfa8965c3&quot;,
+        &quot;cuda/categorical_kernels.cuh&quot;: &quot;527970add392e78820d3deb717d01d12ae8add3fdc059ac7c5a649a77b26f853&quot;,
+        &quot;cuda/flash.py&quot;: &quot;e41f7f8ec4d582b2f8a67b00e68f81ae121e8898f327d797be2814f3d873f698&quot;,
+        &quot;cuda/flash_kernels.cuh&quot;: &quot;2e3900320f6a5ec3e1fb6e4982a1fea163a2583c9655ed4fed6fe1504cf016c9&quot;,
+        &quot;cuda/kernels.cu&quot;: &quot;36773a706b2fc3d29da3e6e9b47be7510cfcb3de4dc1778cad5ed4758e03134b&quot;,
+        &quot;cuda/linear.py&quot;: &quot;804cf4b8b7045d609e921fccced3fe2716e6c86d7137b432741cc7b9d1d016ca&quot;,
+        &quot;cuda/normalization.py&quot;: &quot;8f77dd2a2d8bd7cf2a81113eae4063d9a6441739d09b83a2ced1362eac9bcb3a&quot;,
+        &quot;flashsac/__init__.py&quot;: &quot;2fb211f8bca462cb041b6aaf3587eb69d6f432f860d4abdc7505691f8111f049&quot;,
+        &quot;flashsac/_base.py&quot;: &quot;cfd923b07a62697dca833fa48e3109649ae50380d927be7715b15c05e30c794a&quot;,
+        &quot;flashsac/_buffer_base.py&quot;: &quot;ab5bca7119c53523d50b1dda53ec748d906c172456b0702e8c148028fe108736&quot;,
+        &quot;flashsac/_types.py&quot;: &quot;18800a4c24612363098e373cd9815a6018a708a78872b4baf7f26d57d43cdd24&quot;,
+        &quot;flashsac/_utils/__init__.py&quot;: &quot;e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855&quot;,
+        &quot;flashsac/_utils/distribution.py&quot;: &quot;b25e4d82258e77f0d2931881c24ade2753cd27d61ff960cad8d641b5300c13ad&quot;,
+        &quot;flashsac/_utils/network.py&quot;: &quot;509145bca5a1b3635ffe9da544dc36660ae0502a0762d71a05d2e0f9dc2d71fc&quot;,
+        &quot;flashsac/_utils/reward_normalization.py&quot;: &quot;29f2ecc549b6d5310c01bc7ef06dd646ccd8a2521e96384e5ebac1326f873f6e&quot;,
+        &quot;flashsac/_utils/scheduler.py&quot;: &quot;e0f1bff64c6026b3872d09aa8594f8e30581876f4f6d008a0f847a0953023bec&quot;,
+        &quot;flashsac/agent.py&quot;: &quot;31583f7913332f527510cd05a0e89d68dd95bb3bf28c6c70013abac4fb40f99a&quot;,
+        &quot;flashsac/config.py&quot;: &quot;eee34ec3ea37c20ae641d0415865541aed518567fd2ca67b2ceeb1f727c6a74e&quot;,
+        &quot;flashsac/layers.py&quot;: &quot;4f51d0addb76eec98bc4486d42e431254f9d4bb0f59dc9eea1d747f8a82bc0f5&quot;,
+        &quot;flashsac/networks.py&quot;: &quot;ac46486e7b22100a0c561827a101dcfbe80112b0284a6f121feeb41be38b165c&quot;,
+        &quot;flashsac/replay.py&quot;: &quot;7a7f24d17e5035fa76df0c596964a63f762d9922f887cb0ede730a34a03957b4&quot;,
+        &quot;flashsac/updates.py&quot;: &quot;5688929548f45ec2bc5e564c7988a52c51c0823da725a8a9e75f7c7bc286c4ba&quot;,
+        &quot;isaaclab.py&quot;: &quot;38bbfb596f130755ca15fa497a4a2e89203d3c86712e38e5e693be7eb5adb171&quot;,
+        &quot;warp/__init__.py&quot;: &quot;66559dde7682a099006e5a51467b76200384e03930e2340a46f9d3909a974056&quot;,
+        &quot;warp/_flash_networks.py&quot;: &quot;d2c90d836cece368f7546c321ec2388b8229b5a88e61c0faefac59b55797c69f&quot;,
+        &quot;warp/_flash_normalization.py&quot;: &quot;7b927ea608eda28eb8e32950a14fa4199179e76066e4eb67aa802e297d62002f&quot;,
+        &quot;warp/_flash_replay.py&quot;: &quot;e2fc2320867bd1569cf8056bf90bb2c734c85659df293f945b17924792a95c1b&quot;,
+        &quot;warp/_linear.py&quot;: &quot;fb33f8e8ff187557cdae63566bac27cb6091d1d8663fc1fd6869e8918b623847&quot;,
+        &quot;warp/config.py&quot;: &quot;8cf187dfac4e8870122a7677ee65e27d5de84438db1ba6415a40093b5c6c69ca&quot;,
+        &quot;warp/flashsac.py&quot;: &quot;1f832eec0f13043a46d4bd55b26db5b06cb8cfdbe6aa42099316006d98deabf0&quot;,
+        &quot;warp/ppo.py&quot;: &quot;7478356168e6e6896be0c7587bb5749009897766658bb38fdd0b8492238d1974&quot;
+      },
+      &quot;input_json_sha256&quot;: &quot;dc75269840098897bbb095bd09ae5e59bbaa4f5792df3079953b7ef3163dcbe1&quot;
+    },
+    &quot;optimized-repeat&quot;: {
+      &quot;library_role&quot;: &quot;optimized&quot;,
+      &quot;library_commit&quot;: &quot;69941d39ef987f43a9052a576b1f679ce4db2a05&quot;,
+      &quot;imported_package_path_verified&quot;: true,
+      &quot;driver_sha256&quot;: &quot;ed43da1d0fbf3a06a2f779ac7b292498b3992da21a2c9d219c79ffa8f22c1201&quot;,
+      &quot;library_source_sha256&quot;: {
+        &quot;__init__.py&quot;: &quot;7afa072ae89e78e406be110aab5a9d934d3799f50f01645c81705da81d34bf5e&quot;,
+        &quot;cuda/__init__.py&quot;: &quot;e720f9bac9566829d274d22a02fc5c996bce34a0223cef018498c2bd1deea851&quot;,
+        &quot;cuda/_runtime.py&quot;: &quot;8da7ecc34b8c9945eb4295af7b7e45f367dc6eddcaf0b7885993e1542a0fef1a&quot;,
+        &quot;cuda/adam.py&quot;: &quot;7570cf3451d662a09aa949099c696ee6bb4d883a9d64f3e70c006315ab9d146f&quot;,
+        &quot;cuda/categorical.py&quot;: &quot;105bc2ddbdb43c7d90ee0aa5f0b5358da5aff3b6f39dea5e14cc5fdcfa8965c3&quot;,
+        &quot;cuda/categorical_kernels.cuh&quot;: &quot;527970add392e78820d3deb717d01d12ae8add3fdc059ac7c5a649a77b26f853&quot;,
+        &quot;cuda/flash.py&quot;: &quot;e41f7f8ec4d582b2f8a67b00e68f81ae121e8898f327d797be2814f3d873f698&quot;,
+        &quot;cuda/flash_kernels.cuh&quot;: &quot;5b83dadb154981d2b4c2717096904a5d6ea458303951abf671829d5b9132d318&quot;,
+        &quot;cuda/kernels.cu&quot;: &quot;5906d167492d54c37886fa8aff776542329f2d3ace46ecc25058e2864c7e4dce&quot;,
+        &quot;cuda/linear.py&quot;: &quot;804cf4b8b7045d609e921fccced3fe2716e6c86d7137b432741cc7b9d1d016ca&quot;,
+        &quot;cuda/normalization.py&quot;: &quot;8f77dd2a2d8bd7cf2a81113eae4063d9a6441739d09b83a2ced1362eac9bcb3a&quot;,
+        &quot;cuda/zero.py&quot;: &quot;248c0638ab4bb0ea47d0af8ce0189ef8b46b63c1de1b65fc907c1591b2365fbd&quot;,
+        &quot;cuda/zero_kernels.cuh&quot;: &quot;02c2f9a828ca7404be4659741103bc989439ee2f9531d8241377caf26b3bdf5f&quot;,
+        &quot;flashsac/__init__.py&quot;: &quot;2fb211f8bca462cb041b6aaf3587eb69d6f432f860d4abdc7505691f8111f049&quot;,
+        &quot;flashsac/_base.py&quot;: &quot;cfd923b07a62697dca833fa48e3109649ae50380d927be7715b15c05e30c794a&quot;,
+        &quot;flashsac/_buffer_base.py&quot;: &quot;ab5bca7119c53523d50b1dda53ec748d906c172456b0702e8c148028fe108736&quot;,
+        &quot;flashsac/_types.py&quot;: &quot;18800a4c24612363098e373cd9815a6018a708a78872b4baf7f26d57d43cdd24&quot;,
+        &quot;flashsac/_utils/__init__.py&quot;: &quot;e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855&quot;,
+        &quot;flashsac/_utils/distribution.py&quot;: &quot;b25e4d82258e77f0d2931881c24ade2753cd27d61ff960cad8d641b5300c13ad&quot;,
+        &quot;flashsac/_utils/network.py&quot;: &quot;509145bca5a1b3635ffe9da544dc36660ae0502a0762d71a05d2e0f9dc2d71fc&quot;,
+        &quot;flashsac/_utils/reward_normalization.py&quot;: &quot;29f2ecc549b6d5310c01bc7ef06dd646ccd8a2521e96384e5ebac1326f873f6e&quot;,
+        &quot;flashsac/_utils/scheduler.py&quot;: &quot;e0f1bff64c6026b3872d09aa8594f8e30581876f4f6d008a0f847a0953023bec&quot;,
+        &quot;flashsac/agent.py&quot;: &quot;31583f7913332f527510cd05a0e89d68dd95bb3bf28c6c70013abac4fb40f99a&quot;,
+        &quot;flashsac/config.py&quot;: &quot;eee34ec3ea37c20ae641d0415865541aed518567fd2ca67b2ceeb1f727c6a74e&quot;,
+        &quot;flashsac/layers.py&quot;: &quot;4f51d0addb76eec98bc4486d42e431254f9d4bb0f59dc9eea1d747f8a82bc0f5&quot;,
+        &quot;flashsac/networks.py&quot;: &quot;ac46486e7b22100a0c561827a101dcfbe80112b0284a6f121feeb41be38b165c&quot;,
+        &quot;flashsac/replay.py&quot;: &quot;7a7f24d17e5035fa76df0c596964a63f762d9922f887cb0ede730a34a03957b4&quot;,
+        &quot;flashsac/updates.py&quot;: &quot;5688929548f45ec2bc5e564c7988a52c51c0823da725a8a9e75f7c7bc286c4ba&quot;,
+        &quot;isaaclab.py&quot;: &quot;38bbfb596f130755ca15fa497a4a2e89203d3c86712e38e5e693be7eb5adb171&quot;,
+        &quot;warp/__init__.py&quot;: &quot;66559dde7682a099006e5a51467b76200384e03930e2340a46f9d3909a974056&quot;,
+        &quot;warp/_flash_networks.py&quot;: &quot;d2c90d836cece368f7546c321ec2388b8229b5a88e61c0faefac59b55797c69f&quot;,
+        &quot;warp/_flash_normalization.py&quot;: &quot;7b927ea608eda28eb8e32950a14fa4199179e76066e4eb67aa802e297d62002f&quot;,
+        &quot;warp/_flash_replay.py&quot;: &quot;e2fc2320867bd1569cf8056bf90bb2c734c85659df293f945b17924792a95c1b&quot;,
+        &quot;warp/_linear.py&quot;: &quot;fb33f8e8ff187557cdae63566bac27cb6091d1d8663fc1fd6869e8918b623847&quot;,
+        &quot;warp/config.py&quot;: &quot;8cf187dfac4e8870122a7677ee65e27d5de84438db1ba6415a40093b5c6c69ca&quot;,
+        &quot;warp/flashsac.py&quot;: &quot;7ad328ee170b44ba01da14ae280e7a76ae25f089acc80dd10b86bab710a3645f&quot;,
+        &quot;warp/ppo.py&quot;: &quot;7478356168e6e6896be0c7587bb5749009897766658bb38fdd0b8492238d1974&quot;
+      },
+      &quot;input_json_sha256&quot;: &quot;e9da7a4b1cbf614362ced3ab8d400ceab040d2bb8aa1c74cfa3349c6569d68e0&quot;
+    }
+  },
+  &quot;diagnostic_json_sha256&quot;: &quot;583cc1983718457b0df3b57cbc1fadda262cc08ed7b5d57eb5ba5eabbb33a7c5&quot;,
+  &quot;commands_json_sha256&quot;: &quot;5b5ff7721b8d070e86baf485d4c9d74257d162699ee0c7f631964f851bd6d16a&quot;,
+  &quot;official_source_files_sha256&quot;: {
+    &quot;LICENSE&quot;: &quot;5e7a0ca5f1955091e476af95148f32b48b58feb851a36e09b5c89a0c05bd4421&quot;,
+    &quot;README.md&quot;: &quot;19f19f72039eb18fbd316c6f7217f07f5a28e0d685b0c57dd4a25f8efea6d8d3&quot;,
+    &quot;pyproject.toml&quot;: &quot;6849d5f4e5ea4eaea56145ca139e905b716d58e02807f2baccd62489afef1f3c&quot;,
+    &quot;flash_rl/__init__.py&quot;: &quot;e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855&quot;,
+    &quot;flash_rl/types.py&quot;: &quot;0c1944097870ab47f5180a09ab979923a4de22b39b4a1314f35c4135bc278cd1&quot;,
+    &quot;flash_rl/agents/__init__.py&quot;: &quot;921bf41fd77b2efdd7714dc966f69a0fbb3208f6feb4cb9088f7b1289cca81b8&quot;,
+    &quot;flash_rl/agents/base_agent.py&quot;: &quot;d58f98e02eed8887c16f5f7d83d97f16e4a7ac0d104dc40d1809bf3832a72dfc&quot;,
+    &quot;flash_rl/agents/flashSAC/__init__.py&quot;: &quot;e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855&quot;,
+    &quot;flash_rl/agents/flashSAC/agent.py&quot;: &quot;e1bb9c49cdf1b72507705403801a5dc993471a89f69dbcee973f14949895595a&quot;,
+    &quot;flash_rl/agents/flashSAC/network.py&quot;: &quot;4068098466f195fac2c7d91e3cb1abe0c4daf42c4d1cd85f3940dca9edfd4c98&quot;,
+    &quot;flash_rl/agents/flashSAC/layer.py&quot;: &quot;7af7b2954c22a5ae56595b8d3139017e2a44b17dbd63c2f54c4e65dbd17ef7cc&quot;,
+    &quot;flash_rl/agents/flashSAC/update.py&quot;: &quot;6134612e4ad43089dd44ce06cb6644546e864a3de13bb12525cb631e65aa30ef&quot;,
+    &quot;flash_rl/agents/utils/__init__.py&quot;: &quot;e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855&quot;,
+    &quot;flash_rl/agents/utils/distribution.py&quot;: &quot;30c2987d80238ccc9c59dd6f7a9dd4056ed01773901d3d08a0db8c40f61b76ed&quot;,
+    &quot;flash_rl/agents/utils/network.py&quot;: &quot;02b1e8c27ae2d75ba39969a5ea6b21e1bc596dbab71fdd6c5dc9cd5d7aab1d69&quot;,
+    &quot;flash_rl/agents/utils/reward_normalization.py&quot;: &quot;b673f5fba40468f6bb183d3cc82daa05111e95407ccb6b73de854f338c7b70b8&quot;,
+    &quot;flash_rl/agents/utils/scheduler.py&quot;: &quot;b3732509dbe01a01d76b3018d062386287bf7cb669973e2a465192c584030811&quot;,
+    &quot;flash_rl/buffers/__init__.py&quot;: &quot;b2dac97cf5043c9b533c694035194d9a7eb3a31056255f50e45fd54a70331438&quot;,
+    &quot;flash_rl/buffers/base_buffer.py&quot;: &quot;75a067a6d8a3d4d6098961a557d78bbb42e73bfd5e6e1e37b41c9d70fb263699&quot;,
+    &quot;flash_rl/buffers/numpy_buffer.py&quot;: &quot;aa7fdac8d09120e96afde15b4e1cb4d6c59f8e670fdd98c13d7d0ca05d925e81&quot;,
+    &quot;flash_rl/buffers/torch_buffer.py&quot;: &quot;663ec003992ebda3c029c963eb93db8b902bc666cdd76f451e7cb348d37439a9&quot;
+  }
+}</pre></details></main></html>
