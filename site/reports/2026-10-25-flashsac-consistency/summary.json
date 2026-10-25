@@ -1,0 +1,3068 @@
+{
+  "status": "PASSED",
+  "scope": "Same-allocation fresh-gradient bundle and direct official AMP execution; no policy-quality claim",
+  "source_commits": {
+    "baseline_native": "e105370268a5a44aa14f8e06f1dd0d8f15f84202",
+    "fresh_gradients_native": "7eb6369d97199215b746a8072a73a95798542501",
+    "official_amp": "87edc9061150ae9e962dd84e6544e27a1554b3ab"
+  },
+  "library_file_counts": {
+    "baseline_native": 37,
+    "fresh_gradients_native": 38
+  },
+  "changed_files": [
+    "examples/benchmark_official_flashsac.py",
+    "examples/diagnose_cuda_flashsac.py",
+    "src/robolearn/cuda/flash.py",
+    "src/robolearn/cuda/flash_kernels.cuh",
+    "src/robolearn/cuda/normalization.py",
+    "src/robolearn/warp/_flash_networks.py",
+    "src/robolearn/warp/_fresh_gradients.py",
+    "src/robolearn/warp/flashsac.py"
+  ],
+  "diagnostic_only_retry": {
+    "previous_commit": "96601753e5023e234e040e5f40e4af936390f261",
+    "current_commit": "7eb6369d97199215b746a8072a73a95798542501",
+    "only_changed_file": "examples/diagnose_cuda_flashsac.py",
+    "diagnostic_sha256": "555b41bf9845a18a0d9ee0b785897e8146a45425f8299b455811d2fb4fe9ae6d",
+    "all_library_files_unchanged": true,
+    "common_worker_unchanged": true
+  },
+  "canonical_sha256": "0cad5e104e684621d6ae142550da0e486ed2f2ffb026f3d32464a6ec1f2c4a0f",
+  "canonical_arrays": 89,
+  "transition_fixture_arrays_sha256": {
+    "0.observation": "d5cd1f52ada6ed6527107a9bcb31745a3b27127396485941ec075a82b02da68f",
+    "0.next_observation": "aeb96ebd8e5c32181d335d2769653eb60cb0d0592156ddd883639eb0b931e315",
+    "0.action": "4d142cf7a1dcd11e7be4262fe792c9911b39482629202baa68e71dabc1978abb",
+    "0.reward": "06cf2e2e4f2d229a5346fc4996ceacbdd34333fe7361a904c8c2e8399106cfc8",
+    "0.terminated": "67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318",
+    "0.truncated": "67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318",
+    "1.observation": "d23c11b548dac3a9834c9385eb28407255edd8c142a47b5f6b9456f3c17d75a7",
+    "1.next_observation": "77e10be6841128119ce7decd2c32054c2014bd9f4569ac8668e7010448a49293",
+    "1.action": "c63ad90091fb91dc21245adb57282ef69fb0f0f0711093aba5177e5dff0ac483",
+    "1.reward": "f6688cf3dfc0ef90cc8096a1f533c7b5a21382f32d85e1313a2cdf0fe83ae099",
+    "1.terminated": "67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318",
+    "1.truncated": "67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318",
+    "2.observation": "2304f2dda313ef9ca715bf7725395a460cc2e631eea2ba375b7786651a88e77f",
+    "2.next_observation": "20a8ae2b9fa39aa28c26fafa991c28d27d7b0948354711412b04e3d16d455a1d",
+    "2.action": "e6162a5fc2e1c378dbbf0cf346067308f23bdc1f20ce199a86771cd182a43e69",
+    "2.reward": "ab1db5b686b76f9f28982cb9fc708b9ee9813fa8cc15cacad7977f0ad3501ef7",
+    "2.terminated": "67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318",
+    "2.truncated": "67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318",
+    "3.observation": "8cc6f82fb5017702e34640078e1c83ddfd624cab38a193b8b8b2b2fad7df758b",
+    "3.next_observation": "1fdb686ac31758457954eca403ff4a3c3b8bb5070a99b8b0b4c85899581585da",
+    "3.action": "5666ff844f52023fbbf3d64bfc7c4e55b9c5440e71a36a251cc3b3e2892f7d87",
+    "3.reward": "25598ee1e2744df5a8b9e0d578a48e83505c055252ed889713d7c1759bb3e902",
+    "3.terminated": "67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318",
+    "3.truncated": "67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318",
+    "4.observation": "8ffc7fc048e10b148164b696bdf5cc8e623b0fba14b472e6dd49aaaa7613ae3a",
+    "4.next_observation": "5e502706fcb0fb50db4c54c6dc35d1e5eba8665e8c8d93ccf6d5b0b43ca51662",
+    "4.action": "e55f16085866f5a737bd2f8d8d86c1d18045dbe2ffeb725b52a1e29c64cce63c",
+    "4.reward": "54443ad849d913fa6a2fc1de7d05919d671982b50206baef2824c692e0bc0051",
+    "4.terminated": "67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318",
+    "4.truncated": "67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318",
+    "5.observation": "71928dc97f16d53b52db9c78e4b64a144572533e8c0735f9f57bf6d4c3dab2d7",
+    "5.next_observation": "2b9127f5d342f98bdb63d0898a09810d8375f9681008cd54f83add06f2cc630b",
+    "5.action": "2d42871d11ee10241840b1c2f67df9c7034b3d0d13e299aa3773e60225453cd4",
+    "5.reward": "95668426732350bca014e1ff0865877f9c29c3db0c68ab25644f324c499eee8f",
+    "5.terminated": "67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318",
+    "5.truncated": "67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318",
+    "6.observation": "9dede880333dde4f4710970e912336e83cf16679b9293554d273ae1fe720f561",
+    "6.next_observation": "3591802945aeed2662cb855d3fa39f8e03590f8830b91d6039a588c9e3eda9b0",
+    "6.action": "8610923f14679db16f1867cda4ac9c5ba488c8ce33c768850a86e8dd648fc9cc",
+    "6.reward": "7b91c50482783d8f847b60d8191175385b042e6d0164f41e893d4d6ff362d5c3",
+    "6.terminated": "67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318",
+    "6.truncated": "67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318",
+    "7.observation": "0dc2d6df83dcc688d1a3de47469c3cc9e1391d88c21d5334aa01af69b50e0b10",
+    "7.next_observation": "75ae9337e237b5e7b66ec536f21bc4cd8bdc7776313817a9ceadc1316654cc68",
+    "7.action": "1c25ab954e72d33162fba0138fa1157b4ccce7f6e63b72357b849eb4e406f3b6",
+    "7.reward": "973325f7a0349863ecd2ec06d8e5f92ec766aeed0ce6a9384a3844e5e21d64d3",
+    "7.terminated": "67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318",
+    "7.truncated": "67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318",
+    "8.observation": "75d3768d7d57be0080434739accab6836b7063088c7bf4ac015d96102f2f2951",
+    "8.next_observation": "d7dd398024fcad75c1c0a6228c2f0b6cf3139a96edd138a32bf8d2dfb86417d1",
+    "8.action": "e35dbcd0ec93e1cc30a130b2e301ab23a57a2035c09f7480176b082e9cdce8fb",
+    "8.reward": "5bce84f9d05455ada1028b6af7bafdc727b334e4cf426654f5143c6128a8fc71",
+    "8.terminated": "67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318",
+    "8.truncated": "67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318",
+    "9.observation": "23e157a9941ea8f3bd0fd4bba10524fbcf1ed80ed92bd3235eaa495ea2eaa1f4",
+    "9.next_observation": "dab0a80ba0260340faf7608a62600c067b39f798628a3fbbb189b24ad56b01f6",
+    "9.action": "601b4380272ede1a455a710832ca2826cb790f80cccc87be083940b4d09c324e",
+    "9.reward": "df3a98d2a97d96c134d6ef7c195236cd910e686efdbc617c845e73ca9a1682e7",
+    "9.terminated": "67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318",
+    "9.truncated": "67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318",
+    "10.observation": "e8f63ae4a62165fd1cc7c6853fb23d5b69562db33b2beda84692213beec9e0e9",
+    "10.next_observation": "f9bb27569526f68b32543e1c06e23062e07fe552228fa724fe7f7a2c5c0dab63",
+    "10.action": "94a49173f51c5438ae973d3f5d40330b167f8e0421dac523d9e6474c1b073714",
+    "10.reward": "c9609803d596085ef2ea79290a26906386bb3cb48f36de6fbcdd7cfa867904c0",
+    "10.terminated": "67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318",
+    "10.truncated": "67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318",
+    "11.observation": "014f61fefa093b328405bbf35dab7c015857f92fb621e0998acdcd8523f761af",
+    "11.next_observation": "e5bf0939fe11f01871ad73ec7668c28b34b53d4d8ecb42b1385175f74c6f3cf0",
+    "11.action": "b82ddcd12ea48300328485c8a4fcc0f2a53980358e088fa940415b2b368780f8",
+    "11.reward": "47c546ac8b328bfbc63a50cb3190dccd5e079021b3ca06a11eb594fe066da1ca",
+    "11.terminated": "67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318",
+    "11.truncated": "67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318",
+    "12.observation": "229f6300f30ed5722b82da240324a9d1f6a3223a5dcabd3160b26b247081d9aa",
+    "12.next_observation": "02985e76d07c4cbbbf4a9d292732e9346de9ea16767c45046c5873a951244dcd",
+    "12.action": "7b381c32a193c53d5d085c7555c0743d580716c1a01537ab6d0909bd88f267fa",
+    "12.reward": "61fea9c028fac317b4af9e30b0fdc02d0353471fd8057eb007d87313e14c0a8c",
+    "12.terminated": "67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318",
+    "12.truncated": "67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318",
+    "13.observation": "967cfc9540f31ba6c63da9ff42b1cae5c284c6dc6322489c855563d0d3444a02",
+    "13.next_observation": "1b5c4701e47995457818469a9513e9590a7283f5586f3ebbde7f02ac6d5c6665",
+    "13.action": "df3a53d5b17349e5aaa0c57efc6e55d2b7b388ae6e3c4fcc6046094a81541317",
+    "13.reward": "25912f294eece033f80a1be5244da3ee786a7bc6a7344afd3c0b448c206d402e",
+    "13.terminated": "67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318",
+    "13.truncated": "67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318",
+    "14.observation": "410a8d2af789941c224873525093ffa89eb02906c43f778f550257f91b11665d",
+    "14.next_observation": "83e9b0d55c734bdeb9fc86f0ae2ee460df73f42ec998b6e7cc9c6871476b60ac",
+    "14.action": "7d18edc79bc49cf697d0cd35d909d351af894e457dfd7d73afdb9d6daabe934b",
+    "14.reward": "e1f08d9af45adcd3bf66153663ec503f2810bd455814ca1e131c33740c28d6d3",
+    "14.terminated": "67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318",
+    "14.truncated": "67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318",
+    "15.observation": "52557e836e273f678d76a18b7b73bbb86b5470918cb69c997363e3494df7a3e7",
+    "15.next_observation": "a5e1e6d787bae72fb5775971a97f8f0dfaaa250d892c1ce1b6a382fa3335147e",
+    "15.action": "eb621f41107721dbeab3424601fcc384acbbcd0421dfe0c11887739d8a030ee9",
+    "15.reward": "98257ff7dc23a7a12a8ac2f60571513cd8866a870d69a4742864af639cce20d5",
+    "15.terminated": "67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318",
+    "15.truncated": "67021894542375c13fb015a76fef54f1a0965db28540736920b76d56418a1318"
+  },
+  "whole_inventory": {
+    "manifest_sha256": "cf58f8043aff08e700b50816e026f80b7b23a12765bb9ce0775e98fb6b1d5ae7",
+    "hashed_files": 299,
+    "total_bytes": 2459130592
+  },
+  "runtime": {
+    "python": "3.12.14",
+    "gpu": "NVIDIA L40",
+    "torch_cuda": "13.0",
+    "packages": {
+      "torch": "2.11.0+cu130",
+      "warp-lang": "1.17.0",
+      "warp-nn": "0.4.1",
+      "numpy": "2.5.1",
+      "gymnasium": "1.3.0",
+      "rsl-rl-lib": "5.5.1",
+      "tensordict": "0.14.2",
+      "omegaconf": "2.4.0",
+      "jax": "0.11.2",
+      "jaxlib": "0.11.2"
+    }
+  },
+  "focused_diagnostic": {
+    "stages": {
+      "dense": {
+        "passed_checks": 28,
+        "seconds": 4.551049904897809,
+        "tuning": {
+          "dense": {
+            "plans": 9,
+            "replacements": 0,
+            "enabled": false
+          }
+        }
+      },
+      "dense-autotuned": {
+        "passed_checks": 28,
+        "seconds": 0.05304103530943394,
+        "tuning": {
+          "dense": {
+            "plans": 9,
+            "replacements": 9,
+            "enabled": true
+          }
+        }
+      },
+      "scaler": {
+        "passed_checks": 82,
+        "seconds": 0.2510995492339134
+      },
+      "grouped-zero": {
+        "passed_checks": 16,
+        "seconds": 0.01306205615401268
+      },
+      "projection-ema": {
+        "passed_checks": 12,
+        "seconds": 0.013964943587779999
+      },
+      "normalization": {
+        "passed_checks": 34,
+        "seconds": 1.553763011470437
+      },
+      "normalization-fp16-input": {
+        "passed_checks": 212,
+        "seconds": 0.09210065193474293
+      },
+      "normalization-fp16-gradient": {
+        "passed_checks": 799,
+        "seconds": 0.1572588738054037
+      },
+      "categorical": {
+        "passed_checks": 13,
+        "seconds": 1.2389771211892366
+      },
+      "categorical-wide": {
+        "passed_checks": 13,
+        "seconds": 0.031718891113996506
+      },
+      "small-amp0-fused0": {
+        "passed_checks": 562,
+        "seconds": 4.974721856415272,
+        "tuning": {
+          "eager": {
+            "plans": 117,
+            "replacements": 0,
+            "enabled": false
+          },
+          "captured": {
+            "plans": 117,
+            "replacements": 0,
+            "enabled": false
+          }
+        }
+      },
+      "small-amp0-fused1": {
+        "passed_checks": 565,
+        "seconds": 0.7194893099367619,
+        "tuning": {
+          "eager": {
+            "plans": 117,
+            "replacements": 0,
+            "enabled": false
+          },
+          "captured": {
+            "plans": 117,
+            "replacements": 0,
+            "enabled": false
+          }
+        }
+      },
+      "small-amp1-fused0": {
+        "passed_checks": 610,
+        "seconds": 1.923730257898569,
+        "tuning": {
+          "eager": {
+            "plans": 117,
+            "replacements": 0,
+            "enabled": false
+          },
+          "captured": {
+            "plans": 117,
+            "replacements": 0,
+            "enabled": false
+          }
+        }
+      },
+      "small-amp1-fused1": {
+        "passed_checks": 613,
+        "seconds": 0.9952523410320282,
+        "tuning": {
+          "eager": {
+            "plans": 117,
+            "replacements": 0,
+            "enabled": false
+          },
+          "captured": {
+            "plans": 117,
+            "replacements": 0,
+            "enabled": false
+          }
+        }
+      },
+      "g1-shaped-amp-fused": {
+        "passed_checks": 805,
+        "seconds": 3.4513989239931107,
+        "tuning": {
+          "eager": {
+            "plans": 171,
+            "replacements": 0,
+            "enabled": false
+          },
+          "captured": {
+            "plans": 171,
+            "replacements": 0,
+            "enabled": false
+          }
+        }
+      },
+      "g1-shaped-amp-fused-autotuned": {
+        "passed_checks": 805,
+        "seconds": 5.079909754917026,
+        "tuning": {
+          "eager": {
+            "plans": 171,
+            "replacements": 33,
+            "enabled": true
+          },
+          "captured": {
+            "plans": 171,
+            "replacements": 37,
+            "enabled": true
+          }
+        }
+      },
+      "fresh-gradient-primitives": {
+        "passed_checks": 652,
+        "seconds": 2.4748831689357758
+      },
+      "small-amp1-fused1-fresh": {
+        "passed_checks": 623,
+        "seconds": 1.2578900344669819,
+        "fresh_activation": {
+          "eager": {
+            "actor": {
+              "enabled": true,
+              "fallback_reason": null,
+              "owned_raw_arrays": 6,
+              "owned_raw_bytes": 61440,
+              "remaining_clear_bytes": 128612
+            },
+            "critic": {
+              "enabled": true,
+              "fallback_reason": null,
+              "owned_raw_arrays": 4,
+              "owned_raw_bytes": 81920,
+              "remaining_clear_bytes": 232732
+            }
+          },
+          "captured": {
+            "actor": {
+              "enabled": true,
+              "fallback_reason": null,
+              "owned_raw_arrays": 6,
+              "owned_raw_bytes": 61440,
+              "remaining_clear_bytes": 128612
+            },
+            "critic": {
+              "enabled": true,
+              "fallback_reason": null,
+              "owned_raw_arrays": 4,
+              "owned_raw_bytes": 81920,
+              "remaining_clear_bytes": 232732
+            }
+          }
+        },
+        "tuning": {
+          "eager": {
+            "plans": 117,
+            "replacements": 0,
+            "enabled": false
+          },
+          "captured": {
+            "plans": 117,
+            "replacements": 0,
+            "enabled": false
+          }
+        }
+      },
+      "g1-shaped-amp-fused-fresh": {
+        "passed_checks": 815,
+        "seconds": 3.749496065080166,
+        "fresh_activation": {
+          "eager": {
+            "actor": {
+              "enabled": true,
+              "fallback_reason": null,
+              "owned_raw_arrays": 12,
+              "owned_raw_bytes": 62914560,
+              "remaining_clear_bytes": 103536900
+            },
+            "critic": {
+              "enabled": true,
+              "fallback_reason": null,
+              "owned_raw_arrays": 8,
+              "owned_raw_bytes": 83886080,
+              "remaining_clear_bytes": 144268588
+            }
+          },
+          "captured": {
+            "actor": {
+              "enabled": true,
+              "fallback_reason": null,
+              "owned_raw_arrays": 12,
+              "owned_raw_bytes": 62914560,
+              "remaining_clear_bytes": 103536900
+            },
+            "critic": {
+              "enabled": true,
+              "fallback_reason": null,
+              "owned_raw_arrays": 8,
+              "owned_raw_bytes": 83886080,
+              "remaining_clear_bytes": 144268588
+            }
+          }
+        },
+        "tuning": {
+          "eager": {
+            "plans": 171,
+            "replacements": 0,
+            "enabled": false
+          },
+          "captured": {
+            "plans": 171,
+            "replacements": 0,
+            "enabled": false
+          }
+        }
+      }
+    },
+    "native_checkpoints": [
+      {
+        "name": "g1-amp1-fused1-autotuned-captured",
+        "arrays": 302,
+        "finite": true
+      },
+      {
+        "name": "g1-amp1-fused1-autotuned-eager",
+        "arrays": 302,
+        "finite": true
+      },
+      {
+        "name": "g1-amp1-fused1-captured",
+        "arrays": 302,
+        "finite": true
+      },
+      {
+        "name": "g1-amp1-fused1-eager",
+        "arrays": 302,
+        "finite": true
+      },
+      {
+        "name": "g1-amp1-fused1-fresh-captured",
+        "arrays": 302,
+        "finite": true
+      },
+      {
+        "name": "g1-amp1-fused1-fresh-eager",
+        "arrays": 302,
+        "finite": true
+      },
+      {
+        "name": "small-amp0-fused0-captured",
+        "arrays": 204,
+        "finite": true
+      },
+      {
+        "name": "small-amp0-fused0-eager",
+        "arrays": 204,
+        "finite": true
+      },
+      {
+        "name": "small-amp0-fused1-captured",
+        "arrays": 204,
+        "finite": true
+      },
+      {
+        "name": "small-amp0-fused1-eager",
+        "arrays": 204,
+        "finite": true
+      },
+      {
+        "name": "small-amp1-fused0-captured",
+        "arrays": 216,
+        "finite": true
+      },
+      {
+        "name": "small-amp1-fused0-eager",
+        "arrays": 216,
+        "finite": true
+      },
+      {
+        "name": "small-amp1-fused1-captured",
+        "arrays": 216,
+        "finite": true
+      },
+      {
+        "name": "small-amp1-fused1-eager",
+        "arrays": 216,
+        "finite": true
+      },
+      {
+        "name": "small-amp1-fused1-fresh-captured",
+        "arrays": 216,
+        "finite": true
+      },
+      {
+        "name": "small-amp1-fused1-fresh-eager",
+        "arrays": 216,
+        "finite": true
+      }
+    ],
+    "native_continuation_modes": 16,
+    "json_sha256": "c44524bdc1638bbd0780b9ba945debe75942f833222b68cb8f7e33119161529f",
+    "wall_seconds": 40.684356689453125
+  },
+  "workers": [
+    {
+      "label": "official_amp",
+      "phase": "preconditioning",
+      "round": null,
+      "position": null,
+      "source_commit": "e105370268a5a44aa14f8e06f1dd0d8f15f84202",
+      "imported_library_files": 37,
+      "fresh_training_gradients": false,
+      "fresh_activation": {
+        "after_prepare": {
+          "mode": false,
+          "method_called": false
+        },
+        "after_updates": {
+          "mode": false,
+          "method_called": false
+        },
+        "after_checkpoint": {
+          "mode": false,
+          "method_called": false
+        }
+      },
+      "json_sha256": "0097c1100ec64e7800746a49fc8d9180b85b033a78655b2ed7545fe598f81f9d",
+      "seconds": 0.004096858222037553,
+      "actor_seconds": 0.0003970410488545895,
+      "startup_seconds": 458.41948213614523,
+      "warmup_seconds": 423.23077742755413,
+      "preparation_seconds": 7.390603423118591e-05,
+      "worker_wall_seconds": 474.4663224220276,
+      "attempted": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "completed": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "skipped": {
+        "critic": 0,
+        "actor": 0,
+        "temperature": 0
+      },
+      "full_optimizer_steps": {
+        "critic": 600,
+        "actor": 300,
+        "temperature": 300
+      },
+      "changed_parameter_arrays": {
+        "actor": 20,
+        "critic": 18,
+        "temperature": 1
+      },
+      "checkpoint": {
+        "files": 5,
+        "network_arrays": 89,
+        "finite": true,
+        "optimizer_steps": {
+          "critic": 600,
+          "actor": 300,
+          "temperature": 300
+        }
+      },
+      "tuning": null,
+      "clocks": [
+        {
+          "when": "before",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2490.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 35.0,
+              "power.draw": 127.53,
+              "power.limit": 300.0,
+              "utilization.gpu": 44.0
+            }
+          ]
+        },
+        {
+          "when": "after",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2490.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 37.0,
+              "power.draw": 197.54,
+              "power.limit": 300.0,
+              "utilization.gpu": 47.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "baseline_native",
+      "phase": "preconditioning",
+      "round": null,
+      "position": null,
+      "source_commit": "e105370268a5a44aa14f8e06f1dd0d8f15f84202",
+      "imported_library_files": 37,
+      "fresh_training_gradients": false,
+      "fresh_activation": {
+        "after_prepare": {
+          "mode": false,
+          "method_called": false
+        },
+        "after_updates": {
+          "mode": false,
+          "method_called": false
+        },
+        "after_checkpoint": {
+          "mode": false,
+          "method_called": false
+        }
+      },
+      "json_sha256": "c31757d35edad57e6dc4466011e7a9df51ca518e5338b2304a1fc1329030ebd2",
+      "seconds": 0.0037658019475638868,
+      "actor_seconds": 0.00047976981848478316,
+      "startup_seconds": 7.001153748482466,
+      "warmup_seconds": 0.4271055441349745,
+      "preparation_seconds": 1.5888063795864582,
+      "worker_wall_seconds": 40.82342743873596,
+      "attempted": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "completed": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "skipped": {
+        "critic": 0,
+        "actor": 0,
+        "temperature": 0
+      },
+      "full_optimizer_steps": {
+        "critic": 600,
+        "actor": 300,
+        "temperature": 300
+      },
+      "changed_parameter_arrays": {
+        "actor": 20,
+        "critic": 36,
+        "temperature": 1
+      },
+      "checkpoint": {
+        "files": 2,
+        "arrays": 290,
+        "finite": true,
+        "optimizer_steps": {
+          "critic": 600,
+          "actor": 300,
+          "temperature": 300
+        }
+      },
+      "tuning": {
+        "plans": 171,
+        "replacements": 0,
+        "enabled": false
+      },
+      "clocks": [
+        {
+          "when": "before",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2490.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 36.0,
+              "power.draw": 176.8,
+              "power.limit": 300.0,
+              "utilization.gpu": 86.0
+            }
+          ]
+        },
+        {
+          "when": "after",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2490.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 41.0,
+              "power.draw": 288.76,
+              "power.limit": 300.0,
+              "utilization.gpu": 97.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "fresh_gradients_native",
+      "phase": "preconditioning",
+      "round": null,
+      "position": null,
+      "source_commit": "7eb6369d97199215b746a8072a73a95798542501",
+      "imported_library_files": 38,
+      "fresh_training_gradients": true,
+      "fresh_activation": {
+        "after_prepare": {
+          "actor": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 12,
+            "owned_raw_bytes": 62914560,
+            "remaining_clear_bytes": 103536900
+          },
+          "critic": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 8,
+            "owned_raw_bytes": 83886080,
+            "remaining_clear_bytes": 144268588
+          }
+        },
+        "after_updates": {
+          "actor": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 12,
+            "owned_raw_bytes": 62914560,
+            "remaining_clear_bytes": 103536900
+          },
+          "critic": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 8,
+            "owned_raw_bytes": 83886080,
+            "remaining_clear_bytes": 144268588
+          }
+        },
+        "after_checkpoint": {
+          "actor": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 12,
+            "owned_raw_bytes": 62914560,
+            "remaining_clear_bytes": 103536900
+          },
+          "critic": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 8,
+            "owned_raw_bytes": 83886080,
+            "remaining_clear_bytes": 144268588
+          }
+        }
+      },
+      "json_sha256": "22137cef36dd84138d665d0ed64d8cb7e6de0b449849a6a3fbc2c2778508fc48",
+      "seconds": 0.0034665423817932606,
+      "actor_seconds": 0.0004590190574526787,
+      "startup_seconds": 1.6868142448365688,
+      "warmup_seconds": 0.3951823506504297,
+      "preparation_seconds": 0.3587731681764126,
+      "worker_wall_seconds": 32.80977463722229,
+      "attempted": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "completed": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "skipped": {
+        "critic": 0,
+        "actor": 0,
+        "temperature": 0
+      },
+      "full_optimizer_steps": {
+        "critic": 600,
+        "actor": 300,
+        "temperature": 300
+      },
+      "changed_parameter_arrays": {
+        "actor": 20,
+        "critic": 36,
+        "temperature": 1
+      },
+      "checkpoint": {
+        "files": 2,
+        "arrays": 290,
+        "finite": true,
+        "optimizer_steps": {
+          "critic": 600,
+          "actor": 300,
+          "temperature": 300
+        }
+      },
+      "tuning": {
+        "plans": 171,
+        "replacements": 0,
+        "enabled": false
+      },
+      "clocks": [
+        {
+          "when": "before",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2490.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 39.0,
+              "power.draw": 169.51,
+              "power.limit": 300.0,
+              "utilization.gpu": 54.0
+            }
+          ]
+        },
+        {
+          "when": "after",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2475.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 41.0,
+              "power.draw": 294.14,
+              "power.limit": 300.0,
+              "utilization.gpu": 87.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "official_amp",
+      "phase": "measurement",
+      "round": 0,
+      "position": 0,
+      "source_commit": "e105370268a5a44aa14f8e06f1dd0d8f15f84202",
+      "imported_library_files": 37,
+      "fresh_training_gradients": false,
+      "fresh_activation": {
+        "after_prepare": {
+          "mode": false,
+          "method_called": false
+        },
+        "after_updates": {
+          "mode": false,
+          "method_called": false
+        },
+        "after_checkpoint": {
+          "mode": false,
+          "method_called": false
+        }
+      },
+      "json_sha256": "08e1bd07dc31311f54eba7480627691807d2bcdf20ace0a5159cd9168aef8aff",
+      "seconds": 0.0038111734017729757,
+      "actor_seconds": 0.0003969494067132473,
+      "startup_seconds": 41.63988748751581,
+      "warmup_seconds": 24.996060801669955,
+      "preparation_seconds": 7.555633783340454e-05,
+      "worker_wall_seconds": 56.92698669433594,
+      "attempted": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "completed": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "skipped": {
+        "critic": 0,
+        "actor": 0,
+        "temperature": 0
+      },
+      "full_optimizer_steps": {
+        "critic": 600,
+        "actor": 300,
+        "temperature": 300
+      },
+      "changed_parameter_arrays": {
+        "actor": 20,
+        "critic": 18,
+        "temperature": 1
+      },
+      "checkpoint": {
+        "files": 5,
+        "network_arrays": 89,
+        "finite": true,
+        "optimizer_steps": {
+          "critic": 600,
+          "actor": 300,
+          "temperature": 300
+        }
+      },
+      "tuning": null,
+      "clocks": [
+        {
+          "when": "before",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2490.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 39.0,
+              "power.draw": 157.68,
+              "power.limit": 300.0,
+              "utilization.gpu": 45.0
+            }
+          ]
+        },
+        {
+          "when": "after",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2490.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 40.0,
+              "power.draw": 206.63,
+              "power.limit": 300.0,
+              "utilization.gpu": 48.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "baseline_native",
+      "phase": "measurement",
+      "round": 0,
+      "position": 1,
+      "source_commit": "e105370268a5a44aa14f8e06f1dd0d8f15f84202",
+      "imported_library_files": 37,
+      "fresh_training_gradients": false,
+      "fresh_activation": {
+        "after_prepare": {
+          "mode": false,
+          "method_called": false
+        },
+        "after_updates": {
+          "mode": false,
+          "method_called": false
+        },
+        "after_checkpoint": {
+          "mode": false,
+          "method_called": false
+        }
+      },
+      "json_sha256": "ad95d6271e73a661dfe418ed90e1db7f661a9198e50246e6f890035164db7c45",
+      "seconds": 0.003764534592628479,
+      "actor_seconds": 0.00044567815959453585,
+      "startup_seconds": 1.7026651222258806,
+      "warmup_seconds": 0.42643993720412254,
+      "preparation_seconds": 0.35767185501754284,
+      "worker_wall_seconds": 32.75051164627075,
+      "attempted": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "completed": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "skipped": {
+        "critic": 0,
+        "actor": 0,
+        "temperature": 0
+      },
+      "full_optimizer_steps": {
+        "critic": 600,
+        "actor": 300,
+        "temperature": 300
+      },
+      "changed_parameter_arrays": {
+        "actor": 20,
+        "critic": 36,
+        "temperature": 1
+      },
+      "checkpoint": {
+        "files": 2,
+        "arrays": 290,
+        "finite": true,
+        "optimizer_steps": {
+          "critic": 600,
+          "actor": 300,
+          "temperature": 300
+        }
+      },
+      "tuning": {
+        "plans": 171,
+        "replacements": 0,
+        "enabled": false
+      },
+      "clocks": [
+        {
+          "when": "before",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2490.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 39.0,
+              "power.draw": 177.05,
+              "power.limit": 300.0,
+              "utilization.gpu": 87.0
+            }
+          ]
+        },
+        {
+          "when": "after",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2490.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 42.0,
+              "power.draw": 287.22,
+              "power.limit": 300.0,
+              "utilization.gpu": 85.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "fresh_gradients_native",
+      "phase": "measurement",
+      "round": 0,
+      "position": 2,
+      "source_commit": "7eb6369d97199215b746a8072a73a95798542501",
+      "imported_library_files": 38,
+      "fresh_training_gradients": true,
+      "fresh_activation": {
+        "after_prepare": {
+          "actor": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 12,
+            "owned_raw_bytes": 62914560,
+            "remaining_clear_bytes": 103536900
+          },
+          "critic": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 8,
+            "owned_raw_bytes": 83886080,
+            "remaining_clear_bytes": 144268588
+          }
+        },
+        "after_updates": {
+          "actor": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 12,
+            "owned_raw_bytes": 62914560,
+            "remaining_clear_bytes": 103536900
+          },
+          "critic": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 8,
+            "owned_raw_bytes": 83886080,
+            "remaining_clear_bytes": 144268588
+          }
+        },
+        "after_checkpoint": {
+          "actor": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 12,
+            "owned_raw_bytes": 62914560,
+            "remaining_clear_bytes": 103536900
+          },
+          "critic": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 8,
+            "owned_raw_bytes": 83886080,
+            "remaining_clear_bytes": 144268588
+          }
+        }
+      },
+      "json_sha256": "09444073d54ae6dc693602f9cda2d89142f93058183c279855f6d187d65549b4",
+      "seconds": 0.003467671737074852,
+      "actor_seconds": 0.0004439822398126125,
+      "startup_seconds": 1.747702494263649,
+      "warmup_seconds": 0.39539735205471516,
+      "preparation_seconds": 0.3890576511621475,
+      "worker_wall_seconds": 33.078349113464355,
+      "attempted": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "completed": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "skipped": {
+        "critic": 0,
+        "actor": 0,
+        "temperature": 0
+      },
+      "full_optimizer_steps": {
+        "critic": 600,
+        "actor": 300,
+        "temperature": 300
+      },
+      "changed_parameter_arrays": {
+        "actor": 20,
+        "critic": 36,
+        "temperature": 1
+      },
+      "checkpoint": {
+        "files": 2,
+        "arrays": 290,
+        "finite": true,
+        "optimizer_steps": {
+          "critic": 600,
+          "actor": 300,
+          "temperature": 300
+        }
+      },
+      "tuning": {
+        "plans": 171,
+        "replacements": 0,
+        "enabled": false
+      },
+      "clocks": [
+        {
+          "when": "before",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2490.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 35.0,
+              "power.draw": 162.54,
+              "power.limit": 300.0,
+              "utilization.gpu": 77.0
+            }
+          ]
+        },
+        {
+          "when": "after",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2490.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 41.0,
+              "power.draw": 283.95,
+              "power.limit": 300.0,
+              "utilization.gpu": 96.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "fresh_gradients_native",
+      "phase": "measurement",
+      "round": 1,
+      "position": 0,
+      "source_commit": "7eb6369d97199215b746a8072a73a95798542501",
+      "imported_library_files": 38,
+      "fresh_training_gradients": true,
+      "fresh_activation": {
+        "after_prepare": {
+          "actor": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 12,
+            "owned_raw_bytes": 62914560,
+            "remaining_clear_bytes": 103536900
+          },
+          "critic": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 8,
+            "owned_raw_bytes": 83886080,
+            "remaining_clear_bytes": 144268588
+          }
+        },
+        "after_updates": {
+          "actor": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 12,
+            "owned_raw_bytes": 62914560,
+            "remaining_clear_bytes": 103536900
+          },
+          "critic": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 8,
+            "owned_raw_bytes": 83886080,
+            "remaining_clear_bytes": 144268588
+          }
+        },
+        "after_checkpoint": {
+          "actor": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 12,
+            "owned_raw_bytes": 62914560,
+            "remaining_clear_bytes": 103536900
+          },
+          "critic": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 8,
+            "owned_raw_bytes": 83886080,
+            "remaining_clear_bytes": 144268588
+          }
+        }
+      },
+      "json_sha256": "357fc3d0713e638e22a45e07823854c65c7f6d6dd34a128d31347e6b49e95902",
+      "seconds": 0.0034677213318645953,
+      "actor_seconds": 0.0004495929554104805,
+      "startup_seconds": 1.7096117958426476,
+      "warmup_seconds": 0.3963785283267498,
+      "preparation_seconds": 0.37975494749844074,
+      "worker_wall_seconds": 33.246148347854614,
+      "attempted": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "completed": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "skipped": {
+        "critic": 0,
+        "actor": 0,
+        "temperature": 0
+      },
+      "full_optimizer_steps": {
+        "critic": 600,
+        "actor": 300,
+        "temperature": 300
+      },
+      "changed_parameter_arrays": {
+        "actor": 20,
+        "critic": 36,
+        "temperature": 1
+      },
+      "checkpoint": {
+        "files": 2,
+        "arrays": 290,
+        "finite": true,
+        "optimizer_steps": {
+          "critic": 600,
+          "actor": 300,
+          "temperature": 300
+        }
+      },
+      "tuning": {
+        "plans": 171,
+        "replacements": 0,
+        "enabled": false
+      },
+      "clocks": [
+        {
+          "when": "before",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2490.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 37.0,
+              "power.draw": 170.18,
+              "power.limit": 300.0,
+              "utilization.gpu": 88.0
+            }
+          ]
+        },
+        {
+          "when": "after",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2475.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 40.0,
+              "power.draw": 298.27,
+              "power.limit": 300.0,
+              "utilization.gpu": 96.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "baseline_native",
+      "phase": "measurement",
+      "round": 1,
+      "position": 1,
+      "source_commit": "e105370268a5a44aa14f8e06f1dd0d8f15f84202",
+      "imported_library_files": 37,
+      "fresh_training_gradients": false,
+      "fresh_activation": {
+        "after_prepare": {
+          "mode": false,
+          "method_called": false
+        },
+        "after_updates": {
+          "mode": false,
+          "method_called": false
+        },
+        "after_checkpoint": {
+          "mode": false,
+          "method_called": false
+        }
+      },
+      "json_sha256": "0daba34dcb960d9cbf47488a8e257f268c0b0e28b3d3c8a854e90916545bbca7",
+      "seconds": 0.003763632193207741,
+      "actor_seconds": 0.00044677963480353354,
+      "startup_seconds": 1.6824649833142757,
+      "warmup_seconds": 0.42553764395415783,
+      "preparation_seconds": 0.3619026970118284,
+      "worker_wall_seconds": 32.33074116706848,
+      "attempted": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "completed": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "skipped": {
+        "critic": 0,
+        "actor": 0,
+        "temperature": 0
+      },
+      "full_optimizer_steps": {
+        "critic": 600,
+        "actor": 300,
+        "temperature": 300
+      },
+      "changed_parameter_arrays": {
+        "actor": 20,
+        "critic": 36,
+        "temperature": 1
+      },
+      "checkpoint": {
+        "files": 2,
+        "arrays": 290,
+        "finite": true,
+        "optimizer_steps": {
+          "critic": 600,
+          "actor": 300,
+          "temperature": 300
+        }
+      },
+      "tuning": {
+        "plans": 171,
+        "replacements": 0,
+        "enabled": false
+      },
+      "clocks": [
+        {
+          "when": "before",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2490.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 36.0,
+              "power.draw": 164.21,
+              "power.limit": 300.0,
+              "utilization.gpu": 89.0
+            }
+          ]
+        },
+        {
+          "when": "after",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2490.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 38.0,
+              "power.draw": 292.93,
+              "power.limit": 300.0,
+              "utilization.gpu": 97.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "official_amp",
+      "phase": "measurement",
+      "round": 1,
+      "position": 2,
+      "source_commit": "e105370268a5a44aa14f8e06f1dd0d8f15f84202",
+      "imported_library_files": 37,
+      "fresh_training_gradients": false,
+      "fresh_activation": {
+        "after_prepare": {
+          "mode": false,
+          "method_called": false
+        },
+        "after_updates": {
+          "mode": false,
+          "method_called": false
+        },
+        "after_checkpoint": {
+          "mode": false,
+          "method_called": false
+        }
+      },
+      "json_sha256": "5961b1b317f9321a75095fff95e38f6b7e17cabbe070f75a4f9ae48b7cc5089b",
+      "seconds": 0.003795977983623743,
+      "actor_seconds": 0.00039250368252396583,
+      "startup_seconds": 25.594407932832837,
+      "warmup_seconds": 9.153384041041136,
+      "preparation_seconds": 7.266737520694733e-05,
+      "worker_wall_seconds": 40.478320598602295,
+      "attempted": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "completed": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "skipped": {
+        "critic": 0,
+        "actor": 0,
+        "temperature": 0
+      },
+      "full_optimizer_steps": {
+        "critic": 600,
+        "actor": 300,
+        "temperature": 300
+      },
+      "changed_parameter_arrays": {
+        "actor": 20,
+        "critic": 18,
+        "temperature": 1
+      },
+      "checkpoint": {
+        "files": 5,
+        "network_arrays": 89,
+        "finite": true,
+        "optimizer_steps": {
+          "critic": 600,
+          "actor": 300,
+          "temperature": 300
+        }
+      },
+      "tuning": null,
+      "clocks": [
+        {
+          "when": "before",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2490.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 33.0,
+              "power.draw": 174.87,
+              "power.limit": 300.0,
+              "utilization.gpu": 46.0
+            }
+          ]
+        },
+        {
+          "when": "after",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2490.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 36.0,
+              "power.draw": 205.5,
+              "power.limit": 300.0,
+              "utilization.gpu": 49.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "baseline_native",
+      "phase": "measurement",
+      "round": 2,
+      "position": 0,
+      "source_commit": "e105370268a5a44aa14f8e06f1dd0d8f15f84202",
+      "imported_library_files": 37,
+      "fresh_training_gradients": false,
+      "fresh_activation": {
+        "after_prepare": {
+          "mode": false,
+          "method_called": false
+        },
+        "after_updates": {
+          "mode": false,
+          "method_called": false
+        },
+        "after_checkpoint": {
+          "mode": false,
+          "method_called": false
+        }
+      },
+      "json_sha256": "037be65279b549b2f93e2a251f74a7ac808627182a870a425cc39281da35cb08",
+      "seconds": 0.0037609749399125578,
+      "actor_seconds": 0.00045192956924438476,
+      "startup_seconds": 1.7498026229441166,
+      "warmup_seconds": 0.42579836398363113,
+      "preparation_seconds": 0.36887573450803757,
+      "worker_wall_seconds": 32.796440839767456,
+      "attempted": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "completed": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "skipped": {
+        "critic": 0,
+        "actor": 0,
+        "temperature": 0
+      },
+      "full_optimizer_steps": {
+        "critic": 600,
+        "actor": 300,
+        "temperature": 300
+      },
+      "changed_parameter_arrays": {
+        "actor": 20,
+        "critic": 36,
+        "temperature": 1
+      },
+      "checkpoint": {
+        "files": 2,
+        "arrays": 290,
+        "finite": true,
+        "optimizer_steps": {
+          "critic": 600,
+          "actor": 300,
+          "temperature": 300
+        }
+      },
+      "tuning": {
+        "plans": 171,
+        "replacements": 0,
+        "enabled": false
+      },
+      "clocks": [
+        {
+          "when": "before",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2490.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 36.0,
+              "power.draw": 170.32,
+              "power.limit": 300.0,
+              "utilization.gpu": 53.0
+            }
+          ]
+        },
+        {
+          "when": "after",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2490.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 39.0,
+              "power.draw": 293.16,
+              "power.limit": 300.0,
+              "utilization.gpu": 97.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "official_amp",
+      "phase": "measurement",
+      "round": 2,
+      "position": 1,
+      "source_commit": "e105370268a5a44aa14f8e06f1dd0d8f15f84202",
+      "imported_library_files": 37,
+      "fresh_training_gradients": false,
+      "fresh_activation": {
+        "after_prepare": {
+          "mode": false,
+          "method_called": false
+        },
+        "after_updates": {
+          "mode": false,
+          "method_called": false
+        },
+        "after_checkpoint": {
+          "mode": false,
+          "method_called": false
+        }
+      },
+      "json_sha256": "1980d4f8414c1dc80029079693b597f238dda966d4e2f6bb6b911367b7156b26",
+      "seconds": 0.0038897378034889697,
+      "actor_seconds": 0.00040655476972460745,
+      "startup_seconds": 23.498225087299943,
+      "warmup_seconds": 7.32008889503777,
+      "preparation_seconds": 6.798096001148224e-05,
+      "worker_wall_seconds": 38.527679204940796,
+      "attempted": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "completed": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "skipped": {
+        "critic": 0,
+        "actor": 0,
+        "temperature": 0
+      },
+      "full_optimizer_steps": {
+        "critic": 600,
+        "actor": 300,
+        "temperature": 300
+      },
+      "changed_parameter_arrays": {
+        "actor": 20,
+        "critic": 18,
+        "temperature": 1
+      },
+      "checkpoint": {
+        "files": 5,
+        "network_arrays": 89,
+        "finite": true,
+        "optimizer_steps": {
+          "critic": 600,
+          "actor": 300,
+          "temperature": 300
+        }
+      },
+      "tuning": null,
+      "clocks": [
+        {
+          "when": "before",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2490.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 36.0,
+              "power.draw": 166.99,
+              "power.limit": 300.0,
+              "utilization.gpu": 39.0
+            }
+          ]
+        },
+        {
+          "when": "after",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2490.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 37.0,
+              "power.draw": 206.03,
+              "power.limit": 300.0,
+              "utilization.gpu": 48.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "fresh_gradients_native",
+      "phase": "measurement",
+      "round": 2,
+      "position": 2,
+      "source_commit": "7eb6369d97199215b746a8072a73a95798542501",
+      "imported_library_files": 38,
+      "fresh_training_gradients": true,
+      "fresh_activation": {
+        "after_prepare": {
+          "actor": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 12,
+            "owned_raw_bytes": 62914560,
+            "remaining_clear_bytes": 103536900
+          },
+          "critic": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 8,
+            "owned_raw_bytes": 83886080,
+            "remaining_clear_bytes": 144268588
+          }
+        },
+        "after_updates": {
+          "actor": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 12,
+            "owned_raw_bytes": 62914560,
+            "remaining_clear_bytes": 103536900
+          },
+          "critic": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 8,
+            "owned_raw_bytes": 83886080,
+            "remaining_clear_bytes": 144268588
+          }
+        },
+        "after_checkpoint": {
+          "actor": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 12,
+            "owned_raw_bytes": 62914560,
+            "remaining_clear_bytes": 103536900
+          },
+          "critic": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 8,
+            "owned_raw_bytes": 83886080,
+            "remaining_clear_bytes": 144268588
+          }
+        }
+      },
+      "json_sha256": "348b78721e054623e4d0eb7949697ffb81378f6ebb511cbeaa97aab14c972b43",
+      "seconds": 0.0034676353484392164,
+      "actor_seconds": 0.00044940020889043807,
+      "startup_seconds": 1.9330985825508833,
+      "warmup_seconds": 0.3967783320695162,
+      "preparation_seconds": 0.6099268682301044,
+      "worker_wall_seconds": 33.001699924468994,
+      "attempted": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "completed": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "skipped": {
+        "critic": 0,
+        "actor": 0,
+        "temperature": 0
+      },
+      "full_optimizer_steps": {
+        "critic": 600,
+        "actor": 300,
+        "temperature": 300
+      },
+      "changed_parameter_arrays": {
+        "actor": 20,
+        "critic": 36,
+        "temperature": 1
+      },
+      "checkpoint": {
+        "files": 2,
+        "arrays": 290,
+        "finite": true,
+        "optimizer_steps": {
+          "critic": 600,
+          "actor": 300,
+          "temperature": 300
+        }
+      },
+      "tuning": {
+        "plans": 171,
+        "replacements": 0,
+        "enabled": false
+      },
+      "clocks": [
+        {
+          "when": "before",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2490.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 36.0,
+              "power.draw": 168.68,
+              "power.limit": 300.0,
+              "utilization.gpu": 88.0
+            }
+          ]
+        },
+        {
+          "when": "after",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2475.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 41.0,
+              "power.draw": 299.78,
+              "power.limit": 300.0,
+              "utilization.gpu": 97.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "baseline_native",
+      "phase": "measurement",
+      "round": 3,
+      "position": 0,
+      "source_commit": "e105370268a5a44aa14f8e06f1dd0d8f15f84202",
+      "imported_library_files": 37,
+      "fresh_training_gradients": false,
+      "fresh_activation": {
+        "after_prepare": {
+          "mode": false,
+          "method_called": false
+        },
+        "after_updates": {
+          "mode": false,
+          "method_called": false
+        },
+        "after_checkpoint": {
+          "mode": false,
+          "method_called": false
+        }
+      },
+      "json_sha256": "78f0571b8ca5ad311a6af09b70a232947ff8b8dffeecd3e7a598e2f951a6ab60",
+      "seconds": 0.0037629051581025124,
+      "actor_seconds": 0.0004631429724395275,
+      "startup_seconds": 1.7641544174402952,
+      "warmup_seconds": 0.42946646735072136,
+      "preparation_seconds": 0.38857102394104004,
+      "worker_wall_seconds": 33.22273898124695,
+      "attempted": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "completed": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "skipped": {
+        "critic": 0,
+        "actor": 0,
+        "temperature": 0
+      },
+      "full_optimizer_steps": {
+        "critic": 600,
+        "actor": 300,
+        "temperature": 300
+      },
+      "changed_parameter_arrays": {
+        "actor": 20,
+        "critic": 36,
+        "temperature": 1
+      },
+      "checkpoint": {
+        "files": 2,
+        "arrays": 290,
+        "finite": true,
+        "optimizer_steps": {
+          "critic": 600,
+          "actor": 300,
+          "temperature": 300
+        }
+      },
+      "tuning": {
+        "plans": 171,
+        "replacements": 0,
+        "enabled": false
+      },
+      "clocks": [
+        {
+          "when": "before",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2490.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 38.0,
+              "power.draw": 169.97,
+              "power.limit": 300.0,
+              "utilization.gpu": 5.0
+            }
+          ]
+        },
+        {
+          "when": "after",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2490.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 41.0,
+              "power.draw": 289.19,
+              "power.limit": 300.0,
+              "utilization.gpu": 97.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "fresh_gradients_native",
+      "phase": "measurement",
+      "round": 3,
+      "position": 1,
+      "source_commit": "7eb6369d97199215b746a8072a73a95798542501",
+      "imported_library_files": 38,
+      "fresh_training_gradients": true,
+      "fresh_activation": {
+        "after_prepare": {
+          "actor": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 12,
+            "owned_raw_bytes": 62914560,
+            "remaining_clear_bytes": 103536900
+          },
+          "critic": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 8,
+            "owned_raw_bytes": 83886080,
+            "remaining_clear_bytes": 144268588
+          }
+        },
+        "after_updates": {
+          "actor": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 12,
+            "owned_raw_bytes": 62914560,
+            "remaining_clear_bytes": 103536900
+          },
+          "critic": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 8,
+            "owned_raw_bytes": 83886080,
+            "remaining_clear_bytes": 144268588
+          }
+        },
+        "after_checkpoint": {
+          "actor": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 12,
+            "owned_raw_bytes": 62914560,
+            "remaining_clear_bytes": 103536900
+          },
+          "critic": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 8,
+            "owned_raw_bytes": 83886080,
+            "remaining_clear_bytes": 144268588
+          }
+        }
+      },
+      "json_sha256": "75149aeb2d323e3adfd60579da8d6a80e34f9ff07bb80f681d4dbd8df1c6abba",
+      "seconds": 0.0034665475077927115,
+      "actor_seconds": 0.0004501370340585709,
+      "startup_seconds": 1.6826657447963953,
+      "warmup_seconds": 0.395924536511302,
+      "preparation_seconds": 0.3648322615772486,
+      "worker_wall_seconds": 33.215747356414795,
+      "attempted": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "completed": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "skipped": {
+        "critic": 0,
+        "actor": 0,
+        "temperature": 0
+      },
+      "full_optimizer_steps": {
+        "critic": 600,
+        "actor": 300,
+        "temperature": 300
+      },
+      "changed_parameter_arrays": {
+        "actor": 20,
+        "critic": 36,
+        "temperature": 1
+      },
+      "checkpoint": {
+        "files": 2,
+        "arrays": 290,
+        "finite": true,
+        "optimizer_steps": {
+          "critic": 600,
+          "actor": 300,
+          "temperature": 300
+        }
+      },
+      "tuning": {
+        "plans": 171,
+        "replacements": 0,
+        "enabled": false
+      },
+      "clocks": [
+        {
+          "when": "before",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2490.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 37.0,
+              "power.draw": 169.33,
+              "power.limit": 300.0,
+              "utilization.gpu": 88.0
+            }
+          ]
+        },
+        {
+          "when": "after",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2475.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 41.0,
+              "power.draw": 299.23,
+              "power.limit": 300.0,
+              "utilization.gpu": 97.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "official_amp",
+      "phase": "measurement",
+      "round": 3,
+      "position": 2,
+      "source_commit": "e105370268a5a44aa14f8e06f1dd0d8f15f84202",
+      "imported_library_files": 37,
+      "fresh_training_gradients": false,
+      "fresh_activation": {
+        "after_prepare": {
+          "mode": false,
+          "method_called": false
+        },
+        "after_updates": {
+          "mode": false,
+          "method_called": false
+        },
+        "after_checkpoint": {
+          "mode": false,
+          "method_called": false
+        }
+      },
+      "json_sha256": "05322d0ffa6fd66910c060f3f4d44f40694fa2ccb33f3df8b8596c0f725a422e",
+      "seconds": 0.003790159694850445,
+      "actor_seconds": 0.0003870145417749882,
+      "startup_seconds": 23.02879282645881,
+      "warmup_seconds": 6.425199309363961,
+      "preparation_seconds": 6.964243948459625e-05,
+      "worker_wall_seconds": 37.9987907409668,
+      "attempted": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "completed": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "skipped": {
+        "critic": 0,
+        "actor": 0,
+        "temperature": 0
+      },
+      "full_optimizer_steps": {
+        "critic": 600,
+        "actor": 300,
+        "temperature": 300
+      },
+      "changed_parameter_arrays": {
+        "actor": 20,
+        "critic": 18,
+        "temperature": 1
+      },
+      "checkpoint": {
+        "files": 5,
+        "network_arrays": 89,
+        "finite": true,
+        "optimizer_steps": {
+          "critic": 600,
+          "actor": 300,
+          "temperature": 300
+        }
+      },
+      "tuning": null,
+      "clocks": [
+        {
+          "when": "before",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2490.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 36.0,
+              "power.draw": 183.11,
+              "power.limit": 300.0,
+              "utilization.gpu": 45.0
+            }
+          ]
+        },
+        {
+          "when": "after",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2490.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 38.0,
+              "power.draw": 207.16,
+              "power.limit": 300.0,
+              "utilization.gpu": 49.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "official_amp",
+      "phase": "measurement",
+      "round": 4,
+      "position": 0,
+      "source_commit": "e105370268a5a44aa14f8e06f1dd0d8f15f84202",
+      "imported_library_files": 37,
+      "fresh_training_gradients": false,
+      "fresh_activation": {
+        "after_prepare": {
+          "mode": false,
+          "method_called": false
+        },
+        "after_updates": {
+          "mode": false,
+          "method_called": false
+        },
+        "after_checkpoint": {
+          "mode": false,
+          "method_called": false
+        }
+      },
+      "json_sha256": "95ad569dd65da311d1e5bdc66eb60c986880c9b559898c88a77f9f0767be0086",
+      "seconds": 0.003882413327693939,
+      "actor_seconds": 0.0003905657306313515,
+      "startup_seconds": 22.673388613387942,
+      "warmup_seconds": 6.412595294415951,
+      "preparation_seconds": 7.233396172523499e-05,
+      "worker_wall_seconds": 37.67086410522461,
+      "attempted": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "completed": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "skipped": {
+        "critic": 0,
+        "actor": 0,
+        "temperature": 0
+      },
+      "full_optimizer_steps": {
+        "critic": 600,
+        "actor": 300,
+        "temperature": 300
+      },
+      "changed_parameter_arrays": {
+        "actor": 20,
+        "critic": 18,
+        "temperature": 1
+      },
+      "checkpoint": {
+        "files": 5,
+        "network_arrays": 89,
+        "finite": true,
+        "optimizer_steps": {
+          "critic": 600,
+          "actor": 300,
+          "temperature": 300
+        }
+      },
+      "tuning": null,
+      "clocks": [
+        {
+          "when": "before",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2490.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 34.0,
+              "power.draw": 178.14,
+              "power.limit": 300.0,
+              "utilization.gpu": 40.0
+            }
+          ]
+        },
+        {
+          "when": "after",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2490.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 36.0,
+              "power.draw": 207.31,
+              "power.limit": 300.0,
+              "utilization.gpu": 48.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "fresh_gradients_native",
+      "phase": "measurement",
+      "round": 4,
+      "position": 1,
+      "source_commit": "7eb6369d97199215b746a8072a73a95798542501",
+      "imported_library_files": 38,
+      "fresh_training_gradients": true,
+      "fresh_activation": {
+        "after_prepare": {
+          "actor": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 12,
+            "owned_raw_bytes": 62914560,
+            "remaining_clear_bytes": 103536900
+          },
+          "critic": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 8,
+            "owned_raw_bytes": 83886080,
+            "remaining_clear_bytes": 144268588
+          }
+        },
+        "after_updates": {
+          "actor": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 12,
+            "owned_raw_bytes": 62914560,
+            "remaining_clear_bytes": 103536900
+          },
+          "critic": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 8,
+            "owned_raw_bytes": 83886080,
+            "remaining_clear_bytes": 144268588
+          }
+        },
+        "after_checkpoint": {
+          "actor": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 12,
+            "owned_raw_bytes": 62914560,
+            "remaining_clear_bytes": 103536900
+          },
+          "critic": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 8,
+            "owned_raw_bytes": 83886080,
+            "remaining_clear_bytes": 144268588
+          }
+        }
+      },
+      "json_sha256": "91677d9ba1157a1057ac44411f1eebddee5e9bf85a81e50212bc9663ff2346dc",
+      "seconds": 0.0034631218425929546,
+      "actor_seconds": 0.0004551477916538715,
+      "startup_seconds": 1.6921663209795952,
+      "warmup_seconds": 0.39654064550995827,
+      "preparation_seconds": 0.3722481783479452,
+      "worker_wall_seconds": 33.48618006706238,
+      "attempted": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "completed": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "skipped": {
+        "critic": 0,
+        "actor": 0,
+        "temperature": 0
+      },
+      "full_optimizer_steps": {
+        "critic": 600,
+        "actor": 300,
+        "temperature": 300
+      },
+      "changed_parameter_arrays": {
+        "actor": 20,
+        "critic": 36,
+        "temperature": 1
+      },
+      "checkpoint": {
+        "files": 2,
+        "arrays": 290,
+        "finite": true,
+        "optimizer_steps": {
+          "critic": 600,
+          "actor": 300,
+          "temperature": 300
+        }
+      },
+      "tuning": {
+        "plans": 171,
+        "replacements": 0,
+        "enabled": false
+      },
+      "clocks": [
+        {
+          "when": "before",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2490.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 33.0,
+              "power.draw": 166.04,
+              "power.limit": 300.0,
+              "utilization.gpu": 89.0
+            }
+          ]
+        },
+        {
+          "when": "after",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2490.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 36.0,
+              "power.draw": 298.73,
+              "power.limit": 300.0,
+              "utilization.gpu": 97.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "baseline_native",
+      "phase": "measurement",
+      "round": 4,
+      "position": 2,
+      "source_commit": "e105370268a5a44aa14f8e06f1dd0d8f15f84202",
+      "imported_library_files": 37,
+      "fresh_training_gradients": false,
+      "fresh_activation": {
+        "after_prepare": {
+          "mode": false,
+          "method_called": false
+        },
+        "after_updates": {
+          "mode": false,
+          "method_called": false
+        },
+        "after_checkpoint": {
+          "mode": false,
+          "method_called": false
+        }
+      },
+      "json_sha256": "7772314ea7715ce5ac543695c714eed781476dacd53bc4f844cb637ed368365a",
+      "seconds": 0.003762177351862192,
+      "actor_seconds": 0.0004489886574447155,
+      "startup_seconds": 1.7928837351500988,
+      "warmup_seconds": 0.4264397844672203,
+      "preparation_seconds": 0.3589324001222849,
+      "worker_wall_seconds": 33.552714586257935,
+      "attempted": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "completed": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "skipped": {
+        "critic": 0,
+        "actor": 0,
+        "temperature": 0
+      },
+      "full_optimizer_steps": {
+        "critic": 600,
+        "actor": 300,
+        "temperature": 300
+      },
+      "changed_parameter_arrays": {
+        "actor": 20,
+        "critic": 36,
+        "temperature": 1
+      },
+      "checkpoint": {
+        "files": 2,
+        "arrays": 290,
+        "finite": true,
+        "optimizer_steps": {
+          "critic": 600,
+          "actor": 300,
+          "temperature": 300
+        }
+      },
+      "tuning": {
+        "plans": 171,
+        "replacements": 0,
+        "enabled": false
+      },
+      "clocks": [
+        {
+          "when": "before",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2490.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 36.0,
+              "power.draw": 167.04,
+              "power.limit": 300.0,
+              "utilization.gpu": 89.0
+            }
+          ]
+        },
+        {
+          "when": "after",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2490.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 38.0,
+              "power.draw": 291.45,
+              "power.limit": 300.0,
+              "utilization.gpu": 97.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "fresh_gradients_native",
+      "phase": "measurement",
+      "round": 5,
+      "position": 0,
+      "source_commit": "7eb6369d97199215b746a8072a73a95798542501",
+      "imported_library_files": 38,
+      "fresh_training_gradients": true,
+      "fresh_activation": {
+        "after_prepare": {
+          "actor": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 12,
+            "owned_raw_bytes": 62914560,
+            "remaining_clear_bytes": 103536900
+          },
+          "critic": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 8,
+            "owned_raw_bytes": 83886080,
+            "remaining_clear_bytes": 144268588
+          }
+        },
+        "after_updates": {
+          "actor": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 12,
+            "owned_raw_bytes": 62914560,
+            "remaining_clear_bytes": 103536900
+          },
+          "critic": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 8,
+            "owned_raw_bytes": 83886080,
+            "remaining_clear_bytes": 144268588
+          }
+        },
+        "after_checkpoint": {
+          "actor": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 12,
+            "owned_raw_bytes": 62914560,
+            "remaining_clear_bytes": 103536900
+          },
+          "critic": {
+            "enabled": true,
+            "fallback_reason": null,
+            "owned_raw_arrays": 8,
+            "owned_raw_bytes": 83886080,
+            "remaining_clear_bytes": 144268588
+          }
+        }
+      },
+      "json_sha256": "c38666348896e297a00a80e2d61207c665b7c87e4fb19a84b882daa73b9ec236",
+      "seconds": 0.0034670532494783402,
+      "actor_seconds": 0.0004440118186175823,
+      "startup_seconds": 1.7341759242117405,
+      "warmup_seconds": 0.3961690589785576,
+      "preparation_seconds": 0.3603892531245947,
+      "worker_wall_seconds": 32.422372579574585,
+      "attempted": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "completed": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "skipped": {
+        "critic": 0,
+        "actor": 0,
+        "temperature": 0
+      },
+      "full_optimizer_steps": {
+        "critic": 600,
+        "actor": 300,
+        "temperature": 300
+      },
+      "changed_parameter_arrays": {
+        "actor": 20,
+        "critic": 36,
+        "temperature": 1
+      },
+      "checkpoint": {
+        "files": 2,
+        "arrays": 290,
+        "finite": true,
+        "optimizer_steps": {
+          "critic": 600,
+          "actor": 300,
+          "temperature": 300
+        }
+      },
+      "tuning": {
+        "plans": 171,
+        "replacements": 0,
+        "enabled": false
+      },
+      "clocks": [
+        {
+          "when": "before",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2490.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 34.0,
+              "power.draw": 170.47,
+              "power.limit": 300.0,
+              "utilization.gpu": 88.0
+            }
+          ]
+        },
+        {
+          "when": "after",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2475.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 38.0,
+              "power.draw": 299.35,
+              "power.limit": 300.0,
+              "utilization.gpu": 96.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "official_amp",
+      "phase": "measurement",
+      "round": 5,
+      "position": 1,
+      "source_commit": "e105370268a5a44aa14f8e06f1dd0d8f15f84202",
+      "imported_library_files": 37,
+      "fresh_training_gradients": false,
+      "fresh_activation": {
+        "after_prepare": {
+          "mode": false,
+          "method_called": false
+        },
+        "after_updates": {
+          "mode": false,
+          "method_called": false
+        },
+        "after_checkpoint": {
+          "mode": false,
+          "method_called": false
+        }
+      },
+      "json_sha256": "2354844bd761802ed2879edea66941af80c37ef2b2b221c85b7fa8a179a3abc9",
+      "seconds": 0.003778824280947447,
+      "actor_seconds": 0.0003915746323764324,
+      "startup_seconds": 22.617417726665735,
+      "warmup_seconds": 6.697434457018971,
+      "preparation_seconds": 6.805360317230225e-05,
+      "worker_wall_seconds": 37.84712791442871,
+      "attempted": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "completed": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "skipped": {
+        "critic": 0,
+        "actor": 0,
+        "temperature": 0
+      },
+      "full_optimizer_steps": {
+        "critic": 600,
+        "actor": 300,
+        "temperature": 300
+      },
+      "changed_parameter_arrays": {
+        "actor": 20,
+        "critic": 18,
+        "temperature": 1
+      },
+      "checkpoint": {
+        "files": 5,
+        "network_arrays": 89,
+        "finite": true,
+        "optimizer_steps": {
+          "critic": 600,
+          "actor": 300,
+          "temperature": 300
+        }
+      },
+      "tuning": null,
+      "clocks": [
+        {
+          "when": "before",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2490.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 34.0,
+              "power.draw": 181.16,
+              "power.limit": 300.0,
+              "utilization.gpu": 46.0
+            }
+          ]
+        },
+        {
+          "when": "after",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2490.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 36.0,
+              "power.draw": 197.04,
+              "power.limit": 300.0,
+              "utilization.gpu": 48.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "baseline_native",
+      "phase": "measurement",
+      "round": 5,
+      "position": 2,
+      "source_commit": "e105370268a5a44aa14f8e06f1dd0d8f15f84202",
+      "imported_library_files": 37,
+      "fresh_training_gradients": false,
+      "fresh_activation": {
+        "after_prepare": {
+          "mode": false,
+          "method_called": false
+        },
+        "after_updates": {
+          "mode": false,
+          "method_called": false
+        },
+        "after_checkpoint": {
+          "mode": false,
+          "method_called": false
+        }
+      },
+      "json_sha256": "642682f860150a262c8c603c18208b17cb574120f0bdce568b5b7e06bc962b30",
+      "seconds": 0.003760753083974123,
+      "actor_seconds": 0.0004454311914741993,
+      "startup_seconds": 1.811807056888938,
+      "warmup_seconds": 0.42490630969405174,
+      "preparation_seconds": 0.37996426597237587,
+      "worker_wall_seconds": 33.354756355285645,
+      "attempted": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "completed": {
+        "critic": 500,
+        "actor": 250,
+        "temperature": 250
+      },
+      "skipped": {
+        "critic": 0,
+        "actor": 0,
+        "temperature": 0
+      },
+      "full_optimizer_steps": {
+        "critic": 600,
+        "actor": 300,
+        "temperature": 300
+      },
+      "changed_parameter_arrays": {
+        "actor": 20,
+        "critic": 36,
+        "temperature": 1
+      },
+      "checkpoint": {
+        "files": 2,
+        "arrays": 290,
+        "finite": true,
+        "optimizer_steps": {
+          "critic": 600,
+          "actor": 300,
+          "temperature": 300
+        }
+      },
+      "tuning": {
+        "plans": 171,
+        "replacements": 0,
+        "enabled": false
+      },
+      "clocks": [
+        {
+          "when": "before",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2490.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 35.0,
+              "power.draw": 168.92,
+              "power.limit": 300.0,
+              "utilization.gpu": 33.0
+            }
+          ]
+        },
+        {
+          "when": "after",
+          "status": "RECORDED",
+          "devices": [
+            {
+              "clocks.current.sm": 2490.0,
+              "clocks.current.memory": 9001.0,
+              "temperature.gpu": 38.0,
+              "power.draw": 294.29,
+              "power.limit": 300.0,
+              "utilization.gpu": 97.0
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "fresh_activation_checks": {
+    "enabled_workers": 7,
+    "snapshots_per_worker": 3,
+    "phases": {
+      "actor": {
+        "enabled": true,
+        "fallback_reason": null,
+        "owned_raw_arrays": 12,
+        "owned_raw_bytes": 62914560,
+        "remaining_clear_bytes": 103536900
+      },
+      "critic": {
+        "enabled": true,
+        "fallback_reason": null,
+        "owned_raw_arrays": 8,
+        "owned_raw_bytes": 83886080,
+        "remaining_clear_bytes": 144268588
+      }
+    }
+  },
+  "paired_rounds": [
+    {
+      "round": 0,
+      "order": [
+        "official_amp",
+        "baseline_native",
+        "fresh_gradients_native"
+      ],
+      "seconds": {
+        "official_amp": 0.0038111734017729757,
+        "baseline_native": 0.003764534592628479,
+        "fresh_gradients_native": 0.003467671737074852
+      },
+      "candidate_over_baseline_time_ratio": 0.9211422160564207,
+      "candidate_over_official_time_ratio": 0.9098698409948167
+    },
+    {
+      "round": 1,
+      "order": [
+        "fresh_gradients_native",
+        "baseline_native",
+        "official_amp"
+      ],
+      "seconds": {
+        "fresh_gradients_native": 0.0034677213318645953,
+        "baseline_native": 0.003763632193207741,
+        "official_amp": 0.003795977983623743
+      },
+      "candidate_over_baseline_time_ratio": 0.9213762540672337,
+      "candidate_over_official_time_ratio": 0.913525143408291
+    },
+    {
+      "round": 2,
+      "order": [
+        "baseline_native",
+        "official_amp",
+        "fresh_gradients_native"
+      ],
+      "seconds": {
+        "baseline_native": 0.0037609749399125578,
+        "official_amp": 0.0038897378034889697,
+        "fresh_gradients_native": 0.0034676353484392164
+      },
+      "candidate_over_baseline_time_ratio": 0.922004374886858,
+      "candidate_over_official_time_ratio": 0.8914830571173356
+    },
+    {
+      "round": 3,
+      "order": [
+        "baseline_native",
+        "fresh_gradients_native",
+        "official_amp"
+      ],
+      "seconds": {
+        "baseline_native": 0.0037629051581025124,
+        "fresh_gradients_native": 0.0034665475077927115,
+        "official_amp": 0.003790159694850445
+      },
+      "candidate_over_baseline_time_ratio": 0.9212423279731975,
+      "candidate_over_official_time_ratio": 0.9146177963167584
+    },
+    {
+      "round": 4,
+      "order": [
+        "official_amp",
+        "fresh_gradients_native",
+        "baseline_native"
+      ],
+      "seconds": {
+        "official_amp": 0.003882413327693939,
+        "fresh_gradients_native": 0.0034631218425929546,
+        "baseline_native": 0.003762177351862192
+      },
+      "candidate_over_baseline_time_ratio": 0.9205099916086593,
+      "candidate_over_official_time_ratio": 0.892002357886497
+    },
+    {
+      "round": 5,
+      "order": [
+        "fresh_gradients_native",
+        "official_amp",
+        "baseline_native"
+      ],
+      "seconds": {
+        "fresh_gradients_native": 0.0034670532494783402,
+        "official_amp": 0.003778824280947447,
+        "baseline_native": 0.003760753083974123
+      },
+      "candidate_over_baseline_time_ratio": 0.9219039836070759,
+      "candidate_over_official_time_ratio": 0.9174952291269448
+    }
+  ],
+  "per_recipe_seconds": {
+    "official_amp": {
+      "median": 0.0038035756926983596,
+      "min": 0.003778824280947447,
+      "max": 0.0038897378034889697,
+      "values": [
+        0.0038111734017729757,
+        0.003795977983623743,
+        0.0038897378034889697,
+        0.003790159694850445,
+        0.003882413327693939,
+        0.003778824280947447
+      ]
+    },
+    "baseline_native": {
+      "median": 0.0037625412549823524,
+      "min": 0.003760753083974123,
+      "max": 0.003764534592628479,
+      "values": [
+        0.003764534592628479,
+        0.003763632193207741,
+        0.0037609749399125578,
+        0.0037629051581025124,
+        0.003762177351862192,
+        0.003760753083974123
+      ]
+    },
+    "fresh_gradients_native": {
+      "median": 0.0034673442989587785,
+      "min": 0.0034631218425929546,
+      "max": 0.0034677213318645953,
+      "values": [
+        0.003467671737074852,
+        0.0034677213318645953,
+        0.0034676353484392164,
+        0.0034665475077927115,
+        0.0034631218425929546,
+        0.0034670532494783402
+      ]
+    }
+  },
+  "paired_time_ratios": {
+    "candidate_over_baseline_time_ratio": {
+      "median": 0.9213092910202156,
+      "min": 0.9205099916086593,
+      "max": 0.922004374886858,
+      "values": [
+        0.9211422160564207,
+        0.9213762540672337,
+        0.922004374886858,
+        0.9212423279731975,
+        0.9205099916086593,
+        0.9219039836070759
+      ]
+    },
+    "candidate_over_official_time_ratio": {
+      "median": 0.9116974922015539,
+      "min": 0.8914830571173356,
+      "max": 0.9174952291269448,
+      "values": [
+        0.9098698409948167,
+        0.913525143408291,
+        0.8914830571173356,
+        0.9146177963167584,
+        0.892002357886497,
+        0.9174952291269448
+      ]
+    }
+  },
+  "engineering_targets": {
+    "primary_candidate_vs_baseline": {
+      "wins": 6,
+      "rounds": 6,
+      "median_paired_ratio": 0.9213092910202156,
+      "minimum_wins": 6,
+      "maximum_median_ratio": 0.97,
+      "met": true
+    },
+    "secondary_candidate_vs_official": {
+      "wins": 6,
+      "rounds": 6,
+      "median_paired_ratio": 0.9116974922015539,
+      "minimum_wins": 6,
+      "maximum_median_ratio": 0.97,
+      "met": true
+    }
+  },
+  "measured_optimizer_updates_per_recipe": {
+    "critic": 3000,
+    "actor": 1500,
+    "temperature": 1500
+  },
+  "whole_protocol_wall_seconds": 1235.9374470710754,
+  "evidence_sha256": {
+    "paired_json": "dacea178c2266bc890acb9fe30e2fcc61fc886f65247ce7d4ca09a26c4c21ff6",
+    "protocol": "e73d4e71d5d9a92c8de9af9858ca47abe67b815ed827476bee314135644ccaa0",
+    "target": "7989b39459e1ff22c81b466d37a882020d2b8706cf2ce632bf557b01fe0f5b2e",
+    "reference_manifest": "0298e2cbdd73cebf61da06e52952ad4ae0819dc45ebc4eb81e97ff2a5149e75f",
+    "candidate_manifest": "7ef7b27f821563a5fed4bd4dbd8b7a636933e4768a1d955994f9d1023a177ab9",
+    "previous_candidate_manifest": "5544f962b797581a12d5d783e9cb7e37bbd734df39de7512fa2bfede8bc522bf",
+    "controller": "bad1d1837a353ffb0f8f36189c4d8c3910f5b24568a924ec098dc39dd944c333",
+    "cpu_common_helpers": "ddf4f5dcb78666a5dfbc6ee549f6f9e2ad5db1d49294e74e114fab59ca697783",
+    "cpu_source_expectations": "e25502f804139853325d5f84cecf0058eedbbcd737691d0ca3f8bbc711d590ed"
+  },
+  "independent_cpu_audit_sha256": "34ea14d8995d3f6407249d92ce4abb86cafda2012afc306f98bc6d94a8fcf77d",
+  "report_renderer_sha256": "ad6226be84985237e64662281acbe1dba69df5364e3a34da96bbbf39ecf3e91e",
+  "study_label": "D \u00b7 first allocation",
+  "independent_repeat": {
+    "study_label": "D \u00b7 repeat allocation",
+    "engineering_targets": {
+      "primary_candidate_vs_baseline": {
+        "wins": 6,
+        "rounds": 6,
+        "median_paired_ratio": 0.9210313443016895,
+        "minimum_wins": 6,
+        "maximum_median_ratio": 0.97,
+        "met": true
+      },
+      "secondary_candidate_vs_official": {
+        "wins": 6,
+        "rounds": 6,
+        "median_paired_ratio": 0.9023804928674775,
+        "minimum_wins": 6,
+        "maximum_median_ratio": 0.97,
+        "met": true
+      }
+    },
+    "controls": {
+      "same_frozen_controls": true,
+      "distinct_workflow_allocations": true,
+      "first_audit_sha256": "34ea14d8995d3f6407249d92ce4abb86cafda2012afc306f98bc6d94a8fcf77d",
+      "repeat_audit_sha256": "184e491953eb1ac458a49f156890c4d8eb8e8bf6db429664708a2d0ebefd2953"
+    }
+  }
+}
