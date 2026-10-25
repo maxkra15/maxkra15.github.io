@@ -123,6 +123,40 @@
         <h1 id="page-title">Research reports</h1>
         <p>Short technical reports on robotics, learning, and simulation.</p>
       </section>
+      <article class="report-card" aria-labelledby="cartpole-e2e-title">
+        <p class="date"><time datetime="2026-10-25">25 October 2026</time></p>
+        <h2 id="cartpole-e2e-title">
+          <a href="reports/2026-10-25-cartpole-end-to-end/">Cartpole learning with stock and native CUDA learners</a>
+        </h2>
+        <p class="summary">
+          Native CUDA PPO used 40.7% and 43.5% less full training-process time than stock RSL-RL PPO
+          across two matching GPU allocations. Both PPO recipes passed the sustained balancing gate in 3/4 seeds
+          on each allocation. Native FlashSAC used 47.5% and 48.3% less full training-process time than the authors' Torch AMP,
+          but neither FlashSAC recipe met the balancing gate at any saved checkpoint.
+        </p>
+        <ul class="chips" aria-label="Cartpole learning recipes compared">
+          <li>Stock RSL-RL PPO</li>
+          <li>Native CUDA PPO</li>
+          <li>Authors' Torch FlashSAC AMP</li>
+          <li>Native CUDA FlashSAC AMP</li>
+        </ul>
+        <p class="method">32 training runs · 224 common evaluations · 6.55 million transitions per run · 4 seeds repeated on 2 GPUs</p>
+        <p class="method">NVIDIA RTX PRO 6000 Blackwell Server Edition · same host and Isaac Lab Cartpole MDP · median paired time ratios</p>
+        <a class="read-report" href="reports/2026-10-25-cartpole-end-to-end/">Read the learning comparison <span aria-hidden="true">→</span></a>
+        <figure>
+          <div class="figure-preview" tabindex="0" role="region" aria-label="Scrollable Cartpole balancing and survival learning curves">
+            <img src="reports/2026-10-25-cartpole-end-to-end/figures/quality-transitions.svg"
+                 alt="Settled upright time and clean five-second completion across collected transitions for four Cartpole recipes on two GPU allocations."
+                 loading="lazy" decoding="async">
+          </div>
+          <figcaption>
+            Individual seed traces and observed ranges are retained; the same four seeds are repeated on both GPUs.
+            Survival alone does not establish balancing because pole angle does not terminate this task.
+            <span class="figure-help">Scroll horizontally on smaller screens to keep the figure labels readable.</span>
+            <a href="reports/2026-10-25-cartpole-end-to-end/figures/quality-transitions.svg">Open the figure at full size</a>
+          </figcaption>
+        </figure>
+      </article>
       <article class="report-card" aria-labelledby="flashsac-consistency-title">
         <p class="date"><time datetime="2026-10-25">25 October 2026</time></p>
         <h2 id="flashsac-consistency-title">
