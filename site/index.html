@@ -123,6 +123,38 @@
         <h1 id="page-title">Research reports</h1>
         <p>Short technical reports on robotics, learning, and simulation.</p>
       </section>
+      <article class="report-card" aria-labelledby="flashsac-consistency-title">
+        <p class="date"><time datetime="2026-10-25">25 October 2026</time></p>
+        <h2 id="flashsac-consistency-title">
+          <a href="reports/2026-10-25-flashsac-consistency/">FlashSAC: measuring native CUDA update speed</a>
+        </h2>
+        <p class="summary">
+          Across two independent L40 allocations, native CUDA used 8.83% and 9.76% less median paired update time
+          than pristine official Torch AMP, with 6/6 paired wins on each allocation.
+          The report retains the earlier repeatability and conversion studies and keeps each allocation separate.
+        </p>
+        <ul class="chips" aria-label="FlashSAC execution recipes compared">
+          <li>Official Torch AMP</li>
+          <li>Reference native CUDA</li>
+          <li>Fresh-gradient native CUDA</li>
+        </ul>
+        <p class="method">2 independent L40 allocations · identical frozen source and synthetic G1-shaped inputs · 6 balanced rounds each</p>
+        <p class="method">Native FP16 dense / FP32 state · standalone learner updates · no physics or policy-quality measurement</p>
+        <a class="read-report" href="reports/2026-10-25-flashsac-consistency/">Read the execution study <span aria-hidden="true">→</span></a>
+        <figure>
+          <div class="figure-preview" tabindex="0" role="region" aria-label="Scrollable first-allocation native CUDA and official Torch AMP paired update-time ratios">
+            <img src="reports/2026-10-25-flashsac-consistency/figures/paired-ratios.svg"
+                 alt="First L40 allocation: six fresh-gradient/native-reference and fresh-gradient/official Torch AMP update-time ratios, all below one."
+                 loading="lazy" decoding="async">
+          </div>
+          <figcaption>
+            First allocation shown. Each point pairs recipes within one balanced round; the independent repeat is reported separately.
+            Horizontal lines mark equal update time and the predeclared median target.
+            <span class="figure-help">Scroll horizontally on smaller screens to keep the figure labels readable.</span>
+            <a href="reports/2026-10-25-flashsac-consistency/figures/paired-ratios.svg">Open the figure at full size</a>
+          </figcaption>
+        </figure>
+      </article>
       <article class="report-card" aria-labelledby="flashsac-cuda-title">
         <p class="date"><time datetime="2026-10-24">24 October 2026</time></p>
         <h2 id="flashsac-cuda-title">
