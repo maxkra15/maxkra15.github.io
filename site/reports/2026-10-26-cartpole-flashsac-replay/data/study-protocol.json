@@ -1,0 +1,369 @@
+{
+  "schema_version": 2,
+  "runtime_overlay": {
+    "numpy": "2.3.5",
+    "locked_numpy_before_overlay": "2.5.1",
+    "application": "Install numpy==2.3.5 with --no-deps after uv sync --frozen; preserve the original Isaac Lab lock bytes and use this same overlay for the allocation and both FlashSAC recipes."
+  },
+  "source": {
+    "isaaclab_commit": "259e1a8cf79de53c52ca395599ac1cd9bc395b28",
+    "robolearn_base_commit": "63228002989e63f87ecef9b616cbcd5fd04f5598",
+    "robolearn_measured_commit": "1b07980ee36a116360c9b7d069c44e5fdbedf44c",
+    "official_flashsac_commit": "87edc9061150ae9e962dd84e6544e27a1554b3ab",
+    "rsl_rl_version": "5.5.1",
+    "source_manifest_sha256": "f31e6428335dad4f2d26a1114ad1aadb481d3e0e6d60499e18fdc25b0e263a38",
+    "driver_sha256": "9b0c01a22bc2f3adaf9161e2864b0b41910231bd88102e16500d1a233261f4d8",
+    "freeze_required_before_submission": true,
+    "all_38_library_files_must_equal_previous_measured_source": true
+  },
+  "mdp": {
+    "task": "Isaac-Cartpole",
+    "workflow": "manager",
+    "physics_preset": "newton_mjwarp",
+    "num_envs": 1024,
+    "physics_dt": 0.008333333333333333,
+    "control_decimation": 2,
+    "episode_seconds": 5.0,
+    "episode_control_steps": 300,
+    "observation_dimensions": 4,
+    "action_dimensions": 1,
+    "observation_order": [
+      "joint_pos_rel",
+      "joint_vel_rel"
+    ],
+    "observation_corruption": false,
+    "action_boundary_clip": [
+      -1.0,
+      1.0
+    ],
+    "joint_effort_scale": 100.0,
+    "compute_final_obs": true,
+    "cart_bound": [
+      -3.0,
+      3.0
+    ],
+    "pole_angle_termination": false,
+    "stock_rewards_resets_asset_and_physics_unchanged": true,
+    "asset_resolution": "Root approved unchanged actual Isaac Sim6.2 USD and dependency closure staged under ISAACSIM_ASSET_ROOT; record full asset inventory SHA, resolved USD SHA, root environment and task cfg path in every run.",
+    "asset_root_environment_variable": "ISAACSIM_ASSET_ROOT",
+    "cartpole_asset_relative_path": "Isaac/IsaacLab/Robots/Classic/Cartpole/cartpole.usd",
+    "graph_scope": "Newton physics graph and native learning graph are separate; Torch MDP and orchestration remain outside a single combined graph."
+  },
+  "canonical_fixtures": {
+    "protocol_sha256": "984be3bcc7dfa45902c2f167d92c1fd452686734fd8dc916d1270c731a8ac20e",
+    "source_commit": "63228002989e63f87ecef9b616cbcd5fd04f5598",
+    "driver_sha256": "19ae5fc1ec1398f0ce4cc49ac6b03b45a0027bb2c5db5244ead5446f8e5d48c3",
+    "manifest_sha256": "f468338cb93dcb8df2c823d4f6aa6822ee951aa0428e4dcadb3c3eb41d829d1c",
+    "reused": true,
+    "files_sha256": {
+      "SHA256SUMS": "f468338cb93dcb8df2c823d4f6aa6822ee951aa0428e4dcadb3c3eb41d829d1c",
+      "evaluation-state.pt": "2d7ea7c8dcc3288a3c10c1b362c3867e862ad31d3f75f8b0ea0c0bc343535c15",
+      "fixture-ready.json": "804f7cb8efffdf9e975a466f39e87fe45f9a675858f13e771bba5b601e564f56",
+      "fixtures.json": "d59c5e7d726ddad49aaffec8fee444ebef56e552647c208a2f50e4dacafdc722",
+      "flashsac-seed0.npz": "0cbd4e11579fac95bdf27fe45774657bcf4cc6017c1f67d4f22f1bfff2ecd409",
+      "flashsac-seed1.npz": "e5dff81e4845b5b5ef2860ed8e990f43aeeaad935b6f50baf95331d8cf837ff2",
+      "flashsac-seed2.npz": "939656401f905c323cd90533fed39e70cb8ed4aa5b9928ddec7e3fef39340b03",
+      "flashsac-seed3.npz": "b66a250ae21f97fc6f58411b9fa3d45991fc2377fa5026af6a0ddefe77d2ae3a",
+      "ppo-seed0.npz": "0833114c0373a1e8057d3d34eeb2228dbb533476b988e107f532c7c6b7c470da",
+      "ppo-seed1.npz": "a7e5277d096c894fe8d8c5ab3e531c0eff8f9af39e031aca2abe8814ef59292f",
+      "ppo-seed2.npz": "1ba24d51d0f7c79b2ed33164839622dd1e190002af66ff267dbba7aa5c276183",
+      "ppo-seed3.npz": "4fa0dbdca72d12d920872e2fa025dae7e72473f81d57cf90d50dea1177bbfdb6"
+    },
+    "files_bytes": {
+      "SHA256SUMS": 826,
+      "evaluation-state.pt": 11319,
+      "fixture-ready.json": 211,
+      "fixtures.json": 64821,
+      "flashsac-seed0.npz": 18480992,
+      "flashsac-seed1.npz": 18480992,
+      "flashsac-seed2.npz": 18480992,
+      "flashsac-seed3.npz": 18480992,
+      "ppo-seed0.npz": 13364,
+      "ppo-seed1.npz": 13364,
+      "ppo-seed2.npz": 13364,
+      "ppo-seed3.npz": 13364
+    },
+    "all_files_must_be_copied_unchanged": true,
+    "unused_PPO_archives_retained_but_not_trained": true
+  },
+  "study": "Official FlashSAC Cartpole replay-capacity pilot",
+  "status": "FROZEN",
+  "date": "2026-10-26",
+  "design": {
+    "factor": "recipes.official_flashsac.buffer_capacity",
+    "arms": {
+      "small": 131072,
+      "large": 10000000
+    },
+    "seeds": [
+      0,
+      1
+    ],
+    "fresh_starts_only": true,
+    "no_native_PPO_or_G1": true,
+    "no_automatic_budget_escalation_or_quality_filter": true,
+    "source_and_learner_unchanged": true,
+    "scope": "Current Isaac manager Cartpole with Newton/MJWarp; not the authors DMC Cartpole task or a reproduction of its results."
+  },
+  "allocation": {
+    "count": 1,
+    "logical_allocation_ids": [
+      "A"
+    ],
+    "gpu_model": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+    "gpus_per_allocation": 1,
+    "sequential_runs_within_allocation": true,
+    "public_uuid_export": false,
+    "clock_lock_required": false,
+    "record_clock_power_temperature_context": true
+  },
+  "budget": {
+    "seeds": [
+      0,
+      1
+    ],
+    "iterations": 1000,
+    "rollout_steps": 16,
+    "transitions_per_iteration": 16384,
+    "transitions_per_run": 16384000,
+    "runs_per_allocation": 4,
+    "runs_total": 4,
+    "transitions_total": 65536000,
+    "checkpoint_iterations": [
+      0,
+      25,
+      50,
+      100,
+      200,
+      400,
+      600,
+      650,
+      800,
+      900,
+      1000
+    ],
+    "checkpoints_total": 44,
+    "production_evaluations_total": 44,
+    "final_full_continuation_checkpoints_total": 4,
+    "early_stopping": false,
+    "smokes_in_primary_results": false
+  },
+  "recipes": {
+    "official_flashsac": {
+      "implementation": "Pristine authors' FlashSAC",
+      "precision": "Torch FP16 AMP, FP32 master parameters",
+      "network_compile": true,
+      "official_helper_compile": true,
+      "actor_hidden_dim": 128,
+      "critic_hidden_dim": 256,
+      "actor_num_blocks": 2,
+      "critic_num_blocks": 2,
+      "critic_num_bins": 101,
+      "batch_size": 2048,
+      "buffer_capacity": 131072,
+      "buffer_warmup_transitions": 100000,
+      "critic_update_calls_per_vector_step_after_warmup": 2,
+      "actor_update_period": 2,
+      "gamma": 0.99,
+      "n_step": 1,
+      "normalize_reward": true,
+      "learning_rate_decay_step": 12800,
+      "amp_skips_allowed_and_reported": true,
+      "n_step_override_reason": "One-step returns align pristine authors fixed gamma^n with native effective gamma^k at real time-limit truncations without patching either implementation."
+    }
+  },
+  "smoke": {
+    "recipes_per_allocation": 1,
+    "seed": 0,
+    "num_envs": 64,
+    "rollout_steps": 16,
+    "reported_iterations": 8,
+    "checkpoint_iterations": [
+      0,
+      8
+    ],
+    "extra_iterations_outside_reported_budget": 2,
+    "extra_iteration_purpose": "Perturb model/optimizer, restore the earlier full checkpoint exactly, then prove finite updating continuation; no full simulator/RNG trajectory restoration claim.",
+    "flash_buffer_min_length": 512,
+    "flash_sample_batch_size": 256,
+    "primary_quality_gate_required": false,
+    "required_health": "Finite changed actor/critic, coherent optimizer/scaler counters, exact full checkpoint payload reload after a real perturbation, positive post-load actor/critic updates, all first-episode evaluations finite.",
+    "cases": 4,
+    "smoke_seed_is_always_zero": true,
+    "scope": "All four standard8-iteration64-world smokes run first in case order; each uses its own execution protocol and capacity, then production starts fresh. Seed1 cases still smoke seed0 because the unchanged controller fixes smoke seed0; all canonical seeds remain present."
+  },
+  "initialization": {
+    "flashsac": "Reuse the exact prior pristine authors actor/critic/target/BN/temperature archive per seed, loaded identically into each fresh official/native process. Do not resume any old model or optimizer.",
+    "between_algorithm_initialization_pairing": false,
+    "empty_optimizer_replay_and_scaler_states_required": true,
+    "same_training_seed_within_seed_block": true,
+    "init_at_random_ep_len": false,
+    "stochastic_policy_and_minibatch_rng_trajectories_can_differ": true,
+    "flash_replay_warmup_actions": "Both FlashSAC recipes execute uniform[-1,1] actions from a separate Torch generator seeded seed+90000 while replay is not ready, then use the actual stochastic agent API. Readiness is checked before action selection and after insertion for updates. The main prefix is98 uniform-action vector steps: first updates follow the insertion at zero-based step97; the first policy action is at zero-based step98.",
+    "independent_fresh_training_process_per_run": true,
+    "shared_disk_compiler_caches": true,
+    "startup_order_and_smoke_preconditioning_recorded": true,
+    "fresh_reset_state_note": "Optimizer counters/moments and replay start empty; dynamic scalers start at their configured initial scale, not numerical zero.",
+    "same_canonical_policy_within_each_seed_across_capacity_arms": true,
+    "same_seed_within_seed_block": true,
+    "scope": "Only the original per-seed canonical initial FlashSAC archive is loaded. No old trained policy, optimizer, replay or simulation trajectory is resumed."
+  },
+  "schedule": {
+    "case_order": [
+      "seed0-small",
+      "seed0-large",
+      "seed1-large",
+      "seed1-small"
+    ],
+    "all_smokes_before_production": true,
+    "recipe_order": [
+      "official_flashsac"
+    ],
+    "williams_rows": [
+      [
+        0
+      ]
+    ],
+    "A": {
+      "williams_row_by_seed": [
+        0,
+        0
+      ]
+    },
+    "balanced": "Seed0 small then large; seed1 large then small. Each capacity occupies each within-seed position once. Directed within-seed predecessors occur once each.",
+    "limitation": "Cross-seed boundaries and shared compiler-cache histories are not balanced. Two paired seeds on one GPU provide a descriptive pilot, not independent-allocation replication or significance."
+  },
+  "evaluation": {
+    "episodes": 128,
+    "common_seed": 10000,
+    "canonical_reset_state_file_required": true,
+    "canonical_reset_state_bit_identical_across_all_runs_and_checkpoints": true,
+    "unscored_primer_reset": 1,
+    "deterministic_policy": true,
+    "first_episode_only": true,
+    "horizon_steps": 300,
+    "settling_steps": 60,
+    "upright_angle_radians": 0.2,
+    "primary_quality_gate": {
+      "clean_timeout_fraction_min": 0.95,
+      "settled_upright_time_fraction_min": 0.95,
+      "nonfinite_action_count_max": 0
+    },
+    "settled_upright_time_fraction": "sum(active_before_step AND abs(wrap(post_step_pole_angle))<0.2 for zero-based steps60..299)/(128*240)",
+    "full_upright_time_fraction": "sum(active_before_step AND abs(wrap(post_step_pole_angle))<0.2 for steps0..299)/(128*300)",
+    "failure_mask": "Each terminated/truncated first episode is masked permanently; later automatic-reset episodes never contribute. Early failure contributes zero upright time for all remaining budget steps.",
+    "terminal_observation": "Use pre-reset final_obs on done steps; never measure the auto-reset observation.",
+    "clean_timeout": "truncated AND NOT terminated on the first completed episode",
+    "termination_count": "terminated, including simultaneous terminated/truncated",
+    "mandatory_metrics": [
+      "settled_upright_time_fraction",
+      "full_upright_time_fraction",
+      "active_only_upright_fraction",
+      "pole_angle_abs_mean",
+      "pole_angle_rms",
+      "unwrapped_pole_angle_rms",
+      "cart_position_abs_mean",
+      "cart_position_rms",
+      "return_mean",
+      "return_std",
+      "episode_length_mean",
+      "clean_timeout_fraction",
+      "raw_timeout_fraction",
+      "cart_bound_fraction",
+      "simultaneous_timeout_cart_bound_fraction",
+      "action_rms",
+      "action_saturation_fraction",
+      "nonfinite_action_count"
+    ],
+    "angle_denominator": "Report wrapped angle/RMS over active first-episode steps with active-step counts; full-budget upright fraction and survival expose early failures.",
+    "time_to_threshold": "First saved checkpoint passing the unchanged gate, interval censored between adjacent saved checkpoints; never interpolate. Initial success is left censored; no pass by1000 is right censored.",
+    "sustained_success": "Require the gate at both900 and1000 for sustained success; retain first/ever/best/final separately.",
+    "process_scope": "One fresh128-world evaluator per production run scores all11portable checkpoints from exactly the original128states; no optimizer or BN-state updates.",
+    "sustained_checkpoint_iterations": [
+      900,
+      1000
+    ]
+  },
+  "timing": {
+    "primary": "Full training-process wall through final checkpoint, plus separately itemized complete evaluation-process wall; show their sum as matched end-to-end run protocol wall.",
+    "startup": "Imports, simulator/asset/env initialization, learner construction, initial-state loads, compilation/capture, learner warmup, initial checkpoint save.",
+    "training_loop": "All1000iterations including collection, learning, host metrics/logging and checkpoint IO; no trimmed first-iteration costs.",
+    "checkpoint_availability": "Record process-relative monotonic time when checkpoint writes finish; do not claim durable storage without explicit fsync. Time-to-threshold uses this wall and cumulative recorded training-loop wall as separate axes.",
+    "evaluation": "Record environment startup, checkpoint load, policy inference/physics evaluation, metrics reduction and evaluation output IO separately where measurable.",
+    "logging_and_io": "Record checkpoint and metric serialization/write wall explicitly; identify nested/overlapping instrumentation and do not sum overlapping phase costs.",
+    "installation": "Runtime installation/source transfer excluded from per-run time; report allocation protocol wall separately from first smoke to final evaluation.",
+    "smokes": "Separate from production quality/speed aggregation, but retained with chronological startup/compile costs and full allocation protocol wall.",
+    "probes": "GPU telemetry/profiling outside primary iteration timings where feasible; never run a competing GPU process.",
+    "inference": "Actual deterministic evaluation policy forward time if recorded; do not call full environment-step time inference-only.",
+    "checkpoint_replay_export": "All11portable policy checkpoints omit replay. Final-only continuation-final at1000 exports full pristine learner/replay payload; its model/optimizer must equal final portable state. Export is included in final checkpoint/loop/process costs, with no extra scored evaluation."
+  },
+  "checkpointing": {
+    "scored_policy_checkpoints_include_replay": false,
+    "full_replay_in_final_continuation_checkpoint": true,
+    "continuation_directory_name": "continuation-final",
+    "continuation_iteration": 1000,
+    "final_full_continuation_sets": 4,
+    "portable_and_continuation_final_model_hashes_must_match": true,
+    "full_replay_preserved_in_artifacts": true,
+    "replay_export_is_part_of_measured_checkpoint_and_process_wall": true,
+    "resume_scope": "All11portable checkpoints load on128evaluation worlds. The separate final checkpoint retains pristine official networks/Adam/scaler/normalizer/replay at1024training worlds; nstep1 has no delayed transitions. Authors save no simulator/global sampler RNG state, so exact trajectory restoration is not claimed."
+  },
+  "accounting": {
+    "vector_steps_per_run": 16000,
+    "uniform_warmup_vector_steps": 98,
+    "first_update_after_zero_based_vector_step": 97,
+    "first_policy_action_zero_based_vector_step": 98,
+    "eligible_update_vector_steps_per_run": 15903,
+    "critic_attempts_per_run": 31806,
+    "actor_attempts_per_run": 15903,
+    "temperature_attempts_per_run": 15903,
+    "actual_completed_plus_skipped_must_equal_attempted": true,
+    "replay_expected_final": {
+      "small": {
+        "population": 131072,
+        "current_idx": 0,
+        "first_fill_vector_step_1_based": 128,
+        "first_fill_iteration": 8
+      },
+      "large": {
+        "population": 10000000,
+        "current_idx": 6384000,
+        "first_fill_vector_step_1_based": 9766,
+        "first_fill_iteration": 611
+      }
+    },
+    "replay_memory_bytes": {
+      "small": 6291456,
+      "large": 480000000
+    },
+    "theoretical_turnover_seconds_at_1024x60": {
+      "small": 2.1333333333333333,
+      "large": 162.76041666666666
+    },
+    "turnover_scope": "Capacity/steady insertion throughput only, not reconstructed replay age.600is before the10M fill and650after; all scheduled outcomes retained.",
+    "learning_rate": "Keep existing3e-4 to1.5e-4 nonzero floor and12800per-optimizer attempted-call decay unchanged; do not stretch or restart for this pilot.",
+    "storage_note": "Pristine replay save writes tensor views; backing storage can serialize the full480MB even in a partially filled large-buffer smoke. All actual artifacts/write costs retained."
+  },
+  "audit": {
+    "whole_artifact_sha_before_cpu_audit": true,
+    "required_runs": 4,
+    "required_evaluations": 44,
+    "required_smokes": 4,
+    "actual_checkpoints_and_full_replay_preserved": true,
+    "finite_and_changed_actor_critic_required": true,
+    "optimizer_counts": "Each iteration/checkpoint and actual Adam/scaler state must match31806critic and15903actor/temperature attempts/run; completed+skipped=attempted. Nonzero AMP skips are reported, not erased or automatically unhealthy.",
+    "pairing": "Both capacity arms for each seed must load exact same canonical arrays. Same frozenMDP/assets/runtime/source and pristine author source across every case.",
+    "one_factor": "Paired executions may differ in capacity and case/seed/count bookkeeping only. No precision, reward, horizon, entropy, network, update or schedule change.",
+    "checkpoint_reload": "Every scored checkpoint is loaded and exact saved model hashes checked before deterministic common evaluation. Separate smokes perturb, restore exact optimizer/scaler payloads, then continue.",
+    "missing_or_failed_run": "Retain all raw outcomes and failures; no seed or checkpoint filtering. Poor balancing is an outcome, not workflow failure.",
+    "public_privacy": "Publish only whitelisted metrics/public source links/hashes/GPU model; no raw paths/UUID/internal hosts."
+  },
+  "analysis": {
+    "primary": "Fixed-budget stability: full quality curves, first/ever/best/final and sustained900/1000; same unchanged gate.",
+    "best": "Highest saved settled-upright fraction; clean completion then earlier checkpoint breaks ties. Best is not final or sustained success.",
+    "pairing": "Compare large/small by seed0/1; retain all four outcomes and arm-specific AMP counts. Mean/observed min/max, no confidence intervals or quality noninferiority claim.",
+    "speed": "Collection/learning/loop/fulltrainprocess/evaluation/export wall retained as secondary costs, not proof of better learning.",
+    "pilot_scope": "Bounded1000iteration two-seed pilot, with no automatic longer run or further factor change. All four runs complete regardless quality.",
+    "planned_report_path": "reports/2026-10-26-cartpole-flashsac-replay/"
+  }
+}

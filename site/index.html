@@ -123,6 +123,37 @@
         <h1 id="page-title">Research reports</h1>
         <p>Short technical reports on robotics, learning, and simulation.</p>
       </section>
+      <article class="report-card" aria-labelledby="cartpole-flashsac-replay-title">
+        <p class="date"><time datetime="2026-10-26">26 October 2026</time></p>
+        <h2 id="cartpole-flashsac-replay-title">
+          <a href="reports/2026-10-26-cartpole-flashsac-replay/">FlashSAC on Cartpole: a replay capacity pilot</a>
+        </h2>
+        <p class="summary">
+          With pristine authors' Torch FlashSAC, the replay buffer with 10 million transitions passed the balancing gate
+          in 2/2 seeds at 1,000 iterations and at both 900 and 1,000. The 131,072-transition buffer passed in 0/2.
+          Only replay capacity changed. This pilot with two seeds and 1,000 iterations does not establish stability during longer training.
+        </p>
+        <ul class="chips" aria-label="Replay capacities compared with official Torch FlashSAC">
+          <li>131,072 transitions</li>
+          <li>10,000,000 transitions</li>
+        </ul>
+        <p class="method">4 fresh training runs · 44 common evaluations · 16.384 million transitions per run · 2 paired seeds</p>
+        <p class="method">One NVIDIA RTX PRO 6000 Blackwell Server Edition GPU · pristine compiled Torch FP16 AMP · only configured change: replay capacity</p>
+        <a class="read-report" href="reports/2026-10-26-cartpole-flashsac-replay/">Read the controlled pilot <span aria-hidden="true">→</span></a>
+        <figure>
+          <div class="figure-preview" tabindex="0" role="region" aria-label="Scrollable Cartpole learning curves for two replay capacities">
+            <img src="reports/2026-10-26-cartpole-flashsac-replay/figures/quality-transitions.svg"
+                 alt="Two paired FlashSAC seeds with 131,072 and 10 million replay transitions: settled upright time and clean five-second completion over 16.384 million transitions per run."
+                 loading="lazy" decoding="async">
+          </div>
+          <figcaption>
+            Individual seeds and observed ranges are retained. The dotted marker shows 10 million insertions;
+            the larger buffer first fills in iteration 611. Survival alone is not balancing.
+            <span class="figure-help">Scroll horizontally on smaller screens to keep the figure labels readable.</span>
+            <a href="reports/2026-10-26-cartpole-flashsac-replay/figures/quality-transitions.svg">Open the figure at full size</a>
+          </figcaption>
+        </figure>
+      </article>
       <article class="report-card" aria-labelledby="cartpole-flashsac-10000-title">
         <p class="date"><time datetime="2026-10-26">26 October 2026</time></p>
         <h2 id="cartpole-flashsac-10000-title">
