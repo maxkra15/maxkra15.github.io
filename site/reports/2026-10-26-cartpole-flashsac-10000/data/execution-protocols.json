@@ -1,0 +1,76 @@
+{
+  "status": "FROZEN_CROSS_FILE_DERIVATION_VERIFIED",
+  "created_at_utc": "2026-10-26T11:41:52.513234+00:00",
+  "master": {
+    "filename": "study-protocol.json",
+    "sha256": "8e216260cdbe4e62a33c24ef0d9db2e96d00bdf7cdd711da98d1f5cebf6eae42",
+    "global_runs": 8,
+    "global_evaluations": 176,
+    "global_transitions": 1310720000
+  },
+  "execution_protocols": {
+    "A": {
+      "filename": "protocol-a.json",
+      "sha256": "bad66c01055b1accbada3036817dd1fa51766bb5b32ec1f28ae97b4722f5908e",
+      "seeds": [
+        0,
+        1
+      ],
+      "runs": 4,
+      "evaluations": 88,
+      "transitions": 655360000,
+      "master_difference_paths": [
+        "/audit/required_evaluations",
+        "/audit/required_runs",
+        "/budget/checkpoints_total",
+        "/budget/final_full_continuation_checkpoints_total",
+        "/budget/production_evaluations_total",
+        "/budget/runs_total",
+        "/budget/seeds",
+        "/budget/transitions_total",
+        "/checkpointing/final_full_continuation_sets",
+        "/execution"
+      ]
+    },
+    "B": {
+      "filename": "protocol-b.json",
+      "sha256": "2d3920b7acd046e7ba63dd1fa21f2f778b7818c693871c596a22dee4241cb38b",
+      "seeds": [
+        2,
+        3
+      ],
+      "runs": 4,
+      "evaluations": 88,
+      "transitions": 655360000,
+      "master_difference_paths": [
+        "/audit/required_evaluations",
+        "/audit/required_runs",
+        "/budget/checkpoints_total",
+        "/budget/final_full_continuation_checkpoints_total",
+        "/budget/production_evaluations_total",
+        "/budget/runs_total",
+        "/budget/seeds",
+        "/budget/transitions_total",
+        "/checkpointing/final_full_continuation_sets",
+        "/execution"
+      ]
+    }
+  },
+  "allowed_master_difference_paths": [
+    "/audit/required_evaluations",
+    "/audit/required_runs",
+    "/budget/checkpoints_total",
+    "/budget/final_full_continuation_checkpoints_total",
+    "/budget/production_evaluations_total",
+    "/budget/runs_total",
+    "/budget/seeds",
+    "/budget/transitions_total",
+    "/checkpointing/final_full_continuation_sets",
+    "/execution"
+  ],
+  "source_commit": "1b07980ee36a116360c9b7d069c44e5fdbedf44c",
+  "driver_sha256": "9b0c01a22bc2f3adaf9161e2864b0b41910231bd88102e16500d1a233261f4d8",
+  "source_manifest_sha256": "f31e6428335dad4f2d26a1114ad1aadb481d3e0e6d60499e18fdc25b0e263a38",
+  "MDP_recipes_canonical_runtime_and_source_equal_across_files": true,
+  "root_authorized_topology": "Two matching NORMAL RTX PRO6000 allocations, disjointseedpartition, freshprocesses. No sourcechange or learningrate/learner adaptation."
+}
