@@ -123,6 +123,38 @@
         <h1 id="page-title">Research reports</h1>
         <p>Short technical reports on robotics, learning, and simulation.</p>
       </section>
+      <article class="report-card" aria-labelledby="cartpole-flashsac-longer-title">
+        <p class="date"><time datetime="2026-10-26">26 October 2026</time></p>
+        <h2 id="cartpole-flashsac-longer-title">
+          <a href="reports/2026-10-26-cartpole-flashsac-longer/">FlashSAC on Cartpole: a longer training budget</a>
+        </h2>
+        <p class="summary">
+          Across four matched seeds, native CUDA FlashSAC used 33.4% less full training-process time
+          than the authors' Torch AMP (median paired ratio; 4/4 runs faster).
+          Neither recipe passed the balancing gate at 2,000 iterations or sustained it across the final two checkpoints.
+          One native seed balanced earlier, then regressed.
+        </p>
+        <ul class="chips" aria-label="FlashSAC learning implementations compared">
+          <li>Authors' Torch FlashSAC AMP</li>
+          <li>Native CUDA FlashSAC AMP</li>
+        </ul>
+        <p class="method">8 fresh training runs · 112 common evaluations · 32.77 million transitions per run · 4 seeds per recipe</p>
+        <p class="method">One NVIDIA RTX PRO 6000 Blackwell Server Edition allocation · unchanged recipes, canonical initial models and evaluation states</p>
+        <a class="read-report" href="reports/2026-10-26-cartpole-flashsac-longer/">Read the duration comparison <span aria-hidden="true">→</span></a>
+        <figure>
+          <div class="figure-preview" tabindex="0" role="region" aria-label="Scrollable FlashSAC balancing and survival learning curves over the longer training budget">
+            <img src="reports/2026-10-26-cartpole-flashsac-longer/figures/quality-transitions.svg"
+                 alt="Four fresh seeds per FlashSAC implementation: settled upright time and clean five-second completion over 32.77 million transitions."
+                 loading="lazy" decoding="async">
+          </div>
+          <figcaption>
+            Fresh 2,000-iteration trajectories; individual seeds and observed ranges are retained.
+            The dotted marker shows the previous 400-iteration budget. Neither recipe sustained balancing at the final checkpoints.
+            <span class="figure-help">Scroll horizontally on smaller screens to keep the figure labels readable.</span>
+            <a href="reports/2026-10-26-cartpole-flashsac-longer/figures/quality-transitions.svg">Open the figure at full size</a>
+          </figcaption>
+        </figure>
+      </article>
       <article class="report-card" aria-labelledby="cartpole-e2e-title">
         <p class="date"><time datetime="2026-10-25">25 October 2026</time></p>
         <h2 id="cartpole-e2e-title">
