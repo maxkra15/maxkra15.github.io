@@ -123,6 +123,39 @@
         <h1 id="page-title">Research reports</h1>
         <p>Short technical reports on robotics, learning, and simulation.</p>
       </section>
+      <article class="report-card" aria-labelledby="franka-cable-title">
+        <p class="date"><time datetime="2026-10-27">27 October 2026</time></p>
+        <h2 id="franka-cable-title">
+          <a href="reports/2026-10-27-franka-cable/">Franka cable pickup: four learning backends</a>
+        </h2>
+        <p class="summary">
+          Eight fresh Franka cable runs compare stock RSL-RL PPO, native CUDA PPO,
+          official Torch FlashSAC AMP and native CUDA FlashSAC AMP. Both PPO backends
+          reached and held goals; neither SAC backend lifted the cable under this recipe.
+          Results from two seeds separate task quality from total training and evaluation time.
+        </p>
+        <ul class="chips" aria-label="Franka cable comparison scope">
+          <li>8 runs</li>
+          <li>2 seeds</li>
+          <li>393.2M transitions</li>
+          <li>72 common evaluations</li>
+        </ul>
+        <p class="method">Two isolated NVIDIA L40S GPUs · 2,000 iterations per run · common initial models and evaluation states</p>
+        <a class="read-report" href="reports/2026-10-27-franka-cable/">Read the learning comparison <span aria-hidden="true">→</span></a>
+        <figure>
+          <div class="figure-preview" tabindex="0" role="region" aria-label="Scrollable Franka cable learning curves for four backends">
+            <img src="reports/2026-10-27-franka-cable/figures/learning-transitions.svg"
+                 alt="Individual learning curves for two seeds of stock RSL-RL PPO, native CUDA PPO, official Torch FlashSAC AMP and native CUDA FlashSAC AMP on Franka cable pickup."
+                 loading="lazy" decoding="async">
+          </div>
+          <figcaption>
+            Individual seeds are retained. Findings apply to this task, recipe and training budget;
+            task quality and complete training and evaluation times are reported separately.
+            <span class="figure-help">Scroll horizontally on smaller screens to keep the figure labels readable.</span>
+            <a href="reports/2026-10-27-franka-cable/figures/learning-transitions.svg">Open the figure at full size</a>
+          </figcaption>
+        </figure>
+      </article>
       <article class="report-card" aria-labelledby="cartpole-flashsac-replay-title">
         <p class="date"><time datetime="2026-10-26">26 October 2026</time></p>
         <h2 id="cartpole-flashsac-replay-title">
