@@ -123,6 +123,38 @@
         <h1 id="page-title">Research reports</h1>
         <p>Short technical reports on robotics, learning, and simulation.</p>
       </section>
+      <article class="report-card" aria-labelledby="franka-flashsac-gripper-title">
+        <p class="date"><time datetime="2026-10-28">28 October 2026</time></p>
+        <h2 id="franka-flashsac-gripper-title">
+          <a href="reports/2026-10-28-franka-flashsac-gripper/">Franka cable FlashSAC: gripper input gain control</a>
+        </h2>
+        <p class="summary">
+          A fresh official Torch FlashSAC run multiplies only the gripper action input by three,
+          compared with the audited gain 1 reference. Neither run lifts the cable, reaches a goal
+          or holds it in any common evaluation. Brief training height excursions do not establish a grasp or pickup.
+        </p>
+        <ul class="chips" aria-label="Gripper control comparison scope">
+          <li>2 × 49.15M transitions</li>
+          <li>Same seed 2</li>
+          <li>9 evaluations per run</li>
+          <li>128 common states</li>
+        </ul>
+        <p class="method">Official Torch AMP · 2,000 iterations per run · same three-step returns and full-budget learning-rate schedule · arm inputs unchanged</p>
+        <a class="read-report" href="reports/2026-10-28-franka-flashsac-gripper/">Read the gripper control results <span aria-hidden="true">→</span></a>
+        <figure>
+          <div class="figure-preview" tabindex="0" role="region" aria-label="Scrollable cable lift, goal and hold evaluation curves">
+            <img src="reports/2026-10-28-franka-flashsac-gripper/figures/evaluation-transitions.svg"
+                 alt="The audited reference and fresh gripper control show zero lift, goal reach and final hold at all nine evaluated checkpoints."
+                 loading="lazy" decoding="async">
+          </div>
+          <figcaption>
+            One fresh control and one audited reference use the same seed and common initial states.
+            Final replay exports differ, so total process time is not used for a speed ratio. This pair does not establish a mechanism or reliability across seeds.
+            <span class="figure-help">Scroll horizontally on smaller screens to keep the figure labels readable.</span>
+            <a href="reports/2026-10-28-franka-flashsac-gripper/figures/evaluation-transitions.svg">Open the figure at full size</a>
+          </figcaption>
+        </figure>
+      </article>
       <article class="report-card" aria-labelledby="franka-flashsac-retry-title">
         <p class="date"><time datetime="2026-10-28">28 October 2026</time></p>
         <h2 id="franka-flashsac-retry-title">
