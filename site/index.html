@@ -123,6 +123,38 @@
         <h1 id="page-title">Research reports</h1>
         <p>Short technical reports on robotics, learning, and simulation.</p>
       </section>
+      <article class="report-card" aria-labelledby="franka-flashsac-retry-title">
+        <p class="date"><time datetime="2026-10-28">28 October 2026</time></p>
+        <h2 id="franka-flashsac-retry-title">
+          <a href="reports/2026-10-28-franka-flashsac-retry/">Franka cable FlashSAC: return-horizon and learning-rate retry</a>
+        </h2>
+        <p class="summary">
+          A fresh official Torch FlashSAC run combines three-step returns with a longer learning-rate
+          schedule and a ten-million-transition replay buffer. It still produces zero cable lifts,
+          goal reaches and final holds. Higher training return and fewer failures do not establish pickup.
+        </p>
+        <ul class="chips" aria-label="FlashSAC retry scope">
+          <li>Official Torch AMP</li>
+          <li>One fresh seed-2 run</li>
+          <li>49.15M transitions</li>
+          <li>9 common evaluations</li>
+        </ul>
+        <p class="method">2,000 iterations · NVIDIA L40S · same frozen cable task and initial states · bundled recipe retry</p>
+        <a class="read-report" href="reports/2026-10-28-franka-flashsac-retry/">Read the retry results <span aria-hidden="true">→</span></a>
+        <figure>
+          <div class="figure-preview" tabindex="0" role="region" aria-label="Scrollable cable lift, goal and hold learning curves">
+            <img src="reports/2026-10-28-franka-flashsac-retry/figures/evaluation-transitions.svg"
+                 alt="Both the earlier official FlashSAC reference and the three-step return retry show zero lift, goal and hold success at every scored checkpoint."
+                 loading="lazy" decoding="async">
+          </div>
+          <figcaption>
+            One fresh retry compared with the previously archived seed-2 reference; the two recipe changes
+            are bundled. This result does not identify the cause of the failed pickup or establish reliability across seeds.
+            <span class="figure-help">Scroll horizontally on smaller screens to keep the figure labels readable.</span>
+            <a href="reports/2026-10-28-franka-flashsac-retry/figures/evaluation-transitions.svg">Open the figure at full size</a>
+          </figcaption>
+        </figure>
+      </article>
       <article class="report-card" aria-labelledby="franka-cable-diagnosis-title">
         <p class="date"><time datetime="2026-10-28">28 October 2026</time></p>
         <h2 id="franka-cable-diagnosis-title">
