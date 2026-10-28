@@ -1,0 +1,329 @@
+{
+  "source": {
+    "isaaclab_commit": "463ee37d1c7f94077f0fad26a69af5de930a7419",
+    "robolearn_measured_commit": "1f03c92e845f4df00090d844d533879078ea235d",
+    "official_flashsac_commit": "87edc9061150ae9e962dd84e6544e27a1554b3ab",
+    "rsl_rl_version": "5.5.1",
+    "source_manifest_sha256": "17df215a00b265163d6dc960626a8bd04eb66f0cba97e57877d47fbd626593ac",
+    "isaaclab_repository": "https://github.com/maxkra15/IsaacLab",
+    "isaaclab_upstream_base_repository": "https://github.com/isaac-sim/IsaacLab",
+    "isaaclab_upstream_base_commit": "9860e2bd8638adee97dc08f62299c1243344611a"
+  },
+  "primary_protocol_sha256": "5f915d0979bf81d747e28480551da6bbdec22ca848da63fb6378cc94fea04ed3",
+  "mdp": {
+    "task": "Isaac-Lift-Cable-Franka",
+    "physics_preset": "newton_mjwarp_vbd_proxy",
+    "num_envs": 1024,
+    "physics_dt": 0.008333333333333333,
+    "control_decimation": 4,
+    "physics_substeps": 4,
+    "episode_control_steps": 150,
+    "observation_dimensions": 69,
+    "action_dimensions": 8,
+    "action_boundary_clip": null,
+    "stock_arm_disable_gravity": true,
+    "training_curricula": {
+      "gravity": {
+        "start_gravity_z": -0.0001,
+        "end_gravity_z": -9.81,
+        "start_step": 0,
+        "end_step": 10000,
+        "applies_on_each_world_reset": true
+      },
+      "action_rate": {
+        "initial_weight": -0.001,
+        "final_weight": -0.1,
+        "num_steps": 15000
+      }
+    },
+    "policy_action_scale": 1.0
+  },
+  "evaluation": {
+    "episodes": 128,
+    "horizon_steps": 150,
+    "gravity": [
+      0.0,
+      0.0,
+      -9.81
+    ],
+    "action_rate_weight": -0.1,
+    "goal_segment_index": 6,
+    "success_threshold_m": 0.05,
+    "final_hold_steps": 15,
+    "lift_height_threshold_m": 0.05,
+    "population_success_threshold": null
+  },
+  "primary_budget": {
+    "seeds": [
+      2,
+      3,
+      4
+    ],
+    "iterations": 2000,
+    "rollout_steps": 24,
+    "transitions_per_iteration": 24576,
+    "transitions_per_run": 49152000,
+    "runs_per_allocation": 4,
+    "runs_total": 12,
+    "transitions_total": 589824000,
+    "early_stopping": false,
+    "checkpoint_iterations": [
+      0,
+      100,
+      250,
+      500,
+      650,
+      1000,
+      1500,
+      1750,
+      2000
+    ],
+    "checkpoints_total": 108,
+    "production_evaluations_total": 108,
+    "smokes_in_primary_results": false,
+    "stock_default_num_envs": 8192,
+    "stock_default_iterations": 3000,
+    "budget_scope": "Three additional matched-seed cohorts at the root-selected2000-iteration cap. All four learners run for each seed; Oct27seeds0/1 are separate historical evidence after the merged engine/runtime changes. No automatic recipe or duration escalation."
+  },
+  "recipes": {
+    "rsl_ppo": {
+      "implementation": "Unmodified stock RSL-RL PPO",
+      "precision": "FP32 parameters, Isaac default TF32 allowed",
+      "compile": false,
+      "activation": "elu",
+      "observation_normalization": true,
+      "initial_std": 1.0,
+      "epochs": 5,
+      "minibatches": 4,
+      "learning_rate": 0.001,
+      "schedule": "adaptive",
+      "desired_kl": 0.01,
+      "gamma": 0.98,
+      "gae_lambda": 0.95,
+      "clip": 0.2,
+      "entropy_coefficient": 0.006,
+      "value_coefficient": 1.0,
+      "clipped_value_loss": true,
+      "max_gradient_norm": 1.0,
+      "planned_optimizer_steps_per_run": 40000,
+      "stock_task_network": [
+        256,
+        128,
+        64
+      ],
+      "normalization_contract": "Use actual RSL5.5.1 EmpiricalNormalization semantics and state. Native adapter applies identical running statistics/update order, once after the full PPO update; freeze updates during evaluation and include buffers in canonical and checkpoint hashes.",
+      "boundary": "Stock clip_actions=None. Store raw Gaussian samples and their density; no adapter-added clipping."
+    },
+    "cuda_ppo": {
+      "implementation": "RoboLearn native CUDA PPO",
+      "precision": "FP32 cuBLASLt pedantic dense and FP32 state",
+      "matched_recipe": "rsl_ppo",
+      "dense_backend": "cuda",
+      "capture_learning": true,
+      "timeout_bootstrap": "Match actual RSL current-observation value convention",
+      "separate_actor_critic_gradient_clipping": true,
+      "advantage_sample_standard_deviation": true,
+      "planned_optimizer_steps_per_run": 40000,
+      "observation_normalization": "Match rsl_ppo through the same actual RSL EmpiricalNormalization adapter and saved state; learner dense/loss math unchanged."
+    },
+    "official_flashsac": {
+      "implementation": "Pristine authors' FlashSAC",
+      "precision": "Torch FP16 AMP, FP32 master parameters",
+      "network_compile": true,
+      "official_helper_compile": true,
+      "actor_hidden_dim": 128,
+      "critic_hidden_dim": 256,
+      "actor_num_blocks": 2,
+      "critic_num_blocks": 2,
+      "critic_num_bins": 101,
+      "batch_size": 2048,
+      "buffer_capacity": 10000000,
+      "buffer_warmup_transitions": 100000,
+      "critic_update_calls_per_vector_step_after_warmup": 2,
+      "actor_update_period": 2,
+      "gamma": 0.99,
+      "n_step": 1,
+      "normalize_reward": true,
+      "learning_rate_decay_step": 12800,
+      "amp_skips_allowed_and_reported": true,
+      "n_step_override_reason": "One-step returns align pristine authors fixed gamma^n with native effective gamma^k at real time-limit truncations without patching either implementation.",
+      "learning_rate_initial": 0.0003,
+      "learning_rate_peak": 0.0003,
+      "learning_rate_end": 0.00015,
+      "critic_min_v": -5.0,
+      "critic_max_v": 5.0,
+      "critic_target_update_tau": 0.01,
+      "temp_initial_value": 0.01,
+      "temp_target_sigma": 0.15,
+      "normalized_G_max": 5.0,
+      "actor_noise_zeta_mu": 2.0,
+      "actor_noise_zeta_max": 16,
+      "actor_bc_alpha": 0.0,
+      "adaptation": "Shared previous FlashSAC recipe adapted to69 state observations/8 actions, 10M replay and this stock cable MDP. It is not an authors-published cable recipe. Gamma.99 differs intentionally from the stock PPO gamma.98; one-step returns and fixed12800-update decay are retained.",
+      "planned_eligible_update_vector_steps_per_run": 47903,
+      "planned_critic_attempts_per_run": 95806,
+      "planned_actor_temperature_attempts_each": 47903
+    },
+    "cuda_flashsac": {
+      "implementation": "RoboLearn native CUDA FlashSAC",
+      "matched_recipe": "official_flashsac",
+      "precision": "FP16 dense, FP32 activations/master/adjoints/optimizer",
+      "dense_backend": "cuda",
+      "capture_learning": true,
+      "fused_updates": true,
+      "fresh_training_gradients": true,
+      "cuda_autotune": false,
+      "amp_skips_allowed_and_reported": true,
+      "activation_rounding_matches_torch_amp_exactly": false
+    }
+  },
+  "primary_schedule": {
+    "recipe_order": [
+      "rsl_ppo",
+      "cuda_ppo",
+      "official_flashsac",
+      "cuda_flashsac"
+    ],
+    "williams_rows": [
+      [
+        0,
+        1,
+        3,
+        2
+      ],
+      [
+        1,
+        2,
+        0,
+        3
+      ],
+      [
+        2,
+        3,
+        1,
+        0
+      ],
+      [
+        3,
+        0,
+        2,
+        1
+      ]
+    ],
+    "A": {
+      "seeds": [
+        2
+      ],
+      "williams_row_by_seed": [
+        0,
+        0,
+        0,
+        1,
+        2
+      ]
+    },
+    "B": {
+      "seeds": [
+        3
+      ],
+      "williams_row_by_seed": [
+        0,
+        0,
+        0,
+        1,
+        2
+      ]
+    },
+    "C": {
+      "seeds": [
+        4
+      ],
+      "williams_row_by_seed": [
+        0,
+        0,
+        0,
+        1,
+        2
+      ]
+    },
+    "scope": "First three rows only: positions and within-row predecessors are not fully balanced. Seeds, devices, order and caches remain confounded; no independent replication of each seed across devices."
+  },
+  "runtime_overlay": {
+    "numpy": "2.3.5",
+    "locked_numpy_before_overlay": "2.5.1",
+    "application": "After unchanged merged Isaac uv sync --frozen, install numpy==2.3.5 and the explicitly recorded NN/JAX overlay with --no-deps. Apply identical runtime to all three allocations and four recipes. The final runtime is not the untouched upstream lock.",
+    "status": "FROZEN_EXPLICIT_NUMPY_AND_WARP_NN_OVERLAY_AFTER_LOCKED_SYNC",
+    "merged_lock_review": {
+      "newton_commit": "42f7def118c2c4299ce493457bafd4e8a22a696e",
+      "hydra_core": "1.4.0rc2",
+      "omegaconf": "2.4.1rc1",
+      "cmeel_boost": "1.90.0",
+      "pinocchio": "4.1.0",
+      "numpy_2_3_5_compatibility": "New cmeel-boost1.90 requires numpy>=2.0; existing NumPy2.3.5 overlay retained. Runtime pip check and exact version gates must pass before fixture/smoke work.",
+      "scope": "Source owner reports28package/source records changed; old runtime-metadata expectedversions must not be reused unchanged.",
+      "lock_sha256": "f8f85816cfa5816deb761febbfe178d4cb87b9f845f7c5338713364395c34b1a"
+    }
+  },
+  "control": {
+    "protocol_sha256": "77c245f49f3b0c6907429f3ccdaebd83e1367c3bd7e3f3011dd836fc57af9dca",
+    "budget": {
+      "seeds": [
+        2,
+        3
+      ],
+      "iterations": 2000,
+      "rollout_steps": 24,
+      "transitions_per_iteration": 24576,
+      "transitions_per_run": 49152000,
+      "runs_per_allocation": 2,
+      "runs_total": 2,
+      "transitions_total": 98304000,
+      "early_stopping": false,
+      "checkpoint_iterations": [
+        0,
+        100,
+        250,
+        500,
+        650,
+        1000,
+        1500,
+        1750,
+        2000
+      ],
+      "checkpoints_total": 18,
+      "production_evaluations_total": 18,
+      "smokes_in_primary_results": false,
+      "stock_default_num_envs": 8192,
+      "stock_default_iterations": 3000,
+      "budget_scope": "Two fresh official Torch FlashSAC runs at the same2000-iteration cap as primary seeds2/3. Only policy-to-task action gain differs scientifically; device, chronology, shared caches and run-to-run stochastic trajectories can differ. No automatic escalation."
+    },
+    "policy_action_scale": 3.0,
+    "selected_recipes": [
+      "official_flashsac"
+    ],
+    "canonical_origin_protocol_sha256": "5f915d0979bf81d747e28480551da6bbdec22ca848da63fb6378cc94fea04ed3",
+    "consumer_source": {
+      "commit": "31cfc3352d07ce4aed3b311d62d9a9742c4c498b",
+      "core_sha256": "14baeee9152b94aeb222741afb43055588676c147ffb661ca0903317e99010c3",
+      "source_manifest_sha256": "ee21c33a93b1628bf08dcd3aa9b682302983dcf3539333dee928bf29895fe34f"
+    },
+    "origin_fixture_source": {
+      "commit": "1f03c92e845f4df00090d844d533879078ea235d",
+      "core_sha256": "55dec07a53f9ff615495138ace5c2d1f7dbf02c95c46fa38b73b3a65d646f4a8",
+      "protocol_sha256": "5f915d0979bf81d747e28480551da6bbdec22ca848da63fb6378cc94fea04ed3",
+      "fixture_manifest_sha256": "f92bad24ca872cea8eb94ec6210466977e4259c8e70077271884ee737fa5e43e"
+    },
+    "consumer_adapter_repair": {
+      "previous_consumer_commit": "1f03c92e845f4df00090d844d533879078ea235d",
+      "consumer_commit": "31cfc3352d07ce4aed3b311d62d9a9742c4c498b",
+      "previous_consumer_core_sha256": "55dec07a53f9ff615495138ace5c2d1f7dbf02c95c46fa38b73b3a65d646f4a8",
+      "consumer_core_sha256": "14baeee9152b94aeb222741afb43055588676c147ffb661ca0903317e99010c3",
+      "changed_files": [
+        "CHANGELOG.md",
+        "examples/cartpole_e2e.py"
+      ],
+      "scope": "Pass the parent allocation to train/evaluate subprocesses; no learner, MDP, network, loss, hyperparameter, schedule, fixture or budget change",
+      "source_CLI_regression_receipt_sha256": "3a52512e7d747def0fb52c642f23cc0ab3e44f0e79ed6dd51950ea654bc8c4b6"
+    }
+  }
+}
