@@ -123,6 +123,40 @@
         <h1 id="page-title">Research reports</h1>
         <p>Short technical reports on robotics, learning, and simulation.</p>
       </section>
+      <article class="report-card" aria-labelledby="franka-cable-diagnosis-title">
+        <p class="date"><time datetime="2026-10-28">28 October 2026</time></p>
+        <h2 id="franka-cable-diagnosis-title">
+          <a href="reports/2026-10-28-franka-cable-diagnosis/">Franka cable lift: fresh seeds and an action-gain control</a>
+        </h2>
+        <p class="summary">
+          After merging current Isaac Lab main, three fresh seeds compare stock RSL-RL PPO,
+          native CUDA PPO and both FlashSAC backends. The earlier native PPO quality gap
+          did not repeat consistently. Neither FlashSAC backend lifted the cable; a separate
+          larger-action-gain control also failed to rescue the official recipe.
+        </p>
+        <ul class="chips" aria-label="Franka cable diagnosis scope">
+          <li>12 primary runs</li>
+          <li>3 fresh seeds</li>
+          <li>589.8M primary transitions</li>
+          <li>2 separate control runs</li>
+        </ul>
+        <p class="method">Three isolated NVIDIA L40S GPUs for the primary study · 2,000 iterations per run · 108 common evaluations</p>
+        <p class="method">Native PPO used 7.3% less mean training and evaluation wall time; native FlashSAC used 8.1% less fixed-budget wall time. SAC task learning was unsuccessful.</p>
+        <a class="read-report" href="reports/2026-10-28-franka-cable-diagnosis/">Read the diagnosis and refreshed comparison <span aria-hidden="true">→</span></a>
+        <figure>
+          <div class="figure-preview" tabindex="0" role="region" aria-label="Scrollable Franka cable learning curves for three fresh seeds and four backends">
+            <img src="reports/2026-10-28-franka-cable-diagnosis/figures/learning-transitions.svg"
+                 alt="Individual goal-reaching, occupancy, final-hold and return curves for three seeds of each of four learning backends. Both PPO backends learn; both FlashSAC backends have zero goal and hold success."
+                 loading="lazy" decoding="async">
+          </div>
+          <figcaption>
+            Per-seed trajectories preserve regressions. Quality and observed warm process time are reported separately;
+            the updated physics cohort is kept separate from the 27 October study. No confirmed FlashSAC failure cause is established.
+            <span class="figure-help">Scroll horizontally on smaller screens to keep the figure labels readable.</span>
+            <a href="reports/2026-10-28-franka-cable-diagnosis/figures/learning-transitions.svg">Open the figure at full size</a>
+          </figcaption>
+        </figure>
+      </article>
       <article class="report-card" aria-labelledby="franka-cable-title">
         <p class="date"><time datetime="2026-10-27">27 October 2026</time></p>
         <h2 id="franka-cable-title">
