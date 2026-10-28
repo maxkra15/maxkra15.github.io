@@ -1,0 +1,134 @@
+{
+  "task": "Isaac-Lift-Cable-Franka",
+  "num_envs": 1024,
+  "rollout_steps": 24,
+  "iterations": 2000,
+  "training_transitions_per_run": 49152000,
+  "seed": 2,
+  "evaluation": {
+    "episodes": 128,
+    "horizon_steps": 150,
+    "gravity": [
+      0.0,
+      0.0,
+      -9.81
+    ],
+    "action_rate_weight": -0.1,
+    "success_threshold_m": 0.05,
+    "goal_segment_index": 6,
+    "final_hold_steps": 15,
+    "lift_height_threshold_m": 0.05,
+    "population_success_threshold": null
+  },
+  "recipes": {
+    "control": {
+      "n_step": 3,
+      "learning_rate_decay_step": 96000,
+      "learning_rate_initial": 0.0003,
+      "learning_rate_peak": 0.0003,
+      "learning_rate_end": 0.00015,
+      "batch_size": 2048,
+      "buffer_capacity": 10000000,
+      "buffer_warmup_transitions": 100000,
+      "gamma": 0.99,
+      "normalize_reward": true,
+      "critic_update_calls_per_vector_step_after_warmup": 2,
+      "actor_update_period": 2,
+      "critic_min_v": -5.0,
+      "critic_max_v": 5.0,
+      "normalized_G_max": 5.0,
+      "temp_initial_value": 0.01,
+      "temp_target_sigma": 0.15,
+      "actor_noise_zeta_mu": 2.0,
+      "actor_noise_zeta_max": 16
+    },
+    "reference": {
+      "n_step": 3,
+      "learning_rate_decay_step": 96000,
+      "learning_rate_initial": 0.0003,
+      "learning_rate_peak": 0.0003,
+      "learning_rate_end": 0.00015,
+      "batch_size": 2048,
+      "buffer_capacity": 10000000,
+      "buffer_warmup_transitions": 100000,
+      "gamma": 0.99,
+      "normalize_reward": true,
+      "critic_update_calls_per_vector_step_after_warmup": 2,
+      "actor_update_period": 2,
+      "critic_min_v": -5.0,
+      "critic_max_v": 5.0,
+      "normalized_G_max": 5.0,
+      "temp_initial_value": 0.01,
+      "temp_target_sigma": 0.15,
+      "actor_noise_zeta_mu": 2.0,
+      "actor_noise_zeta_max": 16
+    }
+  },
+  "effective_action_scale": {
+    "control": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      3.0
+    ],
+    "reference": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "replay_export": {
+    "control": {
+      "policy": "four fixed replay samples",
+      "sampled_transitions": 8192,
+      "full_replay_included": false,
+      "exact_resume_claim": false,
+      "bytes": 4973530,
+      "write_seconds": 0.03547134902328253
+    },
+    "reference": {
+      "policy": "full final replay plus learner state",
+      "sampled_transitions": null,
+      "full_replay_included": true,
+      "exact_resume_claim": false,
+      "bytes": 5998672847,
+      "write_seconds": 15.969861316028982
+    }
+  },
+  "training_curricula": {
+    "gravity": {
+      "start_gravity_z": -0.0001,
+      "end_gravity_z": -9.81,
+      "start_step": 0,
+      "end_step": 10000,
+      "applies_on_each_world_reset": true
+    },
+    "action_rate": {
+      "initial_weight": -0.001,
+      "final_weight": -0.1,
+      "num_steps": 15000
+    }
+  },
+  "sources": {
+    "control_robolearn": "889c8ef232f5974d7b2849109c9841154880ed0f",
+    "reference_robolearn": "20b5eee26b5ea706648bcbbbb09bbe6730afdae2",
+    "isaaclab": "463ee37d1c7f94077f0fad26a69af5de930a7419",
+    "official_flashsac": "87edc9061150ae9e962dd84e6544e27a1554b3ab"
+  },
+  "protocol_sha256": {
+    "control": "6686fb69308903f16003aea285a1d9c6510148e2157dfd20e23cf67bd719f77b",
+    "reference": "e49aeb9b37ee2faf379c612dc52f95c9f76242aef5ef856733575212c8d93466"
+  },
+  "no_native_n3_parity_claim": true,
+  "single_learning_factor": "Gripper policy-coordinate gain 1 to3; seven arm gains remain1",
+  "causal_mechanism_or_reliability_not_established": true
+}
