@@ -1,0 +1,843 @@
+{
+  "schema_version": 1,
+  "config": {
+    "backend": "genesis",
+    "adapter_module": "genesis_backend",
+    "task": "franka",
+    "mode": "physics",
+    "vision": "none",
+    "num_envs": 256,
+    "seed": 1,
+    "dt": 0.005,
+    "decimation": 4,
+    "device": "cuda:0",
+    "width": 64,
+    "height": 64,
+    "solver_profile": "shared",
+    "solver_iterations": null,
+    "solver_settings": {
+      "genesis": {
+        "max_iterations": 25,
+        "tolerance": null
+      },
+      "isaaclab": {
+        "solver": "newton",
+        "integrator": "implicitfast",
+        "iterations": 100,
+        "ls_iterations": 50,
+        "tolerance": 1e-06,
+        "cone": "pyramidal",
+        "impratio": 1.0,
+        "use_mujoco_contacts": true,
+        "njmax": 300,
+        "nconmax": null,
+        "num_substeps": 1,
+        "use_cuda_graph": true
+      },
+      "isaaclab_physx": {
+        "position_iterations": 4,
+        "velocity_iterations": 0
+      }
+    },
+    "steps": 500,
+    "warmup_steps": 50,
+    "iterations": 500,
+    "rollout_steps": 24,
+    "evaluation_interval": 50,
+    "evaluation_steps": 250,
+    "initial_height": 0.0,
+    "joint_names": [
+      "panda_joint1",
+      "panda_joint2",
+      "panda_joint3",
+      "panda_joint4",
+      "panda_joint5",
+      "panda_joint6",
+      "panda_joint7"
+    ],
+    "initial_joint_pos": [
+      0.0,
+      -0.5,
+      0.0,
+      -2.0,
+      0.0,
+      1.5,
+      0.7853981633974483
+    ],
+    "asset_path": "/home/horde/simulator-comparison-20261105/franka-extension/.benchmark_results/2026-11-05-franka/assets/franka.urdf",
+    "cpu_threads": 8,
+    "env_spacing": 5.0,
+    "camera_motion": "fixed",
+    "camera_pos": [
+      1.8,
+      -1.8,
+      1.4
+    ],
+    "camera_lookat": [
+      0.45,
+      0.0,
+      0.45
+    ],
+    "camera_fov": 60,
+    "joint_lower_limits": [
+      -2.9671,
+      -1.8326,
+      -2.9671,
+      -3.1416,
+      -2.9671,
+      -0.0873,
+      -2.9671
+    ],
+    "joint_upper_limits": [
+      2.9671,
+      1.8326,
+      2.9671,
+      0.0,
+      2.9671,
+      3.8223,
+      2.9671
+    ],
+    "kp": 80.0,
+    "kd": 4.0,
+    "effort_limits": [
+      87.0,
+      87.0,
+      87.0,
+      87.0,
+      12.0,
+      12.0,
+      12.0
+    ],
+    "end_effector_link": "panda_link7",
+    "end_effector_offset": [
+      0.0,
+      0.0,
+      0.212
+    ],
+    "kinematic_chain": [
+      {
+        "origin_xyz": [
+          0.0,
+          0.0,
+          0.333
+        ],
+        "origin_rpy": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "axis": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "origin_xyz": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "origin_rpy": [
+          -1.57079632679,
+          0.0,
+          0.0
+        ],
+        "axis": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "origin_xyz": [
+          0.0,
+          -0.316,
+          0.0
+        ],
+        "origin_rpy": [
+          1.57079632679,
+          0.0,
+          0.0
+        ],
+        "axis": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "origin_xyz": [
+          0.0825,
+          0.0,
+          0.0
+        ],
+        "origin_rpy": [
+          1.57079632679,
+          0.0,
+          0.0
+        ],
+        "axis": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "origin_xyz": [
+          -0.0825,
+          0.384,
+          0.0
+        ],
+        "origin_rpy": [
+          -1.57079632679,
+          0.0,
+          0.0
+        ],
+        "axis": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "origin_xyz": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "origin_rpy": [
+          1.57079632679,
+          0.0,
+          0.0
+        ],
+        "axis": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "origin_xyz": [
+          0.088,
+          0.0,
+          0.0
+        ],
+        "origin_rpy": [
+          1.57079632679,
+          0.0,
+          0.0
+        ],
+        "axis": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  "provenance": {
+    "source_revisions": {
+      "isaaclab": "efa240ec39794f5d80430cbe38620626954c2c4d",
+      "genesis": "969c3bd1449d0f0c79effd7b6a72614ed46ba6e7",
+      "newton": "42f7def118c2c4299ce493457bafd4e8a22a696e"
+    },
+    "hardware": {
+      "platform": "Linux-6.8.0-142-generic-x86_64-with-glibc2.39",
+      "cpu": "Architecture:                            x86_64\nCPU op-mode(s):                          32-bit, 64-bit\nAddress sizes:                           40 bits physical, 57 bits virtual\nByte Order:                              Little Endian\nCPU(s):                                  16\nOn-line CPU(s) list:                     0-15\nVendor ID:                               GenuineIntel\nModel name:                              Intel Xeon Processor (Icelake)\nCPU family:                              6\nModel:                                   134\nThread(s) per core:                      1\nCore(s) per socket:                      4\nSocket(s):                               4\nStepping:                                0\nBogoMIPS:                                5599.99\nFlags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc pebs bts rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq dtes64 vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves wbnoinvd arat vnmi avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq la57 rdpid fsrm md_clear arch_capabilities\nVirtualization:                          VT-x\nHypervisor vendor:                       KVM\nVirtualization type:                     full\nL1d cache:                               512 KiB (16 instances)\nL1i cache:                               512 KiB (16 instances)\nL2 cache:                                64 MiB (16 instances)\nL3 cache:                                64 MiB (4 instances)\nNUMA node(s):                            1\nNUMA node0 CPU(s):                       0-15\nVulnerability Gather data sampling:      Not affected\nVulnerability Indirect target selection: Mitigation; Aligned branch/return thunks\nVulnerability Itlb multihit:             Not affected\nVulnerability L1tf:                      Not affected\nVulnerability Mds:                       Not affected\nVulnerability Meltdown:                  Not affected\nVulnerability Mmio stale data:           Vulnerable: Clear CPU buffers attempted, no microcode; SMT Host state unknown\nVulnerability Reg file data sampling:    Vulnerable: No microcode\nVulnerability Retbleed:                  Not affected\nVulnerability Spec rstack overflow:      Not affected\nVulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl\nVulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization\nVulnerability Spectre v2:                Mitigation; Enhanced / Automatic IBRS; IBPB conditional; PBRSB-eIBRS Not affected; BHI SW loop, KVM SW loop\nVulnerability Srbds:                     Not affected\nVulnerability Tsa:                       Not affected\nVulnerability Tsx async abort:           Mitigation; TSX disabled\nVulnerability Vmscape:                   Not affected",
+      "gpu": "NVIDIA L40, GPU-6b0d678c-e620-c957-931d-e2308d31bb87, 595.58.03, 49140 MiB, 300.00 W\nNVIDIA L40, GPU-ba2a7c83-f6f7-e887-63a0-09a770a9122a, 595.58.03, 49140 MiB, 300.00 W",
+      "gpu_processes_before": "4239, /usr/lib/x86_64-linux-gnu/dcv/dcvagent, 903 MiB\n991622, /home/horde/simulator-comparison-20261105/.benchmark_sources/genesis_env/bin/python, 664 MiB",
+      "gpu_utilization_before": "0 %, 38, 80.73 W\n1 %, 39, 82.71 W",
+      "gpu_processes_after": "4239, /usr/lib/x86_64-linux-gnu/dcv/dcvagent, 903 MiB\n993802, /home/horde/simulator-comparison-20261105/.benchmark_sources/mjwarp_env/bin/python, 868 MiB"
+    },
+    "asset_manifest": {
+      "meshes_sha256": {
+        "genesis/assets/urdf/anymal_c/meshes/base.dae": "785bea9b33831f8c741fc0ca070162e73cbf560ea9b03c53abf8978be877fc48",
+        "genesis/assets/urdf/anymal_c/meshes/top_shell.dae": "d53bc2412da380d7b3ddf11da617880b435e99388a0d19c8db07fdf0b2c756d7",
+        "genesis/assets/urdf/anymal_c/meshes/bottom_shell.dae": "3a5cfba0c6f632bc3ea816d18a069aefad06698de3f9dea47cc54b6d445a75ac",
+        "genesis/assets/urdf/anymal_c/meshes/remote.dae": "0a372ada65117f5f595b97df15fcb6a20d5ac05d101b5ac99335b5ffa228b03a",
+        "genesis/assets/urdf/anymal_c/meshes/handle.dae": "0ae653321953c54b2d482b7f95e36b7fcf3d92fbadd7c40e02c1656d6e80916e",
+        "genesis/assets/urdf/anymal_c/meshes/face.dae": "6230397a1618fadc72c7bd5320f5b934048a94259831a53a978ebd03859a046c",
+        "genesis/assets/urdf/anymal_c/meshes/depth_camera.dae": "44876e510ee0c549a85be20ba68ad25dea57322a62983996527a659dbdbaba3c",
+        "genesis/assets/urdf/anymal_c/meshes/wide_angle_camera.dae": "de0ecd4ff062973990ae232e16f6965a92fb874614b02e982f111bdde8accfb0",
+        "genesis/assets/urdf/anymal_c/meshes/battery.dae": "690077db5140751f38deb1a450ab7c1e92977fc517cd39347758b30da6ca0a84",
+        "genesis/assets/urdf/anymal_c/meshes/lidar_cage.dae": "1d0f16f34f36ae844f4935256c0cbe382f532d3b370d4ca2db123b0f0ffb1ce1",
+        "genesis/assets/urdf/anymal_c/meshes/lidar.dae": "633db35d619694d2dfa9f263cf76e1db3a8556c801baeb9298ead365d96947ae",
+        "genesis/assets/urdf/anymal_c/meshes/drive.dae": "7f8f2e34bed73d0b6ba5b3b0c60850ee2ee6a5e5aa29b8ce30839c1a9ab2b142",
+        "genesis/assets/urdf/anymal_c/meshes/hip_l.dae": "88ac066c129be6807ccb700a28d5fcf1f9ec4a70c2967ff27dca480972be03d6",
+        "genesis/assets/urdf/anymal_c/meshes/thigh.dae": "f2046f66c75689322eef919828b07f02c1ace1838677f78e14e28f2b2343c446",
+        "genesis/assets/urdf/anymal_c/meshes/shank_l.dae": "1c8787d9e055f1330fb7c7cb02a3b780cf4f16b9319c081ebe9cd8d86f5de875",
+        "genesis/assets/urdf/anymal_c/meshes/foot.dae": "145ac1bea2b3c92286cf396251970463f1d67b260b889b1ceaa5be30de0671d2",
+        "genesis/assets/urdf/anymal_c/meshes/hip_r.dae": "e862980f2fe4e2de20f4085aede4449c3e58022a18e658828358e5ce821c8e07",
+        "genesis/assets/urdf/anymal_c/meshes/shank_r.dae": "386f85f0c8572794dac06fdfa439a2f90d803d28263d10002e6417b0f947ffc4",
+        "genesis/assets/urdf/anymal_c/meshes/hatch.dae": "00ecbf99896b05b191daa622e85a5cfaec98141d199705f61fbe6d61d6675245"
+      },
+      "source_urdf_sha256": "f94f7fee1dedfda4face86c864a1db255c0c198f5ce685ce3ba0395c50306186",
+      "normalization": {
+        "unbounded_revolute_to_continuous": [
+          "LF_HAA",
+          "LF_HFE",
+          "LF_KFE",
+          "RF_HAA",
+          "RF_HFE",
+          "RF_KFE",
+          "LH_HAA",
+          "LH_HFE",
+          "LH_KFE",
+          "RH_HAA",
+          "RH_HFE",
+          "RH_KFE"
+        ],
+        "joint_damping": 0.0,
+        "joint_friction": 0.0
+      },
+      "franka": {
+        "joint_names": [
+          "panda_joint1",
+          "panda_joint2",
+          "panda_joint3",
+          "panda_joint4",
+          "panda_joint5",
+          "panda_joint6",
+          "panda_joint7"
+        ],
+        "initial_joint_pos": [
+          0.0,
+          -0.5,
+          0.0,
+          -2.0,
+          0.0,
+          1.5,
+          0.7853981633974483
+        ],
+        "joint_lower_limits": [
+          -2.9671,
+          -1.8326,
+          -2.9671,
+          -3.1416,
+          -2.9671,
+          -0.0873,
+          -2.9671
+        ],
+        "joint_upper_limits": [
+          2.9671,
+          1.8326,
+          2.9671,
+          0.0,
+          2.9671,
+          3.8223,
+          2.9671
+        ],
+        "kp": 80.0,
+        "kd": 4.0,
+        "effort_limits": [
+          87.0,
+          87.0,
+          87.0,
+          87.0,
+          12.0,
+          12.0,
+          12.0
+        ],
+        "end_effector_link": "panda_link7",
+        "end_effector_offset": [
+          0.0,
+          0.0,
+          0.212
+        ],
+        "kinematic_chain": [
+          {
+            "origin_xyz": [
+              0.0,
+              0.0,
+              0.333
+            ],
+            "origin_rpy": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "axis": [
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "origin_xyz": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "origin_rpy": [
+              -1.57079632679,
+              0.0,
+              0.0
+            ],
+            "axis": [
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "origin_xyz": [
+              0.0,
+              -0.316,
+              0.0
+            ],
+            "origin_rpy": [
+              1.57079632679,
+              0.0,
+              0.0
+            ],
+            "axis": [
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "origin_xyz": [
+              0.0825,
+              0.0,
+              0.0
+            ],
+            "origin_rpy": [
+              1.57079632679,
+              0.0,
+              0.0
+            ],
+            "axis": [
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "origin_xyz": [
+              -0.0825,
+              0.384,
+              0.0
+            ],
+            "origin_rpy": [
+              -1.57079632679,
+              0.0,
+              0.0
+            ],
+            "axis": [
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "origin_xyz": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "origin_rpy": [
+              1.57079632679,
+              0.0,
+              0.0
+            ],
+            "axis": [
+              0.0,
+              0.0,
+              1.0
+            ]
+          },
+          {
+            "origin_xyz": [
+              0.088,
+              0.0,
+              0.0
+            ],
+            "origin_rpy": [
+              1.57079632679,
+              0.0,
+              0.0
+            ],
+            "axis": [
+              0.0,
+              0.0,
+              1.0
+            ]
+          }
+        ],
+        "source_urdf_sha256": "9c27cf846302e26a1d3a44ccfd4dd2dbba89cccc9f17b96b6bd1f8bceedd1ff0",
+        "meshes_sha256": {
+          "genesis/assets/urdf/panda_bullet/meshes/collision/link0.obj": "d29233f03537b6ee92a6861d4139290960325c2bacf9a640ab7935a5539c653f",
+          "genesis/assets/urdf/panda_bullet/meshes/visual/link1.obj": "e0ec1bec9432a46f797e912cd8165798e62ebfd85c0807dce142bd6b9a768cd7",
+          "genesis/assets/urdf/panda_bullet/meshes/collision/link1.obj": "0879335b20930eccccdc7d2565553895589f9125d4c8c0d462ad0f74f17e7472",
+          "genesis/assets/urdf/panda_bullet/meshes/visual/link2.obj": "a1a41ada6d6cb8c51a8d0d19db9cadea101493842a52db75529e7ba0d4592904",
+          "genesis/assets/urdf/panda_bullet/meshes/collision/link2.obj": "cfca62e5846d3ba6db8be3740fc2219454401f1048db11a78bd9ec8f30cdc128",
+          "genesis/assets/urdf/panda_bullet/meshes/visual/link3.obj": "82f81c15c236a41918dade0241ce40e59c4a0ee7fb08985f3a934380a8f7f594",
+          "genesis/assets/urdf/panda_bullet/meshes/collision/link3.obj": "22235fb3676b5cb45a2f512065fab94fecf052a767cddfaed62cbb6d1efcf1f8",
+          "genesis/assets/urdf/panda_bullet/meshes/visual/link4.obj": "91f36ecba40ecce6c169ede6d152a6c8853ee886e2b145ef6c5865cc9d5516b8",
+          "genesis/assets/urdf/panda_bullet/meshes/collision/link4.obj": "64b5914ef159149f87b767ff0eae4db41b9c267aecdddf2816ff25726fa0e6f2",
+          "genesis/assets/urdf/panda_bullet/meshes/visual/link5.obj": "10d084e6f728af7d291403f0359373c121e87785b177e5c6df8a7e1e88077f11",
+          "genesis/assets/urdf/panda_bullet/meshes/collision/link5.obj": "ff8d4bb5ab506b8cf621f44b928be7714dff86b669a92909b8d4f71c5b01597e",
+          "genesis/assets/urdf/panda_bullet/meshes/visual/link6.obj": "7d6c29421e8066761c993a519474eb58f851885387cc2ad5a606f96eb428f059",
+          "genesis/assets/urdf/panda_bullet/meshes/collision/link6.obj": "e1dc8bbca8690944e6331f5a108d49c363eeec179b56a9f913541a541e6a2cfc",
+          "genesis/assets/urdf/panda_bullet/meshes/collision/link7.obj": "675a784e949b2b47894f1965016bd56b992b136bd90e1a62e832f49b4a55b240",
+          "genesis/assets/urdf/panda_bullet/meshes/visual/hand.obj": "3c95c6f99024842a8b9e73629dacc30ac5ee459feb0dbcc16df765fd27620584",
+          "genesis/assets/urdf/panda_bullet/meshes/collision/hand.obj": "a216bedc742a736f2c6cab010c6014475fe5f7b5ed53e371509adf885df618a2",
+          "genesis/assets/urdf/panda_bullet/meshes/visual/finger.obj": "c6959401c281e6d5b4486f08072140b6fdb3461678face301ac448cec06322d3",
+          "genesis/assets/urdf/panda_bullet/meshes/collision/finger.obj": "c05dee2e2770ac3d45a097cec4a9d758e279ebdb7dc550eb249571c4690a6476"
+        },
+        "normalization": {
+          "fixed_finger_positions_m": {
+            "panda_finger_joint1": 0.04,
+            "panda_finger_joint2": 0.04
+          },
+          "zero_mass_marker_inertias_zeroed": [
+            "panda_link8",
+            "panda_grasptarget"
+          ],
+          "joint_damping": 0.0,
+          "joint_friction": 0.0
+        }
+      },
+      "prepared_sha256": {
+        "franka.urdf": "f4a9ec87c8dbacef2529b2f813f9cb0df70dc01d38462b4d07d444c4d06f8a45",
+        "anymal.urdf": "43d60e426873fbdadb9b075c84a09b614cfb4c9b341732b51f7564cb3cbb0ba6",
+        "cartpole.urdf": "a8702ba4b23da93a1be4b8666215c75ea4a8e97ddc3c758430fb456621f3dc50"
+      }
+    },
+    "package_versions": "absl-py==2.4.0\naddict==2.4.0\naiobotocore==2.26.0\naiodns==3.1.1\naiofiles==23.2.1\naiohappyeyeballs==2.6.1\naiohttp==3.14.3\naioitertools==0.11.0\naiosignal==1.4.0\nalphashape==1.3.1\nannotated-doc==0.0.4\nannotated-types==0.8.0\nanyio==4.14.2\nasteval==1.0.6\nasync-timeout==5.0.1\nattrs==25.1.0\nav==19.0.2\nawscrt==0.23.8\nazure-core==1.38.0\nazure-identity==1.13.0\nazure-storage-blob==12.17.0\nblinker==1.9.0\nboto3==1.41.5\nbotocore==1.41.5\ncbor2==5.9.0\ncertifi==2026.7.22\ncffi==2.1.0\ncharset-normalizer==3.3.2\nclick==8.3.3\nclick-log==0.4.0\ncloudpickle==3.1.2\ncmeel==0.60.1\ncmeel-assimp==6.0.5\ncmeel-boost==1.89.0\ncmeel-console-bridge==1.0.2.3\ncmeel-octomap==1.10.0\ncmeel-qhull==8.0.2.1\ncmeel-tinyxml2==10.0.0\ncmeel-urdfdom==4.0.1\ncmeel-zlib==1.3.2\ncoacd==1.0.7\ncoal==3.0.2\ncolorama==0.4.6\ncomm==0.2.3\nconfigargparse==1.7.5\ncontourpy==1.3.3\ncoverage==7.15.2\ncryptography==50.0.1\ncuda-bindings==13.3.1\ncuda-pathfinder==1.6.0\ncuda-toolkit==13.0.2\ncycler==0.12.1\ndaqp==0.8.5\ndash==4.4.1\ndataclasses-json==0.6.7\ndecorator==4.4.2\ndeprecated==3.0.1\ndill==0.4.1\ndracopy==2.2.0\neigenpy==3.12.0\neinops==0.9.0.dev0\netils==1.13.0\nfarama-notifications==0.0.6\nfast-simplification==0.1.13\nfastapi==0.139.2\nfastjsonschema==2.22.1\nfilelock==3.25.2\nflask==3.1.3\nflatbuffers==25.12.19\nfonttools==4.61.1\nfreetype-py==2.5.1\nfrozendict==2.5.1\nfrozenlist==1.5.0\nfsspec==2026.6.0\ngenesis-world==1.4.5\ngitdb==4.0.12\ngitpython==3.1.60\nglfw==2.10.0\ngrpcio==1.83.0\ngs-madrona==0.0.10\ngymnasium==1.3.0\nh11==0.16.0\nh5py==3.16.0\nhf-xet==1.6.0.dev0\nhidapi==0.15.0\nhttpcore==1.0.9\nhttptools==0.6.1\nhttpx==0.28.1\nhuggingface-hub==1.16.1\nhydra-core==1.4.0.dev10\nidna==3.10\nidna-ssl==1.1.0\nimageio==2.37.2\nimageio-ffmpeg==0.6.0\nimgui-bundle==1.92.601\nimportlib-metadata==9.0.0\nimportlib-resources==7.1.0\nisaaclab==37.1.0\nisaaclab-assets==2.0.1\nisaaclab-contrib==4.0.1\nisaaclab-experimental==0.2.7\nisaaclab-newton==9.3.0\nisaaclab-ov==5.0.1\nisaaclab-physx==7.5.2\nisaaclab-ppisp==0.3.1\nisaaclab-rl==5.1.0\nisaaclab-tasks==27.0.0\nisaaclab-tasks-experimental==1.0.1\nisaaclab-visualizers==3.1.1\nisaacsim==6.2.0.0\nisaacsim-app==6.2.0.0\nisaacsim-asset==6.2.0.0\nisaacsim-benchmark==6.2.0.0\nisaacsim-code-editor==6.2.0.0\nisaacsim-core==6.2.0.0\nisaacsim-example==6.2.0.0\nisaacsim-extscache-kit==6.2.0.0\nisaacsim-extscache-kit-sdk==6.2.0.0\nisaacsim-extscache-physics==6.2.0.0\nisaacsim-gui==6.2.0.0\nisaacsim-kernel==6.2.0.0\nisaacsim-replicator==6.2.0.0\nisaacsim-rl==6.2.0.0\nisaacsim-robot==6.2.0.0\nisaacsim-robot-motion==6.2.0.0\nisaacsim-robot-setup==6.2.0.0\nisaacsim-ros1==6.2.0.0\nisaacsim-ros2==6.2.0.0\nisaacsim-sensor==6.2.0.0\nisaacsim-storage==6.2.0.0\nisaacsim-template==6.2.0.0\nisaacsim-test==6.2.0.0\nisaacsim-utils==6.2.0.0\nisodate==0.6.1\nitsdangerous==2.2.0\njanus==2.0.0\njinja2==3.1.6\njmespath==1.0.1\njoblib==1.5.3\njsonschema==4.26.0\njsonschema-specifications==2025.9.1\njupyter-core==5.9.1\nkiwisolver==1.4.9\nlazy-loader==0.5\nlibcoal==3.0.2\nlibigl==2.6.3\nlibpinocchio==3.9.0\nllvmlite==0.46.0\nloop-rate-limiters==1.2.0\nmarkdown==3.10.2\nmarkdown-it-py==4.2.0\nmarkupsafe==3.0.3\nmarshmallow==3.26.2\nmatplotlib==3.10.8\nmdurl==0.1.2\nmeshio==5.3.5\nml-dtypes==0.5.4\nmoviepy==2.2.1\nmpmath==1.3.0\nmsal==1.38.0\nmsal-extensions==1.3.1\nmujoco==3.15.0\nmujoco-usd-converter==0.6.1\nmujoco-warp==3.15.0\nmultidict==6.1.0\nmypy-extensions==1.2.0\nnarwhals==2.24.0\nnbformat==5.10.4\nnest-asyncio==1.6.0\nnetworkx==3.6.1\nnewton==1.8.0.dev0\nnewton-usd-schemas==0.5.0\nnumba==0.64.0\nnumpy==2.4.6\nnumpy-stl==4.0.0\nnvidia-cublas==13.1.0.3\nnvidia-cuda-cupti==13.0.85\nnvidia-cuda-nvrtc==13.0.88\nnvidia-cuda-nvrtc-cu12==12.9.86\nnvidia-cuda-runtime==13.0.96\nnvidia-cudnn-cu13==9.19.0.56\nnvidia-cufft==12.0.0.61\nnvidia-cufile==1.15.1.6\nnvidia-curand==10.4.0.35\nnvidia-cusolver==12.0.4.66\nnvidia-cusparse==12.6.3.3\nnvidia-cusparselt-cu13==0.8.0\nnvidia-nccl-cu13==2.28.9\nnvidia-nvjitlink==13.0.88\nnvidia-nvjitlink-cu12==12.9.86\nnvidia-nvshmem-cu13==3.4.5\nnvidia-nvtx==13.0.85\noauthlib==3.2.2\nomegaconf==2.4.0\nomniverseclient==2.74.0\nonnx==1.22.0\nonnx-ir==0.2.1\nonnxruntime==1.26.0\nonnxscript==0.7.2.dev20260725\nopen3d==0.19.0\nopencv-python==5.0.0.93\nopencv-python-headless-noffmpeg==4.14.0.94rc3\nopenexr==3.5.3\norjson==3.11.9\nosqp==1.0.5\novstage==0.2.1.385922\npackaging==26.0\npandas==3.0.5\npillow==11.3.0\npin==3.9.0\npin-pink==3.3.0\nplatformdirs==4.11.0\nplotly==5.24.1\nportalocker==2.7.0\nprettytable==3.18.0\nproglog==0.1.12\npropcache==0.2.1\nprotobuf==7.36.0rc1\npsutil==5.9.8\npy-cpuinfo==9.0.0\npy-trees==2.4.0\npycares==5.0.1\npycollada==0.9.3\npycparser==3.0\npydantic==2.14.0a1\npydantic-core==2.47.0\npydot==4.0.1\npygel3d==0.8.2\npyglet==2.1.15\npygltflib==1.16.0\npygments==2.20.0\npyjwt==2.13.0\npymeshlab==2025.7.post1\npyopengl==4.0.0a1\npyopengl-accelerate==3.1.10\npyparsing==3.3.2\npyperclip==1.11.0\npypng==0.20220715.0\npyquaternion==0.9.9\npysplashsurf==0.14.1.0\npython-dateutil==2.9.0.post0\npython-dotenv==1.2.4\npython-multipart==0.0.32\npython-utils==4.0.0\npytz==2024.1\npyvers==0.2.3\npyyaml==6.0.3\nqdldl==0.1.7.post5\nqpsolvers==4.13.0\nqrcode==7.4.2\nquadrants==1.3.3\nreferencing==0.37.0\nregex==2026.7.19\nrequests==2.32.3\nrequests-oauthlib==1.3.1\nresolve-robotics-uri-py==0.5.1\nretrying==1.4.2\nrich==14.3.4\nrpds-py==2026.6.3\nrsl-rl-lib==5.5.1\nrtree==1.4.1\ns3transfer==0.15.0\nsafetensors==0.8.0\nscikit-image==0.26.0\nscikit-learn==1.9.0\nscipy==1.17.0\nsentry-sdk==2.42.1\nsetuptools==81.0.0\nshapely==2.1.2\nshellingham==1.5.4\nsix==1.17.0\nsmmap==5.0.3\nstarlette==1.6.0\nsympy==1.14.0\ntenacity==9.2.1\ntensorboard==2.21.0\ntensorboard-data-server==0.7.2\ntensordict==0.14.2\ntetgen==0.8.2\nthreadpoolctl==3.6.0\ntifffile==2026.10.15\ntinyobjloader==2.0.0rc13\ntokenizers==0.23.0rc0\ntoml==0.10.2\ntorch==2.11.0+cu130\ntorchaudio==2.11.0\ntorchvision==0.26.0+cu130\ntqdm==4.70.0\ntraitlets==5.15.1\ntransformers==5.10.4\ntransitions==0.9.3\ntrimesh==5.2.0\ntriton==3.6.0\ntyper==0.27.2\ntyping-extensions==4.16.0\ntyping-inspect==0.9.0\ntyping-inspection==0.4.2\nurdf-usd-converter==0.3.2\nurllib3==2.8.0\nusd-exchange==3.0.1\nuvicorn==0.29.0\nwarp-lang==1.17.0\nwatchdog==4.0.0\nwcwidth==0.8.2\nwebsockets==14.2\nwerkzeug==3.1.8\nwrapt==1.16.0\nxacro==2.1.1\nyarl==1.18.3\nz3-solver==4.15.4.0\nzipp==4.1.0\nzstandard==0.25.0",
+    "harness_sha256": "634c1fcc57ac70c130f95b36899d8f2fa7e1484d1db21ca8bdbab7c3b3669cc4",
+    "cache_policy": "process cold; disk/kernel/shader caches reused; no OS cache flush",
+    "cpu_threads": 8,
+    "runtime": {
+      "python": "3.12.14 (main, Sep 29 2026, 15:01:18) [Clang 22.1.3 ]",
+      "torch": "2.11.0+cu130",
+      "torch_cuda": "13.0",
+      "adapter_path": "/home/horde/simulator-comparison-20261105/franka-extension/scripts/benchmarks/simulator_comparison/genesis_backend.py",
+      "cuda_device": "NVIDIA L40",
+      "cuda_visible_devices": "0",
+      "cuda_device_uuid": "6b0d678c-e620-c957-931d-e2308d31bb87",
+      "torch_matmul_precision": "highest",
+      "cudnn_benchmark": false,
+      "cudnn_deterministic": false,
+      "kit_modules_loaded": [],
+      "source_packages": {
+        "genesis": "/home/horde/simulator-comparison-20261105/franka-extension/.benchmark_sources/genesis/genesis/__init__.py",
+        "torch": "/home/horde/gb300-non-rl-latest-20261013.9zjIDR/.venv/lib/python3.12/site-packages/torch/__init__.py"
+      }
+    },
+    "gpu_activity_samples": [
+      {
+        "elapsed_s": 2.719927579164505e-06,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 3.195728181861341,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 6.39626348298043,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 9.594624066725373,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 12.8178276787512,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 16.00238475902006,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 19.234837277792394,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 22.473885111045092,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 25.69568025600165,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 28.899960782844573,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 32.17370790196583,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 35.384557901881635,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 38.62039397098124,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 41.84655532008037,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 45.05588606884703,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 48.28449128801003,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 51.47634943109006,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 54.669436698779464,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 57.87407630495727,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 61.10681140283123,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 64.30573325511068,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 67.55444993590936,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 70.7945485888049,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 73.98816730407998,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 77.19080278277397,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 80.4076658510603,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 83.64579443400726,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 86.85932904714718,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 90.07113149715587,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 93.26690806215629,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 96.52770180208609,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 99.82563915709034,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 103.04265459999442,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 106.26418206701055,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 109.51582510815933,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 112.71491110371426,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 115.91199909895658,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 119.11917062709108,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 122.35548932803795,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 125.5713536539115,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 128.77288211416453,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 132.019406164065,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 135.25022549601272,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 138.45211417088285,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 141.66631771577522,
+        "external_compute": []
+      },
+      {
+        "elapsed_s": 144.90135781187564,
+        "external_compute": []
+      }
+    ],
+    "other_active_compute_detected": false
+  },
+  "status": "ok",
+  "metrics": {
+    "startup_s": 139.64349231123924,
+    "first_step_s": 0.22134716203436255,
+    "warmup_s": 0.2779834191314876,
+    "elapsed_s": 0.27094217482954264,
+    "physics_steps_per_s": 472425.5279951466,
+    "rtf": 2362.127639975733,
+    "window_elapsed_s": [
+      0.05234373593702912,
+      0.053228863049298525,
+      0.0574024086818099,
+      0.05410203104838729,
+      0.0538651361130178
+    ],
+    "final_root_height_m": 0.0,
+    "max_root_displacement_m": 0.0,
+    "torch_peak_allocated_bytes": 9055744
+  },
+  "backend_metadata": {
+    "physics": "Genesis rigid solver",
+    "constraint_solver": "Newton",
+    "integrator": "approximate_implicitfast",
+    "solver_profile": "shared",
+    "solver_iterations": 25,
+    "constraint_tolerance": 1.0000000000000002e-06,
+    "line_search_iterations": 50,
+    "line_search_tolerance": 0.01,
+    "noslip_iterations": 0,
+    "substeps": 1,
+    "precision": "float32",
+    "performance_mode": true,
+    "self_collision": false,
+    "joint_limits": true,
+    "fixed_links_merged": true,
+    "inertia_recomputed": false,
+    "collision_meshes": "convex hulls without mesh decimation; engine-native primitive cooking",
+    "armature": 0.0,
+    "joint_damping": 0.0,
+    "joint_friction": 0.0,
+    "friction": 0.8,
+    "friction_combine": "maximum",
+    "renderer": "disabled",
+    "camera_fov_axis": "vertical",
+    "camera_near_m": 0.01,
+    "camera_far_m": 20.0,
+    "camera_motion": null,
+    "camera_orientation": null,
+    "camera_pose_update": null,
+    "rendering_worlds": null,
+    "controller": "native position PD",
+    "joint_names": [
+      "panda_joint1",
+      "panda_joint2",
+      "panda_joint3",
+      "panda_joint4",
+      "panda_joint5",
+      "panda_joint6",
+      "panda_joint7"
+    ],
+    "link_names": [
+      "panda_link0",
+      "panda_link1",
+      "panda_link2",
+      "panda_link3",
+      "panda_link4",
+      "panda_link5",
+      "panda_link6",
+      "panda_link7"
+    ],
+    "link_masses_kg": [
+      2.9000000953674316,
+      2.700000047683716,
+      2.7300000190734863,
+      2.0399999618530273,
+      2.0799999237060547,
+      3.0,
+      1.2999999523162842,
+      1.2100000381469727
+    ],
+    "moving_mass_kg": 15.059999465942383,
+    "num_links": 8,
+    "num_dofs": 7,
+    "fixed_base": true,
+    "end_effector_link": "panda_link7",
+    "end_effector_offset_m": [
+      0.0,
+      0.0,
+      0.212
+    ],
+    "joint_lower_limits": [
+      -2.967099905014038,
+      -1.8325999975204468,
+      -2.967099905014038,
+      -3.1415998935699463,
+      -2.967099905014038,
+      -0.08730000257492065,
+      -2.967099905014038
+    ],
+    "joint_upper_limits": [
+      2.967099905014038,
+      1.8325999975204468,
+      2.967099905014038,
+      0.0,
+      2.967099905014038,
+      3.8222999572753906,
+      2.967099905014038
+    ],
+    "pd": {
+      "kp": 80.0,
+      "kd": 4.0,
+      "effort_limits_nm": [
+        87.0,
+        87.0,
+        87.0,
+        87.0,
+        12.0,
+        12.0,
+        12.0
+      ]
+    },
+    "moving_mass_definition": "All authored masses except fixed panda_link0"
+  },
+  "process_wall_s": 145.31769939186051,
+  "returncode": 0
+}

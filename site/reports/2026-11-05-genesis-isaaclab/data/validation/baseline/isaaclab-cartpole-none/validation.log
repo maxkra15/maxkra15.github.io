@@ -1,0 +1,36 @@
+I: Initializing Version 2.74.0-release.7316+gl.ec99a64b
+I: Client ID: DVZOF27X
+I: ThreadId(02) hub_client::client::Client::new Launching client mode=Shared with_cleaner=false cache_path=None cache_size=None
+I: ThreadId(03) launch self=Launcher { discovery_lock: RwLock { lock: RwLock { inner: File { fd: 55, path: "/tmp/hub-horde.lock", read: false, write: true } } }, mode: Shared, with_cleaner: false, config_file: "/tmp/hub-horde-60FB6FAD.config.json" } cmd="hub" "--mode=shared" "--write-config" "/tmp/hub-horde-60FB6FAD.config.json" "--"
+I: Not using Hub: Hub not found
+I: Successfully created S3 provider for https://omniverse-content-production.s3-us-west-2.amazonaws.com
+I: Using CloudFront http://dcb18d6mfegct.cloudfront.net/, List = No
+[WARNING]: Serving remote assets from the local cache under '/tmp'. Each copy is checked against the server before use; delete the directory to force a full re-download.
+[INFO]: Loading local copy of remote asset 'https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/IsaacLab/Environments/Grid/default_ground_plane_checker_v1/default_ground_plane.usda' from '/tmp/https/omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/IsaacLab/Environments/Grid/default_ground_plane_checker_v1/default_ground_plane.usda'.
+[INFO]: Loading local copy of remote asset 'https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/IsaacLab/Environments/Grid/default_ground_plane_checker_v1/Materials/Textures/default_ground_plane_albedo.png' from '/tmp/https/omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/IsaacLab/Environments/Grid/default_ground_plane_checker_v1/Materials/Textures/default_ground_plane_albedo.png'.
+[INFO]: Loading local copy of remote asset 'https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/IsaacLab/Environments/Grid/default_ground_plane_checker_v1/Materials/Textures/default_ground_plane_roughness.png' from '/tmp/https/omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/IsaacLab/Environments/Grid/default_ground_plane_checker_v1/Materials/Textures/default_ground_plane_roughness.png'.
+[INFO]: Registered backend 'newton' for factory Articulation.
+Status: in urdf_usd_converter._impl.convert.convert at line 63 of /home/horde/simulator-comparison-20261105/.benchmark_sources/mjwarp_env/lib/python3.12/site-packages/urdf_usd_converter/_impl/convert.py -- Converting /tmp/urdf_import_cartpole_o_djjoxr/cartpole_merged.urdf into /tmp/urdf_import_cartpole_o_djjoxr/usdex_cartpole
+Status: in saveStage at line 263 of /builds/omniverse/usd-exchange/usd-exchange/source/core/library/StageAlgo.cpp -- Saving "stage with rootLayer @/tmp/tmpr0zc6gns/Payload/MaterialsLibrary.usdc@, sessionLayer @anon:0x3e6b2f00:MaterialsLibrary-session.usda@" with comment "Material Library for benchmark_cartpole. "
+Status: in exportLayer at line 98 of /builds/omniverse/usd-exchange/usd-exchange/source/core/library/LayerAlgo.cpp -- Exporting "/tmp/urdf_import_cartpole_o_djjoxr/usdex_cartpole/benchmark_cartpole.usdc" with comment ""
+[WARNING]: Stiffness and damping not available joint /benchmark_cartpole/Physics/slider, actuator will be created without gain parameters
+[WARNING]: Stiffness and damping not available joint /benchmark_cartpole/Physics/pole, actuator will be created without gain parameters
+/home/horde/simulator-comparison-20261105/source/isaaclab_newton/isaaclab_newton/cloner/newton_clone_utils.py:139: FutureWarning: Newton shape color replacement is enabled; this workaround will be deprecated in a future release.
+  replace_newton_builder_shape_colors(builder, stage)
+[INFO]: Dispatching MODEL_INIT callbacks
+[INFO]: Finalizing model on device: cuda:0
+Finalize builder took: Last: 0.023924 s, Mean: 0.023924 s, Std: 0.000000 s, N: 1
+[INFO]: Dispatching PHYSICS_READY callbacks
+[INFO]: Configured joint_ordering for '/World/envs/env_[^/]+/Robot' resolves to the backend's native order; no reordering will be applied.
+[INFO]: Simulation parameters for joints in /World/envs/env_[^/]+/Robot:
++---------------------------------------------------------------------------------------------------------------------------+
+|                           Simulation Joint Information (Prim path: /World/envs/env_[^/]+/Robot)                           |
++-------+--------+-----------+---------+----------+-----------------+---------------------+-----------------+---------------+
+| Index | Name   | Stiffness | Damping | Armature | Static Friction |   Position Limits   | Velocity Limits | Effort Limits |
++-------+--------+-----------+---------+----------+-----------------+---------------------+-----------------+---------------+
+|   0   | slider |   0.000   |  0.000  |  0.000   |      0.000      |   [-3.000, 3.000]   |     100.000     |    1.0e+03    |
+|   1   | pole   |   0.000   |  0.000  |  0.000   |      0.000      | [-1.0e+10, 1.0e+10] |     1.0e+06     |    1.0e+03    |
++-------+--------+-----------+---------+----------+-----------------+---------------------+-----------------+---------------+
+Initialize solver took: Last: 1.703460 s, Mean: 1.703460 s, Std: 0.000000 s, N: 1
+CUDA graph took: Last: 0.783881 s, Mean: 0.783881 s, Std: 0.000000 s, N: 1
+[INFO]: SimulationContext cleared

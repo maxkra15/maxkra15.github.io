@@ -1,0 +1,791 @@
+{
+  "schema_version": 2,
+  "assembled_at": "2026-11-05T05:06:50.378290+00:00",
+  "source_commit": "8581c7e102fb76ab1b0c1d85f464690595664cef",
+  "publisher": {
+    "source_commit": "8581c7e102fb76ab1b0c1d85f464690595664cef",
+    "source_archive": "../source.zip",
+    "source_archive_sha256": "d858530a9bc099b6b218001a1e659b9e0649a35b0f7571e28668635caa14497b",
+    "execution_note": "The baseline and Franka suites overlapped on separate L40s on the same 16-vCPU host. Each suite ran cases serially with cpu_threads=8. After Franka finished, separate untimed camera-correspondence audits ran on GPU 0 while baseline learning continued on GPU 1."
+  },
+  "cohorts": [
+    {
+      "name": "baseline",
+      "tasks": [
+        "anymal",
+        "cartpole"
+      ],
+      "source_commit": "622d5c9a2a6ab0921d3ac4d637b31c33f49e327a",
+      "source_archive": "../source-baseline.zip",
+      "source_archive_sha256": "0493c17fdf2618913aece2a8a645bf4495f0d15a17b514b30f7d4a971f3168c7",
+      "runtime_harness_sha256": "2579e4ca836e956784261e09b0e193d63e40d96742ed5b305a76daf0e33970af",
+      "validator_sha256": "b16477593d758dcb41fa5e445cab0e954be6cf732d0055c24833b06290eb2ca9",
+      "isaaclab_upstream_base": "efa240ec39794f5d80430cbe38620626954c2c4d",
+      "cuda_device_uuid": "ba2a7c83-f6f7-e887-63a0-09a770a9122a",
+      "validation_dir": "validation/baseline",
+      "records": [
+        {
+          "path": "runs/3da16686d4b70e31-run.json"
+        },
+        {
+          "path": "runs/715823af3d14ba62-run.json"
+        },
+        {
+          "path": "runs/b425fbffd63090a6-run.json"
+        },
+        {
+          "path": "runs/6631d3a9d0e5cad9-run.json",
+          "camera_sample": "runs/6631d3a9d0e5cad9-camera.png"
+        },
+        {
+          "path": "runs/9399e736af002751-run.json",
+          "camera_sample": "runs/9399e736af002751-camera.png"
+        },
+        {
+          "path": "runs/81cfbf6df8cc7963-run.json",
+          "camera_sample": "runs/81cfbf6df8cc7963-camera.png"
+        },
+        {
+          "path": "runs/5b0f2465f5de6a54-run.json"
+        },
+        {
+          "path": "runs/80f4f8a1c02e8807-run.json"
+        },
+        {
+          "path": "runs/5c8e3c1b74bbf535-run.json"
+        },
+        {
+          "path": "runs/ac520da64595375e-run.json"
+        },
+        {
+          "path": "runs/eb578d2ee9a08022-run.json"
+        },
+        {
+          "path": "runs/b72c80c937edd127-run.json"
+        },
+        {
+          "path": "runs/77e6476b47e67473-run.json"
+        },
+        {
+          "path": "runs/2f91dda28fbf5e10-run.json"
+        },
+        {
+          "path": "runs/046540956f1bd08a-run.json"
+        },
+        {
+          "path": "runs/6818429fe4fb0ad8-run.json"
+        },
+        {
+          "path": "runs/84d362e0741ac919-run.json"
+        },
+        {
+          "path": "runs/1d9f81e9f7e160d8-run.json"
+        },
+        {
+          "path": "runs/af94ef92d634813f-run.json",
+          "camera_sample": "runs/af94ef92d634813f-camera.png"
+        },
+        {
+          "path": "runs/6bb20da815056c16-run.json",
+          "camera_sample": "runs/6bb20da815056c16-camera.png"
+        },
+        {
+          "path": "runs/cfc20bc6aa511776-run.json",
+          "camera_sample": "runs/cfc20bc6aa511776-camera.png"
+        },
+        {
+          "path": "runs/9328c646d3103bbb-run.json"
+        },
+        {
+          "path": "runs/db936f6a8781bb85-run.json"
+        },
+        {
+          "path": "runs/978a030714e625b3-run.json"
+        },
+        {
+          "path": "runs/a1788ea9ff27bc5f-run.json",
+          "camera_sample": "runs/a1788ea9ff27bc5f-camera.png"
+        },
+        {
+          "path": "runs/7831230a0b15ef02-run.json",
+          "camera_sample": "runs/7831230a0b15ef02-camera.png"
+        },
+        {
+          "path": "runs/ef4854ee259eb09e-run.json",
+          "camera_sample": "runs/ef4854ee259eb09e-camera.png"
+        },
+        {
+          "path": "runs/80f33f66c4f81501-run.json"
+        },
+        {
+          "path": "runs/10f65419f3863895-run.json"
+        },
+        {
+          "path": "runs/b3f11e0d0f011e05-run.json"
+        },
+        {
+          "path": "runs/f3904edcd331ee45-run.json"
+        },
+        {
+          "path": "runs/6dbdff4f75364f32-run.json"
+        },
+        {
+          "path": "runs/e0736e259080bcf0-run.json"
+        },
+        {
+          "path": "runs/fcd28cf88ef0d790-run.json"
+        },
+        {
+          "path": "runs/ca8ea88ebdc5fb26-run.json"
+        },
+        {
+          "path": "runs/e2c87788825117d8-run.json"
+        },
+        {
+          "path": "runs/6b8ee0fcdc59354d-run.json"
+        },
+        {
+          "path": "runs/5bb49f37bde650a7-run.json"
+        },
+        {
+          "path": "runs/be2c29b7e3be0431-run.json"
+        },
+        {
+          "path": "runs/8da3e1c463e6f548-run.json",
+          "camera_sample": "runs/8da3e1c463e6f548-camera.png"
+        },
+        {
+          "path": "runs/171be7ecfcc5b42b-run.json",
+          "camera_sample": "runs/171be7ecfcc5b42b-camera.png"
+        },
+        {
+          "path": "runs/fed8c44875729850-run.json",
+          "camera_sample": "runs/fed8c44875729850-camera.png"
+        },
+        {
+          "path": "runs/10bfe0fc700aec63-run.json"
+        },
+        {
+          "path": "runs/4012b724b400d3f1-run.json"
+        },
+        {
+          "path": "runs/d43fec5d10d5c8ae-run.json"
+        },
+        {
+          "path": "runs/3dd618393b7691f9-run.json",
+          "camera_sample": "runs/3dd618393b7691f9-camera.png"
+        },
+        {
+          "path": "runs/855d4470fca5972b-run.json",
+          "camera_sample": "runs/855d4470fca5972b-camera.png"
+        },
+        {
+          "path": "runs/9ae0913817c1832c-run.json",
+          "camera_sample": "runs/9ae0913817c1832c-camera.png"
+        },
+        {
+          "path": "runs/d027b8ec83f09ffc-run.json"
+        },
+        {
+          "path": "runs/9cda01ae15594c0d-run.json"
+        },
+        {
+          "path": "runs/e79be3eac24a6f75-run.json"
+        },
+        {
+          "path": "runs/16adbc95e6f8f4d5-run.json"
+        },
+        {
+          "path": "runs/9e07eaa71626fbfb-run.json"
+        },
+        {
+          "path": "runs/ead9503385cb548a-run.json"
+        },
+        {
+          "path": "runs/22ec18828e227740-run.json"
+        },
+        {
+          "path": "runs/99944eb70a10fcda-run.json"
+        },
+        {
+          "path": "runs/fdafec9e1a46d2fa-run.json"
+        },
+        {
+          "path": "runs/49ddc10ad7db81ef-run.json"
+        },
+        {
+          "path": "runs/3939b5186144b15a-run.json"
+        },
+        {
+          "path": "runs/37a48c2de9145a9e-run.json"
+        },
+        {
+          "path": "runs/382d452f95f0543c-run.json",
+          "camera_sample": "runs/382d452f95f0543c-camera.png"
+        },
+        {
+          "path": "runs/eaf5d6cb2ec23064-run.json",
+          "camera_sample": "runs/eaf5d6cb2ec23064-camera.png"
+        },
+        {
+          "path": "runs/8216907d41631c92-run.json",
+          "camera_sample": "runs/8216907d41631c92-camera.png"
+        },
+        {
+          "path": "runs/9d29d2b093b63b52-run.json"
+        },
+        {
+          "path": "runs/a10d886a8d352115-run.json"
+        },
+        {
+          "path": "runs/c3b4d775dc1d26ac-run.json"
+        },
+        {
+          "path": "runs/2bc192ac5b13a1f0-run.json",
+          "camera_sample": "runs/2bc192ac5b13a1f0-camera.png"
+        },
+        {
+          "path": "runs/8aabeb5f7c1591dd-run.json",
+          "camera_sample": "runs/8aabeb5f7c1591dd-camera.png"
+        },
+        {
+          "path": "runs/4c219359e905c744-run.json",
+          "camera_sample": "runs/4c219359e905c744-camera.png"
+        },
+        {
+          "path": "runs/aa9e7a3df46eb379-run.json"
+        },
+        {
+          "path": "runs/039118a56c73a83a-run.json"
+        },
+        {
+          "path": "runs/44620bfd19e18807-run.json"
+        },
+        {
+          "path": "runs/25fa8fbeb7c021d6-run.json"
+        },
+        {
+          "path": "runs/6bf2f78b7d6930dc-run.json"
+        },
+        {
+          "path": "runs/fae14c88151579d3-run.json"
+        },
+        {
+          "path": "runs/48a5fdc338a6e491-run.json"
+        },
+        {
+          "path": "runs/0a34edd69fa482b5-run.json"
+        },
+        {
+          "path": "runs/8a835b4e62994465-run.json"
+        },
+        {
+          "path": "runs/bfeb26fada51b95e-run.json"
+        },
+        {
+          "path": "runs/57f02e23caaaab54-run.json"
+        },
+        {
+          "path": "runs/a8b870a35a32e1c0-run.json"
+        },
+        {
+          "path": "runs/d0a11cec10e662ce-run.json",
+          "camera_sample": "runs/d0a11cec10e662ce-camera.png"
+        },
+        {
+          "path": "runs/8f29083c0019ce52-run.json",
+          "camera_sample": "runs/8f29083c0019ce52-camera.png"
+        },
+        {
+          "path": "runs/8478afb9fdd83772-run.json",
+          "camera_sample": "runs/8478afb9fdd83772-camera.png"
+        }
+      ],
+      "accepted_validators": [
+        "genesis-anymal-none/validation.json",
+        "genesis-anymal-rgb/validation.json",
+        "genesis-cartpole-none/validation.json",
+        "genesis-cartpole-rgb/validation.json",
+        "isaaclab-anymal-none/validation.json",
+        "isaaclab-anymal-rgb/validation.json",
+        "isaaclab-cartpole-none/validation.json",
+        "isaaclab-cartpole-rgb/validation.json"
+      ]
+    },
+    {
+      "name": "franka",
+      "tasks": [
+        "franka"
+      ],
+      "source_commit": "28abc82c3847ac70e20e1926908ac755a5d4bfbd",
+      "source_archive": "../source-franka.zip",
+      "source_archive_sha256": "b6c52c2abfa4ba4391458506ebdff6db3e404cb9652e5c88083e34a96b9eaf16",
+      "runtime_harness_sha256": "634c1fcc57ac70c130f95b36899d8f2fa7e1484d1db21ca8bdbab7c3b3669cc4",
+      "validator_sha256": "85dc21109eb37b4beaa60c3dff3de5d08fe3ccd0892b1c99c60ac0a1dbac70b8",
+      "isaaclab_upstream_base": "efa240ec39794f5d80430cbe38620626954c2c4d",
+      "cuda_device_uuid": "6b0d678c-e620-c957-931d-e2308d31bb87",
+      "validation_dir": "validation/franka",
+      "records": [
+        {
+          "path": "runs/8d1076722d00f696-run.json"
+        },
+        {
+          "path": "runs/08724a63d568cf80-run.json"
+        },
+        {
+          "path": "runs/82041966eb97692d-run.json"
+        },
+        {
+          "path": "runs/8761ce48a9763b4b-run.json",
+          "camera_sample": "runs/8761ce48a9763b4b-camera.png"
+        },
+        {
+          "path": "runs/abb2e0519aa1692f-run.json",
+          "camera_sample": "runs/abb2e0519aa1692f-camera.png"
+        },
+        {
+          "path": "runs/4c38f32bff9be82a-run.json",
+          "camera_sample": "runs/4c38f32bff9be82a-camera.png"
+        },
+        {
+          "path": "runs/611b07e3269c79c9-run.json"
+        },
+        {
+          "path": "runs/e75ba9362f830868-run.json"
+        },
+        {
+          "path": "runs/0273718495c4f7fa-run.json"
+        },
+        {
+          "path": "runs/fbb214ed9daa6ec9-run.json"
+        },
+        {
+          "path": "runs/be5cf4a916948439-run.json"
+        },
+        {
+          "path": "runs/f6d3a29bf3daa26b-run.json"
+        },
+        {
+          "path": "runs/60a5d573bb427da9-run.json"
+        },
+        {
+          "path": "runs/298b67d2827977f6-run.json"
+        },
+        {
+          "path": "runs/0957657309895af0-run.json"
+        },
+        {
+          "path": "runs/c706a2c42c1693eb-run.json"
+        },
+        {
+          "path": "runs/8d10ea21f347ac87-run.json"
+        },
+        {
+          "path": "runs/d468629499420ba2-run.json"
+        },
+        {
+          "path": "runs/71ef21c16ca52b09-run.json",
+          "camera_sample": "runs/71ef21c16ca52b09-camera.png"
+        },
+        {
+          "path": "runs/ba98c3c39ea9666d-run.json",
+          "camera_sample": "runs/ba98c3c39ea9666d-camera.png"
+        },
+        {
+          "path": "runs/dda1d0ed89a66c94-run.json",
+          "camera_sample": "runs/dda1d0ed89a66c94-camera.png"
+        },
+        {
+          "path": "runs/989fc3deee55079a-run.json"
+        },
+        {
+          "path": "runs/4036ef6d42786ecf-run.json"
+        },
+        {
+          "path": "runs/9af5c32ded1c4689-run.json"
+        },
+        {
+          "path": "runs/11ff325d4a6d14b6-run.json",
+          "camera_sample": "runs/11ff325d4a6d14b6-camera.png"
+        },
+        {
+          "path": "runs/a99bfc778dfeecf7-run.json",
+          "camera_sample": "runs/a99bfc778dfeecf7-camera.png"
+        },
+        {
+          "path": "runs/a98067b221b8a9ec-run.json",
+          "camera_sample": "runs/a98067b221b8a9ec-camera.png"
+        },
+        {
+          "path": "runs/698efd5a32fcbee5-run.json"
+        },
+        {
+          "path": "runs/7cedb8f91a63503f-run.json"
+        },
+        {
+          "path": "runs/d8b75d8fb929df7b-run.json"
+        },
+        {
+          "path": "runs/5fd0eca51f6205eb-run.json"
+        },
+        {
+          "path": "runs/247a454821bfc4ae-run.json"
+        },
+        {
+          "path": "runs/6d1fd877919e0ea2-run.json"
+        },
+        {
+          "path": "runs/0cf856e801f88c2f-run.json"
+        },
+        {
+          "path": "runs/2387c21b16849a57-run.json"
+        },
+        {
+          "path": "runs/13049fcb71a94769-run.json"
+        },
+        {
+          "path": "runs/2d4dc0a6a4cee076-run.json"
+        },
+        {
+          "path": "runs/9f45dde18563fb13-run.json"
+        },
+        {
+          "path": "runs/2f9751657939ea2a-run.json"
+        },
+        {
+          "path": "runs/eb0232227ce6d41f-run.json",
+          "camera_sample": "runs/eb0232227ce6d41f-camera.png"
+        },
+        {
+          "path": "runs/57a44da7bab6b802-run.json",
+          "camera_sample": "runs/57a44da7bab6b802-camera.png"
+        },
+        {
+          "path": "runs/fa455c17a6efda3d-run.json",
+          "camera_sample": "runs/fa455c17a6efda3d-camera.png"
+        }
+      ],
+      "accepted_validators": [
+        "genesis-none/validation.json",
+        "genesis-rgb/validation.json",
+        "isaaclab-none/validation.json",
+        "isaaclab-rgb/validation.json"
+      ]
+    }
+  ],
+  "accepted_runs": 126,
+  "matched_groups": 21,
+  "recorded_source_revisions": {
+    "isaaclab": "efa240ec39794f5d80430cbe38620626954c2c4d",
+    "genesis": "969c3bd1449d0f0c79effd7b6a72614ed46ba6e7",
+    "newton": "42f7def118c2c4299ce493457bafd4e8a22a696e"
+  },
+  "excluded_attempts": 0,
+  "shared_host": {
+    "platform": "Linux-6.8.0-142-generic-x86_64-with-glibc2.39",
+    "cpu": "Architecture:                            x86_64\nCPU op-mode(s):                          32-bit, 64-bit\nAddress sizes:                           40 bits physical, 57 bits virtual\nByte Order:                              Little Endian\nCPU(s):                                  16\nOn-line CPU(s) list:                     0-15\nVendor ID:                               GenuineIntel\nModel name:                              Intel Xeon Processor (Icelake)\nCPU family:                              6\nModel:                                   134\nThread(s) per core:                      1\nCore(s) per socket:                      4\nSocket(s):                               4\nStepping:                                0\nBogoMIPS:                                5599.99\nFlags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc pebs bts rep_good nopl xtopology cpuid tsc_known_freq pni pclmulqdq dtes64 vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch cpuid_fault ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves wbnoinvd arat vnmi avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq la57 rdpid fsrm md_clear arch_capabilities\nVirtualization:                          VT-x\nHypervisor vendor:                       KVM\nVirtualization type:                     full\nL1d cache:                               512 KiB (16 instances)\nL1i cache:                               512 KiB (16 instances)\nL2 cache:                                64 MiB (16 instances)\nL3 cache:                                64 MiB (4 instances)\nNUMA node(s):                            1\nNUMA node0 CPU(s):                       0-15\nVulnerability Gather data sampling:      Not affected\nVulnerability Indirect target selection: Mitigation; Aligned branch/return thunks\nVulnerability Itlb multihit:             Not affected\nVulnerability L1tf:                      Not affected\nVulnerability Mds:                       Not affected\nVulnerability Meltdown:                  Not affected\nVulnerability Mmio stale data:           Vulnerable: Clear CPU buffers attempted, no microcode; SMT Host state unknown\nVulnerability Reg file data sampling:    Vulnerable: No microcode\nVulnerability Retbleed:                  Not affected\nVulnerability Spec rstack overflow:      Not affected\nVulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl\nVulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization\nVulnerability Spectre v2:                Mitigation; Enhanced / Automatic IBRS; IBPB conditional; PBRSB-eIBRS Not affected; BHI SW loop, KVM SW loop\nVulnerability Srbds:                     Not affected\nVulnerability Tsa:                       Not affected\nVulnerability Tsx async abort:           Mitigation; TSX disabled\nVulnerability Vmscape:                   Not affected",
+    "gpu": "NVIDIA L40, GPU-6b0d678c-e620-c957-931d-e2308d31bb87, 595.58.03, 49140 MiB, 300.00 W\nNVIDIA L40, GPU-ba2a7c83-f6f7-e887-63a0-09a770a9122a, 595.58.03, 49140 MiB, 300.00 W",
+    "gpu_processes_before": "4239, /usr/lib/x86_64-linux-gnu/dcv/dcvagent, 903 MiB",
+    "gpu_utilization_before": "0 %, 38, 77.72 W\n0 %, 43, 87.19 W",
+    "gpu_processes_after": "4239, /usr/lib/x86_64-linux-gnu/dcv/dcvagent, 903 MiB"
+  },
+  "derivatives_sha256": {
+    "data/cohorts.json": "872071583937d83bf9a2bc3879e06a7fe31a0197796f04aeac6626ba30729e49",
+    "data/excluded_attempts.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "data/measurements.csv": "6b0b6bd5cefac7384a7a5d70ff6d7842696b0892be1f05ce09ae4eaef24feb10",
+    "data/measurements.json": "f9143c50cd0bc82412288189c18784efc95b1fbebc46eec7a6aa158f4535f34b",
+    "data/runs/0273718495c4f7fa-run.json": "0273718495c4f7fae15a26395c073439219ee37c532553ee5c18343592ab9b1f",
+    "data/runs/039118a56c73a83a-run.json": "039118a56c73a83a13920463510596117dcc688a4ed712b9d0865f4f60a664cb",
+    "data/runs/046540956f1bd08a-run.json": "046540956f1bd08a659f2747cb536a08c0f62e8b7b497feb4af95abb848594d2",
+    "data/runs/08724a63d568cf80-run.json": "08724a63d568cf8046a437d2311590580c30298ec6ff9f3f23197ab5cd2fd339",
+    "data/runs/0957657309895af0-run.json": "0957657309895af09a1e6e46893549491eaf476657dc910bc5b27a9e31c5453a",
+    "data/runs/0a34edd69fa482b5-run.json": "0a34edd69fa482b525c7c3a3c6b22cd261f1fcda9dd85ca24fccd09cb693dfae",
+    "data/runs/0cf856e801f88c2f-run.json": "0cf856e801f88c2f5f95e428f0e55a91c3eef95fb73baa201aacfc09195a0adb",
+    "data/runs/10bfe0fc700aec63-run.json": "10bfe0fc700aec6313ed4ae698ec030bf81f04173842a6854baf379ebf73cf5e",
+    "data/runs/10f65419f3863895-run.json": "10f65419f3863895fc2f1ea0b2663f94feebb90f347af56b75938ff03225d518",
+    "data/runs/11ff325d4a6d14b6-camera.png": "78b8c0b4626547917862820ca727b2afc842a00f760a8f3cc3ce133e6293e9d9",
+    "data/runs/11ff325d4a6d14b6-run.json": "11ff325d4a6d14b6033cd439cf0996ea591f344ab931edf121944d80c438a4e2",
+    "data/runs/13049fcb71a94769-run.json": "13049fcb71a9476904c1e8555baef42d88b83fcf719feb5fb219d6d0dc9061b8",
+    "data/runs/16adbc95e6f8f4d5-run.json": "16adbc95e6f8f4d58631603dbc43d925d3d4b260d72bc28397496f1169c98d48",
+    "data/runs/171be7ecfcc5b42b-camera.png": "f914cba2924468e26ba81875f91890f32e30afe2a3adb887aa5ed7c6e944f542",
+    "data/runs/171be7ecfcc5b42b-run.json": "171be7ecfcc5b42b61c516473a65d2d9c7c9244142db6331b7d93c5498deb979",
+    "data/runs/1d9f81e9f7e160d8-run.json": "1d9f81e9f7e160d8392e2391cbcf14f47001e55f04d9a295f811ee1037e09b6f",
+    "data/runs/22ec18828e227740-run.json": "22ec18828e227740d90229c23eb48af8fe5a05b4d230f7d8d69c3df54156d7d3",
+    "data/runs/2387c21b16849a57-run.json": "2387c21b16849a57df35caa22af064279f4caec7d1459cffa640982b5f22ba9b",
+    "data/runs/247a454821bfc4ae-run.json": "247a454821bfc4aedeafa5071bb4a3893cabbcd83ee41615047a527b32a0e226",
+    "data/runs/25fa8fbeb7c021d6-run.json": "25fa8fbeb7c021d6230ad6502bc22719a55feefbf4eed494bfc44335030192b9",
+    "data/runs/298b67d2827977f6-run.json": "298b67d2827977f66b533fc23f6613e62060781b5fb5a5edc792f7454b306948",
+    "data/runs/2bc192ac5b13a1f0-camera.png": "43c9641f101ffeb7c7d78b45fd4eb5281a5198342d3794b04863be0cc528e514",
+    "data/runs/2bc192ac5b13a1f0-run.json": "2bc192ac5b13a1f0c34fc329da1ecf9787e35edca8e707aefb683e606b4ec8cc",
+    "data/runs/2d4dc0a6a4cee076-run.json": "2d4dc0a6a4cee0765f1897dc7660a2ffa0c1f5fba1669fb03bb11616fb7289fd",
+    "data/runs/2f91dda28fbf5e10-run.json": "2f91dda28fbf5e10a88f60d48faef701e8523886858d6c0b10d3b549166a2f6e",
+    "data/runs/2f9751657939ea2a-run.json": "2f9751657939ea2a8fee54da9fddd2ba4dde7749dc24dc5e6cf32333fe98f01a",
+    "data/runs/37a48c2de9145a9e-run.json": "37a48c2de9145a9e0087b7fd28d54c4f97994cc9e6fef60df270cafad35b16d3",
+    "data/runs/382d452f95f0543c-camera.png": "d0d386e00ae6fdac6d66d702db61004ff3f1977e46eae6933b2dcef6ea6592ca",
+    "data/runs/382d452f95f0543c-run.json": "382d452f95f0543c2336192ee754ded1230babb9227b8e023ae388c9b636ceb2",
+    "data/runs/3939b5186144b15a-run.json": "3939b5186144b15a834aead6bc67e581fb13ffffbb142dd55ebc3ec2635430ae",
+    "data/runs/3da16686d4b70e31-run.json": "3da16686d4b70e3186a3825cef55545849224ffd9ad1d4cf67694cb58d972c64",
+    "data/runs/3dd618393b7691f9-camera.png": "2f35bbf669395f2b2d54ff6abbff3c4553bb4f768bd415007cceed0aea1133b3",
+    "data/runs/3dd618393b7691f9-run.json": "3dd618393b7691f9f6caa52055d9a781a68032c08c1dc6a74acfc724c5c388ae",
+    "data/runs/4012b724b400d3f1-run.json": "4012b724b400d3f1d842f936d1d4d99eaa1082b12192e23033a908418f6ef168",
+    "data/runs/4036ef6d42786ecf-run.json": "4036ef6d42786ecf0640a565451b03244d38a15d22b9bd184cbd082d72947876",
+    "data/runs/44620bfd19e18807-run.json": "44620bfd19e18807581ad13235a9d96390396376166e54775ad1b519275b41a4",
+    "data/runs/48a5fdc338a6e491-run.json": "48a5fdc338a6e491011fe83c191d262c073f830396594864a297dfc6c1116409",
+    "data/runs/49ddc10ad7db81ef-run.json": "49ddc10ad7db81ef63cf2eb1fbf0d3f6765d811c03ddade28f1e15f929f2f10d",
+    "data/runs/4c219359e905c744-camera.png": "c6f721945643df8b38d2886f2d408f35c3d1d0a460def32c3ada655180eab72d",
+    "data/runs/4c219359e905c744-run.json": "4c219359e905c74461d1d80ceb506decf95ee23c2c11f5002334658514e9b2b0",
+    "data/runs/4c38f32bff9be82a-camera.png": "b7ea5fc84b34422b859442129d2794ff3bee7913d7fe5962f2126b6f3cb55e0d",
+    "data/runs/4c38f32bff9be82a-run.json": "4c38f32bff9be82a8dc14661474a16a0ede992c55919a68e843a527e2cca8d1a",
+    "data/runs/57a44da7bab6b802-camera.png": "c86584ae07896ad5e0230b04300869900655d69f31eb05096b22ac5266e4b493",
+    "data/runs/57a44da7bab6b802-run.json": "57a44da7bab6b80239336f76e5f0bebd176f006e374c054c0d0283f900f1861d",
+    "data/runs/57f02e23caaaab54-run.json": "57f02e23caaaab54e01b4ebe1cc924fe7b2e7e9468ac0eb0918d3c75df9fcef3",
+    "data/runs/5b0f2465f5de6a54-run.json": "5b0f2465f5de6a546d8b4b95c4d374f886a995106d87e92b90e21d94c413e1be",
+    "data/runs/5bb49f37bde650a7-run.json": "5bb49f37bde650a7b828b219140b86ddf02b5c0b4b41bcbb31f43c3bd325c142",
+    "data/runs/5c8e3c1b74bbf535-run.json": "5c8e3c1b74bbf5358ba38a492d6897a7484eef69ee83cc2c51188ad009b65971",
+    "data/runs/5fd0eca51f6205eb-run.json": "5fd0eca51f6205eb9dc3fcbd736ef5b8da6eaafe7533a503044fcc7c3eba6d9b",
+    "data/runs/60a5d573bb427da9-run.json": "60a5d573bb427da94f9707d74bb42ef7d9eea293d106c060f36785e10d0ac408",
+    "data/runs/611b07e3269c79c9-run.json": "611b07e3269c79c9567487c378989170921bc56816ccb1bb77fb6e01b1942a2c",
+    "data/runs/6631d3a9d0e5cad9-camera.png": "6a64161a2740a0d61d5bceafcb9e65ce1e7c56273da6e0bcd74acf4228564596",
+    "data/runs/6631d3a9d0e5cad9-run.json": "6631d3a9d0e5cad9ed02c0ca697804737fb9fd7a8d2bf57f1ae95b973744e604",
+    "data/runs/6818429fe4fb0ad8-run.json": "6818429fe4fb0ad81710fa0750c495884125a1017427befb04c5884c7b4f50c7",
+    "data/runs/698efd5a32fcbee5-run.json": "698efd5a32fcbee54b39117d80b1387be745ec35fa8e21912c9fb23bbf774cef",
+    "data/runs/6b8ee0fcdc59354d-run.json": "6b8ee0fcdc59354d885e715108e9867e1830b1050564cfb53955c6539387c445",
+    "data/runs/6bb20da815056c16-camera.png": "5c18ce882349678d26c27ae8b3050ac4830825137c8df71937af6c277e11347f",
+    "data/runs/6bb20da815056c16-run.json": "6bb20da815056c16eb732cd00316ed6972b09121708274a2cd3dbaf55791041a",
+    "data/runs/6bf2f78b7d6930dc-run.json": "6bf2f78b7d6930dca3340f37c4b67afd92e96c7bdd4f39f7ca82f15258d7a158",
+    "data/runs/6d1fd877919e0ea2-run.json": "6d1fd877919e0ea2070691bbb162c779af4aff5ddccb69f8d7d5210838024ce6",
+    "data/runs/6dbdff4f75364f32-run.json": "6dbdff4f75364f3276949b703ed266d72e2c3e39253af1f4ed571385c87d4659",
+    "data/runs/715823af3d14ba62-run.json": "715823af3d14ba6247a44c322b16d11126b78c8d917155d4f7d4263da35eba0f",
+    "data/runs/71ef21c16ca52b09-camera.png": "784cf6803c206d401d3f30c3d3d08790149728e38f9b4da2abdc07eabdb9ac5e",
+    "data/runs/71ef21c16ca52b09-run.json": "71ef21c16ca52b09dfcb95a18ec605e21c90b25c0780e99f3dd7cc686214bd69",
+    "data/runs/77e6476b47e67473-run.json": "77e6476b47e67473b7a4f440840eee8e640e836e0a1ce51c7e19006875b9ac55",
+    "data/runs/7831230a0b15ef02-camera.png": "f914cba2924468e26ba81875f91890f32e30afe2a3adb887aa5ed7c6e944f542",
+    "data/runs/7831230a0b15ef02-run.json": "7831230a0b15ef027245ff878ebf6348cf7ab41830d5962c3fbcac517d7dd145",
+    "data/runs/7cedb8f91a63503f-run.json": "7cedb8f91a63503f96bee251e6d9b7c19f520530ae5e193de66bbb18e50e472a",
+    "data/runs/80f33f66c4f81501-run.json": "80f33f66c4f81501af7c8cf9c82f7d0a844fc8ae9d7ae1f759d89780e750af67",
+    "data/runs/80f4f8a1c02e8807-run.json": "80f4f8a1c02e88074a7d98e7dbab79d9b3c6a0223b96b35b9239c12a5d749cbc",
+    "data/runs/81cfbf6df8cc7963-camera.png": "e82d4fd78b1d8d372799eb2fd2ed552d2a43e98ed0f7221d82540d6c5395206c",
+    "data/runs/81cfbf6df8cc7963-run.json": "81cfbf6df8cc796313fec6425d024b9029b648fb309a46af68e9084e55224a6d",
+    "data/runs/82041966eb97692d-run.json": "82041966eb97692d0e2a5e16c7f850126670c44a688107677ed7316411029fdc",
+    "data/runs/8216907d41631c92-camera.png": "9e00337bb0bdf5b4142ed37c651b35d6a6b9588aa257c221387322e63aefee5e",
+    "data/runs/8216907d41631c92-run.json": "8216907d41631c9292b483dd8f78604e8b2787933ff78493c05896f68342ee93",
+    "data/runs/8478afb9fdd83772-camera.png": "fd1c42890cd6c5d9304dee62defd79972e9fdd8321c0e619998957839006ccae",
+    "data/runs/8478afb9fdd83772-run.json": "8478afb9fdd83772d0dc74c74dd731b290acd1ca475e19bcc8be432491916724",
+    "data/runs/84d362e0741ac919-run.json": "84d362e0741ac9190cbadf2b6079f4f8cf4f129b9aa06eaa2a937d0a29c8d4bd",
+    "data/runs/855d4470fca5972b-camera.png": "f311dd26081b12bf20de510d4b6593185b83b17f811a4f6b599499cc533bbd1a",
+    "data/runs/855d4470fca5972b-run.json": "855d4470fca5972b4bf43b5239807f0549e5579e903433dd3eb7cfc5dc71c5ef",
+    "data/runs/8761ce48a9763b4b-camera.png": "784cf6803c206d401d3f30c3d3d08790149728e38f9b4da2abdc07eabdb9ac5e",
+    "data/runs/8761ce48a9763b4b-run.json": "8761ce48a9763b4bc2e99b98b050b89defe75031912ede89f9b43dfa784bb8cc",
+    "data/runs/8a835b4e62994465-run.json": "8a835b4e62994465f6b6fa1094e1a7952564d7a8a25fbff2b4a2605489a12516",
+    "data/runs/8aabeb5f7c1591dd-camera.png": "d11dbd294b8cd288b13da65b6bd9f200f6c1997f36e2ac45e05382bc20e7ccab",
+    "data/runs/8aabeb5f7c1591dd-run.json": "8aabeb5f7c1591dd7badfab0b5cc93804227f70ac63254ffab0d6d24ec5211b9",
+    "data/runs/8d1076722d00f696-run.json": "8d1076722d00f696f3bf207f4e09a0076582e826498b92430f6f3abf42943b3f",
+    "data/runs/8d10ea21f347ac87-run.json": "8d10ea21f347ac87a952afe82ca8a19ac6345ce3e2b760a1f093bf54e9f303a8",
+    "data/runs/8da3e1c463e6f548-camera.png": "36b5c8132140ede3133d5fa626a7333e0bea9b0b527b6322737798831891e411",
+    "data/runs/8da3e1c463e6f548-run.json": "8da3e1c463e6f5484429fc469fad1a329bf92f91deae29a6ee2ee4d1a50d0495",
+    "data/runs/8f29083c0019ce52-camera.png": "8afeff45976b90b8b53e42ae6716ba8c60534cf4f9c77e23a9d498e4e1ee432e",
+    "data/runs/8f29083c0019ce52-run.json": "8f29083c0019ce5241f82fc69e40964cb58f7196de2629772ce10c77f5a8a467",
+    "data/runs/9328c646d3103bbb-run.json": "9328c646d3103bbb32c0ca33efeb12dc6fc87298c08ba781e3984d3d00d3ecea",
+    "data/runs/9399e736af002751-camera.png": "5c18ce882349678d26c27ae8b3050ac4830825137c8df71937af6c277e11347f",
+    "data/runs/9399e736af002751-run.json": "9399e736af002751e1ab9ba639ef24b00619c79bbdb614877f1c2e4d242a46eb",
+    "data/runs/978a030714e625b3-run.json": "978a030714e625b3711e4104a2bd72d2de77b85f6d2028c05d58212e1d55d71c",
+    "data/runs/989fc3deee55079a-run.json": "989fc3deee55079ac617424e9bd9e8c875158ccd6041ad39b63765194f79fe85",
+    "data/runs/99944eb70a10fcda-run.json": "99944eb70a10fcda6c61df7636843766a2accc5956718ad3bd695cbdd68cb86e",
+    "data/runs/9ae0913817c1832c-camera.png": "a6ff35737f5ec282a1f4bd0ed3f5d7cbeb51aeb760d141cce80724de3a9ba5b7",
+    "data/runs/9ae0913817c1832c-run.json": "9ae0913817c1832cab3bad545b2a8aa300e0e0022c162781b7e1802bb12e9565",
+    "data/runs/9af5c32ded1c4689-run.json": "9af5c32ded1c46892940ca0e475a28408ef3eae8722489a64760c928593728fb",
+    "data/runs/9cda01ae15594c0d-run.json": "9cda01ae15594c0d125292ce2cf2540139f6d99b5f994c016d769e47c9651c63",
+    "data/runs/9d29d2b093b63b52-run.json": "9d29d2b093b63b52174be396cd3879d4adccb4113715f31cd3cf00026bae05f6",
+    "data/runs/9e07eaa71626fbfb-run.json": "9e07eaa71626fbfb73f1332651ef92ba46ca89979b5192fca266a8c58a470e05",
+    "data/runs/9f45dde18563fb13-run.json": "9f45dde18563fb13403610cc78cff890bc51d59574ba4d19edd47678ec3c04e7",
+    "data/runs/a10d886a8d352115-run.json": "a10d886a8d3521155864dc73f92c1c4c21a6d5deb9d06c1d38f5b008a548a021",
+    "data/runs/a1788ea9ff27bc5f-camera.png": "36b5c8132140ede3133d5fa626a7333e0bea9b0b527b6322737798831891e411",
+    "data/runs/a1788ea9ff27bc5f-run.json": "a1788ea9ff27bc5fb6051b2aa2e0f6c92a4e7a583cbaceba1146312038a34155",
+    "data/runs/a8b870a35a32e1c0-run.json": "a8b870a35a32e1c0a5565aee2f3fc9e9a080764e7947fb989e1a138b003b3b5e",
+    "data/runs/a98067b221b8a9ec-camera.png": "a06a594325ee7511608b82589d2731d43e5a6936528bda55703a63613fc881f9",
+    "data/runs/a98067b221b8a9ec-run.json": "a98067b221b8a9eceb3c7346772686e2a0374b33b7a92599b1c63646fcc0d357",
+    "data/runs/a99bfc778dfeecf7-camera.png": "1b887b9e8cf31cb59ea796b0df06b82b9f20f0818832f15238b74d7dceb3896a",
+    "data/runs/a99bfc778dfeecf7-run.json": "a99bfc778dfeecf720f60bbce18ea8e2226a97f986774c06bff195b3fb40164a",
+    "data/runs/aa9e7a3df46eb379-run.json": "aa9e7a3df46eb3793fe38847b34befa229e6f2f45f5b18a7b6b92a590cb34223",
+    "data/runs/abb2e0519aa1692f-camera.png": "c82b9fc7369e41b1203e87821f9371e20ce8b7a5b1bc6a4124ab8a817ed729b4",
+    "data/runs/abb2e0519aa1692f-run.json": "abb2e0519aa1692f4fc434146a7779cf2612c884e0fd63c3a7c7afd6f9b1ea5a",
+    "data/runs/ac520da64595375e-run.json": "ac520da64595375e28f123573f04a87b997591414ce22eb65cb133f6c7ff7842",
+    "data/runs/af94ef92d634813f-camera.png": "6a64161a2740a0d61d5bceafcb9e65ce1e7c56273da6e0bcd74acf4228564596",
+    "data/runs/af94ef92d634813f-run.json": "af94ef92d634813fa2cae816eb42454df49c27655fb9cb431d0e87fbc869c66a",
+    "data/runs/b3f11e0d0f011e05-run.json": "b3f11e0d0f011e054f777e1cec7b122c3892422d42d65b8ad024a33fb56bc138",
+    "data/runs/b425fbffd63090a6-run.json": "b425fbffd63090a602f582879d5aaa509c567f38d415c22f13c4ebe886dc6c0f",
+    "data/runs/b72c80c937edd127-run.json": "b72c80c937edd127930462b5083f8e6ff5da764a2f8ea45cceb791a6f9d43d1a",
+    "data/runs/ba98c3c39ea9666d-camera.png": "c82b9fc7369e41b1203e87821f9371e20ce8b7a5b1bc6a4124ab8a817ed729b4",
+    "data/runs/ba98c3c39ea9666d-run.json": "ba98c3c39ea9666ddb46aee6ce95dc0c352fa401b8d0b54610b32acca6d04ee8",
+    "data/runs/be2c29b7e3be0431-run.json": "be2c29b7e3be0431971cce020ddb0be602ce8b857a0c43b1db286400721309cc",
+    "data/runs/be5cf4a916948439-run.json": "be5cf4a9169484399a44ddbd8184c18e44d844b3a2338fdc3e20a5fb8db3a107",
+    "data/runs/bfeb26fada51b95e-run.json": "bfeb26fada51b95ea1a2a3d804620a3644daba449740fb93b431bf53b6600d8a",
+    "data/runs/c3b4d775dc1d26ac-run.json": "c3b4d775dc1d26ac766af96093fb8f90b018ae3549b11af88e9da7275ca6f87f",
+    "data/runs/c706a2c42c1693eb-run.json": "c706a2c42c1693eb2684cad0206cce46c26e940f7bcd6a5f18f1b85a6cac8013",
+    "data/runs/ca8ea88ebdc5fb26-run.json": "ca8ea88ebdc5fb26a9296d26a05574fd8b5f2bc5678b8550de37ea258ec76693",
+    "data/runs/cfc20bc6aa511776-camera.png": "e82d4fd78b1d8d372799eb2fd2ed552d2a43e98ed0f7221d82540d6c5395206c",
+    "data/runs/cfc20bc6aa511776-run.json": "cfc20bc6aa5117763538622ace89c3716b0671d06e4ab1d57f0e5bf0e527a2bb",
+    "data/runs/d027b8ec83f09ffc-run.json": "d027b8ec83f09ffcb0223cd6081c7c5ba09d3984270bcd4fb85406359c50abcf",
+    "data/runs/d0a11cec10e662ce-camera.png": "46e78bb1c529532422e84fe30029cfa6f59080d28a4a9388a03d134ad416410b",
+    "data/runs/d0a11cec10e662ce-run.json": "d0a11cec10e662ceec5e23558caff2fd6bc9e6d80b09ff933fc30908d747270e",
+    "data/runs/d43fec5d10d5c8ae-run.json": "d43fec5d10d5c8aea15992391cab14095d9050f3ee476865e7b3f58f3ae2b6b9",
+    "data/runs/d468629499420ba2-run.json": "d468629499420ba2faa5fccfc8dd8bfe2c218f42dce8ef9b553f58c10816585e",
+    "data/runs/d8b75d8fb929df7b-run.json": "d8b75d8fb929df7b8415ceb7ad589a70c2a516dcb2f3c81a9fef427105200fd6",
+    "data/runs/db936f6a8781bb85-run.json": "db936f6a8781bb85c6b14d3b5a3be325b4e4900ed06d7f96799e66ac1897330f",
+    "data/runs/dda1d0ed89a66c94-camera.png": "b7ea5fc84b34422b859442129d2794ff3bee7913d7fe5962f2126b6f3cb55e0d",
+    "data/runs/dda1d0ed89a66c94-run.json": "dda1d0ed89a66c94dbdb0399a8a0c2c8ef17eefcdad963cb0b9693bc9c84e53c",
+    "data/runs/e0736e259080bcf0-run.json": "e0736e259080bcf02c66c92fdf95eac4a1c743dcb1690908424f0bc09b4c474a",
+    "data/runs/e2c87788825117d8-run.json": "e2c87788825117d8d48d94f20c59d469005ac247d4b001a751b6a64c814d859c",
+    "data/runs/e75ba9362f830868-run.json": "e75ba9362f830868e8474c26227f3261c8b3aa73fcfbb206b973ce2c357ffe72",
+    "data/runs/e79be3eac24a6f75-run.json": "e79be3eac24a6f75aaa050a3750c9bca861a7c4f572394d0ad2c78c5bf3a258b",
+    "data/runs/ead9503385cb548a-run.json": "ead9503385cb548a38278bab00b8d059ad7e4b4bb36af1d4034a81c7bd10064c",
+    "data/runs/eaf5d6cb2ec23064-camera.png": "e99f82a5dd4c1b63ee75f5ee5630a39d036bcd5c36213c449132e3d12e561d15",
+    "data/runs/eaf5d6cb2ec23064-run.json": "eaf5d6cb2ec2306464aecd6e909b82203c7f66f007019313f5e2ff17f6b93ca8",
+    "data/runs/eb0232227ce6d41f-camera.png": "573adae07bfacaafab20c83d15281a658c1cb2074e5db8e37e092d1535d135ff",
+    "data/runs/eb0232227ce6d41f-run.json": "eb0232227ce6d41f5ae15cbdcbdfb52a0dfedd73d7530846581b59c1d6b10ddf",
+    "data/runs/eb578d2ee9a08022-run.json": "eb578d2ee9a08022fa6498c5c03bce93af1256a7c0dc8adc3830a4ede23f319a",
+    "data/runs/ef4854ee259eb09e-camera.png": "03fb6e47771c7ffb972439512cbab1806e46ae133a8eae525ccc0cd9f7507583",
+    "data/runs/ef4854ee259eb09e-run.json": "ef4854ee259eb09e222d20c26a91fd41b0ad83125ac0ff663fc1323130c2a35e",
+    "data/runs/f3904edcd331ee45-run.json": "f3904edcd331ee4564cb57e242e36309bac9f21604d75e287be32c9c88903e92",
+    "data/runs/f6d3a29bf3daa26b-run.json": "f6d3a29bf3daa26b55b53c9a9da930db7adc92c897baff0cab9a3ba54d1f31cf",
+    "data/runs/fa455c17a6efda3d-camera.png": "8181590da8d319a529eb6cb14d51f5be079113bd74a334e7503d88a793dec9fe",
+    "data/runs/fa455c17a6efda3d-run.json": "fa455c17a6efda3dcf419d7f9f3b809605f0c4f171c6280292928f243c0f9a0e",
+    "data/runs/fae14c88151579d3-run.json": "fae14c88151579d3ddb5e01fb199a21d67179240073a08c80927f25be3c551d3",
+    "data/runs/fbb214ed9daa6ec9-run.json": "fbb214ed9daa6ec9fd71dc12a4494b22338cb7fba84d0b1aba4fc3954b2c04c9",
+    "data/runs/fcd28cf88ef0d790-run.json": "fcd28cf88ef0d7904363edb4a45f3925f81d9bb82398876ccf45cd8029591959",
+    "data/runs/fdafec9e1a46d2fa-run.json": "fdafec9e1a46d2fa7ec9fd3a44de8bafcc5097fe682b83d7ae373515ebb080aa",
+    "data/runs/fed8c44875729850-camera.png": "03fb6e47771c7ffb972439512cbab1806e46ae133a8eae525ccc0cd9f7507583",
+    "data/runs/fed8c44875729850-run.json": "fed8c448757298506cf4de7b2bb05e42ca98c044f286bf3bd8a02987f5db67cd",
+    "data/validation/baseline/camera-scale-audit-attempt1/attempt-note.json": "945d131cf5c65e8e5c0eba3269306834953e465a7a66fb45033c357a61ae71c3",
+    "data/validation/baseline/camera-scale-audit-attempt1/camera_scale_audit.py": "758079fbab2a29121c9d67589eb29e7b2314d41f89c452b730e0e5b23466dab9",
+    "data/validation/baseline/camera-scale-audit-attempt1/genesis/audit.json": "c9bce90d98be275b147f7d65060392b19e3f17ce68099afa0193460e3f189d9a",
+    "data/validation/baseline/camera-scale-audit-attempt1/genesis/audit.log": "2e0f1e011650dc41fbb9d039a1d9d3fbc14e209336545ec238c336b80d8aba5e",
+    "data/validation/baseline/camera-scale-audit-attempt1/genesis/physics_after_env0.png": "4914d468b8e1e9c209ea1119771d63b7e590cc3642bee08c0155615f18f44400",
+    "data/validation/baseline/camera-scale-audit-attempt1/genesis/physics_after_env511.png": "e9d7b04430d97767ed501eb15113a011c9fb405aa820e66d30643ce0767bc117",
+    "data/validation/baseline/camera-scale-audit-attempt1/genesis/physics_before_env0.png": "4914d468b8e1e9c209ea1119771d63b7e590cc3642bee08c0155615f18f44400",
+    "data/validation/baseline/camera-scale-audit-attempt1/genesis/physics_before_env511.png": "8ffe1acd19759cda8756852c9ab9db0934afe985cfe95f50d3bb6cf0df440f04",
+    "data/validation/baseline/camera-scale-audit-attempt1/genesis/reset_after_env0.png": "4914d468b8e1e9c209ea1119771d63b7e590cc3642bee08c0155615f18f44400",
+    "data/validation/baseline/camera-scale-audit-attempt1/genesis/reset_after_env511.png": "e923c39100d0ecc4cd3b26c74509a5a3332509dc902344b57041133691d2c8d7",
+    "data/validation/baseline/camera-scale-audit-attempt1/genesis/reset_before_env0.png": "4914d468b8e1e9c209ea1119771d63b7e590cc3642bee08c0155615f18f44400",
+    "data/validation/baseline/camera-scale-audit-attempt1/genesis/reset_before_env511.png": "8ffe1acd19759cda8756852c9ab9db0934afe985cfe95f50d3bb6cf0df440f04",
+    "data/validation/baseline/camera-scale-audit-attempt1/isaaclab/audit.json": "49e0956083b79787d0c3949342e2157a99e495383d74c08e4d37f3ea861fda16",
+    "data/validation/baseline/camera-scale-audit-attempt1/isaaclab/audit.log": "16c0bd657e32e49a6db2c6926c16513fb8e0b37fecb7cc6a644acac86907efdc",
+    "data/validation/baseline/camera-scale-audit-attempt1/isaaclab/physics_after_env0.png": "780940bc7d0f079f32cfcf3f91031197f1e8a94fb5c3e321951069dde0f439e4",
+    "data/validation/baseline/camera-scale-audit-attempt1/isaaclab/physics_after_env511.png": "421429a13b8e20b2a14b645baed3d992059022aa30c70da19999485661d60fdf",
+    "data/validation/baseline/camera-scale-audit-attempt1/isaaclab/physics_before_env0.png": "780940bc7d0f079f32cfcf3f91031197f1e8a94fb5c3e321951069dde0f439e4",
+    "data/validation/baseline/camera-scale-audit-attempt1/isaaclab/physics_before_env511.png": "9aa0ebf9b057554264d4ccedb78b5682139f7d63a881fef13a8e69bb847a46e9",
+    "data/validation/baseline/camera-scale-audit-attempt1/isaaclab/reset_after_env0.png": "780940bc7d0f079f32cfcf3f91031197f1e8a94fb5c3e321951069dde0f439e4",
+    "data/validation/baseline/camera-scale-audit-attempt1/isaaclab/reset_after_env511.png": "88fab4abc9a6bbe6c9b27ebb0d49637aa17a815f59fb1d7549207cdf69cd2b63",
+    "data/validation/baseline/camera-scale-audit-attempt1/isaaclab/reset_before_env0.png": "780940bc7d0f079f32cfcf3f91031197f1e8a94fb5c3e321951069dde0f439e4",
+    "data/validation/baseline/camera-scale-audit-attempt1/isaaclab/reset_before_env511.png": "9aa0ebf9b057554264d4ccedb78b5682139f7d63a881fef13a8e69bb847a46e9",
+    "data/validation/baseline/camera-scale-audit-final/camera_scale_audit.py": "8c28425dd67fe579ce14b2fdc5a6bb3a924fa1e789bb983e80a0cac7d5a81cc3",
+    "data/validation/baseline/camera-scale-audit-final/genesis/audit.json": "ad07278a7d29522f1f9771678e2127f22d72accd064f16428a8a1bfb5f6c5678",
+    "data/validation/baseline/camera-scale-audit-final/genesis/audit.log": "8d15398df7f2d89f69f148d16fbf51a530a4184e3b26d183e66a8c8e5e3bbbbf",
+    "data/validation/baseline/camera-scale-audit-final/genesis/physics_after_env0.png": "4914d468b8e1e9c209ea1119771d63b7e590cc3642bee08c0155615f18f44400",
+    "data/validation/baseline/camera-scale-audit-final/genesis/physics_after_env511.png": "e9d7b04430d97767ed501eb15113a011c9fb405aa820e66d30643ce0767bc117",
+    "data/validation/baseline/camera-scale-audit-final/genesis/physics_before_env0.png": "4914d468b8e1e9c209ea1119771d63b7e590cc3642bee08c0155615f18f44400",
+    "data/validation/baseline/camera-scale-audit-final/genesis/physics_before_env511.png": "8ffe1acd19759cda8756852c9ab9db0934afe985cfe95f50d3bb6cf0df440f04",
+    "data/validation/baseline/camera-scale-audit-final/genesis/reset_after_env0.png": "4914d468b8e1e9c209ea1119771d63b7e590cc3642bee08c0155615f18f44400",
+    "data/validation/baseline/camera-scale-audit-final/genesis/reset_after_env511.png": "e11ea5f5bf8a00a9c06e4fc38b0f0a30bb9b20ccdb30e280ce6f87cf3091ce09",
+    "data/validation/baseline/camera-scale-audit-final/genesis/reset_before_env0.png": "4914d468b8e1e9c209ea1119771d63b7e590cc3642bee08c0155615f18f44400",
+    "data/validation/baseline/camera-scale-audit-final/genesis/reset_before_env511.png": "8ffe1acd19759cda8756852c9ab9db0934afe985cfe95f50d3bb6cf0df440f04",
+    "data/validation/baseline/camera-scale-audit-final/isaaclab/audit.json": "229db2dc945ec2374f65478101653f5d49b0bac19aee206979a0047f3e9da6b4",
+    "data/validation/baseline/camera-scale-audit-final/isaaclab/audit.log": "1cab1f6353df60f1dcbe7d7d3c8e70066b05b3c7e5bf7bc5435709006309c519",
+    "data/validation/baseline/camera-scale-audit-final/isaaclab/physics_after_env0.png": "780940bc7d0f079f32cfcf3f91031197f1e8a94fb5c3e321951069dde0f439e4",
+    "data/validation/baseline/camera-scale-audit-final/isaaclab/physics_after_env511.png": "421429a13b8e20b2a14b645baed3d992059022aa30c70da19999485661d60fdf",
+    "data/validation/baseline/camera-scale-audit-final/isaaclab/physics_before_env0.png": "780940bc7d0f079f32cfcf3f91031197f1e8a94fb5c3e321951069dde0f439e4",
+    "data/validation/baseline/camera-scale-audit-final/isaaclab/physics_before_env511.png": "9aa0ebf9b057554264d4ccedb78b5682139f7d63a881fef13a8e69bb847a46e9",
+    "data/validation/baseline/camera-scale-audit-final/isaaclab/reset_after_env0.png": "780940bc7d0f079f32cfcf3f91031197f1e8a94fb5c3e321951069dde0f439e4",
+    "data/validation/baseline/camera-scale-audit-final/isaaclab/reset_after_env511.png": "fffc039b1006aa754e394326a7b0194f3c141d25fa46707dc9ea6b9a1df62262",
+    "data/validation/baseline/camera-scale-audit-final/isaaclab/reset_before_env0.png": "780940bc7d0f079f32cfcf3f91031197f1e8a94fb5c3e321951069dde0f439e4",
+    "data/validation/baseline/camera-scale-audit-final/isaaclab/reset_before_env511.png": "9aa0ebf9b057554264d4ccedb78b5682139f7d63a881fef13a8e69bb847a46e9",
+    "data/validation/baseline/final-execution-audit.json": "cbf8d86e91648fa47f5bc63969c539ff10f012f2a688445a3f7ee846464779b9",
+    "data/validation/baseline/genesis-anymal-none/config.json": "deb13b71fe761361f039445ddc7a8cc3300176b50d41574aded435a969131cd8",
+    "data/validation/baseline/genesis-anymal-none/validation.json": "cba1165ef772f38b98e1e57905e0f5ddc10960b507da4bfc34b80421a0448124",
+    "data/validation/baseline/genesis-anymal-none/validation.log": "982af7f3a1181f55531328301102b9be9c6dad549afa4b602980c41d682aeea6",
+    "data/validation/baseline/genesis-anymal-rgb/config.json": "83c2b1849b86d8e1b34bc03f2721268893daf54f38b8fc91fefd9c43d21b6a77",
+    "data/validation/baseline/genesis-anymal-rgb/validation.json": "014532d9ceb9fb927faf84606693354d6f654fba0ca79255cc18e7efacb9874f",
+    "data/validation/baseline/genesis-anymal-rgb/validation.log": "5687d15d5f314f00922792ae95bc2c6663905350f80259a69ab9a497ea2edc10",
+    "data/validation/baseline/genesis-anymal-rgb/validation_camera_env0.png": "358a0069f58a893833daa46faa610545e1982e7b7fbd9780f0611490de494b65",
+    "data/validation/baseline/genesis-anymal-rgb/validation_camera_env3.png": "826686aa85c3d5f4c453b4cc10226cc4fc8c72532dffa51b28508a96f80c5b3e",
+    "data/validation/baseline/genesis-cartpole-none/config.json": "33fede80a9071bb92732f1772038ded37c3dde4c02692afe01998c3cb89ef755",
+    "data/validation/baseline/genesis-cartpole-none/validation.json": "851bba1f79cb8cb9f9767fffaca22222cac1ac085d0baae7fa0692fe02d7cd24",
+    "data/validation/baseline/genesis-cartpole-none/validation.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "data/validation/baseline/genesis-cartpole-rgb/config.json": "998643b6ee1db20ededde9e7376d1459298268951942ba20757fde12d9e21265",
+    "data/validation/baseline/genesis-cartpole-rgb/validation.json": "e0d408064c2ecae08ac39bd3f04e05adf97635926cbe3f5a696da7335d662291",
+    "data/validation/baseline/genesis-cartpole-rgb/validation.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "data/validation/baseline/genesis-cartpole-rgb/validation_camera_env0.png": "3fcb23f812c3ee3fd62a422a42b98357950dc0a7ca08629435cfb6bc799c5e56",
+    "data/validation/baseline/genesis-cartpole-rgb/validation_camera_env3.png": "31642ef76cee0f0ccbb5e91ee102288bd84abf959230b2a1604f84af8647a4c5",
+    "data/validation/baseline/genesis.freeze.txt": "52bc2a4498e6d0587c755c8b890c17e2be52b709004d91c0b28dcebb59ccd349",
+    "data/validation/baseline/isaaclab-anymal-none/config.json": "b2de01c6bae2314bbeb771ab4a52845e5375a641d8e09fed4f47ac61ee3abef2",
+    "data/validation/baseline/isaaclab-anymal-none/validation.json": "126b416d1d312a32a15a8a997487c108355aef3cf2a8446696d503c20b0b9523",
+    "data/validation/baseline/isaaclab-anymal-none/validation.log": "99579d89c64334f98c316b5afb952c12a13511be1e11ac5c2a55cda46eed3bf6",
+    "data/validation/baseline/isaaclab-anymal-rgb/config.json": "7d29742c02e2ca35f4ecbe359423019fc5410d00302bbea9252e89b99d6c912a",
+    "data/validation/baseline/isaaclab-anymal-rgb/movement_after_env0.png": "6b6974c68e412a46c608680ce67cafa97ff00f1214509ffe13c3135f832cb431",
+    "data/validation/baseline/isaaclab-anymal-rgb/movement_after_env1.png": "ad847d1f4cc53246b519e69313c27473786b546f020e67a060b7d5bc837860bc",
+    "data/validation/baseline/isaaclab-anymal-rgb/movement_after_env2.png": "63992bf88a2473a13a65c1ce49dc5126885bd2671fc7b29a87967fe7a4ae1a14",
+    "data/validation/baseline/isaaclab-anymal-rgb/movement_after_env3.png": "d18948b5eda100cebbd8afb165cfa24d4d211a2a236f444b3ef34ccfa19cf4c0",
+    "data/validation/baseline/isaaclab-anymal-rgb/movement_before_env0.png": "99b7fa6f302ebc0df6a2a2f90ddcc41e6c44b09c3263c4801889112c5236c56c",
+    "data/validation/baseline/isaaclab-anymal-rgb/movement_before_env1.png": "0dba5c9c85d2b977d61428a80fb26d02e438fcd0171fca8e3ccc23d50c8c9d2e",
+    "data/validation/baseline/isaaclab-anymal-rgb/movement_before_env2.png": "c2798a97896e3bab3d2869078f8b85bb20183ea11aa62b5809b3dcbda0bcba8e",
+    "data/validation/baseline/isaaclab-anymal-rgb/movement_before_env3.png": "f86a5fc4bcdb876000e94e3cfcb9bdb0e17e083c8d88ee9c0422ce48c32161a1",
+    "data/validation/baseline/isaaclab-anymal-rgb/validation.json": "4d2ab521216109cf878608cf0030b1179084c6ea02bd5a306b27f52c0163da82",
+    "data/validation/baseline/isaaclab-anymal-rgb/validation.log": "7202409367d7a19644a03f5f9c3bfb07de26919153b5c0efd4467a58598710ab",
+    "data/validation/baseline/isaaclab-anymal-rgb/validation_camera_env0.png": "be9869fc543c549e81dba775f1c8a82543c4c0f10dd06df24cbb6528082bb2d0",
+    "data/validation/baseline/isaaclab-anymal-rgb/validation_camera_env3.png": "7b26f575a410d34f3858131b3e6963e8c7b7557f2ef2bb15dddaf993b2ef8653",
+    "data/validation/baseline/isaaclab-cartpole-none/config.json": "f2945f0648897a904d9be6fe1718253c7a03b7d6702546638b167fc8a8468097",
+    "data/validation/baseline/isaaclab-cartpole-none/validation.json": "11b74968a161e6a5bb0ff8e3b8e30713adbbb8413e2a2cdabe7d9177a6f60453",
+    "data/validation/baseline/isaaclab-cartpole-none/validation.log": "8a52a98ef14b6f91eef2e0917a1bcea679495a9e9eeeb8c374554ae6407c86b4",
+    "data/validation/baseline/isaaclab-cartpole-rgb/config.json": "05647d30d4c9df78c72459114aa9abdfcb5486f37cd01558d7363a77dcf60655",
+    "data/validation/baseline/isaaclab-cartpole-rgb/validation.json": "5249ca4c4580c84a7694f39ec5ae39b07985ed6ebb564ff62d0457fb0b7d67f8",
+    "data/validation/baseline/isaaclab-cartpole-rgb/validation.log": "157066d7c36f7016614b064ed5ec282401879be1bc989acb1802d529e2e6d051",
+    "data/validation/baseline/isaaclab-cartpole-rgb/validation_camera_env0.png": "1972f3152b2ae5607be77c3c79646203bf14b0c6872cecfc396c94d9b28110a7",
+    "data/validation/baseline/isaaclab-cartpole-rgb/validation_camera_env3.png": "b307633fe9f7c5c475f4d7a15ea3f4c962f9239427fd3b7f03a25891ff7b3793",
+    "data/validation/baseline/isaaclab.freeze.txt": "1ac66f902b132bd8442424b7cbdc330d851b3b6690ca51ef004b23e580aade6e",
+    "data/validation/franka/genesis-none/validation.json": "733aaae7f7829c62ddba4c8c70de31ed97de237288b09281d580b1fdd43c0bda",
+    "data/validation/franka/genesis-none/validation.log": "98e04987b0a9cd26343c60c6ab77446982330ba46c0d0691f053a463ae4b2c36",
+    "data/validation/franka/genesis-rgb/validation.json": "6650468b4dee48954d27925322b66d0126ea2c4a3282a66f30c603eb327ba63e",
+    "data/validation/franka/genesis-rgb/validation.log": "ff71450dc59ad6930c806df281c0dc264e2cfc0891f3a9eff14eff69cbedb6fd",
+    "data/validation/franka/genesis-rgb/validation_camera_env0.png": "a5186e0ba0c90145ad4fec988ee0b867b1b7063bcf6ab8b76486a438fbbf0b7e",
+    "data/validation/franka/genesis-rgb/validation_camera_env3.png": "de77c54d74b70def9b5e92326c1e1344237ca1c272f5c75a8093f7e6a1ec6112",
+    "data/validation/franka/isaaclab-none/validation.json": "51fe165519dcdc84c83752b78e168a327c8d62592fb98aa499b114a66a4d4eac",
+    "data/validation/franka/isaaclab-none/validation.log": "86787cfd57cfd3f5cf21cc39fe2aa077d5cbb17d0db266fe954d54a5bcd2a81e",
+    "data/validation/franka/isaaclab-rgb/validation.json": "5784584f3f6dd0781b85b22255b088a7fcde5e1a48302bbb6a25ac86ad225114",
+    "data/validation/franka/isaaclab-rgb/validation.log": "2ca3ed2d1a2128a40e5bb08a22d210a120b5d4e2718a7f7e2027dae2719ec060",
+    "data/validation/franka/isaaclab-rgb/validation_camera_env0.png": "f3cb5f4a08028996cc171a16143b246815fb00b319238d43d7c511e55ab333ff",
+    "data/validation/franka/isaaclab-rgb/validation_camera_env3.png": "a00ff786f7d18fd96a341820a1eecfbec17db19f72f1af0c66bfab612d47fa61",
+    "figures/figuredata.json": "b40e24d4f81425921e917bc92a36cd622ce46d3221cd6266d80221f82a8c2ba8",
+    "figures/learning-anymal-none-512-de9ed48d.pdf": "ffeb04c9b370142dc591b72f07e717e3131531898572db42611e76f62b9f27e8",
+    "figures/learning-anymal-none-512-de9ed48d.png": "142e39b4f5eba440bb2ce6ef7f9330918895897859356226ac6f3470ce8dcae3",
+    "figures/learning-anymal-none-512-de9ed48d.svg": "efe970437fb3722ba35edbd7cecccbaa077dbbeaa10dc2a41c8c06e012ad55bc",
+    "figures/learning-anymal-rgb-512-dcbeffc3.pdf": "de45eb2d25b3158f53126e1945eeac1d3339f68057f91c032d998a2195ae3a34",
+    "figures/learning-anymal-rgb-512-dcbeffc3.png": "212e980ff85a2b5a2804031ca4b4b9958b50bb524935fe0550f52987267ff5e0",
+    "figures/learning-anymal-rgb-512-dcbeffc3.svg": "3dbb2f56df750300e2074d51da46ec60b294984c9713578a45267f8c0d3e756e",
+    "figures/learning-cartpole-none-512-45a7dd95.pdf": "25b1726cb9069e93890639e67746ba226aa19fea3bc5d4f7bc0ea79aabb477eb",
+    "figures/learning-cartpole-none-512-45a7dd95.png": "ca64a8f2edb20bf0c415d7bb57ac20c164e0efbeb1b162fad578c75a805227fb",
+    "figures/learning-cartpole-none-512-45a7dd95.svg": "da6d09864a8f0620513e29ebfc68a25115d6eaa083c4f293e9d225a28be1977c",
+    "figures/learning-cartpole-rgb-512-cb49438b.pdf": "6bce1e7edf2ed57b7c1d246525f0b30f924ba69a630a70e9560344a0d464e220",
+    "figures/learning-cartpole-rgb-512-cb49438b.png": "d45c477f68e22f928fe331f7b8d03abf05f1a73ebaba6dd2f01b863c6440d839",
+    "figures/learning-cartpole-rgb-512-cb49438b.svg": "0a8c1dd7836a2facd0f979a4a7d58e7512020d7815e54407ef42b2611d539e57",
+    "figures/learning-franka-none-512-9e4e9ebd.pdf": "b9f7bbc359bf18b2b46448cf62881481ffc62422eeb0200fd35a32c4af70a683",
+    "figures/learning-franka-none-512-9e4e9ebd.png": "f1293536493df6f7ad6e497ea55a8f354e0b42d132206f1b17617719d5587afd",
+    "figures/learning-franka-none-512-9e4e9ebd.svg": "8cf093a2b0811a6b25e74b73b83153def4dcf05712a196c9d856c21eb8b4762b",
+    "figures/learning-franka-rgb-512-bb167e40.pdf": "6a3d33c8a00811de256b7f6f6a952b82d46aca24b3224ae27d5e9f49101c4c1a",
+    "figures/learning-franka-rgb-512-bb167e40.png": "17131444e91e2e51622e0b79da7b2378e84618ace7058f46bee88dc7daddbf0a",
+    "figures/learning-franka-rgb-512-bb167e40.svg": "1b161459a34faf9c1994f95afef609b7033800a82426e2ecd1aa4bd30e1b8a7c",
+    "figures/runtime-physics-none-64x64.pdf": "8211394349c87fedd761312eb40cf564a43aa3dcedbdfaf89ebb281a714f8117",
+    "figures/runtime-physics-none-64x64.png": "e2e5e06b2f43a4c3b7eed26d1f7e8b44b9d2b8e4f9bd6f789004993c1198a49f",
+    "figures/runtime-physics-none-64x64.svg": "3fb957b236e2fc5684b2a74d92a4fbac5ad73d4b30052f9194d171458c0de0ec",
+    "figures/runtime-rollout-none-64x64.pdf": "ad2d3a3dc300599f54e6b8d4e14879dd55c5672fbf1ad977f2b5628f4d740d37",
+    "figures/runtime-rollout-none-64x64.png": "e9bda1d43b1c359b4670496864e77580a07b60bddd39a8068f8f704f604d8f26",
+    "figures/runtime-rollout-none-64x64.svg": "408d7b2e0f582df742cfe2f55da84f2a76508d96849cc3b16db9b2bdcfb47054",
+    "figures/runtime-rollout-rgb-64x64.pdf": "5f54eb2b9cd7a789b60fac3b97531d4f343c5d98f55714a55427032a47de712c",
+    "figures/runtime-rollout-rgb-64x64.png": "978d45826ef1d9077af90d426e49bc89eb2c545e33401454e748980781062642",
+    "figures/runtime-rollout-rgb-64x64.svg": "18d8188b29f1f31fab9ce364535fbb852204157163d9ff58a76d13cc14e261f8",
+    "index.html": "dfe94eeef5e2c94e37cf08e1281c818530b7c0d7287e018d44db05f027ecba4c",
+    "run_artifacts.zip": "a1421e706ad932943335c5d3d87dbb36454ec1b7b1ee74f98a80961000b860b6",
+    "source-baseline.zip": "0493c17fdf2618913aece2a8a645bf4495f0d15a17b514b30f7d4a971f3168c7",
+    "source-franka.zip": "b6c52c2abfa4ba4391458506ebdff6db3e404cb9652e5c88083e34a96b9eaf16",
+    "source.zip": "d858530a9bc099b6b218001a1e659b9e0649a35b0f7571e28668635caa14497b"
+  }
+}

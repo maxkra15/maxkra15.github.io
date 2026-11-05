@@ -1,0 +1,474 @@
+{
+  "schema_version": 2,
+  "publisher": {
+    "source_commit": "8581c7e102fb76ab1b0c1d85f464690595664cef",
+    "source_archive": "../source.zip",
+    "source_archive_sha256": "d858530a9bc099b6b218001a1e659b9e0649a35b0f7571e28668635caa14497b",
+    "execution_note": "The baseline and Franka suites overlapped on separate L40s on the same 16-vCPU host. Each suite ran cases serially with cpu_threads=8. After Franka finished, separate untimed camera-correspondence audits ran on GPU 0 while baseline learning continued on GPU 1."
+  },
+  "cohorts": [
+    {
+      "name": "baseline",
+      "tasks": [
+        "anymal",
+        "cartpole"
+      ],
+      "source_commit": "622d5c9a2a6ab0921d3ac4d637b31c33f49e327a",
+      "source_archive": "../source-baseline.zip",
+      "source_archive_sha256": "0493c17fdf2618913aece2a8a645bf4495f0d15a17b514b30f7d4a971f3168c7",
+      "runtime_harness_sha256": "2579e4ca836e956784261e09b0e193d63e40d96742ed5b305a76daf0e33970af",
+      "validator_sha256": "b16477593d758dcb41fa5e445cab0e954be6cf732d0055c24833b06290eb2ca9",
+      "isaaclab_upstream_base": "efa240ec39794f5d80430cbe38620626954c2c4d",
+      "cuda_device_uuid": "ba2a7c83-f6f7-e887-63a0-09a770a9122a",
+      "validation_dir": "validation/baseline",
+      "records": [
+        {
+          "path": "runs/3da16686d4b70e31-run.json"
+        },
+        {
+          "path": "runs/715823af3d14ba62-run.json"
+        },
+        {
+          "path": "runs/b425fbffd63090a6-run.json"
+        },
+        {
+          "path": "runs/6631d3a9d0e5cad9-run.json",
+          "camera_sample": "runs/6631d3a9d0e5cad9-camera.png"
+        },
+        {
+          "path": "runs/9399e736af002751-run.json",
+          "camera_sample": "runs/9399e736af002751-camera.png"
+        },
+        {
+          "path": "runs/81cfbf6df8cc7963-run.json",
+          "camera_sample": "runs/81cfbf6df8cc7963-camera.png"
+        },
+        {
+          "path": "runs/5b0f2465f5de6a54-run.json"
+        },
+        {
+          "path": "runs/80f4f8a1c02e8807-run.json"
+        },
+        {
+          "path": "runs/5c8e3c1b74bbf535-run.json"
+        },
+        {
+          "path": "runs/ac520da64595375e-run.json"
+        },
+        {
+          "path": "runs/eb578d2ee9a08022-run.json"
+        },
+        {
+          "path": "runs/b72c80c937edd127-run.json"
+        },
+        {
+          "path": "runs/77e6476b47e67473-run.json"
+        },
+        {
+          "path": "runs/2f91dda28fbf5e10-run.json"
+        },
+        {
+          "path": "runs/046540956f1bd08a-run.json"
+        },
+        {
+          "path": "runs/6818429fe4fb0ad8-run.json"
+        },
+        {
+          "path": "runs/84d362e0741ac919-run.json"
+        },
+        {
+          "path": "runs/1d9f81e9f7e160d8-run.json"
+        },
+        {
+          "path": "runs/af94ef92d634813f-run.json",
+          "camera_sample": "runs/af94ef92d634813f-camera.png"
+        },
+        {
+          "path": "runs/6bb20da815056c16-run.json",
+          "camera_sample": "runs/6bb20da815056c16-camera.png"
+        },
+        {
+          "path": "runs/cfc20bc6aa511776-run.json",
+          "camera_sample": "runs/cfc20bc6aa511776-camera.png"
+        },
+        {
+          "path": "runs/9328c646d3103bbb-run.json"
+        },
+        {
+          "path": "runs/db936f6a8781bb85-run.json"
+        },
+        {
+          "path": "runs/978a030714e625b3-run.json"
+        },
+        {
+          "path": "runs/a1788ea9ff27bc5f-run.json",
+          "camera_sample": "runs/a1788ea9ff27bc5f-camera.png"
+        },
+        {
+          "path": "runs/7831230a0b15ef02-run.json",
+          "camera_sample": "runs/7831230a0b15ef02-camera.png"
+        },
+        {
+          "path": "runs/ef4854ee259eb09e-run.json",
+          "camera_sample": "runs/ef4854ee259eb09e-camera.png"
+        },
+        {
+          "path": "runs/80f33f66c4f81501-run.json"
+        },
+        {
+          "path": "runs/10f65419f3863895-run.json"
+        },
+        {
+          "path": "runs/b3f11e0d0f011e05-run.json"
+        },
+        {
+          "path": "runs/f3904edcd331ee45-run.json"
+        },
+        {
+          "path": "runs/6dbdff4f75364f32-run.json"
+        },
+        {
+          "path": "runs/e0736e259080bcf0-run.json"
+        },
+        {
+          "path": "runs/fcd28cf88ef0d790-run.json"
+        },
+        {
+          "path": "runs/ca8ea88ebdc5fb26-run.json"
+        },
+        {
+          "path": "runs/e2c87788825117d8-run.json"
+        },
+        {
+          "path": "runs/6b8ee0fcdc59354d-run.json"
+        },
+        {
+          "path": "runs/5bb49f37bde650a7-run.json"
+        },
+        {
+          "path": "runs/be2c29b7e3be0431-run.json"
+        },
+        {
+          "path": "runs/8da3e1c463e6f548-run.json",
+          "camera_sample": "runs/8da3e1c463e6f548-camera.png"
+        },
+        {
+          "path": "runs/171be7ecfcc5b42b-run.json",
+          "camera_sample": "runs/171be7ecfcc5b42b-camera.png"
+        },
+        {
+          "path": "runs/fed8c44875729850-run.json",
+          "camera_sample": "runs/fed8c44875729850-camera.png"
+        },
+        {
+          "path": "runs/10bfe0fc700aec63-run.json"
+        },
+        {
+          "path": "runs/4012b724b400d3f1-run.json"
+        },
+        {
+          "path": "runs/d43fec5d10d5c8ae-run.json"
+        },
+        {
+          "path": "runs/3dd618393b7691f9-run.json",
+          "camera_sample": "runs/3dd618393b7691f9-camera.png"
+        },
+        {
+          "path": "runs/855d4470fca5972b-run.json",
+          "camera_sample": "runs/855d4470fca5972b-camera.png"
+        },
+        {
+          "path": "runs/9ae0913817c1832c-run.json",
+          "camera_sample": "runs/9ae0913817c1832c-camera.png"
+        },
+        {
+          "path": "runs/d027b8ec83f09ffc-run.json"
+        },
+        {
+          "path": "runs/9cda01ae15594c0d-run.json"
+        },
+        {
+          "path": "runs/e79be3eac24a6f75-run.json"
+        },
+        {
+          "path": "runs/16adbc95e6f8f4d5-run.json"
+        },
+        {
+          "path": "runs/9e07eaa71626fbfb-run.json"
+        },
+        {
+          "path": "runs/ead9503385cb548a-run.json"
+        },
+        {
+          "path": "runs/22ec18828e227740-run.json"
+        },
+        {
+          "path": "runs/99944eb70a10fcda-run.json"
+        },
+        {
+          "path": "runs/fdafec9e1a46d2fa-run.json"
+        },
+        {
+          "path": "runs/49ddc10ad7db81ef-run.json"
+        },
+        {
+          "path": "runs/3939b5186144b15a-run.json"
+        },
+        {
+          "path": "runs/37a48c2de9145a9e-run.json"
+        },
+        {
+          "path": "runs/382d452f95f0543c-run.json",
+          "camera_sample": "runs/382d452f95f0543c-camera.png"
+        },
+        {
+          "path": "runs/eaf5d6cb2ec23064-run.json",
+          "camera_sample": "runs/eaf5d6cb2ec23064-camera.png"
+        },
+        {
+          "path": "runs/8216907d41631c92-run.json",
+          "camera_sample": "runs/8216907d41631c92-camera.png"
+        },
+        {
+          "path": "runs/9d29d2b093b63b52-run.json"
+        },
+        {
+          "path": "runs/a10d886a8d352115-run.json"
+        },
+        {
+          "path": "runs/c3b4d775dc1d26ac-run.json"
+        },
+        {
+          "path": "runs/2bc192ac5b13a1f0-run.json",
+          "camera_sample": "runs/2bc192ac5b13a1f0-camera.png"
+        },
+        {
+          "path": "runs/8aabeb5f7c1591dd-run.json",
+          "camera_sample": "runs/8aabeb5f7c1591dd-camera.png"
+        },
+        {
+          "path": "runs/4c219359e905c744-run.json",
+          "camera_sample": "runs/4c219359e905c744-camera.png"
+        },
+        {
+          "path": "runs/aa9e7a3df46eb379-run.json"
+        },
+        {
+          "path": "runs/039118a56c73a83a-run.json"
+        },
+        {
+          "path": "runs/44620bfd19e18807-run.json"
+        },
+        {
+          "path": "runs/25fa8fbeb7c021d6-run.json"
+        },
+        {
+          "path": "runs/6bf2f78b7d6930dc-run.json"
+        },
+        {
+          "path": "runs/fae14c88151579d3-run.json"
+        },
+        {
+          "path": "runs/48a5fdc338a6e491-run.json"
+        },
+        {
+          "path": "runs/0a34edd69fa482b5-run.json"
+        },
+        {
+          "path": "runs/8a835b4e62994465-run.json"
+        },
+        {
+          "path": "runs/bfeb26fada51b95e-run.json"
+        },
+        {
+          "path": "runs/57f02e23caaaab54-run.json"
+        },
+        {
+          "path": "runs/a8b870a35a32e1c0-run.json"
+        },
+        {
+          "path": "runs/d0a11cec10e662ce-run.json",
+          "camera_sample": "runs/d0a11cec10e662ce-camera.png"
+        },
+        {
+          "path": "runs/8f29083c0019ce52-run.json",
+          "camera_sample": "runs/8f29083c0019ce52-camera.png"
+        },
+        {
+          "path": "runs/8478afb9fdd83772-run.json",
+          "camera_sample": "runs/8478afb9fdd83772-camera.png"
+        }
+      ],
+      "accepted_validators": [
+        "genesis-anymal-none/validation.json",
+        "genesis-anymal-rgb/validation.json",
+        "genesis-cartpole-none/validation.json",
+        "genesis-cartpole-rgb/validation.json",
+        "isaaclab-anymal-none/validation.json",
+        "isaaclab-anymal-rgb/validation.json",
+        "isaaclab-cartpole-none/validation.json",
+        "isaaclab-cartpole-rgb/validation.json"
+      ]
+    },
+    {
+      "name": "franka",
+      "tasks": [
+        "franka"
+      ],
+      "source_commit": "28abc82c3847ac70e20e1926908ac755a5d4bfbd",
+      "source_archive": "../source-franka.zip",
+      "source_archive_sha256": "b6c52c2abfa4ba4391458506ebdff6db3e404cb9652e5c88083e34a96b9eaf16",
+      "runtime_harness_sha256": "634c1fcc57ac70c130f95b36899d8f2fa7e1484d1db21ca8bdbab7c3b3669cc4",
+      "validator_sha256": "85dc21109eb37b4beaa60c3dff3de5d08fe3ccd0892b1c99c60ac0a1dbac70b8",
+      "isaaclab_upstream_base": "efa240ec39794f5d80430cbe38620626954c2c4d",
+      "cuda_device_uuid": "6b0d678c-e620-c957-931d-e2308d31bb87",
+      "validation_dir": "validation/franka",
+      "records": [
+        {
+          "path": "runs/8d1076722d00f696-run.json"
+        },
+        {
+          "path": "runs/08724a63d568cf80-run.json"
+        },
+        {
+          "path": "runs/82041966eb97692d-run.json"
+        },
+        {
+          "path": "runs/8761ce48a9763b4b-run.json",
+          "camera_sample": "runs/8761ce48a9763b4b-camera.png"
+        },
+        {
+          "path": "runs/abb2e0519aa1692f-run.json",
+          "camera_sample": "runs/abb2e0519aa1692f-camera.png"
+        },
+        {
+          "path": "runs/4c38f32bff9be82a-run.json",
+          "camera_sample": "runs/4c38f32bff9be82a-camera.png"
+        },
+        {
+          "path": "runs/611b07e3269c79c9-run.json"
+        },
+        {
+          "path": "runs/e75ba9362f830868-run.json"
+        },
+        {
+          "path": "runs/0273718495c4f7fa-run.json"
+        },
+        {
+          "path": "runs/fbb214ed9daa6ec9-run.json"
+        },
+        {
+          "path": "runs/be5cf4a916948439-run.json"
+        },
+        {
+          "path": "runs/f6d3a29bf3daa26b-run.json"
+        },
+        {
+          "path": "runs/60a5d573bb427da9-run.json"
+        },
+        {
+          "path": "runs/298b67d2827977f6-run.json"
+        },
+        {
+          "path": "runs/0957657309895af0-run.json"
+        },
+        {
+          "path": "runs/c706a2c42c1693eb-run.json"
+        },
+        {
+          "path": "runs/8d10ea21f347ac87-run.json"
+        },
+        {
+          "path": "runs/d468629499420ba2-run.json"
+        },
+        {
+          "path": "runs/71ef21c16ca52b09-run.json",
+          "camera_sample": "runs/71ef21c16ca52b09-camera.png"
+        },
+        {
+          "path": "runs/ba98c3c39ea9666d-run.json",
+          "camera_sample": "runs/ba98c3c39ea9666d-camera.png"
+        },
+        {
+          "path": "runs/dda1d0ed89a66c94-run.json",
+          "camera_sample": "runs/dda1d0ed89a66c94-camera.png"
+        },
+        {
+          "path": "runs/989fc3deee55079a-run.json"
+        },
+        {
+          "path": "runs/4036ef6d42786ecf-run.json"
+        },
+        {
+          "path": "runs/9af5c32ded1c4689-run.json"
+        },
+        {
+          "path": "runs/11ff325d4a6d14b6-run.json",
+          "camera_sample": "runs/11ff325d4a6d14b6-camera.png"
+        },
+        {
+          "path": "runs/a99bfc778dfeecf7-run.json",
+          "camera_sample": "runs/a99bfc778dfeecf7-camera.png"
+        },
+        {
+          "path": "runs/a98067b221b8a9ec-run.json",
+          "camera_sample": "runs/a98067b221b8a9ec-camera.png"
+        },
+        {
+          "path": "runs/698efd5a32fcbee5-run.json"
+        },
+        {
+          "path": "runs/7cedb8f91a63503f-run.json"
+        },
+        {
+          "path": "runs/d8b75d8fb929df7b-run.json"
+        },
+        {
+          "path": "runs/5fd0eca51f6205eb-run.json"
+        },
+        {
+          "path": "runs/247a454821bfc4ae-run.json"
+        },
+        {
+          "path": "runs/6d1fd877919e0ea2-run.json"
+        },
+        {
+          "path": "runs/0cf856e801f88c2f-run.json"
+        },
+        {
+          "path": "runs/2387c21b16849a57-run.json"
+        },
+        {
+          "path": "runs/13049fcb71a94769-run.json"
+        },
+        {
+          "path": "runs/2d4dc0a6a4cee076-run.json"
+        },
+        {
+          "path": "runs/9f45dde18563fb13-run.json"
+        },
+        {
+          "path": "runs/2f9751657939ea2a-run.json"
+        },
+        {
+          "path": "runs/eb0232227ce6d41f-run.json",
+          "camera_sample": "runs/eb0232227ce6d41f-camera.png"
+        },
+        {
+          "path": "runs/57a44da7bab6b802-run.json",
+          "camera_sample": "runs/57a44da7bab6b802-camera.png"
+        },
+        {
+          "path": "runs/fa455c17a6efda3d-run.json",
+          "camera_sample": "runs/fa455c17a6efda3d-camera.png"
+        }
+      ],
+      "accepted_validators": [
+        "genesis-none/validation.json",
+        "genesis-rgb/validation.json",
+        "isaaclab-none/validation.json",
+        "isaaclab-rgb/validation.json"
+      ]
+    }
+  ]
+}

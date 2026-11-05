@@ -1,0 +1,17 @@
+{
+  "kind": "camera_scale_audit_attempt_note",
+  "reason_for_repeat": "The reset-only stimulus [cart x=0m, pole=0.6rad] changed only the selected Genesis image, but its mean absolute uint8 pixel difference 0.0423177108168602 was below the existing 0.05 change threshold. All unselected images were identical. The selected force/physics correspondence and freshness check passed.",
+  "interpretation": "Low-contrast audit stimulus; no observed environment correspondence or physics-render freshness discrepancy.",
+  "new_stimulus": {
+    "joint_pos": [
+      1.0,
+      0.6
+    ],
+    "units": [
+      "m",
+      "rad"
+    ],
+    "pixel_difference_threshold": 0.05
+  },
+  "repeat_directory": "../camera-scale-audit-v2"
+}
