@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "kind": "camera_scale_audit",
+  "status": "failed",
+  "config_reference": ".benchmark_results/2026-11-05-mjwarp/genesis-cartpole-learning-rgb-512-s0-5e3d0c45bf37/config.json",
+  "config_sha256": "afb85d1b4af366e1c12cb5f8fcfefdf7886291cdaf4e5d1e0338a41dc14a0d1e",
+  "harness_sha256": "2579e4ca836e956784261e09b0e193d63e40d96742ed5b305a76daf0e33970af",
+  "script_sha256": "758079fbab2a29121c9d67589eb29e7b2314d41f89c452b730e0e5b23466dab9",
+  "backend": "genesis",
+  "num_envs": 512,
+  "target_env": 511,
+  "warmup_physics_steps": 16,
+  "warmup_renders": 2,
+  "isolated_asset_cache": ".benchmark_results/camera-scale-audit/genesis/usd_cache",
+  "checks": {
+    "selected_reset_correspondence": {
+      "passed": false,
+      "changed_image_indices": [],
+      "target_mean_absolute_pixel_difference": 0.0423177108168602,
+      "maximum_unselected_mean_absolute_pixel_difference": 0.0,
+      "pixel_difference_threshold": 0.05,
+      "samples": [
+        "reset_before_env0.png",
+        "reset_before_env511.png",
+        "reset_after_env0.png",
+        "reset_after_env511.png"
+      ]
+    },
+    "selected_force_moves_one_environment": {
+      "passed": true,
+      "changed_state_indices": [
+        511
+      ],
+      "target_cart_displacement_m": 0.25759369134902954,
+      "force_n": 20.0,
+      "physics_steps": 32
+    },
+    "physics_render_freshness": {
+      "passed": true,
+      "changed_image_indices": [
+        511
+      ],
+      "target_mean_absolute_pixel_difference": 0.1547037810087204,
+      "maximum_unselected_mean_absolute_pixel_difference": 0.0,
+      "pixel_difference_threshold": 0.05,
+      "samples": [
+        "physics_before_env0.png",
+        "physics_before_env511.png",
+        "physics_after_env0.png",
+        "physics_after_env511.png"
+      ]
+    }
+  },
+  "adapter_path": "/home/horde/simulator-comparison-20261105/scripts/benchmarks/simulator_comparison/genesis_backend.py",
+  "device_uuid": "6b0d678c-e620-c957-931d-e2308d31bb87"
+}

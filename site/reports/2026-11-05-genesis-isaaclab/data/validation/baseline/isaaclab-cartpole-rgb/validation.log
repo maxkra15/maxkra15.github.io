@@ -1,0 +1,34 @@
+I: Initializing Version 2.74.0-release.7316+gl.ec99a64b
+I: Client ID: 98BYICJM
+I: ThreadId(02) hub_client::client::Client::new Launching client mode=Shared with_cleaner=false cache_path=None cache_size=None
+I: ThreadId(03) launch self=Launcher { discovery_lock: RwLock { lock: RwLock { inner: File { fd: 55, path: "/tmp/hub-horde.lock", read: false, write: true } } }, mode: Shared, with_cleaner: false, config_file: "/tmp/hub-horde-8984CDDB.config.json" } cmd="hub" "--mode=shared" "--write-config" "/tmp/hub-horde-8984CDDB.config.json" "--"
+I: Not using Hub: Hub not found
+I: Successfully created S3 provider for https://omniverse-content-production.s3-us-west-2.amazonaws.com
+I: Using CloudFront http://dcb18d6mfegct.cloudfront.net/, List = No
+[WARNING]: Serving remote assets from the local cache under '/tmp'. Each copy is checked against the server before use; delete the directory to force a full re-download.
+[INFO]: Loading local copy of remote asset 'https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/IsaacLab/Environments/Grid/default_ground_plane_checker_v1/default_ground_plane.usda' from '/tmp/https/omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/IsaacLab/Environments/Grid/default_ground_plane_checker_v1/default_ground_plane.usda'.
+[INFO]: Loading local copy of remote asset 'https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/IsaacLab/Environments/Grid/default_ground_plane_checker_v1/Materials/Textures/default_ground_plane_albedo.png' from '/tmp/https/omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/IsaacLab/Environments/Grid/default_ground_plane_checker_v1/Materials/Textures/default_ground_plane_albedo.png'.
+[INFO]: Loading local copy of remote asset 'https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/IsaacLab/Environments/Grid/default_ground_plane_checker_v1/Materials/Textures/default_ground_plane_roughness.png' from '/tmp/https/omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/IsaacLab/Environments/Grid/default_ground_plane_checker_v1/Materials/Textures/default_ground_plane_roughness.png'.
+[INFO]: Registered backend 'newton' for factory Articulation.
+[INFO]: Using renderer: NewtonWarpRenderer
+/home/horde/simulator-comparison-20261105/source/isaaclab_newton/isaaclab_newton/cloner/newton_clone_utils.py:139: FutureWarning: Newton shape color replacement is enabled; this workaround will be deprecated in a future release.
+  replace_newton_builder_shape_colors(builder, stage)
+[INFO]: Dispatching MODEL_INIT callbacks
+[INFO]: Finalizing model on device: cuda:0
+Finalize builder took: Last: 0.177840 s, Mean: 0.177840 s, Std: 0.000000 s, N: 1
+[INFO]: Dispatching PHYSICS_READY callbacks
+[INFO]: Configured joint_ordering for '/World/envs/env_[^/]+/Robot' resolves to the backend's native order; no reordering will be applied.
+[INFO]: Simulation parameters for joints in /World/envs/env_[^/]+/Robot:
++---------------------------------------------------------------------------------------------------------------------------+
+|                           Simulation Joint Information (Prim path: /World/envs/env_[^/]+/Robot)                           |
++-------+--------+-----------+---------+----------+-----------------+---------------------+-----------------+---------------+
+| Index | Name   | Stiffness | Damping | Armature | Static Friction |   Position Limits   | Velocity Limits | Effort Limits |
++-------+--------+-----------+---------+----------+-----------------+---------------------+-----------------+---------------+
+|   0   | slider |   0.000   |  0.000  |  0.000   |      0.000      |   [-3.000, 3.000]   |     100.000     |    1.0e+03    |
+|   1   | pole   |   0.000   |  0.000  |  0.000   |      0.000      | [-1.0e+10, 1.0e+10] |     1.0e+06     |    1.0e+03    |
++-------+--------+-----------+---------+----------+-----------------+---------------------+-----------------+---------------+
+[INFO]: Registered backend 'newton' for factory FrameView.
+Initialize solver took: Last: 1.686094 s, Mean: 1.686094 s, Std: 0.000000 s, N: 1
+[INFO]: Fabric runtime unavailable; Newton site poses will not be mirrored to prims.
+CUDA graph took: Last: 0.709370 s, Mean: 0.709370 s, Std: 0.000000 s, N: 1
+[INFO]: SimulationContext cleared

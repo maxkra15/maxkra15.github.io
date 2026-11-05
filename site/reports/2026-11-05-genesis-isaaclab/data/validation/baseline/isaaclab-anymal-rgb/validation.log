@@ -1,0 +1,43 @@
+I: Initializing Version 2.74.0-release.7316+gl.ec99a64b
+I: Client ID: OVJ9E1F3
+I: ThreadId(02) hub_client::client::Client::new Launching client mode=Shared with_cleaner=false cache_path=None cache_size=None
+I: ThreadId(03) launch self=Launcher { discovery_lock: RwLock { lock: RwLock { inner: File { fd: 55, path: "/tmp/hub-horde.lock", read: false, write: true } } }, mode: Shared, with_cleaner: false, config_file: "/tmp/hub-horde-7D0BDDE2.config.json" } cmd="hub" "--mode=shared" "--write-config" "/tmp/hub-horde-7D0BDDE2.config.json" "--"
+I: Not using Hub: Hub not found
+I: Successfully created S3 provider for https://omniverse-content-production.s3-us-west-2.amazonaws.com
+I: Using CloudFront http://dcb18d6mfegct.cloudfront.net/, List = No
+[WARNING]: Serving remote assets from the local cache under '/tmp'. Each copy is checked against the server before use; delete the directory to force a full re-download.
+[INFO]: Loading local copy of remote asset 'https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/IsaacLab/Environments/Grid/default_ground_plane_checker_v1/default_ground_plane.usda' from '/tmp/https/omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/IsaacLab/Environments/Grid/default_ground_plane_checker_v1/default_ground_plane.usda'.
+[INFO]: Loading local copy of remote asset 'https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/IsaacLab/Environments/Grid/default_ground_plane_checker_v1/Materials/Textures/default_ground_plane_albedo.png' from '/tmp/https/omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/IsaacLab/Environments/Grid/default_ground_plane_checker_v1/Materials/Textures/default_ground_plane_albedo.png'.
+[INFO]: Loading local copy of remote asset 'https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/IsaacLab/Environments/Grid/default_ground_plane_checker_v1/Materials/Textures/default_ground_plane_roughness.png' from '/tmp/https/omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/IsaacLab/Environments/Grid/default_ground_plane_checker_v1/Materials/Textures/default_ground_plane_roughness.png'.
+[INFO]: Registered backend 'newton' for factory Articulation.
+[INFO]: Using renderer: NewtonWarpRenderer
+/home/horde/simulator-comparison-20261105/source/isaaclab_newton/isaaclab_newton/cloner/newton_clone_utils.py:139: FutureWarning: Newton shape color replacement is enabled; this workaround will be deprecated in a future release.
+  replace_newton_builder_shape_colors(builder, stage)
+[INFO]: Dispatching MODEL_INIT callbacks
+[INFO]: Finalizing model on device: cuda:0
+Finalize builder took: Last: 0.142579 s, Mean: 0.142579 s, Std: 0.000000 s, N: 1
+[INFO]: Dispatching PHYSICS_READY callbacks
+[INFO]: Simulation parameters for joints in /World/envs/env_[^/]+/Robot:
++---------------------------------------------------------------------------------------------------------------------------+
+|                           Simulation Joint Information (Prim path: /World/envs/env_[^/]+/Robot)                           |
++-------+--------+-----------+---------+----------+-----------------+---------------------+-----------------+---------------+
+| Index | Name   | Stiffness | Damping | Armature | Static Friction |   Position Limits   | Velocity Limits | Effort Limits |
++-------+--------+-----------+---------+----------+-----------------+---------------------+-----------------+---------------+
+|   0   | LF_HAA |   80.000  |  2.000  |  0.000   |      0.000      | [-1.0e+10, 1.0e+10] |      20.000     |     80.000    |
+|   1   | LF_HFE |   80.000  |  2.000  |  0.000   |      0.000      | [-1.0e+10, 1.0e+10] |      20.000     |     80.000    |
+|   2   | LF_KFE |   80.000  |  2.000  |  0.000   |      0.000      | [-1.0e+10, 1.0e+10] |      20.000     |     80.000    |
+|   3   | RF_HAA |   80.000  |  2.000  |  0.000   |      0.000      | [-1.0e+10, 1.0e+10] |      20.000     |     80.000    |
+|   4   | RF_HFE |   80.000  |  2.000  |  0.000   |      0.000      | [-1.0e+10, 1.0e+10] |      20.000     |     80.000    |
+|   5   | RF_KFE |   80.000  |  2.000  |  0.000   |      0.000      | [-1.0e+10, 1.0e+10] |      20.000     |     80.000    |
+|   6   | LH_HAA |   80.000  |  2.000  |  0.000   |      0.000      | [-1.0e+10, 1.0e+10] |      20.000     |     80.000    |
+|   7   | LH_HFE |   80.000  |  2.000  |  0.000   |      0.000      | [-1.0e+10, 1.0e+10] |      20.000     |     80.000    |
+|   8   | LH_KFE |   80.000  |  2.000  |  0.000   |      0.000      | [-1.0e+10, 1.0e+10] |      20.000     |     80.000    |
+|   9   | RH_HAA |   80.000  |  2.000  |  0.000   |      0.000      | [-1.0e+10, 1.0e+10] |      20.000     |     80.000    |
+|   10  | RH_HFE |   80.000  |  2.000  |  0.000   |      0.000      | [-1.0e+10, 1.0e+10] |      20.000     |     80.000    |
+|   11  | RH_KFE |   80.000  |  2.000  |  0.000   |      0.000      | [-1.0e+10, 1.0e+10] |      20.000     |     80.000    |
++-------+--------+-----------+---------+----------+-----------------+---------------------+-----------------+---------------+
+[INFO]: Registered backend 'newton' for factory FrameView.
+Initialize solver took: Last: 1.756706 s, Mean: 1.756706 s, Std: 0.000000 s, N: 1
+[INFO]: Fabric runtime unavailable; Newton site poses will not be mirrored to prims.
+CUDA graph took: Last: 0.751682 s, Mean: 0.751682 s, Std: 0.000000 s, N: 1
+[INFO]: SimulationContext cleared

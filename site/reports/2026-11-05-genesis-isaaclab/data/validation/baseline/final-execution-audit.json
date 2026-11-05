@@ -1,0 +1,60 @@
+{
+  "kind": "post_execution_audit",
+  "status": "ok",
+  "checked_utc": "2026-11-05T04:58:09.607566+00:00",
+  "source_revisions": {
+    "isaaclab": "efa240ec39794f5d80430cbe38620626954c2c4d",
+    "genesis": "969c3bd1449d0f0c79effd7b6a72614ed46ba6e7",
+    "newton": "42f7def118c2c4299ce493457bafd4e8a22a696e"
+  },
+  "cohorts": [
+    {
+      "name": "baseline",
+      "result_root": "/home/horde/simulator-comparison-20261105/.benchmark_results/2026-11-05-mjwarp",
+      "summary": {
+        "expected_runs": 84,
+        "successful_runs": 84,
+        "unsuccessful_runs": 0
+      },
+      "harness_sha256": "2579e4ca836e956784261e09b0e193d63e40d96742ed5b305a76daf0e33970af",
+      "physical_uuid": "ba2a7c83-f6f7-e887-63a0-09a770a9122a",
+      "paired_groups": 14,
+      "native_graph_capacity_checks": 42,
+      "ordered_result_paths_and_bytes_sha256": "8eb38380a5c93d65d94694d36c7ebecd83073cbfc0b9c237adde13cb96bd8397"
+    },
+    {
+      "name": "franka",
+      "result_root": "/home/horde/simulator-comparison-20261105/franka-extension/.benchmark_results/2026-11-05-franka",
+      "summary": {
+        "expected_runs": 42,
+        "successful_runs": 42,
+        "unsuccessful_runs": 0
+      },
+      "harness_sha256": "634c1fcc57ac70c130f95b36899d8f2fa7e1484d1db21ca8bdbab7c3b3669cc4",
+      "physical_uuid": "6b0d678c-e620-c957-931d-e2308d31bb87",
+      "paired_groups": 7,
+      "native_graph_capacity_checks": 21,
+      "ordered_result_paths_and_bytes_sha256": "b602daf0fcb253d0a94c968b9954d4209d7f670deabfbe0ce3077b6b08c62278"
+    }
+  ],
+  "checks": {
+    "all_rows_status_ok_returncode_zero": true,
+    "source_paths_and_nonempty_versions": true,
+    "kit_modules_empty": true,
+    "all_selected_gpu_activity_samples_uncontended": true,
+    "native_graph_active_and_no_fatal_capacity_flags_at_end": true
+  },
+  "overflow_scope": "Last solver state only; not a cumulative history",
+  "common_runtime_flags": {
+    "torch": "2.11.0+cu130",
+    "torch_cuda": "13.0",
+    "torch_matmul_precision": "highest",
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": false
+  },
+  "scheduler_pids_absent": [
+    957498,
+    989259
+  ],
+  "gpu_processes_after": "4239, GPU-6b0d678c-e620-c957-931d-e2308d31bb87, 903 MiB"
+}
