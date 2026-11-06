@@ -1,0 +1,3297 @@
+{
+  "camera_samples": [
+    {
+      "backend": "genesis",
+      "path": "data/runs/af94ef92d634813f-camera.png",
+      "task": "anymal"
+    },
+    {
+      "backend": "isaaclab",
+      "path": "data/runs/382d452f95f0543c-camera.png",
+      "task": "anymal"
+    },
+    {
+      "backend": "genesis",
+      "path": "data/runs/8da3e1c463e6f548-camera.png",
+      "task": "cartpole"
+    },
+    {
+      "backend": "isaaclab",
+      "path": "data/runs/d0a11cec10e662ce-camera.png",
+      "task": "cartpole"
+    },
+    {
+      "backend": "genesis",
+      "path": "data/runs/71ef21c16ca52b09-camera.png",
+      "task": "franka"
+    },
+    {
+      "backend": "isaaclab",
+      "path": "data/runs/eb0232227ce6d41f-camera.png",
+      "task": "franka"
+    }
+  ],
+  "groups": [
+    {
+      "backend": "genesis",
+      "learning": {
+        "censored": 3,
+        "final_reached": 0,
+        "first_target_s": null,
+        "reached": 0,
+        "seeds": [
+          {
+            "censored": true,
+            "final_error": 1.0168681144714355,
+            "final_reached": false,
+            "first_target_s": null,
+            "raw": "data/runs/3da16686d4b70e31-run.json",
+            "reached": false,
+            "seed": 0,
+            "survival": 0.998046875
+          },
+          {
+            "censored": true,
+            "final_error": 0.3997288942337036,
+            "final_reached": false,
+            "first_target_s": null,
+            "raw": "data/runs/715823af3d14ba62-run.json",
+            "reached": false,
+            "seed": 1,
+            "survival": 1.0
+          },
+          {
+            "censored": true,
+            "final_error": 0.41910719871520996,
+            "final_reached": false,
+            "first_target_s": null,
+            "raw": "data/runs/b425fbffd63090a6-run.json",
+            "reached": false,
+            "seed": 2,
+            "survival": 0.99609375
+          }
+        ]
+      },
+      "metrics": {
+        "env_steps_per_s": {
+          "max": 27891.360822184437,
+          "median": 25869.362541595925,
+          "min": 25774.08877252497,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 27891.360822184437
+            },
+            {
+              "seed": 1,
+              "value": 25869.362541595925
+            },
+            {
+              "seed": 2,
+              "value": 25774.08877252497
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 65.94564372999594,
+          "median": 61.4283970198594,
+          "min": 54.314038997050375,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 54.314038997050375
+            },
+            {
+              "seed": 1,
+              "value": 61.4283970198594
+            },
+            {
+              "seed": 2,
+              "value": 65.94564372999594
+            }
+          ]
+        },
+        "training_s": {
+          "max": 238.378941510804,
+          "median": 237.5010203719139,
+          "min": 220.28326402464882,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 220.28326402464882
+            },
+            {
+              "seed": 1,
+              "value": 237.5010203719139
+            },
+            {
+              "seed": 2,
+              "value": 238.378941510804
+            }
+          ]
+        }
+      },
+      "mode": "learning",
+      "num_envs": 512,
+      "task": "anymal",
+      "vision": "none"
+    },
+    {
+      "backend": "genesis",
+      "learning": {
+        "censored": 3,
+        "final_reached": 0,
+        "first_target_s": null,
+        "reached": 0,
+        "seeds": [
+          {
+            "censored": true,
+            "final_error": 1.0015355348587036,
+            "final_reached": false,
+            "first_target_s": null,
+            "raw": "data/runs/6631d3a9d0e5cad9-run.json",
+            "reached": false,
+            "seed": 0,
+            "survival": 1.0
+          },
+          {
+            "censored": true,
+            "final_error": 1.0017149448394775,
+            "final_reached": false,
+            "first_target_s": null,
+            "raw": "data/runs/9399e736af002751-run.json",
+            "reached": false,
+            "seed": 1,
+            "survival": 1.0
+          },
+          {
+            "censored": true,
+            "final_error": 1.0210597515106201,
+            "final_reached": false,
+            "first_target_s": null,
+            "raw": "data/runs/81cfbf6df8cc7963-run.json",
+            "reached": false,
+            "seed": 2,
+            "survival": 1.0
+          }
+        ]
+      },
+      "metrics": {
+        "env_steps_per_s": {
+          "max": 9135.589953818218,
+          "median": 9022.219531355326,
+          "min": 8946.8304385516,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 8946.8304385516
+            },
+            {
+              "seed": 1,
+              "value": 9135.589953818218
+            },
+            {
+              "seed": 2,
+              "value": 9022.219531355326
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 154.09934011893347,
+          "median": 151.9955222858116,
+          "min": 143.91137545695528,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 151.9955222858116
+            },
+            {
+              "seed": 1,
+              "value": 154.09934011893347
+            },
+            {
+              "seed": 2,
+              "value": 143.91137545695528
+            }
+          ]
+        },
+        "training_s": {
+          "max": 686.7236438868567,
+          "median": 680.9854247779585,
+          "min": 672.5345632913522,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 686.7236438868567
+            },
+            {
+              "seed": 1,
+              "value": 672.5345632913522
+            },
+            {
+              "seed": 2,
+              "value": 680.9854247779585
+            }
+          ]
+        }
+      },
+      "mode": "learning",
+      "num_envs": 512,
+      "task": "anymal",
+      "vision": "rgb"
+    },
+    {
+      "backend": "genesis",
+      "metrics": {
+        "physics_steps_per_s": {
+          "max": 578182.0475273763,
+          "median": 557793.5022341455,
+          "min": 369383.4102097581,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 557793.5022341455
+            },
+            {
+              "seed": 1,
+              "value": 369383.4102097581
+            },
+            {
+              "seed": 2,
+              "value": 578182.0475273763
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 148.93521388433874,
+          "median": 113.08332220930606,
+          "min": 103.72612762078643,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 113.08332220930606
+            },
+            {
+              "seed": 1,
+              "value": 148.93521388433874
+            },
+            {
+              "seed": 2,
+              "value": 103.72612762078643
+            }
+          ]
+        }
+      },
+      "mode": "physics",
+      "num_envs": 256,
+      "task": "anymal",
+      "vision": "none"
+    },
+    {
+      "backend": "genesis",
+      "metrics": {
+        "physics_steps_per_s": {
+          "max": 6857471.134158644,
+          "median": 6761953.958606859,
+          "min": 6719346.567513261,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 6857471.134158644
+            },
+            {
+              "seed": 1,
+              "value": 6719346.567513261
+            },
+            {
+              "seed": 2,
+              "value": 6761953.958606859
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 137.9373160698451,
+          "median": 133.04900192283094,
+          "min": 67.06247090315446,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 67.06247090315446
+            },
+            {
+              "seed": 1,
+              "value": 137.9373160698451
+            },
+            {
+              "seed": 2,
+              "value": 133.04900192283094
+            }
+          ]
+        }
+      },
+      "mode": "physics",
+      "num_envs": 4096,
+      "task": "anymal",
+      "vision": "none"
+    },
+    {
+      "backend": "genesis",
+      "metrics": {
+        "env_steps_per_s": {
+          "max": 48339.65444060687,
+          "median": 46036.81797028074,
+          "min": 40695.264623851835,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 46036.81797028074
+            },
+            {
+              "seed": 1,
+              "value": 48339.65444060687
+            },
+            {
+              "seed": 2,
+              "value": 40695.264623851835
+            }
+          ]
+        },
+        "physics_steps_per_s": {
+          "max": 193358.6177624275,
+          "median": 184147.27188112296,
+          "min": 162781.05849540734,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 184147.27188112296
+            },
+            {
+              "seed": 1,
+              "value": 193358.6177624275
+            },
+            {
+              "seed": 2,
+              "value": 162781.05849540734
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 63.11383700091392,
+          "median": 56.657659990713,
+          "min": 56.531591163016856,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 63.11383700091392
+            },
+            {
+              "seed": 1,
+              "value": 56.657659990713
+            },
+            {
+              "seed": 2,
+              "value": 56.531591163016856
+            }
+          ]
+        }
+      },
+      "mode": "rollout",
+      "num_envs": 256,
+      "task": "anymal",
+      "vision": "none"
+    },
+    {
+      "backend": "genesis",
+      "metrics": {
+        "env_steps_per_s": {
+          "max": 770822.203569862,
+          "median": 659506.4478605206,
+          "min": 649131.0669199503,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 659506.4478605206
+            },
+            {
+              "seed": 1,
+              "value": 770822.203569862
+            },
+            {
+              "seed": 2,
+              "value": 649131.0669199503
+            }
+          ]
+        },
+        "physics_steps_per_s": {
+          "max": 3083288.814279448,
+          "median": 2638025.7914420823,
+          "min": 2596524.267679801,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 2638025.7914420823
+            },
+            {
+              "seed": 1,
+              "value": 3083288.814279448
+            },
+            {
+              "seed": 2,
+              "value": 2596524.267679801
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 62.78991560218856,
+          "median": 58.12989442888647,
+          "min": 56.83148343721405,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 56.83148343721405
+            },
+            {
+              "seed": 1,
+              "value": 58.12989442888647
+            },
+            {
+              "seed": 2,
+              "value": 62.78991560218856
+            }
+          ]
+        }
+      },
+      "mode": "rollout",
+      "num_envs": 4096,
+      "task": "anymal",
+      "vision": "none"
+    },
+    {
+      "backend": "genesis",
+      "metrics": {
+        "env_steps_per_s": {
+          "max": 5093.994730739586,
+          "median": 4557.565412410338,
+          "min": 4539.8751278203745,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 5093.994730739586
+            },
+            {
+              "seed": 1,
+              "value": 4557.565412410338
+            },
+            {
+              "seed": 2,
+              "value": 4539.8751278203745
+            }
+          ]
+        },
+        "physics_steps_per_s": {
+          "max": 20375.978922958344,
+          "median": 18230.26164964135,
+          "min": 18159.500511281498,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 20375.978922958344
+            },
+            {
+              "seed": 1,
+              "value": 18230.26164964135
+            },
+            {
+              "seed": 2,
+              "value": 18159.500511281498
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 162.63083170773461,
+          "median": 140.04512527491897,
+          "min": 136.28951702499762,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 162.63083170773461
+            },
+            {
+              "seed": 1,
+              "value": 140.04512527491897
+            },
+            {
+              "seed": 2,
+              "value": 136.28951702499762
+            }
+          ]
+        }
+      },
+      "mode": "rollout",
+      "num_envs": 64,
+      "task": "anymal",
+      "vision": "rgb"
+    },
+    {
+      "backend": "isaaclab",
+      "learning": {
+        "censored": 3,
+        "final_reached": 0,
+        "first_target_s": null,
+        "reached": 0,
+        "seeds": [
+          {
+            "censored": true,
+            "final_error": 0.9801352024078369,
+            "final_reached": false,
+            "first_target_s": null,
+            "raw": "data/runs/10bfe0fc700aec63-run.json",
+            "reached": false,
+            "seed": 0,
+            "survival": 1.0
+          },
+          {
+            "censored": true,
+            "final_error": 1.0268964767456055,
+            "final_reached": false,
+            "first_target_s": null,
+            "raw": "data/runs/4012b724b400d3f1-run.json",
+            "reached": false,
+            "seed": 1,
+            "survival": 1.0
+          },
+          {
+            "censored": true,
+            "final_error": 1.0228285789489746,
+            "final_reached": false,
+            "first_target_s": null,
+            "raw": "data/runs/d43fec5d10d5c8ae-run.json",
+            "reached": false,
+            "seed": 2,
+            "survival": 1.0
+          }
+        ]
+      },
+      "metrics": {
+        "env_steps_per_s": {
+          "max": 34277.155945085484,
+          "median": 33616.38604240563,
+          "min": 31591.30494838514,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 31591.30494838514
+            },
+            {
+              "seed": 1,
+              "value": 33616.38604240563
+            },
+            {
+              "seed": 2,
+              "value": 34277.155945085484
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 14.875048138666898,
+          "median": 14.510958260856569,
+          "min": 11.206892162095755,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 14.510958260856569
+            },
+            {
+              "seed": 1,
+              "value": 11.206892162095755
+            },
+            {
+              "seed": 2,
+              "value": 14.875048138666898
+            }
+          ]
+        },
+        "training_s": {
+          "max": 194.48389390809461,
+          "median": 182.76801058417186,
+          "min": 179.2447427622974,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 194.48389390809461
+            },
+            {
+              "seed": 1,
+              "value": 182.76801058417186
+            },
+            {
+              "seed": 2,
+              "value": 179.2447427622974
+            }
+          ]
+        }
+      },
+      "mode": "learning",
+      "num_envs": 512,
+      "task": "anymal",
+      "vision": "none"
+    },
+    {
+      "backend": "isaaclab",
+      "learning": {
+        "censored": 3,
+        "final_reached": 0,
+        "first_target_s": null,
+        "reached": 0,
+        "seeds": [
+          {
+            "censored": true,
+            "final_error": 0.9362571239471436,
+            "final_reached": false,
+            "first_target_s": null,
+            "raw": "data/runs/3dd618393b7691f9-run.json",
+            "reached": false,
+            "seed": 0,
+            "survival": 0.998046875
+          },
+          {
+            "censored": true,
+            "final_error": 0.9859982132911682,
+            "final_reached": false,
+            "first_target_s": null,
+            "raw": "data/runs/855d4470fca5972b-run.json",
+            "reached": false,
+            "seed": 1,
+            "survival": 1.0
+          },
+          {
+            "censored": true,
+            "final_error": 0.5908589363098145,
+            "final_reached": false,
+            "first_target_s": null,
+            "raw": "data/runs/9ae0913817c1832c-run.json",
+            "reached": false,
+            "seed": 2,
+            "survival": 0.341796875
+          }
+        ]
+      },
+      "metrics": {
+        "env_steps_per_s": {
+          "max": 18623.281432739343,
+          "median": 16901.759974862387,
+          "min": 15278.835091167435,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 16901.759974862387
+            },
+            {
+              "seed": 1,
+              "value": 18623.281432739343
+            },
+            {
+              "seed": 2,
+              "value": 15278.835091167435
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 20.487792037893087,
+          "median": 18.612234618049115,
+          "min": 14.038367907050997,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 14.038367907050997
+            },
+            {
+              "seed": 1,
+              "value": 18.612234618049115
+            },
+            {
+              "seed": 2,
+              "value": 20.487792037893087
+            }
+          ]
+        },
+        "training_s": {
+          "max": 402.1248978301883,
+          "median": 363.51243948191404,
+          "min": 329.90963607514277,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 363.51243948191404
+            },
+            {
+              "seed": 1,
+              "value": 329.90963607514277
+            },
+            {
+              "seed": 2,
+              "value": 402.1248978301883
+            }
+          ]
+        }
+      },
+      "mode": "learning",
+      "num_envs": 512,
+      "task": "anymal",
+      "vision": "rgb"
+    },
+    {
+      "backend": "isaaclab",
+      "metrics": {
+        "physics_steps_per_s": {
+          "max": 667198.3151094789,
+          "median": 666556.8685889835,
+          "min": 662702.9000789726,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 667198.3151094789
+            },
+            {
+              "seed": 1,
+              "value": 666556.8685889835
+            },
+            {
+              "seed": 2,
+              "value": 662702.9000789726
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 10.904727480839938,
+          "median": 10.181746500078589,
+          "min": 8.603373429272324,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 10.904727480839938
+            },
+            {
+              "seed": 1,
+              "value": 8.603373429272324
+            },
+            {
+              "seed": 2,
+              "value": 10.181746500078589
+            }
+          ]
+        }
+      },
+      "mode": "physics",
+      "num_envs": 256,
+      "task": "anymal",
+      "vision": "none"
+    },
+    {
+      "backend": "isaaclab",
+      "metrics": {
+        "physics_steps_per_s": {
+          "max": 5790907.404149965,
+          "median": 5779254.26335533,
+          "min": 5776826.451257435,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 5776826.451257435
+            },
+            {
+              "seed": 1,
+              "value": 5790907.404149965
+            },
+            {
+              "seed": 2,
+              "value": 5779254.26335533
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 18.02847835002467,
+          "median": 17.84175681695342,
+          "min": 17.672994336113334,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 17.84175681695342
+            },
+            {
+              "seed": 1,
+              "value": 17.672994336113334
+            },
+            {
+              "seed": 2,
+              "value": 18.02847835002467
+            }
+          ]
+        }
+      },
+      "mode": "physics",
+      "num_envs": 4096,
+      "task": "anymal",
+      "vision": "none"
+    },
+    {
+      "backend": "isaaclab",
+      "metrics": {
+        "env_steps_per_s": {
+          "max": 82168.56498596385,
+          "median": 71599.29333949642,
+          "min": 69385.4981936886,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 69385.4981936886
+            },
+            {
+              "seed": 1,
+              "value": 71599.29333949642
+            },
+            {
+              "seed": 2,
+              "value": 82168.56498596385
+            }
+          ]
+        },
+        "physics_steps_per_s": {
+          "max": 328674.2599438554,
+          "median": 286397.1733579857,
+          "min": 277541.9927747544,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 277541.9927747544
+            },
+            {
+              "seed": 1,
+              "value": 286397.1733579857
+            },
+            {
+              "seed": 2,
+              "value": 328674.2599438554
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 11.360956642311066,
+          "median": 10.23259489191696,
+          "min": 9.707490943837911,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 10.23259489191696
+            },
+            {
+              "seed": 1,
+              "value": 9.707490943837911
+            },
+            {
+              "seed": 2,
+              "value": 11.360956642311066
+            }
+          ]
+        }
+      },
+      "mode": "rollout",
+      "num_envs": 256,
+      "task": "anymal",
+      "vision": "none"
+    },
+    {
+      "backend": "isaaclab",
+      "metrics": {
+        "env_steps_per_s": {
+          "max": 878088.1940813985,
+          "median": 808213.272930947,
+          "min": 785425.5925164301,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 785425.5925164301
+            },
+            {
+              "seed": 1,
+              "value": 878088.1940813985
+            },
+            {
+              "seed": 2,
+              "value": 808213.272930947
+            }
+          ]
+        },
+        "physics_steps_per_s": {
+          "max": 3512352.776325594,
+          "median": 3232853.091723788,
+          "min": 3141702.3700657203,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 3141702.3700657203
+            },
+            {
+              "seed": 1,
+              "value": 3512352.776325594
+            },
+            {
+              "seed": 2,
+              "value": 3232853.091723788
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 18.704370245803148,
+          "median": 17.51166149182245,
+          "min": 13.45760959200561,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 18.704370245803148
+            },
+            {
+              "seed": 1,
+              "value": 13.45760959200561
+            },
+            {
+              "seed": 2,
+              "value": 17.51166149182245
+            }
+          ]
+        }
+      },
+      "mode": "rollout",
+      "num_envs": 4096,
+      "task": "anymal",
+      "vision": "none"
+    },
+    {
+      "backend": "isaaclab",
+      "metrics": {
+        "env_steps_per_s": {
+          "max": 10977.795441853952,
+          "median": 8478.828246053397,
+          "min": 8470.974529176172,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 8478.828246053397
+            },
+            {
+              "seed": 1,
+              "value": 8470.974529176172
+            },
+            {
+              "seed": 2,
+              "value": 10977.795441853952
+            }
+          ]
+        },
+        "physics_steps_per_s": {
+          "max": 43911.18176741581,
+          "median": 33915.31298421359,
+          "min": 33883.89811670469,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 33915.31298421359
+            },
+            {
+              "seed": 1,
+              "value": 33883.89811670469
+            },
+            {
+              "seed": 2,
+              "value": 43911.18176741581
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 13.72886457014829,
+          "median": 13.108854967169464,
+          "min": 11.127936309203506,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 13.72886457014829
+            },
+            {
+              "seed": 1,
+              "value": 13.108854967169464
+            },
+            {
+              "seed": 2,
+              "value": 11.127936309203506
+            }
+          ]
+        }
+      },
+      "mode": "rollout",
+      "num_envs": 64,
+      "task": "anymal",
+      "vision": "rgb"
+    },
+    {
+      "backend": "genesis",
+      "learning": {
+        "censored": 0,
+        "final_reached": 3,
+        "first_target_s": {
+          "max": 78.69693827209994,
+          "median": 72.28133601788431,
+          "min": 53.22420036513358,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 53.22420036513358
+            },
+            {
+              "seed": 1,
+              "value": 78.69693827209994
+            },
+            {
+              "seed": 2,
+              "value": 72.28133601788431
+            }
+          ]
+        },
+        "reached": 3,
+        "seeds": [
+          {
+            "censored": false,
+            "final_error": 0.005079859867691994,
+            "final_reached": true,
+            "first_target_s": 53.22420036513358,
+            "raw": "data/runs/9328c646d3103bbb-run.json",
+            "reached": true,
+            "seed": 0,
+            "survival": 1.0
+          },
+          {
+            "censored": false,
+            "final_error": 0.004012375138700008,
+            "final_reached": true,
+            "first_target_s": 78.69693827209994,
+            "raw": "data/runs/db936f6a8781bb85-run.json",
+            "reached": true,
+            "seed": 1,
+            "survival": 1.0
+          },
+          {
+            "censored": false,
+            "final_error": 0.005372326355427504,
+            "final_reached": true,
+            "first_target_s": 72.28133601788431,
+            "raw": "data/runs/978a030714e625b3-run.json",
+            "reached": true,
+            "seed": 2,
+            "survival": 1.0
+          }
+        ]
+      },
+      "metrics": {
+        "env_steps_per_s": {
+          "max": 32706.69369421671,
+          "median": 32460.269977009724,
+          "min": 29329.620917177577,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 32706.69369421671
+            },
+            {
+              "seed": 1,
+              "value": 29329.620917177577
+            },
+            {
+              "seed": 2,
+              "value": 32460.269977009724
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 135.58728286623955,
+          "median": 129.6343307052739,
+          "min": 53.59738603234291,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 135.58728286623955
+            },
+            {
+              "seed": 1,
+              "value": 129.6343307052739
+            },
+            {
+              "seed": 2,
+              "value": 53.59738603234291
+            }
+          ]
+        },
+        "training_s": {
+          "max": 209.481057302095,
+          "median": 189.27753849094734,
+          "min": 187.8514550398104,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 187.8514550398104
+            },
+            {
+              "seed": 1,
+              "value": 209.481057302095
+            },
+            {
+              "seed": 2,
+              "value": 189.27753849094734
+            }
+          ]
+        }
+      },
+      "mode": "learning",
+      "num_envs": 512,
+      "task": "cartpole",
+      "vision": "none"
+    },
+    {
+      "backend": "genesis",
+      "learning": {
+        "censored": 1,
+        "final_reached": 2,
+        "first_target_s": {
+          "max": 306.5566075919196,
+          "median": 294.88928127405234,
+          "min": 283.2219549561851,
+          "n": 2,
+          "values": [
+            {
+              "seed": 0,
+              "value": 306.5566075919196
+            },
+            {
+              "seed": 2,
+              "value": 283.2219549561851
+            }
+          ]
+        },
+        "reached": 2,
+        "seeds": [
+          {
+            "censored": false,
+            "final_error": 0.005377570167183876,
+            "final_reached": true,
+            "first_target_s": 306.5566075919196,
+            "raw": "data/runs/a1788ea9ff27bc5f-run.json",
+            "reached": true,
+            "seed": 0,
+            "survival": 1.0
+          },
+          {
+            "censored": true,
+            "final_error": 0.1391173005104065,
+            "final_reached": false,
+            "first_target_s": null,
+            "raw": "data/runs/7831230a0b15ef02-run.json",
+            "reached": false,
+            "seed": 1,
+            "survival": 0.0
+          },
+          {
+            "censored": false,
+            "final_error": 0.005132737103849649,
+            "final_reached": true,
+            "first_target_s": 283.2219549561851,
+            "raw": "data/runs/ef4854ee259eb09e-run.json",
+            "reached": true,
+            "seed": 2,
+            "survival": 1.0
+          }
+        ]
+      },
+      "metrics": {
+        "env_steps_per_s": {
+          "max": 14384.490104663668,
+          "median": 13841.486256372982,
+          "min": 12425.344328094106,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 13841.486256372982
+            },
+            {
+              "seed": 1,
+              "value": 12425.344328094106
+            },
+            {
+              "seed": 2,
+              "value": 14384.490104663668
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 105.86014462262392,
+          "median": 55.52556120418012,
+          "min": 51.597038904670626,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 51.597038904670626
+            },
+            {
+              "seed": 1,
+              "value": 55.52556120418012
+            },
+            {
+              "seed": 2,
+              "value": 105.86014462262392
+            }
+          ]
+        },
+        "training_s": {
+          "max": 494.4732184289023,
+          "median": 443.8829679270275,
+          "min": 427.12671462772414,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 443.8829679270275
+            },
+            {
+              "seed": 1,
+              "value": 494.4732184289023
+            },
+            {
+              "seed": 2,
+              "value": 427.12671462772414
+            }
+          ]
+        }
+      },
+      "mode": "learning",
+      "num_envs": 512,
+      "task": "cartpole",
+      "vision": "rgb"
+    },
+    {
+      "backend": "genesis",
+      "metrics": {
+        "physics_steps_per_s": {
+          "max": 723383.0630361112,
+          "median": 582502.4706139961,
+          "min": 504522.4203813398,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 723383.0630361112
+            },
+            {
+              "seed": 1,
+              "value": 582502.4706139961
+            },
+            {
+              "seed": 2,
+              "value": 504522.4203813398
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 118.06926300795749,
+          "median": 54.31665321998298,
+          "min": 46.627298472914845,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 118.06926300795749
+            },
+            {
+              "seed": 1,
+              "value": 46.627298472914845
+            },
+            {
+              "seed": 2,
+              "value": 54.31665321998298
+            }
+          ]
+        }
+      },
+      "mode": "physics",
+      "num_envs": 256,
+      "task": "cartpole",
+      "vision": "none"
+    },
+    {
+      "backend": "genesis",
+      "metrics": {
+        "physics_steps_per_s": {
+          "max": 8170625.2532978505,
+          "median": 8053272.871430746,
+          "min": 7776389.390047544,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 8170625.2532978505
+            },
+            {
+              "seed": 1,
+              "value": 7776389.390047544
+            },
+            {
+              "seed": 2,
+              "value": 8053272.871430746
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 126.49217881495133,
+          "median": 100.51093567209318,
+          "min": 54.18856410589069,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 126.49217881495133
+            },
+            {
+              "seed": 1,
+              "value": 54.18856410589069
+            },
+            {
+              "seed": 2,
+              "value": 100.51093567209318
+            }
+          ]
+        }
+      },
+      "mode": "physics",
+      "num_envs": 4096,
+      "task": "cartpole",
+      "vision": "none"
+    },
+    {
+      "backend": "genesis",
+      "metrics": {
+        "env_steps_per_s": {
+          "max": 24466.256705975724,
+          "median": 23757.402755441595,
+          "min": 22981.67421667052,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 23757.402755441595
+            },
+            {
+              "seed": 1,
+              "value": 24466.256705975724
+            },
+            {
+              "seed": 2,
+              "value": 22981.67421667052
+            }
+          ]
+        },
+        "physics_steps_per_s": {
+          "max": 97865.0268239029,
+          "median": 95029.61102176638,
+          "min": 91926.69686668208,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 95029.61102176638
+            },
+            {
+              "seed": 1,
+              "value": 97865.0268239029
+            },
+            {
+              "seed": 2,
+              "value": 91926.69686668208
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 48.68430011207238,
+          "median": 48.37129293056205,
+          "min": 44.075956913176924,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 48.37129293056205
+            },
+            {
+              "seed": 1,
+              "value": 48.68430011207238
+            },
+            {
+              "seed": 2,
+              "value": 44.075956913176924
+            }
+          ]
+        }
+      },
+      "mode": "rollout",
+      "num_envs": 256,
+      "task": "cartpole",
+      "vision": "none"
+    },
+    {
+      "backend": "genesis",
+      "metrics": {
+        "env_steps_per_s": {
+          "max": 376979.74801652157,
+          "median": 355190.84393291856,
+          "min": 344117.36889754666,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 376979.74801652157
+            },
+            {
+              "seed": 1,
+              "value": 355190.84393291856
+            },
+            {
+              "seed": 2,
+              "value": 344117.36889754666
+            }
+          ]
+        },
+        "physics_steps_per_s": {
+          "max": 1507918.9920660863,
+          "median": 1420763.3757316743,
+          "min": 1376469.4755901867,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 1507918.9920660863
+            },
+            {
+              "seed": 1,
+              "value": 1420763.3757316743
+            },
+            {
+              "seed": 2,
+              "value": 1376469.4755901867
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 50.55536181200296,
+          "median": 45.18224146589637,
+          "min": 42.625345066189766,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 45.18224146589637
+            },
+            {
+              "seed": 1,
+              "value": 42.625345066189766
+            },
+            {
+              "seed": 2,
+              "value": 50.55536181200296
+            }
+          ]
+        }
+      },
+      "mode": "rollout",
+      "num_envs": 4096,
+      "task": "cartpole",
+      "vision": "none"
+    },
+    {
+      "backend": "genesis",
+      "metrics": {
+        "env_steps_per_s": {
+          "max": 5946.125880886774,
+          "median": 4485.633042172366,
+          "min": 4137.920798785727,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 4485.633042172366
+            },
+            {
+              "seed": 1,
+              "value": 5946.125880886774
+            },
+            {
+              "seed": 2,
+              "value": 4137.920798785727
+            }
+          ]
+        },
+        "physics_steps_per_s": {
+          "max": 23784.503523547097,
+          "median": 17942.532168689464,
+          "min": 16551.68319514291,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 17942.532168689464
+            },
+            {
+              "seed": 1,
+              "value": 23784.503523547097
+            },
+            {
+              "seed": 2,
+              "value": 16551.68319514291
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 131.52748601976782,
+          "median": 117.1254273657687,
+          "min": 115.9225370772183,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 115.9225370772183
+            },
+            {
+              "seed": 1,
+              "value": 131.52748601976782
+            },
+            {
+              "seed": 2,
+              "value": 117.1254273657687
+            }
+          ]
+        }
+      },
+      "mode": "rollout",
+      "num_envs": 64,
+      "task": "cartpole",
+      "vision": "rgb"
+    },
+    {
+      "backend": "isaaclab",
+      "learning": {
+        "censored": 0,
+        "final_reached": 3,
+        "first_target_s": {
+          "max": 60.49773528287187,
+          "median": 43.71378129301593,
+          "min": 43.09506978513673,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 43.71378129301593
+            },
+            {
+              "seed": 1,
+              "value": 43.09506978513673
+            },
+            {
+              "seed": 2,
+              "value": 60.49773528287187
+            }
+          ]
+        },
+        "reached": 3,
+        "seeds": [
+          {
+            "censored": false,
+            "final_error": 0.0041886549443006516,
+            "final_reached": true,
+            "first_target_s": 43.71378129301593,
+            "raw": "data/runs/9d29d2b093b63b52-run.json",
+            "reached": true,
+            "seed": 0,
+            "survival": 1.0
+          },
+          {
+            "censored": false,
+            "final_error": 0.004140357952564955,
+            "final_reached": true,
+            "first_target_s": 43.09506978513673,
+            "raw": "data/runs/a10d886a8d352115-run.json",
+            "reached": true,
+            "seed": 1,
+            "survival": 1.0
+          },
+          {
+            "censored": false,
+            "final_error": 0.005116922315210104,
+            "final_reached": true,
+            "first_target_s": 60.49773528287187,
+            "raw": "data/runs/c3b4d775dc1d26ac-run.json",
+            "reached": true,
+            "seed": 2,
+            "survival": 1.0
+          }
+        ]
+      },
+      "metrics": {
+        "env_steps_per_s": {
+          "max": 36162.88676115588,
+          "median": 35815.84627341564,
+          "min": 35645.088760250736,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 35645.088760250736
+            },
+            {
+              "seed": 1,
+              "value": 36162.88676115588
+            },
+            {
+              "seed": 2,
+              "value": 35815.84627341564
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 13.166576593182981,
+          "median": 12.904061518609524,
+          "min": 10.938269482925534,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 10.938269482925534
+            },
+            {
+              "seed": 1,
+              "value": 12.904061518609524
+            },
+            {
+              "seed": 2,
+              "value": 13.166576593182981
+            }
+          ]
+        },
+        "training_s": {
+          "max": 172.36596158659086,
+          "median": 171.5441805589944,
+          "min": 169.89794096304104,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 172.36596158659086
+            },
+            {
+              "seed": 1,
+              "value": 169.89794096304104
+            },
+            {
+              "seed": 2,
+              "value": 171.5441805589944
+            }
+          ]
+        }
+      },
+      "mode": "learning",
+      "num_envs": 512,
+      "task": "cartpole",
+      "vision": "none"
+    },
+    {
+      "backend": "isaaclab",
+      "learning": {
+        "censored": 3,
+        "final_reached": 0,
+        "first_target_s": null,
+        "reached": 0,
+        "seeds": [
+          {
+            "censored": true,
+            "final_error": 0.08194579184055328,
+            "final_reached": false,
+            "first_target_s": null,
+            "raw": "data/runs/2bc192ac5b13a1f0-run.json",
+            "reached": false,
+            "seed": 0,
+            "survival": 0.013671875
+          },
+          {
+            "censored": true,
+            "final_error": 0.13295164704322815,
+            "final_reached": false,
+            "first_target_s": null,
+            "raw": "data/runs/8aabeb5f7c1591dd-run.json",
+            "reached": false,
+            "seed": 1,
+            "survival": 0.0
+          },
+          {
+            "censored": true,
+            "final_error": 0.14275720715522766,
+            "final_reached": false,
+            "first_target_s": null,
+            "raw": "data/runs/4c219359e905c744-run.json",
+            "reached": false,
+            "seed": 2,
+            "survival": 0.0
+          }
+        ]
+      },
+      "metrics": {
+        "env_steps_per_s": {
+          "max": 21814.226556209065,
+          "median": 21751.918941870314,
+          "min": 21260.604115336544,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 21814.226556209065
+            },
+            {
+              "seed": 1,
+              "value": 21260.604115336544
+            },
+            {
+              "seed": 2,
+              "value": 21751.918941870314
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 12.378585590980947,
+          "median": 12.103856464382261,
+          "min": 11.293437975924462,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 11.293437975924462
+            },
+            {
+              "seed": 1,
+              "value": 12.103856464382261
+            },
+            {
+              "seed": 2,
+              "value": 12.378585590980947
+            }
+          ]
+        },
+        "training_s": {
+          "max": 288.98520317999646,
+          "median": 282.4578381530009,
+          "min": 281.6510585038923,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 281.6510585038923
+            },
+            {
+              "seed": 1,
+              "value": 288.98520317999646
+            },
+            {
+              "seed": 2,
+              "value": 282.4578381530009
+            }
+          ]
+        }
+      },
+      "mode": "learning",
+      "num_envs": 512,
+      "task": "cartpole",
+      "vision": "rgb"
+    },
+    {
+      "backend": "isaaclab",
+      "metrics": {
+        "physics_steps_per_s": {
+          "max": 1317347.7071529469,
+          "median": 1315424.7079652841,
+          "min": 1312602.524903394,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 1315424.7079652841
+            },
+            {
+              "seed": 1,
+              "value": 1312602.524903394
+            },
+            {
+              "seed": 2,
+              "value": 1317347.7071529469
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 12.408561405260116,
+          "median": 12.374023935291916,
+          "min": 10.00649720011279,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 12.408561405260116
+            },
+            {
+              "seed": 1,
+              "value": 10.00649720011279
+            },
+            {
+              "seed": 2,
+              "value": 12.374023935291916
+            }
+          ]
+        }
+      },
+      "mode": "physics",
+      "num_envs": 256,
+      "task": "cartpole",
+      "vision": "none"
+    },
+    {
+      "backend": "isaaclab",
+      "metrics": {
+        "physics_steps_per_s": {
+          "max": 16622429.705484085,
+          "median": 16613970.355973708,
+          "min": 16611934.65177266,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 16613970.355973708
+            },
+            {
+              "seed": 1,
+              "value": 16611934.65177266
+            },
+            {
+              "seed": 2,
+              "value": 16622429.705484085
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 13.284037524368614,
+          "median": 12.713861932978034,
+          "min": 11.593335395213217,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 13.284037524368614
+            },
+            {
+              "seed": 1,
+              "value": 12.713861932978034
+            },
+            {
+              "seed": 2,
+              "value": 11.593335395213217
+            }
+          ]
+        }
+      },
+      "mode": "physics",
+      "num_envs": 4096,
+      "task": "cartpole",
+      "vision": "none"
+    },
+    {
+      "backend": "isaaclab",
+      "metrics": {
+        "env_steps_per_s": {
+          "max": 46377.832683309345,
+          "median": 42851.87501814764,
+          "min": 42716.68742324511,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 46377.832683309345
+            },
+            {
+              "seed": 1,
+              "value": 42851.87501814764
+            },
+            {
+              "seed": 2,
+              "value": 42716.68742324511
+            }
+          ]
+        },
+        "physics_steps_per_s": {
+          "max": 185511.33073323738,
+          "median": 171407.50007259057,
+          "min": 170866.74969298043,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 185511.33073323738
+            },
+            {
+              "seed": 1,
+              "value": 171407.50007259057
+            },
+            {
+              "seed": 2,
+              "value": 170866.74969298043
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 12.59784107701853,
+          "median": 12.303022284060717,
+          "min": 10.03649901598692,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 10.03649901598692
+            },
+            {
+              "seed": 1,
+              "value": 12.59784107701853
+            },
+            {
+              "seed": 2,
+              "value": 12.303022284060717
+            }
+          ]
+        }
+      },
+      "mode": "rollout",
+      "num_envs": 256,
+      "task": "cartpole",
+      "vision": "none"
+    },
+    {
+      "backend": "isaaclab",
+      "metrics": {
+        "env_steps_per_s": {
+          "max": 864927.1042541736,
+          "median": 637860.7632441755,
+          "min": 634936.9550975405,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 864927.1042541736
+            },
+            {
+              "seed": 1,
+              "value": 637860.7632441755
+            },
+            {
+              "seed": 2,
+              "value": 634936.9550975405
+            }
+          ]
+        },
+        "physics_steps_per_s": {
+          "max": 3459708.4170166943,
+          "median": 2551443.052976702,
+          "min": 2539747.820390162,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 3459708.4170166943
+            },
+            {
+              "seed": 1,
+              "value": 2551443.052976702
+            },
+            {
+              "seed": 2,
+              "value": 2539747.820390162
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 13.800720965024084,
+          "median": 12.361573792994022,
+          "min": 9.575795085169375,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 9.575795085169375
+            },
+            {
+              "seed": 1,
+              "value": 12.361573792994022
+            },
+            {
+              "seed": 2,
+              "value": 13.800720965024084
+            }
+          ]
+        }
+      },
+      "mode": "rollout",
+      "num_envs": 4096,
+      "task": "cartpole",
+      "vision": "none"
+    },
+    {
+      "backend": "isaaclab",
+      "metrics": {
+        "env_steps_per_s": {
+          "max": 11219.2821429599,
+          "median": 11001.814536268035,
+          "min": 9710.655421984595,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 11001.814536268035
+            },
+            {
+              "seed": 1,
+              "value": 11219.2821429599
+            },
+            {
+              "seed": 2,
+              "value": 9710.655421984595
+            }
+          ]
+        },
+        "physics_steps_per_s": {
+          "max": 44877.1285718396,
+          "median": 44007.25814507214,
+          "min": 38842.62168793838,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 44007.25814507214
+            },
+            {
+              "seed": 1,
+              "value": 44877.1285718396
+            },
+            {
+              "seed": 2,
+              "value": 38842.62168793838
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 13.187017899006605,
+          "median": 11.63626342639327,
+          "min": 11.375887588132173,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 11.63626342639327
+            },
+            {
+              "seed": 1,
+              "value": 13.187017899006605
+            },
+            {
+              "seed": 2,
+              "value": 11.375887588132173
+            }
+          ]
+        }
+      },
+      "mode": "rollout",
+      "num_envs": 64,
+      "task": "cartpole",
+      "vision": "rgb"
+    },
+    {
+      "backend": "genesis",
+      "learning": {
+        "censored": 2,
+        "final_reached": 1,
+        "first_target_s": {
+          "max": 188.76699483022094,
+          "median": 188.76699483022094,
+          "min": 188.76699483022094,
+          "n": 1,
+          "values": [
+            {
+              "seed": 2,
+              "value": 188.76699483022094
+            }
+          ]
+        },
+        "reached": 1,
+        "seeds": [
+          {
+            "censored": true,
+            "final_error": 0.07279132306575775,
+            "final_reached": false,
+            "first_target_s": null,
+            "raw": "data/runs/8d1076722d00f696-run.json",
+            "reached": false,
+            "seed": 0,
+            "survival": 1.0
+          },
+          {
+            "censored": true,
+            "final_error": 0.05541619658470154,
+            "final_reached": false,
+            "first_target_s": null,
+            "raw": "data/runs/08724a63d568cf80-run.json",
+            "reached": false,
+            "seed": 1,
+            "survival": 1.0
+          },
+          {
+            "censored": false,
+            "final_error": 0.03690733015537262,
+            "final_reached": true,
+            "first_target_s": 188.76699483022094,
+            "raw": "data/runs/82041966eb97692d-run.json",
+            "reached": true,
+            "seed": 2,
+            "survival": 1.0
+          }
+        ]
+      },
+      "metrics": {
+        "env_steps_per_s": {
+          "max": 30540.75013221635,
+          "median": 29816.8188103061,
+          "min": 29291.307823633873,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 29816.8188103061
+            },
+            {
+              "seed": 1,
+              "value": 30540.75013221635
+            },
+            {
+              "seed": 2,
+              "value": 29291.307823633873
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 148.99213591730222,
+          "median": 108.6334409257397,
+          "min": 58.02261538011953,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 108.6334409257397
+            },
+            {
+              "seed": 1,
+              "value": 148.99213591730222
+            },
+            {
+              "seed": 2,
+              "value": 58.02261538011953
+            }
+          ]
+        },
+        "training_s": {
+          "max": 209.75505897495896,
+          "median": 206.05819953791797,
+          "min": 201.1738406359218,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 206.05819953791797
+            },
+            {
+              "seed": 1,
+              "value": 201.1738406359218
+            },
+            {
+              "seed": 2,
+              "value": 209.75505897495896
+            }
+          ]
+        }
+      },
+      "mode": "learning",
+      "num_envs": 512,
+      "task": "franka",
+      "vision": "none"
+    },
+    {
+      "backend": "genesis",
+      "learning": {
+        "censored": 3,
+        "final_reached": 0,
+        "first_target_s": null,
+        "reached": 0,
+        "seeds": [
+          {
+            "censored": true,
+            "final_error": 0.08327995240688324,
+            "final_reached": false,
+            "first_target_s": null,
+            "raw": "data/runs/8761ce48a9763b4b-run.json",
+            "reached": false,
+            "seed": 0,
+            "survival": 1.0
+          },
+          {
+            "censored": true,
+            "final_error": 0.13189056515693665,
+            "final_reached": false,
+            "first_target_s": null,
+            "raw": "data/runs/abb2e0519aa1692f-run.json",
+            "reached": false,
+            "seed": 1,
+            "survival": 1.0
+          },
+          {
+            "censored": true,
+            "final_error": 0.07845662534236908,
+            "final_reached": false,
+            "first_target_s": null,
+            "raw": "data/runs/4c38f32bff9be82a-run.json",
+            "reached": false,
+            "seed": 2,
+            "survival": 1.0
+          }
+        ]
+      },
+      "metrics": {
+        "env_steps_per_s": {
+          "max": 8720.398530187056,
+          "median": 8546.604559932444,
+          "min": 8516.999642417215,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 8516.999642417215
+            },
+            {
+              "seed": 1,
+              "value": 8720.398530187056
+            },
+            {
+              "seed": 2,
+              "value": 8546.604559932444
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 130.43600896792486,
+          "median": 59.28670086571947,
+          "min": 52.39255801681429,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 52.39255801681429
+            },
+            {
+              "seed": 1,
+              "value": 59.28670086571947
+            },
+            {
+              "seed": 2,
+              "value": 130.43600896792486
+            }
+          ]
+        },
+        "training_s": {
+          "max": 721.3807981628925,
+          "median": 718.881979026366,
+          "min": 704.5549556859769,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 721.3807981628925
+            },
+            {
+              "seed": 1,
+              "value": 704.5549556859769
+            },
+            {
+              "seed": 2,
+              "value": 718.881979026366
+            }
+          ]
+        }
+      },
+      "mode": "learning",
+      "num_envs": 512,
+      "task": "franka",
+      "vision": "rgb"
+    },
+    {
+      "backend": "genesis",
+      "metrics": {
+        "physics_steps_per_s": {
+          "max": 726111.9058071842,
+          "median": 528548.1451495325,
+          "min": 472425.5279951466,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 726111.9058071842
+            },
+            {
+              "seed": 1,
+              "value": 472425.5279951466
+            },
+            {
+              "seed": 2,
+              "value": 528548.1451495325
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 139.64349231123924,
+          "median": 112.98223852319643,
+          "min": 105.47611651569605,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 112.98223852319643
+            },
+            {
+              "seed": 1,
+              "value": 139.64349231123924
+            },
+            {
+              "seed": 2,
+              "value": 105.47611651569605
+            }
+          ]
+        }
+      },
+      "mode": "physics",
+      "num_envs": 256,
+      "task": "franka",
+      "vision": "none"
+    },
+    {
+      "backend": "genesis",
+      "metrics": {
+        "physics_steps_per_s": {
+          "max": 11975414.845246343,
+          "median": 8508832.060933953,
+          "min": 7493874.773970608,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 7493874.773970608
+            },
+            {
+              "seed": 1,
+              "value": 11975414.845246343
+            },
+            {
+              "seed": 2,
+              "value": 8508832.060933953
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 141.10402999306098,
+          "median": 121.36753208423033,
+          "min": 114.38345804531127,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 121.36753208423033
+            },
+            {
+              "seed": 1,
+              "value": 114.38345804531127
+            },
+            {
+              "seed": 2,
+              "value": 141.10402999306098
+            }
+          ]
+        }
+      },
+      "mode": "physics",
+      "num_envs": 4096,
+      "task": "franka",
+      "vision": "none"
+    },
+    {
+      "backend": "genesis",
+      "metrics": {
+        "env_steps_per_s": {
+          "max": 50979.23992647143,
+          "median": 50686.84086349054,
+          "min": 45717.19264735011,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 50686.84086349054
+            },
+            {
+              "seed": 1,
+              "value": 45717.19264735011
+            },
+            {
+              "seed": 2,
+              "value": 50979.23992647143
+            }
+          ]
+        },
+        "physics_steps_per_s": {
+          "max": 203916.95970588573,
+          "median": 202747.36345396217,
+          "min": 182868.77058940043,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 202747.36345396217
+            },
+            {
+              "seed": 1,
+              "value": 182868.77058940043
+            },
+            {
+              "seed": 2,
+              "value": 203916.95970588573
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 57.66935718618333,
+          "median": 53.68311709538102,
+          "min": 48.202835055068135,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 48.202835055068135
+            },
+            {
+              "seed": 1,
+              "value": 57.66935718618333
+            },
+            {
+              "seed": 2,
+              "value": 53.68311709538102
+            }
+          ]
+        }
+      },
+      "mode": "rollout",
+      "num_envs": 256,
+      "task": "franka",
+      "vision": "none"
+    },
+    {
+      "backend": "genesis",
+      "metrics": {
+        "env_steps_per_s": {
+          "max": 832034.317935678,
+          "median": 762379.5746317535,
+          "min": 737651.6442932376,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 832034.317935678
+            },
+            {
+              "seed": 1,
+              "value": 762379.5746317535
+            },
+            {
+              "seed": 2,
+              "value": 737651.6442932376
+            }
+          ]
+        },
+        "physics_steps_per_s": {
+          "max": 3328137.271742712,
+          "median": 3049518.298527014,
+          "min": 2950606.5771729504,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 3328137.271742712
+            },
+            {
+              "seed": 1,
+              "value": 3049518.298527014
+            },
+            {
+              "seed": 2,
+              "value": 2950606.5771729504
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 53.65611596824601,
+          "median": 51.15536316530779,
+          "min": 48.68735031411052,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 53.65611596824601
+            },
+            {
+              "seed": 1,
+              "value": 48.68735031411052
+            },
+            {
+              "seed": 2,
+              "value": 51.15536316530779
+            }
+          ]
+        }
+      },
+      "mode": "rollout",
+      "num_envs": 4096,
+      "task": "franka",
+      "vision": "none"
+    },
+    {
+      "backend": "genesis",
+      "metrics": {
+        "env_steps_per_s": {
+          "max": 5259.004154001082,
+          "median": 4557.757176260164,
+          "min": 4272.5964384829595,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 4272.5964384829595
+            },
+            {
+              "seed": 1,
+              "value": 4557.757176260164
+            },
+            {
+              "seed": 2,
+              "value": 5259.004154001082
+            }
+          ]
+        },
+        "physics_steps_per_s": {
+          "max": 21036.016616004326,
+          "median": 18231.028705040655,
+          "min": 17090.385753931838,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 17090.385753931838
+            },
+            {
+              "seed": 1,
+              "value": 18231.028705040655
+            },
+            {
+              "seed": 2,
+              "value": 21036.016616004326
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 150.27104126196355,
+          "median": 119.14347583800554,
+          "min": 109.81984075531363,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 109.81984075531363
+            },
+            {
+              "seed": 1,
+              "value": 150.27104126196355
+            },
+            {
+              "seed": 2,
+              "value": 119.14347583800554
+            }
+          ]
+        }
+      },
+      "mode": "rollout",
+      "num_envs": 64,
+      "task": "franka",
+      "vision": "rgb"
+    },
+    {
+      "backend": "isaaclab",
+      "learning": {
+        "censored": 2,
+        "final_reached": 1,
+        "first_target_s": {
+          "max": 168.77186973765492,
+          "median": 168.77186973765492,
+          "min": 168.77186973765492,
+          "n": 1,
+          "values": [
+            {
+              "seed": 2,
+              "value": 168.77186973765492
+            }
+          ]
+        },
+        "reached": 1,
+        "seeds": [
+          {
+            "censored": true,
+            "final_error": 0.06211945042014122,
+            "final_reached": false,
+            "first_target_s": null,
+            "raw": "data/runs/989fc3deee55079a-run.json",
+            "reached": false,
+            "seed": 0,
+            "survival": 0.978515625
+          },
+          {
+            "censored": true,
+            "final_error": 0.05655764415860176,
+            "final_reached": false,
+            "first_target_s": null,
+            "raw": "data/runs/4036ef6d42786ecf-run.json",
+            "reached": false,
+            "seed": 1,
+            "survival": 0.99609375
+          },
+          {
+            "censored": false,
+            "final_error": 0.046350739896297455,
+            "final_reached": true,
+            "first_target_s": 168.77186973765492,
+            "raw": "data/runs/9af5c32ded1c4689-run.json",
+            "reached": true,
+            "seed": 2,
+            "survival": 0.998046875
+          }
+        ]
+      },
+      "metrics": {
+        "env_steps_per_s": {
+          "max": 36403.075874096605,
+          "median": 35588.87500670218,
+          "min": 34843.330334094106,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 35588.87500670218
+            },
+            {
+              "seed": 1,
+              "value": 34843.330334094106
+            },
+            {
+              "seed": 2,
+              "value": 36403.075874096605
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 10.96090828627348,
+          "median": 10.71310688694939,
+          "min": 10.595006834715605,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 10.71310688694939
+            },
+            {
+              "seed": 1,
+              "value": 10.96090828627348
+            },
+            {
+              "seed": 2,
+              "value": 10.595006834715605
+            }
+          ]
+        },
+        "training_s": {
+          "max": 176.33216862706468,
+          "median": 172.63821907388046,
+          "min": 168.77694679563865,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 172.63821907388046
+            },
+            {
+              "seed": 1,
+              "value": 176.33216862706468
+            },
+            {
+              "seed": 2,
+              "value": 168.77694679563865
+            }
+          ]
+        }
+      },
+      "mode": "learning",
+      "num_envs": 512,
+      "task": "franka",
+      "vision": "none"
+    },
+    {
+      "backend": "isaaclab",
+      "learning": {
+        "censored": 3,
+        "final_reached": 0,
+        "first_target_s": null,
+        "reached": 0,
+        "seeds": [
+          {
+            "censored": true,
+            "final_error": 0.0942867249250412,
+            "final_reached": false,
+            "first_target_s": null,
+            "raw": "data/runs/11ff325d4a6d14b6-run.json",
+            "reached": false,
+            "seed": 0,
+            "survival": 1.0
+          },
+          {
+            "censored": true,
+            "final_error": 0.140627920627594,
+            "final_reached": false,
+            "first_target_s": null,
+            "raw": "data/runs/a99bfc778dfeecf7-run.json",
+            "reached": false,
+            "seed": 1,
+            "survival": 1.0
+          },
+          {
+            "censored": true,
+            "final_error": 0.0760946050286293,
+            "final_reached": false,
+            "first_target_s": null,
+            "raw": "data/runs/a98067b221b8a9ec-run.json",
+            "reached": false,
+            "seed": 2,
+            "survival": 1.0
+          }
+        ]
+      },
+      "metrics": {
+        "env_steps_per_s": {
+          "max": 25623.83279311152,
+          "median": 24935.358944574287,
+          "min": 24737.178712695237,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 24737.178712695237
+            },
+            {
+              "seed": 1,
+              "value": 25623.83279311152
+            },
+            {
+              "seed": 2,
+              "value": 24935.358944574287
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 14.568604257889092,
+          "median": 14.065341440960765,
+          "min": 13.794705931097269,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 13.794705931097269
+            },
+            {
+              "seed": 1,
+              "value": 14.568604257889092
+            },
+            {
+              "seed": 2,
+              "value": 14.065341440960765
+            }
+          ]
+        },
+        "training_s": {
+          "max": 248.37108836695552,
+          "median": 246.3970947302878,
+          "min": 239.7767753796652,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 248.37108836695552
+            },
+            {
+              "seed": 1,
+              "value": 239.7767753796652
+            },
+            {
+              "seed": 2,
+              "value": 246.3970947302878
+            }
+          ]
+        }
+      },
+      "mode": "learning",
+      "num_envs": 512,
+      "task": "franka",
+      "vision": "rgb"
+    },
+    {
+      "backend": "isaaclab",
+      "metrics": {
+        "physics_steps_per_s": {
+          "max": 717255.933626956,
+          "median": 716957.7015809494,
+          "min": 716235.6389732887,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 717255.933626956
+            },
+            {
+              "seed": 1,
+              "value": 716957.7015809494
+            },
+            {
+              "seed": 2,
+              "value": 716235.6389732887
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 10.97204282740131,
+          "median": 10.72456339141354,
+          "min": 10.711999643594027,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 10.711999643594027
+            },
+            {
+              "seed": 1,
+              "value": 10.72456339141354
+            },
+            {
+              "seed": 2,
+              "value": 10.97204282740131
+            }
+          ]
+        }
+      },
+      "mode": "physics",
+      "num_envs": 256,
+      "task": "franka",
+      "vision": "none"
+    },
+    {
+      "backend": "isaaclab",
+      "metrics": {
+        "physics_steps_per_s": {
+          "max": 8346955.959327889,
+          "median": 8326472.007568035,
+          "min": 8283125.816018869,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 8346955.959327889
+            },
+            {
+              "seed": 1,
+              "value": 8326472.007568035
+            },
+            {
+              "seed": 2,
+              "value": 8283125.816018869
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 15.302482455037534,
+          "median": 12.979666769038886,
+          "min": 12.914729138370603,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 15.302482455037534
+            },
+            {
+              "seed": 1,
+              "value": 12.979666769038886
+            },
+            {
+              "seed": 2,
+              "value": 12.914729138370603
+            }
+          ]
+        }
+      },
+      "mode": "physics",
+      "num_envs": 4096,
+      "task": "franka",
+      "vision": "none"
+    },
+    {
+      "backend": "isaaclab",
+      "metrics": {
+        "env_steps_per_s": {
+          "max": 87842.51084354115,
+          "median": 74252.91946047249,
+          "min": 72494.3684765299,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 87842.51084354115
+            },
+            {
+              "seed": 1,
+              "value": 72494.3684765299
+            },
+            {
+              "seed": 2,
+              "value": 74252.91946047249
+            }
+          ]
+        },
+        "physics_steps_per_s": {
+          "max": 351370.0433741646,
+          "median": 297011.67784188996,
+          "min": 289977.4739061196,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 351370.0433741646
+            },
+            {
+              "seed": 1,
+              "value": 289977.4739061196
+            },
+            {
+              "seed": 2,
+              "value": 297011.67784188996
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 10.430948448833078,
+          "median": 10.25261881062761,
+          "min": 9.833117173984647,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 10.430948448833078
+            },
+            {
+              "seed": 1,
+              "value": 9.833117173984647
+            },
+            {
+              "seed": 2,
+              "value": 10.25261881062761
+            }
+          ]
+        }
+      },
+      "mode": "rollout",
+      "num_envs": 256,
+      "task": "franka",
+      "vision": "none"
+    },
+    {
+      "backend": "isaaclab",
+      "metrics": {
+        "env_steps_per_s": {
+          "max": 1142050.369026524,
+          "median": 1040046.2607646638,
+          "min": 952145.5097665862,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 1142050.369026524
+            },
+            {
+              "seed": 1,
+              "value": 952145.5097665862
+            },
+            {
+              "seed": 2,
+              "value": 1040046.2607646638
+            }
+          ]
+        },
+        "physics_steps_per_s": {
+          "max": 4568201.476106096,
+          "median": 4160185.043058655,
+          "min": 3808582.039066345,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 4568201.476106096
+            },
+            {
+              "seed": 1,
+              "value": 3808582.039066345
+            },
+            {
+              "seed": 2,
+              "value": 4160185.043058655
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 13.622507877647877,
+          "median": 12.982811552006751,
+          "min": 12.749492120929062,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 13.622507877647877
+            },
+            {
+              "seed": 1,
+              "value": 12.982811552006751
+            },
+            {
+              "seed": 2,
+              "value": 12.749492120929062
+            }
+          ]
+        }
+      },
+      "mode": "rollout",
+      "num_envs": 4096,
+      "task": "franka",
+      "vision": "none"
+    },
+    {
+      "backend": "isaaclab",
+      "metrics": {
+        "env_steps_per_s": {
+          "max": 18959.0329858571,
+          "median": 18892.84160075105,
+          "min": 18315.306578381354,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 18315.306578381354
+            },
+            {
+              "seed": 1,
+              "value": 18959.0329858571
+            },
+            {
+              "seed": 2,
+              "value": 18892.84160075105
+            }
+          ]
+        },
+        "physics_steps_per_s": {
+          "max": 75836.1319434284,
+          "median": 75571.3664030042,
+          "min": 73261.22631352542,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 73261.22631352542
+            },
+            {
+              "seed": 1,
+              "value": 75836.1319434284
+            },
+            {
+              "seed": 2,
+              "value": 75571.3664030042
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 13.308785285800695,
+          "median": 13.114025024231523,
+          "min": 12.840325209777802,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 12.840325209777802
+            },
+            {
+              "seed": 1,
+              "value": 13.308785285800695
+            },
+            {
+              "seed": 2,
+              "value": 13.114025024231523
+            }
+          ]
+        }
+      },
+      "mode": "rollout",
+      "num_envs": 64,
+      "task": "franka",
+      "vision": "rgb"
+    }
+  ],
+  "learning_figures": [
+    {
+      "path": "figures/learning-anymal-none-512-de9ed48d.svg",
+      "task": "anymal",
+      "vision": "none"
+    },
+    {
+      "path": "figures/learning-anymal-rgb-512-dcbeffc3.svg",
+      "task": "anymal",
+      "vision": "rgb"
+    },
+    {
+      "path": "figures/learning-cartpole-none-512-45a7dd95.svg",
+      "task": "cartpole",
+      "vision": "none"
+    },
+    {
+      "path": "figures/learning-cartpole-rgb-512-cb49438b.svg",
+      "task": "cartpole",
+      "vision": "rgb"
+    },
+    {
+      "path": "figures/learning-franka-none-512-9e4e9ebd.svg",
+      "task": "franka",
+      "vision": "none"
+    },
+    {
+      "path": "figures/learning-franka-rgb-512-bb167e40.svg",
+      "task": "franka",
+      "vision": "rgb"
+    }
+  ],
+  "presentation": {
+    "measurement_sha256": "f9143c50cd0bc82412288189c18784efc95b1fbebc46eec7a6aa158f4535f34b",
+    "original_presentation": {
+      "archived_path": "appendix.html",
+      "original_path": "index.html",
+      "sha256": "dfe94eeef5e2c94e37cf08e1281c818530b7c0d7287e018d44db05f027ecba4c"
+    },
+    "schema_version": 1,
+    "source_files_sha256": {
+      "render_visual_report.py": "340086887a04ce8c86a27a7e08704b57ca97c52f9cc248ae2ad5e3905c680106",
+      "visual-template.html": "75f4e32583ace71c2bfb8e61d27d7c065da8d5021a1def9aa2cf0a24445fe262",
+      "visual.css": "79755c7cd54f4af1867293e5c0b585e39f1e5110bb7ac01302e15414a5f80dbe",
+      "visual.js": "9fee7912de1ae6995dfc79c2736a3dd70034e5ad72cb293b9ee8efaf4dcbd6e6"
+    }
+  },
+  "scope": {
+    "hardware": "NVIDIA L40",
+    "iterations": 500,
+    "learning_num_envs": 512,
+    "measured_date": "2026-11-05",
+    "presentation_date": "2026-11-06",
+    "runs": 126,
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "training_transitions": 6144000
+  },
+  "source_revisions": {
+    "genesis": "969c3bd1449d0f0c79effd7b6a72614ed46ba6e7",
+    "isaaclab": "efa240ec39794f5d80430cbe38620626954c2c4d",
+    "newton": "42f7def118c2c4299ce493457bafd4e8a22a696e"
+  },
+  "takeaway": {
+    "rollout_mjwarp_higher": 9,
+    "rollout_ratio_max": 4.145205826049171,
+    "rollout_ratio_min": 1.225481988163786,
+    "rollout_settings": 9
+  }
+}

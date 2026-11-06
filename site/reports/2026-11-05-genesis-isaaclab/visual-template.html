@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="126 measured runs comparing Genesis and Isaac Lab MJWarp: simulation, RGB rendering, startup and learning on three robot tasks.">
+  <title>Genesis vs Isaac Lab MJWarp · Maximilian Krause</title>
+  <link rel="stylesheet" href="visual.css">
+</head>
+<body>
+  <a class="skip-link" href="#comparison">Skip to comparison</a>
+  <div class="wrap">
+    <header class="masthead">
+      <a href="../../">Maximilian Krause <span>/ Research</span></a>
+      <a href="appendix.html">Technical appendix <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="report-title">
+        <p class="eyebrow">Simulation benchmark · 5 November 2026</p>
+        <h1 id="report-title"><span class="genesis-text">Genesis</span> <span class="versus">vs</span><br><span class="isaaclab-text">Isaac Lab MJWarp</span></h1>
+        <p class="scope"><span>NVIDIA L40</span><span id="run-count">126 runs</span><span id="seed-count">3 seeds</span><span>3 tasks</span></p>
+        <p class="takeaway" id="takeaway">Compare simulation cost and held-out learning outcomes on the recorded L40 hardware.</p>
+        <p class="scope-note">Same tasks and PPO; native solvers and renderers differ. RGB augments proprioception.</p>
+      </section>
+
+      <section class="panel comparison" id="comparison" aria-labelledby="comparison-heading">
+        <div class="section-heading">
+          <div><p class="eyebrow">Compare the cost</p><h2 id="comparison-heading">Choose a workload</h2></div>
+          <div class="backend-legend" aria-label="Backends"><span><i class="key genesis-key"></i>Genesis</span><span><i class="key isaaclab-key"></i>Isaac Lab MJWarp</span></div>
+        </div>
+        <div class="controls js-only">
+          <div class="metric-tabs" role="group" aria-label="Comparison metric">
+            <button type="button" data-metric="rollout" aria-pressed="true">Rollouts</button>
+            <button type="button" data-metric="physics" aria-pressed="false">Pure physics</button>
+            <button type="button" data-metric="startup" aria-pressed="false">Startup</button>
+            <button type="button" data-metric="ppo" aria-pressed="false">PPO time</button>
+          </div>
+          <div class="workload-controls">
+            <fieldset class="vision-control">
+              <legend>Observations</legend>
+              <div class="radio-pair">
+                <label><input type="radio" name="vision" value="none" checked><span>State</span></label>
+                <label><input type="radio" name="vision" value="rgb"><span>State + RGB</span></label>
+              </div>
+            </fieldset>
+            <label class="batch-control" for="batch">Environments<select id="batch"><option value="256">256</option><option value="4096" selected>4,096</option></select></label>
+          </div>
+        </div>
+        <div class="chart-heading"><h3 id="chart-title">Rollout throughput</h3><p id="chart-unit">Environment transitions / s · higher is faster</p></div>
+        <div id="comparison-chart" class="comparison-chart">
+          <p class="empty-state">Open the <a href="visuals/overview.svg">static overview</a> or <a href="appendix.html">technical appendix</a> to view the measurements.</p>
+        </div>
+        <p class="chart-key"><span><i class="sample-point"></i>Three seed measurements</span><span><i class="range-mark"></i>Minimum–maximum</span><span><i class="median-mark"></i>Median</span></p>
+        <p class="chart-note" id="chart-note">Rollouts include physics, task observations, rewards and resets.</p>
+        <p class="sr-only" id="chart-status" role="status" aria-live="polite" aria-atomic="true"></p>
+        <noscript><p class="fallback">Interactive selection needs JavaScript. <a href="visuals/overview.svg">Open the static overview</a>, <a href="data/measurements.csv">download the CSV</a> or <a href="appendix.html">read the full technical report</a>.</p></noscript>
+      </section>
+
+      <section class="learning-section" aria-labelledby="learning-heading">
+        <div class="section-heading"><div><p class="eyebrow">Check the outcome</p><h2 id="learning-heading">Did the policy reach the target?</h2></div><span class="selection-badge" id="learning-vision">State observations</span></div>
+        <p class="section-intro">500 PPO iterations · 512 environments · 6.144M training transitions.</p>
+        <div id="learning-matrix" class="learning-matrix"><p class="empty-state">Per-seed outcomes are available in the <a href="appendix.html">technical appendix</a>.</p></div>
+        <div class="learning-notes"><p><span class="filled-example" aria-hidden="true">●</span> Target reached <span class="empty-example" aria-hidden="true">○</span> Missed; censored at the budget.</p><p>Target: ≥95% survival plus error ≤0.25 m/s for ANYmal, ≤0.1 rad for Cartpole, or ≤0.05 m for Franka. Franka survival means valid joint state.</p><p class="conditional-note">Checked every 50 iterations. First-target time is the median among reached seeds only; it includes evaluations and excludes startup.</p></div>
+      </section>
+
+      <div class="evidence-drawers">
+        <details class="drawer">
+          <summary>Learning curves <span>One task at a time</span></summary>
+          <div class="drawer-body"><p class="drawer-intro">Held-out survival and task error, against training time and environment transitions.</p><div id="learning-curves"><p><a href="appendix.html">Open the per-seed learning curves in the technical appendix.</a></p></div></div>
+        </details>
+        <details class="drawer">
+          <summary>Native camera frames <span>64 × 64 RGB</span></summary>
+          <div class="drawer-body"><p class="drawer-intro">Matching camera geometry and resolution; native lighting and rendering quality differ.</p><div class="camera-gallery" id="camera-gallery"><p><a href="appendix.html">View camera samples and validation evidence.</a></p></div></div>
+        </details>
+        <details class="drawer" id="methods">
+          <summary>Methods &amp; downloads <span>Data, source and reproducibility</span></summary>
+          <div class="drawer-body">
+            <div class="method-grid">
+              <div><h3>What was measured</h3><p>ANYmal-C velocity tracking, Cartpole balance and fixed-base Franka reaching. Both backends use the same prepared robot inputs, controls, task code and PPO implementation.</p><p>Pure physics excludes task and rendering work. Rollouts add task updates; RGB adds native rendering. Startup uses the selected rollout workload. PPO time is the full fixed-budget cost, including evaluation.</p></div>
+              <div><h3>What to keep in mind</h3><p>Genesis uses Newton with a 25-iteration maximum and native tolerance. MJWarp uses Newton, implicitfast, 100 solver / 50 line-search iterations, tolerance 1e-6 and one substep. These settings do not establish equal physical accuracy.</p><p>Each task pairs both backends on the same physical L40. The baseline and Franka cohorts overlapped on separate GPUs on the same host. Three seeds show an observed range, not a confidence interval.</p></div>
+            </div>
+            <h3>Measurements &amp; provenance</h3>
+            <ul class="download-links">
+              <li><a href="data/measurements.csv">Measurements CSV</a></li><li><a href="data/measurements.json">Measurements JSON</a></li><li><a href="run_artifacts.zip">Raw run artifacts ZIP</a></li><li><a href="data/cohorts.json">Source and GPU cohorts</a></li><li><a href="data/provenance.json">Original study provenance</a></li><li><a href="data/presentation.json">Presentation provenance</a></li><li><a href="data/excluded_attempts.json">Excluded attempts</a></li><li><a href="SHA256SUMS">SHA-256 checksums</a></li>
+            </ul>
+            <p class="small-note">Original index archived as <a href="appendix.html">technical appendix</a>; presentation hashes in SHA256SUMS.</p>
+            <h3>Code &amp; rebuild</h3>
+            <ul class="download-links"><li><a href="presentation-source.zip">Presentation source ZIP</a></li><li><a href="render_visual_report.py">Visual report renderer</a></li><li><a href="source-baseline.zip">Measured baseline source ZIP</a></li><li><a href="source-franka.zip">Measured Franka source ZIP</a></li><li><a href="source.zip">Original publisher source ZIP</a></li></ul>
+            <pre class="rebuild-command"><code>uv run --no-project --with matplotlib python render_visual_report.py</code></pre>
+            <p class="small-note">Run inside the downloaded report directory, with its data and figure files.</p>
+            <ul class="source-pins" id="source-pins"></ul>
+            <h3>Standalone figures</h3>
+            <ul class="figure-downloads" id="figure-downloads">
+              <li><span>Visual overview</span><a href="visuals/overview.svg">SVG</a><a href="visuals/overview.png">PNG</a><a href="visuals/overview.pdf">PDF</a></li>
+              <li><span>Pure physics</span><a href="figures/runtime-physics-none-64x64.svg">SVG</a><a href="figures/runtime-physics-none-64x64.png">PNG</a><a href="figures/runtime-physics-none-64x64.pdf">PDF</a></li>
+              <li><span>State rollouts</span><a href="figures/runtime-rollout-none-64x64.svg">SVG</a><a href="figures/runtime-rollout-none-64x64.png">PNG</a><a href="figures/runtime-rollout-none-64x64.pdf">PDF</a></li>
+              <li><span>RGB rollouts</span><a href="figures/runtime-rollout-rgb-64x64.svg">SVG</a><a href="figures/runtime-rollout-rgb-64x64.png">PNG</a><a href="figures/runtime-rollout-rgb-64x64.pdf">PDF</a></li>
+            </ul>
+            <p class="small-note">This study uses Isaac Lab MJWarp, rather than the older PhysX stack in the quoted GPUSimBench comparison. It is not a reproduction of the RTX 5070 claim. <a href="appendix.html#methods">Full measurement contract and references</a>.</p>
+          </div>
+        </details>
+      </div>
+    </main>
+    <footer><span>Maximilian Krause · Research reports</span><a href="appendix.html">Full technical appendix <span aria-hidden="true">↗</span></a></footer>
+  </div>
+  <script type="application/json" id="report-data">__REPORT_DATA__</script>
+  <script src="visual.js" defer></script>
+</body>
+</html>
