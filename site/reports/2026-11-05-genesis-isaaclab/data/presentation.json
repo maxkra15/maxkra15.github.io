@@ -2600,6 +2600,131 @@
       "vision": "rgb"
     }
   ],
+  "plots": {
+    "learning": [
+      {
+        "axis": "samples",
+        "pdf": "visuals/learning-anymal-none-samples.pdf",
+        "png": "visuals/learning-anymal-none-samples.png",
+        "svg": "visuals/learning-anymal-none-samples.svg",
+        "task": "anymal",
+        "vision": "none"
+      },
+      {
+        "axis": "time",
+        "pdf": "visuals/learning-anymal-none-time.pdf",
+        "png": "visuals/learning-anymal-none-time.png",
+        "svg": "visuals/learning-anymal-none-time.svg",
+        "task": "anymal",
+        "vision": "none"
+      },
+      {
+        "axis": "samples",
+        "pdf": "visuals/learning-anymal-rgb-samples.pdf",
+        "png": "visuals/learning-anymal-rgb-samples.png",
+        "svg": "visuals/learning-anymal-rgb-samples.svg",
+        "task": "anymal",
+        "vision": "rgb"
+      },
+      {
+        "axis": "time",
+        "pdf": "visuals/learning-anymal-rgb-time.pdf",
+        "png": "visuals/learning-anymal-rgb-time.png",
+        "svg": "visuals/learning-anymal-rgb-time.svg",
+        "task": "anymal",
+        "vision": "rgb"
+      },
+      {
+        "axis": "samples",
+        "pdf": "visuals/learning-cartpole-none-samples.pdf",
+        "png": "visuals/learning-cartpole-none-samples.png",
+        "svg": "visuals/learning-cartpole-none-samples.svg",
+        "task": "cartpole",
+        "vision": "none"
+      },
+      {
+        "axis": "time",
+        "pdf": "visuals/learning-cartpole-none-time.pdf",
+        "png": "visuals/learning-cartpole-none-time.png",
+        "svg": "visuals/learning-cartpole-none-time.svg",
+        "task": "cartpole",
+        "vision": "none"
+      },
+      {
+        "axis": "samples",
+        "pdf": "visuals/learning-cartpole-rgb-samples.pdf",
+        "png": "visuals/learning-cartpole-rgb-samples.png",
+        "svg": "visuals/learning-cartpole-rgb-samples.svg",
+        "task": "cartpole",
+        "vision": "rgb"
+      },
+      {
+        "axis": "time",
+        "pdf": "visuals/learning-cartpole-rgb-time.pdf",
+        "png": "visuals/learning-cartpole-rgb-time.png",
+        "svg": "visuals/learning-cartpole-rgb-time.svg",
+        "task": "cartpole",
+        "vision": "rgb"
+      },
+      {
+        "axis": "samples",
+        "pdf": "visuals/learning-franka-none-samples.pdf",
+        "png": "visuals/learning-franka-none-samples.png",
+        "svg": "visuals/learning-franka-none-samples.svg",
+        "task": "franka",
+        "vision": "none"
+      },
+      {
+        "axis": "time",
+        "pdf": "visuals/learning-franka-none-time.pdf",
+        "png": "visuals/learning-franka-none-time.png",
+        "svg": "visuals/learning-franka-none-time.svg",
+        "task": "franka",
+        "vision": "none"
+      },
+      {
+        "axis": "samples",
+        "pdf": "visuals/learning-franka-rgb-samples.pdf",
+        "png": "visuals/learning-franka-rgb-samples.png",
+        "svg": "visuals/learning-franka-rgb-samples.svg",
+        "task": "franka",
+        "vision": "rgb"
+      },
+      {
+        "axis": "time",
+        "pdf": "visuals/learning-franka-rgb-time.pdf",
+        "png": "visuals/learning-franka-rgb-time.png",
+        "svg": "visuals/learning-franka-rgb-time.svg",
+        "task": "franka",
+        "vision": "rgb"
+      }
+    ],
+    "rgb_cost": {
+      "pdf": "visuals/ppo-rgb-cost.pdf",
+      "png": "visuals/ppo-rgb-cost.png",
+      "svg": "visuals/ppo-rgb-cost.svg"
+    },
+    "scaling": [
+      {
+        "pdf": "visuals/scaling-anymal.pdf",
+        "png": "visuals/scaling-anymal.png",
+        "svg": "visuals/scaling-anymal.svg",
+        "task": "anymal"
+      },
+      {
+        "pdf": "visuals/scaling-cartpole.pdf",
+        "png": "visuals/scaling-cartpole.png",
+        "svg": "visuals/scaling-cartpole.svg",
+        "task": "cartpole"
+      },
+      {
+        "pdf": "visuals/scaling-franka.pdf",
+        "png": "visuals/scaling-franka.png",
+        "svg": "visuals/scaling-franka.svg",
+        "task": "franka"
+      }
+    ]
+  },
   "presentation": {
     "extension_execution_note": "The 8,192-environment state rollouts were measured on 6 November 2026 using the original frozen runtime sources, physical inputs and per-task L40 UUIDs. Baseline and Franka cohorts ran concurrently on separate L40s on the same 16-vCPU host; each cohort ran cases serially with cpu_threads=8. Disk and JIT caches were reused. Separate untimed batch-boundary audits ran after all 18 timed cases and both timing drivers had finished.",
     "extension_measurement_sha256": "fecea8fce1d6932de7243f66d113a645f206783db98d40971b66a1e4b0074e6f",
@@ -2609,13 +2734,15 @@
       "original_path": "index.html",
       "sha256": "dfe94eeef5e2c94e37cf08e1281c818530b7c0d7287e018d44db05f027ecba4c"
     },
+    "plot_data_sha256": "346fe1481f92eb52cf518e41a72b2543cf4e26d7193a76b5c36bc0eae55c7034",
     "schema_version": 1,
     "source_files_sha256": {
       "appendix-template.html": "7ca23dc0470dc2e0e50bc8a7279b21d53cadffafeeb7edc66e418ceb9649c143",
-      "render_visual_report.py": "898446495f17e548f8557c3cf78b75ff5062bde979852d67070596b58e67bd01",
-      "visual-template.html": "b2d687ad832f9fe88c189dc220502d68b4d8d9512b0a8b4e6a6171a94d395e67",
-      "visual.css": "a58c647ee3b611474201182ebe253b1f0076d4316f6c43f128a4149dc65440c1",
-      "visual.js": "0504c44a94d6192869a289ed5c0874e07c6b694ed7cb55f9fad2171b1d593a79"
+      "plot_report.py": "caf11ed194a9c331cd10db418a759e137ddfca3c613682da40c0c2073bafd48f",
+      "render_visual_report.py": "507ffbdd531b41730a0f1b63dc2ea87326abfae247ea0749d73d76a45963b94a",
+      "visual-template.html": "fb23281390f1032e5248774ca072485c512ce32dadcf97b94f3150722efcd254",
+      "visual.css": "85457469efb1e9e802ffb88f115646c98df06ce5f02e1cfc7aed6283d7eb71b0",
+      "visual.js": "15fdbf1b6d30a686aa186ab24a22ee0a59e577f1f822882c2e5716c9c5a13204"
     }
   },
   "scope": {

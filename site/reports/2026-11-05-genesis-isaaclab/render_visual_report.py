@@ -338,6 +338,7 @@ def presentation_data(directory: Path) -> dict:
                 name: digest(directory / name)
                 for name in (
                     "render_visual_report.py",
+                    "plot_report.py",
                     "visual-template.html",
                     "appendix-template.html",
                     "visual.css",
@@ -593,6 +594,11 @@ def render(directory: Path) -> None:
     runs, extension = load_runs(directory)
     write_report_data(directory, data, runs)
     write_appendix(directory, data, runs, extension)
+    export_overview(data, directory)
+    from plot_report import export_plots
+
+    data["plots"] = export_plots(directory, runs, data["groups"])
+    data["presentation"]["plot_data_sha256"] = digest(directory / "data/plots.json")
     encoded = json.dumps(data, sort_keys=True, indent=2, allow_nan=False) + "\n"
     (directory / "data/presentation.json").write_text(encoded)
     template = (directory / "visual-template.html").read_text()
@@ -600,13 +606,13 @@ def render(directory: Path) -> None:
         raise ValueError("Visual template must contain exactly one report data slot")
     page = template.replace("__REPORT_DATA__", encoded.replace("<", "\\u003c"))
     (directory / "index.html").write_text(page)
-    export_overview(data, directory)
     readme = (
         "Visual presentation source (MIT)\n\n"
         "Extract these files into the published report directory, alongside data/ and figures/.\n"
         "Run: uv run --no-project --with matplotlib python render_visual_report.py\n\n"
         "The renderer reads data/measurements.json plus data/measurements-8192.json and their raw records.\n"
         "It preserves historical evidence, selects rollout/learning cases, and builds the current appendix.\n"
+        "plot_report.py generates scaling, paired RGB-cost and per-seed learning figures.\n"
         "Original data/provenance.json refers to original-report.html; data/presentation.json\n"
         "records the new renderer and input hashes. SHA256SUMS covers the current published files.\n"
         "The three original measured/publisher source ZIPs are separate, unchanged snapshots.\n"

@@ -139,11 +139,25 @@ summary { cursor: pointer; }
 .drawer > summary > span { margin-left: auto; color: var(--muted); font-size: .74rem; font-weight: 400; }
 .drawer-body { padding: 0 0 25px; min-width: 0; }
 .drawer-intro { margin-bottom: 18px; font-size: .8rem; color: var(--muted); }
-.task-curve { border: 1px solid var(--line); border-radius: 8px; background: white; margin-top: 10px; }
-.task-curve > summary { padding: 13px 17px; font-size: .84rem; }
-.curve-content { padding: 0 16px 16px; }
-.curve-content a { display: inline-block; margin-block: 5px 12px; font-size: .77rem; }
-.curve-content img { width: 100%; background: white; }
+.scaling-section { margin-top: 30px; }
+.plot-controls { display: flex; flex-wrap: wrap; align-items: end; gap: 16px 25px; margin-top: 21px; margin-bottom: 18px; }
+.has-js .plot-controls.js-only { display: flex; }
+.plot-control { min-width: 0; }
+.control-label { display: block; margin-bottom: 7px; color: var(--muted); font-size: .73rem; font-weight: 550; }
+.choice-buttons { display: grid; gap: 3px; padding: 3px; border: 1px solid var(--line); border-radius: 7px; background: #f0f3f6; }
+.task-choices { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.axis-choices { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.choice-buttons button { min-height: 36px; padding: 7px 14px; border: 0; border-radius: 4px; background: transparent; color: var(--muted); font-size: .79rem; font-weight: 550; white-space: nowrap; }
+.choice-buttons button[aria-pressed="true"] { color: var(--ink); background: white; box-shadow: 0 1px 3px rgb(23 37 52 / 12%); }
+.choice-buttons button:hover:not([aria-pressed="true"]) { background: #e5ebf1; }
+.report-figure { min-width: 0; margin-top: 18px; }
+.plot-full-size { display: block; width: 100%; min-width: 0; border-radius: 5px; }
+.report-plot { display: block; width: 100%; height: auto; min-width: 0; max-width: 100%; background: white; }
+.report-figure figcaption { max-width: 850px; margin-top: 12px; color: var(--muted); font-size: .73rem; line-height: 1.65; }
+.plot-exports { display: flex; flex-wrap: wrap; align-items: baseline; gap: 7px 17px; margin-top: 12px; font-size: .74rem; }
+.plot-exports > span { color: var(--muted); font-size: .7rem; }
+.plot-selection { color: var(--muted); font-size: .77rem; }
+.plot-unavailable { padding-block: 22px; color: var(--muted); font-size: .8rem; }
 .camera-gallery { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 18px; }
 .camera-sample { min-width: 0; }
 .camera-sample a { display: block; width: 100%; max-width: 128px; }
@@ -217,6 +231,13 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10
   .learning-notes { font-size: .67rem; }
   .drawer > summary { font-size: .82rem; gap: 4px 8px; }
   .drawer > summary > span { font-size: .67rem; }
+  .scaling-section { margin-top: 24px; }
+  .plot-controls { gap: 14px; margin-top: 18px; }
+  .plot-control { max-width: 100%; }
+  .choice-buttons button { padding: 7px 11px; font-size: .73rem; }
+  .plot-exports { gap: 6px 14px; font-size: .7rem; }
+  .report-figure figcaption { font-size: .68rem; }
+  .plot-selection { font-size: .72rem; }
   .camera-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
   .method-grid { grid-template-columns: 1fr; gap: 22px; }
 }

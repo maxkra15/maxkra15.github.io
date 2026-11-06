@@ -57,6 +57,19 @@
         <noscript><p class="fallback">Interactive selection needs JavaScript. <a href="visuals/overview.svg">Open the static overview</a>, <a href="data/report-measurements.csv">download the CSV</a> or <a href="appendix.html">read the full technical report</a>.</p></noscript>
       </section>
 
+      <section class="panel scaling-section" id="state-scaling" aria-labelledby="scaling-heading">
+        <div class="section-heading"><div><p class="eyebrow">Follow the batch size</p><h2 id="scaling-heading">State rollout scaling</h2></div><span class="selection-badge">State observations only</span></div>
+        <p class="section-intro">Three measured batches: 256, 4,096 and 8,192 environments. This plot stays state-only when the observation toggle changes.</p>
+        <div class="plot-controls js-only"><div class="plot-control"><span class="control-label" id="scaling-task-label">Task</span><div class="choice-buttons task-choices" id="scaling-task-controls" role="group" aria-label="State rollout scaling task"><button type="button" data-scaling-task="anymal" aria-pressed="true">ANYmal-C</button><button type="button" data-scaling-task="cartpole" aria-pressed="false">Cartpole</button><button type="button" data-scaling-task="franka" aria-pressed="false">Franka</button></div></div></div>
+        <figure class="report-figure" id="scaling-figure">
+          <a class="plot-full-size" id="scaling-full-size" href="visuals/scaling-anymal.svg" target="_blank" rel="noopener"><img class="report-plot" id="scaling-plot" src="visuals/scaling-anymal.svg" alt="ANYmal-C state rollout throughput across the three measured batch sizes, with three-seed medians and ranges." aria-describedby="scaling-caption"></a>
+          <div class="plot-exports"><span>Full-size / export</span><a id="scaling-svg" href="visuals/scaling-anymal.svg" target="_blank" rel="noopener">SVG</a><a id="scaling-png" href="visuals/scaling-anymal.png" target="_blank" rel="noopener">PNG</a><a id="scaling-pdf" href="visuals/scaling-anymal.pdf" target="_blank" rel="noopener">PDF</a></div>
+          <figcaption id="scaling-caption">Three-seed medians and min–max ranges. Batches 256 and 4,096 were collected on 5 November; 8,192 on 6 November 2026. Backend pairs use the same physical GPU within each task.</figcaption>
+        </figure>
+        <p class="plot-unavailable" id="scaling-unavailable" hidden>Plot unavailable. <a href="data/plots.json">Download the plot data</a> or <a href="appendix.html">open the technical appendix</a>.</p>
+        <p class="sr-only" id="scaling-status" role="status" aria-live="polite" aria-atomic="true"></p>
+      </section>
+
       <section class="learning-section" aria-labelledby="learning-heading">
         <div class="section-heading"><div><p class="eyebrow">Check the outcome</p><h2 id="learning-heading">Did the policy reach the target?</h2></div><span class="selection-badge" id="learning-vision">State observations</span></div>
         <p class="section-intro">500 PPO iterations · 512 environments · 6.144M training transitions.</p>
@@ -65,9 +78,35 @@
       </section>
 
       <div class="evidence-drawers">
-        <details class="drawer">
+        <details class="drawer" id="learning-curves-drawer">
           <summary>Learning curves <span>One task at a time</span></summary>
-          <div class="drawer-body"><p class="drawer-intro">Held-out survival and task error, against training time and environment transitions.</p><div id="learning-curves"><p><a href="appendix.html">Open the per-seed learning curves in the technical appendix.</a></p></div></div>
+          <div class="drawer-body">
+            <p class="drawer-intro">Held-out error and survival · three seeds per backend · 512 environments. The observation toggle above selects state or state + RGB.</p>
+            <div class="plot-controls js-only">
+              <div class="plot-control"><span class="control-label" id="learning-task-label">Task</span><div class="choice-buttons task-choices" id="learning-task-controls" role="group" aria-label="Learning curve task"><button type="button" data-learning-task="anymal" aria-pressed="true">ANYmal-C</button><button type="button" data-learning-task="cartpole" aria-pressed="false">Cartpole</button><button type="button" data-learning-task="franka" aria-pressed="false">Franka</button></div></div>
+              <div class="plot-control"><span class="control-label" id="learning-axis-label">Horizontal axis</span><div class="choice-buttons axis-choices" id="learning-axis-controls" role="group" aria-label="Learning curve horizontal axis"><button type="button" data-learning-axis="samples" aria-pressed="true">Training transitions</button><button type="button" data-learning-axis="time" aria-pressed="false">Training time</button></div></div>
+            </div>
+            <p class="plot-selection" id="learning-plot-selection">ANYmal-C · state observations · training transitions</p>
+            <figure class="report-figure" id="learning-figure">
+              <a class="plot-full-size" id="learning-full-size" href="visuals/learning-anymal-none-samples.svg" target="_blank" rel="noopener"><img class="report-plot" id="learning-plot" src="visuals/learning-anymal-none-samples.svg" alt="ANYmal-C state learning: held-out tracking error and survival against training transitions, with three traces per backend." aria-describedby="learning-plot-caption" loading="lazy"></a>
+              <div class="plot-exports"><span>Full-size / export</span><a id="learning-svg" href="visuals/learning-anymal-none-samples.svg" target="_blank" rel="noopener">SVG</a><a id="learning-png" href="visuals/learning-anymal-none-samples.png" target="_blank" rel="noopener">PNG</a><a id="learning-pdf" href="visuals/learning-anymal-none-samples.pdf" target="_blank" rel="noopener">PDF</a></div>
+              <figcaption id="learning-plot-caption">The ANYmal target requires both ≥95% survival and speed-tracking error ≤0.25 m/s in a held-out evaluation.</figcaption>
+            </figure>
+            <p class="plot-unavailable" id="learning-unavailable" hidden>Plot unavailable. <a href="data/plots.json">Download the plot data</a> or <a href="appendix.html">open the technical appendix</a>.</p>
+            <p class="sr-only" id="learning-plot-status" role="status" aria-live="polite" aria-atomic="true"></p>
+          </div>
+        </details>
+        <details class="drawer" id="rgb-cost-drawer">
+          <summary>PPO cost of RGB <span>Paired seeds · same training budget</span></summary>
+          <div class="drawer-body">
+            <p class="drawer-intro">RGB / state training-time ratios for matched seeds: 512 environments and 6.144M training transitions in both runs. State → RGB counts show how many seeds reached the task target.</p>
+            <figure class="report-figure" id="rgb-cost-figure">
+              <a class="plot-full-size" id="rgb-cost-full-size" href="visuals/ppo-rgb-cost.svg" target="_blank" rel="noopener"><img class="report-plot" id="rgb-cost-plot" src="visuals/ppo-rgb-cost.svg" alt="Seed-paired RGB/state fixed-budget PPO time ratios for all three tasks and both backends, with medians, ranges and target counts." aria-describedby="rgb-cost-caption" loading="lazy"></a>
+              <div class="plot-exports"><span>Full-size / export</span><a id="rgb-cost-svg" href="visuals/ppo-rgb-cost.svg" target="_blank" rel="noopener">SVG</a><a id="rgb-cost-png" href="visuals/ppo-rgb-cost.png" target="_blank" rel="noopener">PNG</a><a id="rgb-cost-pdf" href="visuals/ppo-rgb-cost.pdf" target="_blank" rel="noopener">PDF</a></div>
+              <figcaption id="rgb-cost-caption">Median and min–max of three seed-paired ratios. This combines camera, CNN, trajectory/reset and evaluation costs; it is not isolated renderer overhead or time-to-learn.</figcaption>
+            </figure>
+            <p class="plot-unavailable" id="rgb-cost-unavailable" hidden>Plot unavailable. <a href="data/plots.json">Download the plot data</a>.</p>
+          </div>
         </details>
         <details class="drawer">
           <summary>Native camera frames <span>64 × 64 RGB</span></summary>
@@ -82,11 +121,11 @@
             </div>
             <h3>Measurements &amp; provenance</h3>
             <ul class="download-links">
-              <li><a href="data/report-measurements.csv">Measurements CSV</a></li><li><a href="data/report-measurements.json">Measurements JSON</a></li><li><a href="run_artifacts-8192.zip">8,192-env run archive</a></li><li><a href="data/measurements-8192.json">8,192-env measurements JSON</a></li><li><a href="run_artifacts.zip">Original run archive</a></li><li><a href="data/cohorts.json">Original source and GPU cohorts</a></li><li><a href="data/provenance.json">Original study provenance</a></li><li><a href="data/presentation.json">Presentation provenance</a></li><li><a href="data/excluded_attempts.json">Excluded attempts</a></li><li><a href="SHA256SUMS">SHA-256 checksums</a></li>
+              <li><a href="data/report-measurements.csv">Measurements CSV</a></li><li><a href="data/report-measurements.json">Measurements JSON</a></li><li><a href="data/plots.json">Plot data JSON</a></li><li><a href="run_artifacts-8192.zip">8,192-env run archive</a></li><li><a href="data/measurements-8192.json">8,192-env measurements JSON</a></li><li><a href="run_artifacts.zip">Original run archive</a></li><li><a href="data/cohorts.json">Original source and GPU cohorts</a></li><li><a href="data/provenance.json">Original study provenance</a></li><li><a href="data/presentation.json">Presentation provenance</a></li><li><a href="data/excluded_attempts.json">Excluded attempts</a></li><li><a href="SHA256SUMS">SHA-256 checksums</a></li>
             </ul>
             <p class="small-note">Original index archived as original-report.html; the filtered <a href="appendix.html">technical appendix</a> is current. Presentation hashes are in SHA256SUMS.</p>
             <h3>Code &amp; rebuild</h3>
-            <ul class="download-links"><li><a href="presentation-source.zip">Presentation source ZIP</a></li><li><a href="render_visual_report.py">Visual report renderer</a></li><li><a href="source-baseline.zip">Measured baseline source ZIP</a></li><li><a href="source-franka.zip">Measured Franka source ZIP</a></li><li><a href="source.zip">Original publisher source ZIP</a></li></ul>
+            <ul class="download-links"><li><a href="presentation-source.zip">Presentation source ZIP</a></li><li><a href="render_visual_report.py">Visual report renderer</a></li><li><a href="plot_report.py">Scientific plot module</a></li><li><a href="source-baseline.zip">Measured baseline source ZIP</a></li><li><a href="source-franka.zip">Measured Franka source ZIP</a></li><li><a href="source.zip">Original publisher source ZIP</a></li></ul>
             <pre class="rebuild-command"><code>uv run --no-project --with matplotlib python render_visual_report.py</code></pre>
             <p class="small-note">Run inside the downloaded report directory, with its data and figure files.</p>
             <ul class="source-pins" id="source-pins"></ul>

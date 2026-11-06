@@ -28,7 +28,7 @@
     startup: { mode: "rollout", field: "startup_s", title: "Rollout startup", unit: "Seconds · lower is faster" },
     ppo: { mode: "learning", field: "training_s", title: "Fixed-budget PPO time", unit: "Seconds · lower is faster for this budget" },
   };
-  const state = { metric: "rollout", vision: "none", batch: 4096 };
+  const state = { metric: "rollout", vision: "none", batch: 4096, scalingTask: "anymal", learningTask: "anymal", learningAxis: "samples" };
   const seeds = data.scope?.seeds || [0, 1, 2];
   const number = new Intl.NumberFormat("en", { maximumSignificantDigits: 3 });
   const whole = new Intl.NumberFormat("en", { maximumFractionDigits: 0 });
@@ -194,27 +194,72 @@
     document.getElementById("learning-vision").textContent = state.vision === "rgb" ? "State + RGB observations" : "State observations";
   }
 
-  function renderCurves() {
-    const container = document.getElementById("learning-curves");
-    const links = tasks.map((task) => {
-      const figure = (data.learning_figures || []).find((item) => item.task === task.id && item.vision === state.vision);
-      if (!figure) return null;
-      const details = node("details", "task-curve");
-      details.append(node("summary", "", task.name));
-      const body = node("div", "curve-content");
-      const link = node("a", "", "Open full-size SVG ↗");
-      link.href = figure.path;
-      link.target = "_blank";
-      link.rel = "noopener";
-      const image = node("img");
-      image.src = figure.path;
-      image.alt = `${task.name}, ${state.vision === "rgb" ? "state plus RGB" : "state"}: per-seed survival and task error against training time and environment transitions.`;
-      image.loading = "lazy";
-      body.append(link, image);
-      details.append(body);
-      return details;
-    }).filter(Boolean);
-    container.replaceChildren(...links);
+  function showPlot(prefix, plot, description) {
+    const figure = document.getElementById(`${prefix}-figure`);
+    const unavailable = document.getElementById(`${prefix}-unavailable`);
+    const available = Boolean(plot?.svg && plot.png && plot.pdf);
+    figure.hidden = !available;
+    unavailable.hidden = available;
+    if (!available) return;
+    const image = document.getElementById(`${prefix}-plot`);
+    if (image.getAttribute("src") !== plot.svg) image.src = plot.svg;
+    image.alt = description;
+    document.getElementById(`${prefix}-full-size`).href = plot.svg;
+    for (const extension of ["svg", "png", "pdf"]) document.getElementById(`${prefix}-${extension}`).href = plot[extension];
+  }
+
+  function announce(id, message) {
+    const status = document.getElementById(id);
+    if (status.textContent !== message) status.textContent = message;
+  }
+
+  function renderScaling() {
+    const task = tasks.find((item) => item.id === state.scalingTask);
+    const plot = data.plots?.scaling?.find((item) => item.task === task.id);
+    showPlot("scaling", plot, `${task.name}: state-only rollout throughput at 256, 4096 and 8192 environments. Three-seed medians and min–max ranges for Genesis and Isaac Lab MJWarp.`);
+    announce("scaling-status", `${task.name} state rollout scaling. Measured batches 256, 4096 and 8192. This plot always uses state observations.`);
+  }
+
+  function renderLearningPlot() {
+    const task = tasks.find((item) => item.id === state.learningTask);
+    const observation = state.vision === "rgb" ? "state + RGB observations" : "state observations";
+    const axis = state.learningAxis === "samples" ? "training transitions" : "training time";
+    const plot = data.plots?.learning?.find((item) => item.task === task.id && item.vision === state.vision && item.axis === state.learningAxis);
+    showPlot("learning", plot, `${task.name}, ${observation}: held-out task error and survival against ${axis}, with three seed traces for each backend.`);
+    document.getElementById("learning-plot-selection").textContent = `${task.name} · ${observation} · ${axis}`;
+    const targets = {
+      anymal: "The ANYmal target requires both ≥95% survival and speed-tracking error ≤0.25 m/s in a held-out evaluation.",
+      cartpole: "The Cartpole target requires both ≥95% survival and mean absolute pole angle ≤0.1 rad in a held-out evaluation.",
+      franka: "The Franka target requires both ≥95% valid-joint-state survival and end-effector reaching error ≤0.05 m in a held-out evaluation.",
+    };
+    document.getElementById("learning-plot-caption").textContent = targets[task.id];
+    announce("learning-plot-status", `${task.name} learning curves. ${observation}. Horizontal axis: ${axis}. Error and survival are shown together; both target conditions are required.`);
+  }
+
+  function bindChoices(selector, select) {
+    const buttons = [...document.querySelectorAll(selector)];
+    const activate = (button) => {
+      for (const item of buttons) {
+        item.setAttribute("aria-pressed", String(item === button));
+        item.tabIndex = item === button ? 0 : -1;
+      }
+      select(button);
+    };
+    buttons.forEach((button, index) => {
+      button.tabIndex = button.getAttribute("aria-pressed") === "true" ? 0 : -1;
+      button.addEventListener("click", () => activate(button));
+      button.addEventListener("keydown", (event) => {
+        let next;
+        if (event.key === "ArrowRight") next = (index + 1) % buttons.length;
+        else if (event.key === "ArrowLeft") next = (index + buttons.length - 1) % buttons.length;
+        else if (event.key === "Home") next = 0;
+        else if (event.key === "End") next = buttons.length - 1;
+        else return;
+        event.preventDefault();
+        buttons[next].focus();
+        activate(buttons[next]);
+      });
+    });
   }
 
   function renderCameraGallery() {
@@ -273,7 +318,7 @@
     configureBatch(current);
     renderChart(current);
     renderLearning();
-    renderCurves();
+    renderLearningPlot();
   }
 
   for (const button of document.querySelectorAll("[data-metric]")) {
@@ -285,6 +330,9 @@
   }
   for (const radio of document.querySelectorAll('input[name="vision"]')) radio.addEventListener("change", () => { state.vision = radio.value; render(); });
   batch.addEventListener("change", () => { state.batch = Number(batch.value); render(); });
+  bindChoices("[data-scaling-task]", (button) => { state.scalingTask = button.dataset.scalingTask; renderScaling(); });
+  bindChoices("[data-learning-task]", (button) => { state.learningTask = button.dataset.learningTask; renderLearningPlot(); });
+  bindChoices("[data-learning-axis]", (button) => { state.learningAxis = button.dataset.learningAxis; renderLearningPlot(); });
   if (Number.isFinite(data.scope?.runs)) document.getElementById("run-count").textContent = `${whole.format(data.scope.runs)} runs`;
   document.getElementById("seed-count").textContent = `${seeds.length} seeds`;
   const takeaway = data.takeaway;
@@ -297,5 +345,7 @@
   }
   renderCameraGallery();
   renderDownloads();
+  renderScaling();
+  showPlot("rgb-cost", data.plots?.rgb_cost, "Seed-paired RGB/state fixed-budget PPO training-time ratios for all three tasks and both backends, with medians, ranges and state-to-RGB target counts.");
   render();
 })();
