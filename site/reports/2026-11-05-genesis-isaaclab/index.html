@@ -57,6 +57,19 @@
         <noscript><p class="fallback">Interactive selection needs JavaScript. <a href="visuals/overview.svg">Open the static overview</a>, <a href="data/report-measurements.csv">download the CSV</a> or <a href="appendix.html">read the full technical report</a>.</p></noscript>
       </section>
 
+      <section class="panel scaling-section" id="state-scaling" aria-labelledby="scaling-heading">
+        <div class="section-heading"><div><p class="eyebrow">Follow the batch size</p><h2 id="scaling-heading">State rollout scaling</h2></div><span class="selection-badge">State observations only</span></div>
+        <p class="section-intro">Three measured batches: 256, 4,096 and 8,192 environments. This plot stays state-only when the observation toggle changes.</p>
+        <div class="plot-controls js-only"><div class="plot-control"><span class="control-label" id="scaling-task-label">Task</span><div class="choice-buttons task-choices" id="scaling-task-controls" role="group" aria-label="State rollout scaling task"><button type="button" data-scaling-task="anymal" aria-pressed="true">ANYmal-C</button><button type="button" data-scaling-task="cartpole" aria-pressed="false">Cartpole</button><button type="button" data-scaling-task="franka" aria-pressed="false">Franka</button></div></div></div>
+        <figure class="report-figure" id="scaling-figure">
+          <a class="plot-full-size" id="scaling-full-size" href="visuals/scaling-anymal.svg" target="_blank" rel="noopener"><img class="report-plot" id="scaling-plot" src="visuals/scaling-anymal.svg" alt="ANYmal-C state rollout throughput across the three measured batch sizes, with three-seed medians and ranges." aria-describedby="scaling-caption"></a>
+          <div class="plot-exports"><span>Full-size / export</span><a id="scaling-svg" href="visuals/scaling-anymal.svg" target="_blank" rel="noopener">SVG</a><a id="scaling-png" href="visuals/scaling-anymal.png" target="_blank" rel="noopener">PNG</a><a id="scaling-pdf" href="visuals/scaling-anymal.pdf" target="_blank" rel="noopener">PDF</a></div>
+          <figcaption id="scaling-caption">Three-seed medians and min–max ranges. Batches 256 and 4,096 were collected on 5 November; 8,192 on 6 November 2026. Backend pairs use the same physical GPU within each task.</figcaption>
+        </figure>
+        <p class="plot-unavailable" id="scaling-unavailable" hidden>Plot unavailable. <a href="data/plots.json">Download the plot data</a> or <a href="appendix.html">open the technical appendix</a>.</p>
+        <p class="sr-only" id="scaling-status" role="status" aria-live="polite" aria-atomic="true"></p>
+      </section>
+
       <section class="learning-section" aria-labelledby="learning-heading">
         <div class="section-heading"><div><p class="eyebrow">Check the outcome</p><h2 id="learning-heading">Did the policy reach the target?</h2></div><span class="selection-badge" id="learning-vision">State observations</span></div>
         <p class="section-intro">500 PPO iterations · 512 environments · 6.144M training transitions.</p>
@@ -65,9 +78,35 @@
       </section>
 
       <div class="evidence-drawers">
-        <details class="drawer">
+        <details class="drawer" id="learning-curves-drawer">
           <summary>Learning curves <span>One task at a time</span></summary>
-          <div class="drawer-body"><p class="drawer-intro">Held-out survival and task error, against training time and environment transitions.</p><div id="learning-curves"><p><a href="appendix.html">Open the per-seed learning curves in the technical appendix.</a></p></div></div>
+          <div class="drawer-body">
+            <p class="drawer-intro">Held-out error and survival · three seeds per backend · 512 environments. The observation toggle above selects state or state + RGB.</p>
+            <div class="plot-controls js-only">
+              <div class="plot-control"><span class="control-label" id="learning-task-label">Task</span><div class="choice-buttons task-choices" id="learning-task-controls" role="group" aria-label="Learning curve task"><button type="button" data-learning-task="anymal" aria-pressed="true">ANYmal-C</button><button type="button" data-learning-task="cartpole" aria-pressed="false">Cartpole</button><button type="button" data-learning-task="franka" aria-pressed="false">Franka</button></div></div>
+              <div class="plot-control"><span class="control-label" id="learning-axis-label">Horizontal axis</span><div class="choice-buttons axis-choices" id="learning-axis-controls" role="group" aria-label="Learning curve horizontal axis"><button type="button" data-learning-axis="samples" aria-pressed="true">Training transitions</button><button type="button" data-learning-axis="time" aria-pressed="false">Training time</button></div></div>
+            </div>
+            <p class="plot-selection" id="learning-plot-selection">ANYmal-C · state observations · training transitions</p>
+            <figure class="report-figure" id="learning-figure">
+              <a class="plot-full-size" id="learning-full-size" href="visuals/learning-anymal-none-samples.svg" target="_blank" rel="noopener"><img class="report-plot" id="learning-plot" src="visuals/learning-anymal-none-samples.svg" alt="ANYmal-C state learning: held-out tracking error and survival against training transitions, with three traces per backend." aria-describedby="learning-plot-caption" loading="lazy"></a>
+              <div class="plot-exports"><span>Full-size / export</span><a id="learning-svg" href="visuals/learning-anymal-none-samples.svg" target="_blank" rel="noopener">SVG</a><a id="learning-png" href="visuals/learning-anymal-none-samples.png" target="_blank" rel="noopener">PNG</a><a id="learning-pdf" href="visuals/learning-anymal-none-samples.pdf" target="_blank" rel="noopener">PDF</a></div>
+              <figcaption id="learning-plot-caption">The ANYmal target requires both ≥95% survival and speed-tracking error ≤0.25 m/s in a held-out evaluation.</figcaption>
+            </figure>
+            <p class="plot-unavailable" id="learning-unavailable" hidden>Plot unavailable. <a href="data/plots.json">Download the plot data</a> or <a href="appendix.html">open the technical appendix</a>.</p>
+            <p class="sr-only" id="learning-plot-status" role="status" aria-live="polite" aria-atomic="true"></p>
+          </div>
+        </details>
+        <details class="drawer" id="rgb-cost-drawer">
+          <summary>PPO cost of RGB <span>Paired seeds · same training budget</span></summary>
+          <div class="drawer-body">
+            <p class="drawer-intro">RGB / state training-time ratios for matched seeds: 512 environments and 6.144M training transitions in both runs. State → RGB counts show how many seeds reached the task target.</p>
+            <figure class="report-figure" id="rgb-cost-figure">
+              <a class="plot-full-size" id="rgb-cost-full-size" href="visuals/ppo-rgb-cost.svg" target="_blank" rel="noopener"><img class="report-plot" id="rgb-cost-plot" src="visuals/ppo-rgb-cost.svg" alt="Seed-paired RGB/state fixed-budget PPO time ratios for all three tasks and both backends, with medians, ranges and target counts." aria-describedby="rgb-cost-caption" loading="lazy"></a>
+              <div class="plot-exports"><span>Full-size / export</span><a id="rgb-cost-svg" href="visuals/ppo-rgb-cost.svg" target="_blank" rel="noopener">SVG</a><a id="rgb-cost-png" href="visuals/ppo-rgb-cost.png" target="_blank" rel="noopener">PNG</a><a id="rgb-cost-pdf" href="visuals/ppo-rgb-cost.pdf" target="_blank" rel="noopener">PDF</a></div>
+              <figcaption id="rgb-cost-caption">Median and min–max of three seed-paired ratios. This combines camera, CNN, trajectory/reset and evaluation costs; it is not isolated renderer overhead or time-to-learn.</figcaption>
+            </figure>
+            <p class="plot-unavailable" id="rgb-cost-unavailable" hidden>Plot unavailable. <a href="data/plots.json">Download the plot data</a>.</p>
+          </div>
         </details>
         <details class="drawer">
           <summary>Native camera frames <span>64 × 64 RGB</span></summary>
@@ -82,11 +121,11 @@
             </div>
             <h3>Measurements &amp; provenance</h3>
             <ul class="download-links">
-              <li><a href="data/report-measurements.csv">Measurements CSV</a></li><li><a href="data/report-measurements.json">Measurements JSON</a></li><li><a href="run_artifacts-8192.zip">8,192-env run archive</a></li><li><a href="data/measurements-8192.json">8,192-env measurements JSON</a></li><li><a href="run_artifacts.zip">Original run archive</a></li><li><a href="data/cohorts.json">Original source and GPU cohorts</a></li><li><a href="data/provenance.json">Original study provenance</a></li><li><a href="data/presentation.json">Presentation provenance</a></li><li><a href="data/excluded_attempts.json">Excluded attempts</a></li><li><a href="SHA256SUMS">SHA-256 checksums</a></li>
+              <li><a href="data/report-measurements.csv">Measurements CSV</a></li><li><a href="data/report-measurements.json">Measurements JSON</a></li><li><a href="data/plots.json">Plot data JSON</a></li><li><a href="run_artifacts-8192.zip">8,192-env run archive</a></li><li><a href="data/measurements-8192.json">8,192-env measurements JSON</a></li><li><a href="run_artifacts.zip">Original run archive</a></li><li><a href="data/cohorts.json">Original source and GPU cohorts</a></li><li><a href="data/provenance.json">Original study provenance</a></li><li><a href="data/presentation.json">Presentation provenance</a></li><li><a href="data/excluded_attempts.json">Excluded attempts</a></li><li><a href="SHA256SUMS">SHA-256 checksums</a></li>
             </ul>
             <p class="small-note">Original index archived as original-report.html; the filtered <a href="appendix.html">technical appendix</a> is current. Presentation hashes are in SHA256SUMS.</p>
             <h3>Code &amp; rebuild</h3>
-            <ul class="download-links"><li><a href="presentation-source.zip">Presentation source ZIP</a></li><li><a href="render_visual_report.py">Visual report renderer</a></li><li><a href="source-baseline.zip">Measured baseline source ZIP</a></li><li><a href="source-franka.zip">Measured Franka source ZIP</a></li><li><a href="source.zip">Original publisher source ZIP</a></li></ul>
+            <ul class="download-links"><li><a href="presentation-source.zip">Presentation source ZIP</a></li><li><a href="render_visual_report.py">Visual report renderer</a></li><li><a href="plot_report.py">Scientific plot module</a></li><li><a href="source-baseline.zip">Measured baseline source ZIP</a></li><li><a href="source-franka.zip">Measured Franka source ZIP</a></li><li><a href="source.zip">Original publisher source ZIP</a></li></ul>
             <pre class="rebuild-command"><code>uv run --no-project --with matplotlib python render_visual_report.py</code></pre>
             <p class="small-note">Run inside the downloaded report directory, with its data and figure files.</p>
             <ul class="source-pins" id="source-pins"></ul>
@@ -2705,6 +2744,131 @@
       "vision": "rgb"
     }
   ],
+  "plots": {
+    "learning": [
+      {
+        "axis": "samples",
+        "pdf": "visuals/learning-anymal-none-samples.pdf",
+        "png": "visuals/learning-anymal-none-samples.png",
+        "svg": "visuals/learning-anymal-none-samples.svg",
+        "task": "anymal",
+        "vision": "none"
+      },
+      {
+        "axis": "time",
+        "pdf": "visuals/learning-anymal-none-time.pdf",
+        "png": "visuals/learning-anymal-none-time.png",
+        "svg": "visuals/learning-anymal-none-time.svg",
+        "task": "anymal",
+        "vision": "none"
+      },
+      {
+        "axis": "samples",
+        "pdf": "visuals/learning-anymal-rgb-samples.pdf",
+        "png": "visuals/learning-anymal-rgb-samples.png",
+        "svg": "visuals/learning-anymal-rgb-samples.svg",
+        "task": "anymal",
+        "vision": "rgb"
+      },
+      {
+        "axis": "time",
+        "pdf": "visuals/learning-anymal-rgb-time.pdf",
+        "png": "visuals/learning-anymal-rgb-time.png",
+        "svg": "visuals/learning-anymal-rgb-time.svg",
+        "task": "anymal",
+        "vision": "rgb"
+      },
+      {
+        "axis": "samples",
+        "pdf": "visuals/learning-cartpole-none-samples.pdf",
+        "png": "visuals/learning-cartpole-none-samples.png",
+        "svg": "visuals/learning-cartpole-none-samples.svg",
+        "task": "cartpole",
+        "vision": "none"
+      },
+      {
+        "axis": "time",
+        "pdf": "visuals/learning-cartpole-none-time.pdf",
+        "png": "visuals/learning-cartpole-none-time.png",
+        "svg": "visuals/learning-cartpole-none-time.svg",
+        "task": "cartpole",
+        "vision": "none"
+      },
+      {
+        "axis": "samples",
+        "pdf": "visuals/learning-cartpole-rgb-samples.pdf",
+        "png": "visuals/learning-cartpole-rgb-samples.png",
+        "svg": "visuals/learning-cartpole-rgb-samples.svg",
+        "task": "cartpole",
+        "vision": "rgb"
+      },
+      {
+        "axis": "time",
+        "pdf": "visuals/learning-cartpole-rgb-time.pdf",
+        "png": "visuals/learning-cartpole-rgb-time.png",
+        "svg": "visuals/learning-cartpole-rgb-time.svg",
+        "task": "cartpole",
+        "vision": "rgb"
+      },
+      {
+        "axis": "samples",
+        "pdf": "visuals/learning-franka-none-samples.pdf",
+        "png": "visuals/learning-franka-none-samples.png",
+        "svg": "visuals/learning-franka-none-samples.svg",
+        "task": "franka",
+        "vision": "none"
+      },
+      {
+        "axis": "time",
+        "pdf": "visuals/learning-franka-none-time.pdf",
+        "png": "visuals/learning-franka-none-time.png",
+        "svg": "visuals/learning-franka-none-time.svg",
+        "task": "franka",
+        "vision": "none"
+      },
+      {
+        "axis": "samples",
+        "pdf": "visuals/learning-franka-rgb-samples.pdf",
+        "png": "visuals/learning-franka-rgb-samples.png",
+        "svg": "visuals/learning-franka-rgb-samples.svg",
+        "task": "franka",
+        "vision": "rgb"
+      },
+      {
+        "axis": "time",
+        "pdf": "visuals/learning-franka-rgb-time.pdf",
+        "png": "visuals/learning-franka-rgb-time.png",
+        "svg": "visuals/learning-franka-rgb-time.svg",
+        "task": "franka",
+        "vision": "rgb"
+      }
+    ],
+    "rgb_cost": {
+      "pdf": "visuals/ppo-rgb-cost.pdf",
+      "png": "visuals/ppo-rgb-cost.png",
+      "svg": "visuals/ppo-rgb-cost.svg"
+    },
+    "scaling": [
+      {
+        "pdf": "visuals/scaling-anymal.pdf",
+        "png": "visuals/scaling-anymal.png",
+        "svg": "visuals/scaling-anymal.svg",
+        "task": "anymal"
+      },
+      {
+        "pdf": "visuals/scaling-cartpole.pdf",
+        "png": "visuals/scaling-cartpole.png",
+        "svg": "visuals/scaling-cartpole.svg",
+        "task": "cartpole"
+      },
+      {
+        "pdf": "visuals/scaling-franka.pdf",
+        "png": "visuals/scaling-franka.png",
+        "svg": "visuals/scaling-franka.svg",
+        "task": "franka"
+      }
+    ]
+  },
   "presentation": {
     "extension_execution_note": "The 8,192-environment state rollouts were measured on 6 November 2026 using the original frozen runtime sources, physical inputs and per-task L40 UUIDs. Baseline and Franka cohorts ran concurrently on separate L40s on the same 16-vCPU host; each cohort ran cases serially with cpu_threads=8. Disk and JIT caches were reused. Separate untimed batch-boundary audits ran after all 18 timed cases and both timing drivers had finished.",
     "extension_measurement_sha256": "fecea8fce1d6932de7243f66d113a645f206783db98d40971b66a1e4b0074e6f",
@@ -2714,13 +2878,15 @@
       "original_path": "index.html",
       "sha256": "dfe94eeef5e2c94e37cf08e1281c818530b7c0d7287e018d44db05f027ecba4c"
     },
+    "plot_data_sha256": "346fe1481f92eb52cf518e41a72b2543cf4e26d7193a76b5c36bc0eae55c7034",
     "schema_version": 1,
     "source_files_sha256": {
       "appendix-template.html": "7ca23dc0470dc2e0e50bc8a7279b21d53cadffafeeb7edc66e418ceb9649c143",
-      "render_visual_report.py": "898446495f17e548f8557c3cf78b75ff5062bde979852d67070596b58e67bd01",
-      "visual-template.html": "b2d687ad832f9fe88c189dc220502d68b4d8d9512b0a8b4e6a6171a94d395e67",
-      "visual.css": "a58c647ee3b611474201182ebe253b1f0076d4316f6c43f128a4149dc65440c1",
-      "visual.js": "0504c44a94d6192869a289ed5c0874e07c6b694ed7cb55f9fad2171b1d593a79"
+      "plot_report.py": "caf11ed194a9c331cd10db418a759e137ddfca3c613682da40c0c2073bafd48f",
+      "render_visual_report.py": "507ffbdd531b41730a0f1b63dc2ea87326abfae247ea0749d73d76a45963b94a",
+      "visual-template.html": "fb23281390f1032e5248774ca072485c512ce32dadcf97b94f3150722efcd254",
+      "visual.css": "85457469efb1e9e802ffb88f115646c98df06ce5f02e1cfc7aed6283d7eb71b0",
+      "visual.js": "15fdbf1b6d30a686aa186ab24a22ee0a59e577f1f822882c2e5716c9c5a13204"
     }
   },
   "scope": {
