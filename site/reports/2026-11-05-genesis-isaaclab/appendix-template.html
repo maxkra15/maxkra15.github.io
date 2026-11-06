@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Methods and measurements · Genesis vs Isaac Lab MJWarp</title><link rel="stylesheet" href="visual.css">
+<style>main{padding-block:36px}h1{font-size:2.5rem}h2{margin:32px 0 12px}p+ p{margin-top:12px}
+.table{overflow-x:auto;margin:20px 0}table{border-collapse:collapse;width:100%;font-size:.8rem}
+th,td{padding:10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{white-space:nowrap}small{color:var(--muted);white-space:nowrap}code{overflow-wrap:anywhere}
+ul.links{list-style:disc;padding-left:22px;font-size:.85rem}section{margin-bottom:30px}</style></head>
+<body><div class="wrap"><header class="masthead"><a href="./">← Visual report</a><a href="../../">Research
+reports</a></header><main>
+<h1>Methods and measurements</h1><p>__RUN_COUNT__ displayed executions: 72 rollouts and 36 learning runs. Three
+seeds per backend and workload.</p>
+<section id="methods"><h2>Timing contract</h2><div
+class="table"><table><thead><tr><th>Measurement</th><th>Included work</th></tr></thead><tbody>
+<tr><td>Rollout</td><td>Four 5 ms simulator steps per transition, actions, observations, rewards, terminations
+and resets. RGB adds native rendering. 500 measured transitions after 50 warmup transitions; batches 256, 4,096
+or 8,192 for state and 64 for RGB.</td></tr>
+<tr><td>Startup</td><td>Runtime imports through first usable observation for that rollout workload. Python/site
+initialization is outside the clock. Fresh workers reuse disk/JIT caches.</td></tr>
+<tr><td>Learning</td><td>Shared PPO, 512 environments, 500 iterations × 24 rollout steps = 6.144M training
+transitions. Training includes initial/periodic evaluation and excludes model/optimizer construction, simulator
+startup and checkpoint saving.</td></tr>
+</tbody></table></div>
+<p>ANYmal-C tracks forward velocity, Cartpole balances, and Franka reaches seeded targets near home with open
+fixed fingers. RGB augments full proprioception. Both engines receive the same prepared robot inputs,
+controllers, task and PPO code.</p>
+<p>Held-out deterministic policy evaluation lasts 5 s and is sampled every 50 iterations. A target requires
+survival ≥0.95 plus mean error ≤0.25 m/s (ANYmal), ≤0.1 rad (Cartpole), or ≤0.05 m (Franka). Franka survival is
+valid joint state. Error averages include steps after automatic failure resets. First-target times are
+conditional on reached seeds; misses are censored at the fixed budget.</p>
+<p>Genesis uses Newton with a 25-iteration maximum and native tolerance. Isaac Lab MJWarp uses
+Newton/implicitfast, 100 solver and 50 line-search iterations, tolerance 1e-6, pyramidal friction, one substep
+and CUDA graphs. These settings do not establish equal physical accuracy. Native renderers differ in image
+quality.</p>
+</section><section><h2>Sources and execution cohorts</h2><div
+class="table"><table><thead><tr><th>Source</th><th>Revision</th></tr></thead><tbody>__REVISIONS__</tbody></table></div>
+<p>Original rollout and learning measurements were collected on 5 November 2026. The 8,192-environment rollouts
+were collected on 6 November using the same frozen runtime sources, physical inputs and original L40 UUID for
+each task. Comparisons pair both engines within the same task and batch.</p>
+<p>__EXECUTION_NOTE__</p>
+<p>Retained GPU activity samples must show no selected-GPU external compute. Native graph activity and fatal
+capacity flags are checked at the final solver state; these are not a cumulative overflow history.
+Convergence-limit warnings are retained separately. Torch allocator peak is not total GPU memory.</p>
+<p><a href="data/cohorts.json">Original source/GPU cohorts</a> · <a href="data/measurements-8192.json">8k
+extension and provenance</a> · <a href="data/presentation.json">Current presentation provenance</a> · <a
+href="SHA256SUMS">Current checksums</a></p>
+<p>The original measurement/source archives remain unchanged. Original provenance identifies the historical
+index, now preserved as <code>original-report.html</code>; this page summarizes the current selected
+dataset.</p>
+</section><section><h2>Matched workload summaries</h2><p>Medians [observed minimum, maximum], n=3. First-target
+summaries include reached seeds only.</p>
+<div
+class="table"><table><thead><tr><th>Task</th><th>Mode</th><th>Observations</th><th>Environments</th><th>Backend</th><th>Startup
+[s]</th><th>Rollout [transitions/s]</th><th>Training [s]</th><th>Target reached</th><th>First target
+[s]</th></tr></thead><tbody>__ROWS__</tbody></table></div>
+</section><section><h2>Validation and reproduction</h2><p>The original source cohorts include independent model,
+reset, controller, dynamics, FK and RGB validation. The 8k extension retains its launch configuration, raw
+records, execution audit and separate batch-boundary validation.</p>
+<ul class="links">__VALIDATION_LINKS__</ul><p><a href="data/report-measurements.csv">Current CSV</a> · <a
+href="data/report-measurements.json">Current JSON</a> · <a href="run_artifacts-8192.zip">8k raw artifacts</a> ·
+<a href="run_artifacts.zip">Original raw archive</a></p>
+<p><a href="source-baseline.zip">Baseline source</a> · <a href="source-franka.zip">Franka source</a> · <a
+href="source.zip">Original publisher</a> · <a href="presentation-source.zip">Current presentation source</a></p>
+<pre class="rebuild-command">uv run --no-project --with matplotlib python render_visual_report.py</pre>
+<details><summary>All current raw run records</summary><ul class="links">__RAW_LINKS__</ul></details>
+</section><p><a href="https://arxiv.org/abs/1707.06347">PPO</a> · <a
+href="https://arxiv.org/html/2607.13059v1">GPUSimBench reference</a>. Different source versions, hardware and
+backend; this MJWarp study does not reproduce the older RTX 5070/PhysX headline.</p>
+</main></div></body></html>

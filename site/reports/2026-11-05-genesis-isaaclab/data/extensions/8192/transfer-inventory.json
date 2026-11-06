@@ -1,0 +1,547 @@
+{
+  "schema_version": 1,
+  "kind": "remote_transfer_inventory",
+  "generated_utc": "2026-11-06T00:56:32.480083+00:00",
+  "excluded_regenerable_paths": [
+    "assets/isaaclab_mjwarp_usd/**",
+    "**/__pycache__/**"
+  ],
+  "roots": [
+    {
+      "name": "baseline",
+      "remote_path": "/home/horde/simulator-comparison-20261105/.benchmark_results/2026-11-06-rollout-8192",
+      "local_path": "/home/maximiliank/.paseo/worktrees/1zjbdl3z/tough-pig/.benchmark_results/2026-11-06-rollout-8192/baseline",
+      "files": [
+        {
+          "path": "assets/anymal.urdf",
+          "sha256": "50ce191b8735f8351d0e6f23be9e7657123ef6f8e9c740f2fb4edb8f11a92c18",
+          "size_bytes": 53765
+        },
+        {
+          "path": "assets/assets.json",
+          "sha256": "b66615bd107121678b3af39776181ecf8bee282736cf7d821e41b5f4c540658a",
+          "size_bytes": 2980
+        },
+        {
+          "path": "assets/cartpole.urdf",
+          "sha256": "a8702ba4b23da93a1be4b8666215c75ea4a8e97ddc3c758430fb456621f3dc50",
+          "size_bytes": 1383
+        },
+        {
+          "path": "genesis-anymal-rollout-none-8192-s0-0bf9f5a8e96d/config.json",
+          "sha256": "4bc0d6c6292bf3d22bd870b8f7e2bf18ff3aee3965e7ada747d93b3218c6eb04",
+          "size_bytes": 15487
+        },
+        {
+          "path": "genesis-anymal-rollout-none-8192-s0-0bf9f5a8e96d/run.result.json",
+          "sha256": "321a3508119440b07bb3743dfa49c9b97211e505f4b5d5a8041088f25668df9d",
+          "size_bytes": 23054
+        },
+        {
+          "path": "genesis-anymal-rollout-none-8192-s0-0bf9f5a8e96d/stdout.log",
+          "sha256": "640c751e40e1fa6f2031fd1798bd8667a8cf6730016d23ee9dc656d07ac3fd35",
+          "size_bytes": 2027
+        },
+        {
+          "path": "genesis-anymal-rollout-none-8192-s1-3e38e73ddd97/config.json",
+          "sha256": "8c1186ae39bf22fe1ebe500bdec98b3c1956e611be64466e041c1e1c80cc4d4a",
+          "size_bytes": 15487
+        },
+        {
+          "path": "genesis-anymal-rollout-none-8192-s1-3e38e73ddd97/run.result.json",
+          "sha256": "eebdfd3315c8cf3f5f84c7cce787f0253f281ef861c03f7ce6fc2a097ed05b0a",
+          "size_bytes": 23331
+        },
+        {
+          "path": "genesis-anymal-rollout-none-8192-s1-3e38e73ddd97/stdout.log",
+          "sha256": "ff0fc59857179abcaca89511c0eaa4b01341caf7feba13dcc52c5d808000bddd",
+          "size_bytes": 2027
+        },
+        {
+          "path": "genesis-anymal-rollout-none-8192-s2-1f34bc3e9ead/config.json",
+          "sha256": "f7a53a4f9ebba89c968f5b47907b851dbe038dd74a397e988c2d7e8dcec6754e",
+          "size_bytes": 15591
+        },
+        {
+          "path": "genesis-anymal-rollout-none-8192-s2-1f34bc3e9ead/run.result.json",
+          "sha256": "9d7816618b8cd472e01e65fcd663d342888c79598636df31edca60b8d1cbf0e4",
+          "size_bytes": 23890
+        },
+        {
+          "path": "genesis-anymal-rollout-none-8192-s2-1f34bc3e9ead/stdout.log",
+          "sha256": "995b89b4bf9efb5b5caf338b928b1c05e63a832f5698bdbe7bddf7b6119bf00d",
+          "size_bytes": 2027
+        },
+        {
+          "path": "genesis-cartpole-rollout-none-8192-s0-0c7793273691/config.json",
+          "sha256": "af213eced8e7af76abfd4ffd328e5bc77ca5e8990b05bd46c31f8cb3a97fb587",
+          "size_bytes": 15350
+        },
+        {
+          "path": "genesis-cartpole-rollout-none-8192-s0-0c7793273691/run.result.json",
+          "sha256": "663adcf388d6157111a3c5f66f007f6b3d10c3640df545aa968011a956216ee1",
+          "size_bytes": 21256
+        },
+        {
+          "path": "genesis-cartpole-rollout-none-8192-s0-0c7793273691/stdout.log",
+          "sha256": "2aee71764e8e7984e8aced8398270e0193635993bfdb2a2e3dc95d7a1d97eeb2",
+          "size_bytes": 1248
+        },
+        {
+          "path": "genesis-cartpole-rollout-none-8192-s1-fdd6287839a3/config.json",
+          "sha256": "429435077d9c811a4d0be78f41721c38b157ac0c9528081e7eddf90b83cd2ed9",
+          "size_bytes": 15247
+        },
+        {
+          "path": "genesis-cartpole-rollout-none-8192-s1-fdd6287839a3/run.result.json",
+          "sha256": "f779beb7c43fc0ff9c93a74f81f1c69753e11ddef7fc9a8e506f2e5cab8abd26",
+          "size_bytes": 22046
+        },
+        {
+          "path": "genesis-cartpole-rollout-none-8192-s1-fdd6287839a3/stdout.log",
+          "sha256": "c748f53463654cf81229630953e49c1420475b8c087e32d09a95bb00976a01f5",
+          "size_bytes": 1248
+        },
+        {
+          "path": "genesis-cartpole-rollout-none-8192-s2-275432f44c8c/config.json",
+          "sha256": "ac342543627b95471840d2bf48f8e83cf782f24b91cb55fe5fd2aedc3696f44d",
+          "size_bytes": 15247
+        },
+        {
+          "path": "genesis-cartpole-rollout-none-8192-s2-275432f44c8c/run.result.json",
+          "sha256": "683b08ad4dd024e78bca4e9e7b79c73de9a5d63fdc6a3b1bb0395d8913352b5c",
+          "size_bytes": 21847
+        },
+        {
+          "path": "genesis-cartpole-rollout-none-8192-s2-275432f44c8c/stdout.log",
+          "sha256": "1248e3aeff0f6469a6a748c1485c8bee76bacb62eb25c689d3efe6f07eb89979",
+          "size_bytes": 1248
+        },
+        {
+          "path": "genesis.freeze.txt",
+          "sha256": "52bc2a4498e6d0587c755c8b890c17e2be52b709004d91c0b28dcebb59ccd349",
+          "size_bytes": 6077
+        },
+        {
+          "path": "isaaclab-anymal-rollout-none-8192-s0-483beb1dc103/config.json",
+          "sha256": "8f69897ffd42ae5c36e388d72822b24c0ca273788843e317989e121a336b8410",
+          "size_bytes": 14310
+        },
+        {
+          "path": "isaaclab-anymal-rollout-none-8192-s0-483beb1dc103/run.result.json",
+          "sha256": "0a446072d131ab29ebe157d1bd5af3ba45f0dcb7f251fc86adf8653dfc5e231f",
+          "size_bytes": 397863
+        },
+        {
+          "path": "isaaclab-anymal-rollout-none-8192-s0-483beb1dc103/stdout.log",
+          "sha256": "57c8d7697a79c7d5b3b0d30cd557f5bcc33551172b96e6e73e745d3b39707eda",
+          "size_bytes": 5309
+        },
+        {
+          "path": "isaaclab-anymal-rollout-none-8192-s1-d98c36c13d7c/config.json",
+          "sha256": "353888dce070c3f3ba032b873c5758ae9b74f3b57b05c6907b0e85d4dc3f5d1d",
+          "size_bytes": 14310
+        },
+        {
+          "path": "isaaclab-anymal-rollout-none-8192-s1-d98c36c13d7c/run.result.json",
+          "sha256": "4dd994bbc02ab34f6eeee716f83bfe52a6e3529bc9fbae1c5c31bd8535436a68",
+          "size_bytes": 398046
+        },
+        {
+          "path": "isaaclab-anymal-rollout-none-8192-s1-d98c36c13d7c/stdout.log",
+          "sha256": "6f9b1aa78c845172a1daa0022a050361f3aff32f3a3295fbb5a35041c05ebc57",
+          "size_bytes": 21473
+        },
+        {
+          "path": "isaaclab-anymal-rollout-none-8192-s2-a0d26ce3fd44/config.json",
+          "sha256": "bb03e07dc42cd7a64d48c44440a9ac5bbbfa50d79c95a9015ee6e4817e21f5ba",
+          "size_bytes": 14310
+        },
+        {
+          "path": "isaaclab-anymal-rollout-none-8192-s2-a0d26ce3fd44/run.result.json",
+          "sha256": "ec5822228c6f20346aa2d53fab5ca79db461c7e218e8b7af63934ca6bdf75502",
+          "size_bytes": 397866
+        },
+        {
+          "path": "isaaclab-anymal-rollout-none-8192-s2-a0d26ce3fd44/stdout.log",
+          "sha256": "e65c90585cb713277471b65677911e2dceaedbc466b0cc6b02e3c7f808421c5a",
+          "size_bytes": 5309
+        },
+        {
+          "path": "isaaclab-cartpole-rollout-none-8192-s0-14be217e5a8a/config.json",
+          "sha256": "57ff33afe71ced552cff5e655cbbe0ee2fb23615f5d863e421f4c75b0e07d6fd",
+          "size_bytes": 14174
+        },
+        {
+          "path": "isaaclab-cartpole-rollout-none-8192-s0-14be217e5a8a/run.result.json",
+          "sha256": "48dcb0b9309979a2c882aee46ba4141370eaf29e8dd97db7cf044ade4b474731",
+          "size_bytes": 397069
+        },
+        {
+          "path": "isaaclab-cartpole-rollout-none-8192-s0-14be217e5a8a/stdout.log",
+          "sha256": "daa8abd779622bd5010bbe582dccd3a3021e7a75950ab14037c27dfcee87d251",
+          "size_bytes": 5325
+        },
+        {
+          "path": "isaaclab-cartpole-rollout-none-8192-s1-1272ebd336da/config.json",
+          "sha256": "aa96dcf9a037c039641789fb8226a16de11644bd953e64ad6fda9119dcfd01e4",
+          "size_bytes": 14070
+        },
+        {
+          "path": "isaaclab-cartpole-rollout-none-8192-s1-1272ebd336da/run.result.json",
+          "sha256": "57d50ed89a825b9d1f6fe7029dbbc7279eb1707520118375940981528fbb5d4c",
+          "size_bytes": 396861
+        },
+        {
+          "path": "isaaclab-cartpole-rollout-none-8192-s1-1272ebd336da/stdout.log",
+          "sha256": "cf4966065129247b28ffea68ffb45a1d5f2836879711d82d998f6b1228b5478d",
+          "size_bytes": 5325
+        },
+        {
+          "path": "isaaclab-cartpole-rollout-none-8192-s2-8354348a3df3/config.json",
+          "sha256": "3dca9178b2ed174bd00c4717b03115cb3b5d66e4113d20434ea2ad75f9d1d4f2",
+          "size_bytes": 14175
+        },
+        {
+          "path": "isaaclab-cartpole-rollout-none-8192-s2-8354348a3df3/run.result.json",
+          "sha256": "acb990cbcb9e45f9e783455bf5724c416ceb4f41dfbe9e1eef490fae9b314192",
+          "size_bytes": 396876
+        },
+        {
+          "path": "isaaclab-cartpole-rollout-none-8192-s2-8354348a3df3/stdout.log",
+          "sha256": "6b555af939a3dfdc60f63350b0e6c50b60edeb2e6df15fbe1616d0bfa67aae1b",
+          "size_bytes": 4188
+        },
+        {
+          "path": "isaaclab.freeze.txt",
+          "sha256": "1ac66f902b132bd8442424b7cbdc330d851b3b6690ca51ef004b23e580aade6e",
+          "size_bytes": 4950
+        },
+        {
+          "path": "launch.json",
+          "sha256": "bea084df9566cc09b7e99b0955318b8ea677c09a43e3569823ff805c63701544",
+          "size_bytes": 2314
+        },
+        {
+          "path": "suite.log",
+          "sha256": "e563df2b20bb16a8ea7fc14b49662127f5205bd8f92240d43bd3c5edc3199944",
+          "size_bytes": 876
+        },
+        {
+          "path": "suite.pid",
+          "sha256": "954e7099473cb030e0cdf3ceb5dc5d28ff67fea8dbec3844c98940b78b184079",
+          "size_bytes": 8
+        },
+        {
+          "path": "suite.request.json",
+          "sha256": "204f40e3c056921cd31b88be0a32cf63e033a35cfa32a2ec20b210d52485accb",
+          "size_bytes": 2811
+        },
+        {
+          "path": "suite.summary.json",
+          "sha256": "709287d6e6810803c075c01c39626aa3402ff91fc72b055774a2ddf50f448c6a",
+          "size_bytes": 77
+        }
+      ]
+    },
+    {
+      "name": "franka",
+      "remote_path": "/home/horde/simulator-comparison-20261105/franka-extension/.benchmark_results/2026-11-06-rollout-8192-franka",
+      "local_path": "/home/maximiliank/.paseo/worktrees/1zjbdl3z/tough-pig/.benchmark_results/2026-11-06-rollout-8192/franka",
+      "files": [
+        {
+          "path": "assets/anymal.urdf",
+          "sha256": "43d60e426873fbdadb9b075c84a09b614cfb4c9b341732b51f7564cb3cbb0ba6",
+          "size_bytes": 54530
+        },
+        {
+          "path": "assets/assets.json",
+          "sha256": "cd443edbc8d34e3e1cf083470cb014c12467681e64c04f9ffa429f619f1fca05",
+          "size_bytes": 8626
+        },
+        {
+          "path": "assets/cartpole.urdf",
+          "sha256": "a8702ba4b23da93a1be4b8666215c75ea4a8e97ddc3c758430fb456621f3dc50",
+          "size_bytes": 1383
+        },
+        {
+          "path": "assets/franka.urdf",
+          "sha256": "f4a9ec87c8dbacef2529b2f813f9cb0df70dc01d38462b4d07d444c4d06f8a45",
+          "size_bytes": 13446
+        },
+        {
+          "path": "genesis-franka-rollout-none-8192-s0-760517678d65/config.json",
+          "sha256": "c166307485c4f2e45bd6d0f4d5986790bb37d787ef10d10f3801c5f2e984afec",
+          "size_bytes": 23991
+        },
+        {
+          "path": "genesis-franka-rollout-none-8192-s0-760517678d65/run.result.json",
+          "sha256": "b2c14b4dfb5be45118f8209a0a98e84b5002d903f22e89d1935181d8e2465a1e",
+          "size_bytes": 31666
+        },
+        {
+          "path": "genesis-franka-rollout-none-8192-s0-760517678d65/stdout.log",
+          "sha256": "3fb6d082ddb44de57d82b90bee030dc325cafac8ea175ec5233dd32eb1a55550",
+          "size_bytes": 1512
+        },
+        {
+          "path": "genesis-franka-rollout-none-8192-s1-bca0dee2aae7/config.json",
+          "sha256": "f8dfcfeb34f470648732325926c1858b59f35bfa41c80a8416a3c54c6a8a4e51",
+          "size_bytes": 24095
+        },
+        {
+          "path": "genesis-franka-rollout-none-8192-s1-bca0dee2aae7/run.result.json",
+          "sha256": "8e5e5cb0e4c4d089bbcbdbcf3f9dd68ce4d61d73891effe338c028c072c574e3",
+          "size_bytes": 32571
+        },
+        {
+          "path": "genesis-franka-rollout-none-8192-s1-bca0dee2aae7/stdout.log",
+          "sha256": "c6456e0a4e977069c3b946919a3507837e6ce4715c9b2f3d0f1b75812ab24b79",
+          "size_bytes": 1512
+        },
+        {
+          "path": "genesis-franka-rollout-none-8192-s2-9ac37a5316a0/config.json",
+          "sha256": "27134ca7245b967d6db1ca093a4e856fd8231fb664fe0888d74044f4c7248c4b",
+          "size_bytes": 24095
+        },
+        {
+          "path": "genesis-franka-rollout-none-8192-s2-9ac37a5316a0/run.result.json",
+          "sha256": "a4f30c51cfba748770b791bd9d36bdd6b50db169c56b1a372e61220b75807847",
+          "size_bytes": 31676
+        },
+        {
+          "path": "genesis-franka-rollout-none-8192-s2-9ac37a5316a0/stdout.log",
+          "sha256": "8aa2cbd9955794f3711e4fe2270146e6c1268d66ca2add88f6d8631409e7ed16",
+          "size_bytes": 1512
+        },
+        {
+          "path": "genesis.freeze.txt",
+          "sha256": "52bc2a4498e6d0587c755c8b890c17e2be52b709004d91c0b28dcebb59ccd349",
+          "size_bytes": 6077
+        },
+        {
+          "path": "isaaclab-franka-rollout-none-8192-s0-4e38a58c66a4/config.json",
+          "sha256": "80d8598b45fc93f9c00314c8fbf97527f1f97af05dbd5422cd15400072471d79",
+          "size_bytes": 22918
+        },
+        {
+          "path": "isaaclab-franka-rollout-none-8192-s0-4e38a58c66a4/run.result.json",
+          "sha256": "0f7e2081d59f96f702bcf49b34c95f006736dcf9b1326f6351f87eca9562703c",
+          "size_bytes": 406789
+        },
+        {
+          "path": "isaaclab-franka-rollout-none-8192-s0-4e38a58c66a4/stdout.log",
+          "sha256": "9ae18ad01bc4f6a6f148c813225b31e25cd3440111660bceb821822bace76c37",
+          "size_bytes": 11944
+        },
+        {
+          "path": "isaaclab-franka-rollout-none-8192-s1-ac40cd32d01d/config.json",
+          "sha256": "e8b42dba6b28327e248abc4da32a6bb406a115a22a0f0860955da6c9766c7e29",
+          "size_bytes": 22814
+        },
+        {
+          "path": "isaaclab-franka-rollout-none-8192-s1-ac40cd32d01d/run.result.json",
+          "sha256": "71c0f345027f91dbbdd05cee27f98fdae529eb61c3af58e84e17e06d13c880d0",
+          "size_bytes": 406969
+        },
+        {
+          "path": "isaaclab-franka-rollout-none-8192-s1-ac40cd32d01d/stdout.log",
+          "sha256": "a7a2697b86b63c05bcc2ada188dae525ce4ebc8b593972989d14eb68b8a06237",
+          "size_bytes": 27792
+        },
+        {
+          "path": "isaaclab-franka-rollout-none-8192-s2-8375dad52db0/config.json",
+          "sha256": "700796123606e2fe39326bebc85de6a9dac4fcad579fee26bdc0762000360437",
+          "size_bytes": 22916
+        },
+        {
+          "path": "isaaclab-franka-rollout-none-8192-s2-8375dad52db0/run.result.json",
+          "sha256": "aaa1435edbce7c33fd3492aa06b84f440f8b3961849ba43b66d56d5a090f0919",
+          "size_bytes": 406891
+        },
+        {
+          "path": "isaaclab-franka-rollout-none-8192-s2-8375dad52db0/stdout.log",
+          "sha256": "b6ab34d8282ddf6f0e1a03cafac0de3a8f2500085c67a321d38e8826f9949416",
+          "size_bytes": 11944
+        },
+        {
+          "path": "isaaclab.freeze.txt",
+          "sha256": "1ac66f902b132bd8442424b7cbdc330d851b3b6690ca51ef004b23e580aade6e",
+          "size_bytes": 4950
+        },
+        {
+          "path": "launch.json",
+          "sha256": "0827bc4b59f12cc3fa4afad61ef6b87afbb691eb9d6bca81bf594edf035a719e",
+          "size_bytes": 2418
+        },
+        {
+          "path": "suite.log",
+          "sha256": "b19e713bbbe6414ed7d317fd404770fc6a1db58841c338e76713cbd404b44e6d",
+          "size_bytes": 432
+        },
+        {
+          "path": "suite.pid",
+          "sha256": "9f2556c65c7ebbb1d9d11b36823f40062567648aa4a695c5a1982f5ea11fbcf8",
+          "size_bytes": 8
+        },
+        {
+          "path": "suite.request.json",
+          "sha256": "0f5fe5a32cc401c254711ee0f8d4cd1fd89a8f3a703f1c7f9c0ea33594902686",
+          "size_bytes": 2893
+        },
+        {
+          "path": "suite.summary.json",
+          "sha256": "46d0c2717304de13c89d482f47b41a373421eaa3887709322a96cc5071b39339",
+          "size_bytes": 75
+        }
+      ]
+    },
+    {
+      "name": "validation",
+      "remote_path": "/home/horde/simulator-comparison-20261105/.benchmark_results/2026-11-06-rollout-8192-validation",
+      "local_path": "/home/maximiliank/.paseo/worktrees/1zjbdl3z/tough-pig/.benchmark_results/2026-11-06-rollout-8192/validation",
+      "files": [
+        {
+          "path": "8192-scale-audit.py",
+          "sha256": "a8cc760abdedc0334a5052321f68e53c38fd3662cf32119d1e398f75922e13da",
+          "size_bytes": 15433
+        },
+        {
+          "path": "audit-controller.py",
+          "sha256": "bc108ae58c00b84a0cb4df33b6c406c1c2e518015c5ba20fa0e34f78f7a3876e",
+          "size_bytes": 7066
+        },
+        {
+          "path": "baseline/genesis-anymal/attempt-1/audit.json",
+          "sha256": "57910b909b974d8d731c592b4bc9e9fd612f5c4dcdaf1e422846302f629f9c34",
+          "size_bytes": 23603
+        },
+        {
+          "path": "baseline/genesis-anymal/attempt-1/execution.json",
+          "sha256": "6ca1b6c878bba6bf3e3d03aea339a4b2583ef33606802f67637552077f789c6d",
+          "size_bytes": 3354
+        },
+        {
+          "path": "baseline/genesis-anymal/attempt-1/stdout.log",
+          "sha256": "0dc41e7dabb629b0774244b74c7c964722c3471c94cbb0ad6a7d35fcb65abfad",
+          "size_bytes": 779
+        },
+        {
+          "path": "baseline/genesis-cartpole/attempt-1/audit.json",
+          "sha256": "f0d4b3f2a853821fbb41511d2a6f92a76038f87b17dcfc6fd68b3a9532a7d91f",
+          "size_bytes": 22299
+        },
+        {
+          "path": "baseline/genesis-cartpole/attempt-1/execution.json",
+          "sha256": "cd01a3446cb3fb938ce215446047801ca5bf3376dd39c22c254b3c2aa31555be",
+          "size_bytes": 3052
+        },
+        {
+          "path": "baseline/genesis-cartpole/attempt-1/stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "size_bytes": 0
+        },
+        {
+          "path": "baseline/isaaclab-anymal/attempt-1/audit.json",
+          "sha256": "a2f911f9c8b198a930ac5b93420484fbe3db92d8f62f321368170347b10015c1",
+          "size_bytes": 401488
+        },
+        {
+          "path": "baseline/isaaclab-anymal/attempt-1/execution.json",
+          "sha256": "d1784622f77c3308c7b6998c8d7d4062009a4f335de9bfbbdbec800c3a680dcf",
+          "size_bytes": 2410
+        },
+        {
+          "path": "baseline/isaaclab-anymal/attempt-1/stdout.log",
+          "sha256": "17cb46ef03629c7ceeeb2576b3ff47fea6f13455c52d87882e8cded9a1639b17",
+          "size_bytes": 21473
+        },
+        {
+          "path": "baseline/isaaclab-cartpole/attempt-1/audit.json",
+          "sha256": "242dacc94f6e7d4e35650cd33f88230c3cd3c1e61f6f88b4b0a52dea2758481b",
+          "size_bytes": 399911
+        },
+        {
+          "path": "baseline/isaaclab-cartpole/attempt-1/execution.json",
+          "sha256": "b0a4fa64dda491dfabbc34b43f1a1cb517d8275b5e113244ae88a5a879e9985c",
+          "size_bytes": 2259
+        },
+        {
+          "path": "baseline/isaaclab-cartpole/attempt-1/stdout.log",
+          "sha256": "f28dc1e9a57c30d37d104470b72aad62d7ed8026d9af45f78b94a4f6ebf609ce",
+          "size_bytes": 5325
+        },
+        {
+          "path": "baseline-controller.log",
+          "sha256": "1bfd3884c666048321642e02dc54aa27384d861dcb01c05da600bbc5f4c87b3d",
+          "size_bytes": 2678
+        },
+        {
+          "path": "baseline-controller.pid",
+          "sha256": "046cf97c30214ea51428d5b6e610fa2f74bfdd94c6f680def7d55c72b068a01b",
+          "size_bytes": 8
+        },
+        {
+          "path": "baseline-launch.json",
+          "sha256": "4b3cae2d094498c8782a41b227413d9ac5f11c924ff3d098871fc7ff62df5094",
+          "size_bytes": 470
+        },
+        {
+          "path": "final-audit.json",
+          "sha256": "8a166ad70e6c53161ea5841b5be2d7d1f57fc1850bc05cfb9bb4c31a8c0e9a20",
+          "size_bytes": 2227
+        },
+        {
+          "path": "franka/genesis-franka/attempt-1/audit.json",
+          "sha256": "9278ee015746dbccc8e28b97cdbf609123ed780b3b94e86dd2d07de3234c4492",
+          "size_bytes": 33454
+        },
+        {
+          "path": "franka/genesis-franka/attempt-1/execution.json",
+          "sha256": "9bfb2aca12ddd33fba7dcd797735dd157e8662a95ed0321a0edbfd6d8c12afc6",
+          "size_bytes": 3187
+        },
+        {
+          "path": "franka/genesis-franka/attempt-1/stdout.log",
+          "sha256": "1defda1588b0edd0de9d431f0736c2b806cb52970e2db3ececfba81415c08826",
+          "size_bytes": 213
+        },
+        {
+          "path": "franka/isaaclab-franka/attempt-1/audit.json",
+          "sha256": "efb8bac06fd8d5bfe2cc3314cb71ff9dded48a6e63da32d4832ea509123421a9",
+          "size_bytes": 410699
+        },
+        {
+          "path": "franka/isaaclab-franka/attempt-1/execution.json",
+          "sha256": "71acb89511b0f4943b91a5fdcd65bbd7854ce3847157b2d7223c177583276a1d",
+          "size_bytes": 2319
+        },
+        {
+          "path": "franka/isaaclab-franka/attempt-1/stdout.log",
+          "sha256": "e325089c8f1daea7c74e5b751d3a5ad5889e9d2b9fb7a07f945ca01df6d48581",
+          "size_bytes": 11944
+        },
+        {
+          "path": "franka-controller.log",
+          "sha256": "9db640d713562a66b2054a862182d9516cc065de8126933fb82d37ff9cb48800",
+          "size_bytes": 1321
+        },
+        {
+          "path": "franka-controller.pid",
+          "sha256": "91337617f80dca65b97d3dd2ad78c16270f2689c5bbe82b9fe3c7e023e7b9565",
+          "size_bytes": 8
+        },
+        {
+          "path": "franka-launch.json",
+          "sha256": "eb0be0159062d041991824df571c2fa027d4882f2db99fc5cda9deb7ab57f3d4",
+          "size_bytes": 466
+        },
+        {
+          "path": "measurement-audit.json",
+          "sha256": "908a5a2561bd418ecfd21fbf3077e8b7460287ab885c53c2899ada557f2f59b3",
+          "size_bytes": 6704
+        }
+      ]
+    }
+  ]
+}

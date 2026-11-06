@@ -249,104 +249,6 @@
     {
       "backend": "genesis",
       "metrics": {
-        "physics_steps_per_s": {
-          "max": 578182.0475273763,
-          "median": 557793.5022341455,
-          "min": 369383.4102097581,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 557793.5022341455
-            },
-            {
-              "seed": 1,
-              "value": 369383.4102097581
-            },
-            {
-              "seed": 2,
-              "value": 578182.0475273763
-            }
-          ]
-        },
-        "startup_s": {
-          "max": 148.93521388433874,
-          "median": 113.08332220930606,
-          "min": 103.72612762078643,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 113.08332220930606
-            },
-            {
-              "seed": 1,
-              "value": 148.93521388433874
-            },
-            {
-              "seed": 2,
-              "value": 103.72612762078643
-            }
-          ]
-        }
-      },
-      "mode": "physics",
-      "num_envs": 256,
-      "task": "anymal",
-      "vision": "none"
-    },
-    {
-      "backend": "genesis",
-      "metrics": {
-        "physics_steps_per_s": {
-          "max": 6857471.134158644,
-          "median": 6761953.958606859,
-          "min": 6719346.567513261,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 6857471.134158644
-            },
-            {
-              "seed": 1,
-              "value": 6719346.567513261
-            },
-            {
-              "seed": 2,
-              "value": 6761953.958606859
-            }
-          ]
-        },
-        "startup_s": {
-          "max": 137.9373160698451,
-          "median": 133.04900192283094,
-          "min": 67.06247090315446,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 67.06247090315446
-            },
-            {
-              "seed": 1,
-              "value": 137.9373160698451
-            },
-            {
-              "seed": 2,
-              "value": 133.04900192283094
-            }
-          ]
-        }
-      },
-      "mode": "physics",
-      "num_envs": 4096,
-      "task": "anymal",
-      "vision": "none"
-    },
-    {
-      "backend": "genesis",
-      "metrics": {
         "env_steps_per_s": {
           "max": 48339.65444060687,
           "median": 46036.81797028074,
@@ -364,26 +266,6 @@
             {
               "seed": 2,
               "value": 40695.264623851835
-            }
-          ]
-        },
-        "physics_steps_per_s": {
-          "max": 193358.6177624275,
-          "median": 184147.27188112296,
-          "min": 162781.05849540734,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 184147.27188112296
-            },
-            {
-              "seed": 1,
-              "value": 193358.6177624275
-            },
-            {
-              "seed": 2,
-              "value": 162781.05849540734
             }
           ]
         },
@@ -436,26 +318,6 @@
             }
           ]
         },
-        "physics_steps_per_s": {
-          "max": 3083288.814279448,
-          "median": 2638025.7914420823,
-          "min": 2596524.267679801,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 2638025.7914420823
-            },
-            {
-              "seed": 1,
-              "value": 3083288.814279448
-            },
-            {
-              "seed": 2,
-              "value": 2596524.267679801
-            }
-          ]
-        },
         "startup_s": {
           "max": 62.78991560218856,
           "median": 58.12989442888647,
@@ -486,6 +348,55 @@
       "backend": "genesis",
       "metrics": {
         "env_steps_per_s": {
+          "max": 1066007.303904247,
+          "median": 1054340.1889283513,
+          "min": 1027088.3689565662,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 1054340.1889283513
+            },
+            {
+              "seed": 1,
+              "value": 1027088.3689565662
+            },
+            {
+              "seed": 2,
+              "value": 1066007.303904247
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 143.09379146806896,
+          "median": 133.25093849515542,
+          "min": 128.90181015105918,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 128.90181015105918
+            },
+            {
+              "seed": 1,
+              "value": 133.25093849515542
+            },
+            {
+              "seed": 2,
+              "value": 143.09379146806896
+            }
+          ]
+        }
+      },
+      "mode": "rollout",
+      "num_envs": 8192,
+      "task": "anymal",
+      "vision": "none"
+    },
+    {
+      "backend": "genesis",
+      "metrics": {
+        "env_steps_per_s": {
           "max": 5093.994730739586,
           "median": 4557.565412410338,
           "min": 4539.8751278203745,
@@ -502,26 +413,6 @@
             {
               "seed": 2,
               "value": 4539.8751278203745
-            }
-          ]
-        },
-        "physics_steps_per_s": {
-          "max": 20375.978922958344,
-          "median": 18230.26164964135,
-          "min": 18159.500511281498,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 20375.978922958344
-            },
-            {
-              "seed": 1,
-              "value": 18230.26164964135
-            },
-            {
-              "seed": 2,
-              "value": 18159.500511281498
             }
           ]
         },
@@ -768,104 +659,6 @@
     {
       "backend": "isaaclab",
       "metrics": {
-        "physics_steps_per_s": {
-          "max": 667198.3151094789,
-          "median": 666556.8685889835,
-          "min": 662702.9000789726,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 667198.3151094789
-            },
-            {
-              "seed": 1,
-              "value": 666556.8685889835
-            },
-            {
-              "seed": 2,
-              "value": 662702.9000789726
-            }
-          ]
-        },
-        "startup_s": {
-          "max": 10.904727480839938,
-          "median": 10.181746500078589,
-          "min": 8.603373429272324,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 10.904727480839938
-            },
-            {
-              "seed": 1,
-              "value": 8.603373429272324
-            },
-            {
-              "seed": 2,
-              "value": 10.181746500078589
-            }
-          ]
-        }
-      },
-      "mode": "physics",
-      "num_envs": 256,
-      "task": "anymal",
-      "vision": "none"
-    },
-    {
-      "backend": "isaaclab",
-      "metrics": {
-        "physics_steps_per_s": {
-          "max": 5790907.404149965,
-          "median": 5779254.26335533,
-          "min": 5776826.451257435,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 5776826.451257435
-            },
-            {
-              "seed": 1,
-              "value": 5790907.404149965
-            },
-            {
-              "seed": 2,
-              "value": 5779254.26335533
-            }
-          ]
-        },
-        "startup_s": {
-          "max": 18.02847835002467,
-          "median": 17.84175681695342,
-          "min": 17.672994336113334,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 17.84175681695342
-            },
-            {
-              "seed": 1,
-              "value": 17.672994336113334
-            },
-            {
-              "seed": 2,
-              "value": 18.02847835002467
-            }
-          ]
-        }
-      },
-      "mode": "physics",
-      "num_envs": 4096,
-      "task": "anymal",
-      "vision": "none"
-    },
-    {
-      "backend": "isaaclab",
-      "metrics": {
         "env_steps_per_s": {
           "max": 82168.56498596385,
           "median": 71599.29333949642,
@@ -883,26 +676,6 @@
             {
               "seed": 2,
               "value": 82168.56498596385
-            }
-          ]
-        },
-        "physics_steps_per_s": {
-          "max": 328674.2599438554,
-          "median": 286397.1733579857,
-          "min": 277541.9927747544,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 277541.9927747544
-            },
-            {
-              "seed": 1,
-              "value": 286397.1733579857
-            },
-            {
-              "seed": 2,
-              "value": 328674.2599438554
             }
           ]
         },
@@ -955,26 +728,6 @@
             }
           ]
         },
-        "physics_steps_per_s": {
-          "max": 3512352.776325594,
-          "median": 3232853.091723788,
-          "min": 3141702.3700657203,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 3141702.3700657203
-            },
-            {
-              "seed": 1,
-              "value": 3512352.776325594
-            },
-            {
-              "seed": 2,
-              "value": 3232853.091723788
-            }
-          ]
-        },
         "startup_s": {
           "max": 18.704370245803148,
           "median": 17.51166149182245,
@@ -1005,6 +758,55 @@
       "backend": "isaaclab",
       "metrics": {
         "env_steps_per_s": {
+          "max": 1198384.7444501824,
+          "median": 1188354.3849909736,
+          "min": 1167592.3547247683,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 1198384.7444501824
+            },
+            {
+              "seed": 1,
+              "value": 1188354.3849909736
+            },
+            {
+              "seed": 2,
+              "value": 1167592.3547247683
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 20.26168373366818,
+          "median": 15.754749322775751,
+          "min": 15.663034318946302,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 15.754749322775751
+            },
+            {
+              "seed": 1,
+              "value": 20.26168373366818
+            },
+            {
+              "seed": 2,
+              "value": 15.663034318946302
+            }
+          ]
+        }
+      },
+      "mode": "rollout",
+      "num_envs": 8192,
+      "task": "anymal",
+      "vision": "none"
+    },
+    {
+      "backend": "isaaclab",
+      "metrics": {
+        "env_steps_per_s": {
           "max": 10977.795441853952,
           "median": 8478.828246053397,
           "min": 8470.974529176172,
@@ -1021,26 +823,6 @@
             {
               "seed": 2,
               "value": 10977.795441853952
-            }
-          ]
-        },
-        "physics_steps_per_s": {
-          "max": 43911.18176741581,
-          "median": 33915.31298421359,
-          "min": 33883.89811670469,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 33915.31298421359
-            },
-            {
-              "seed": 1,
-              "value": 33883.89811670469
-            },
-            {
-              "seed": 2,
-              "value": 43911.18176741581
             }
           ]
         },
@@ -1321,104 +1103,6 @@
     {
       "backend": "genesis",
       "metrics": {
-        "physics_steps_per_s": {
-          "max": 723383.0630361112,
-          "median": 582502.4706139961,
-          "min": 504522.4203813398,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 723383.0630361112
-            },
-            {
-              "seed": 1,
-              "value": 582502.4706139961
-            },
-            {
-              "seed": 2,
-              "value": 504522.4203813398
-            }
-          ]
-        },
-        "startup_s": {
-          "max": 118.06926300795749,
-          "median": 54.31665321998298,
-          "min": 46.627298472914845,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 118.06926300795749
-            },
-            {
-              "seed": 1,
-              "value": 46.627298472914845
-            },
-            {
-              "seed": 2,
-              "value": 54.31665321998298
-            }
-          ]
-        }
-      },
-      "mode": "physics",
-      "num_envs": 256,
-      "task": "cartpole",
-      "vision": "none"
-    },
-    {
-      "backend": "genesis",
-      "metrics": {
-        "physics_steps_per_s": {
-          "max": 8170625.2532978505,
-          "median": 8053272.871430746,
-          "min": 7776389.390047544,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 8170625.2532978505
-            },
-            {
-              "seed": 1,
-              "value": 7776389.390047544
-            },
-            {
-              "seed": 2,
-              "value": 8053272.871430746
-            }
-          ]
-        },
-        "startup_s": {
-          "max": 126.49217881495133,
-          "median": 100.51093567209318,
-          "min": 54.18856410589069,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 126.49217881495133
-            },
-            {
-              "seed": 1,
-              "value": 54.18856410589069
-            },
-            {
-              "seed": 2,
-              "value": 100.51093567209318
-            }
-          ]
-        }
-      },
-      "mode": "physics",
-      "num_envs": 4096,
-      "task": "cartpole",
-      "vision": "none"
-    },
-    {
-      "backend": "genesis",
-      "metrics": {
         "env_steps_per_s": {
           "max": 24466.256705975724,
           "median": 23757.402755441595,
@@ -1436,26 +1120,6 @@
             {
               "seed": 2,
               "value": 22981.67421667052
-            }
-          ]
-        },
-        "physics_steps_per_s": {
-          "max": 97865.0268239029,
-          "median": 95029.61102176638,
-          "min": 91926.69686668208,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 95029.61102176638
-            },
-            {
-              "seed": 1,
-              "value": 97865.0268239029
-            },
-            {
-              "seed": 2,
-              "value": 91926.69686668208
             }
           ]
         },
@@ -1508,26 +1172,6 @@
             }
           ]
         },
-        "physics_steps_per_s": {
-          "max": 1507918.9920660863,
-          "median": 1420763.3757316743,
-          "min": 1376469.4755901867,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 1507918.9920660863
-            },
-            {
-              "seed": 1,
-              "value": 1420763.3757316743
-            },
-            {
-              "seed": 2,
-              "value": 1376469.4755901867
-            }
-          ]
-        },
         "startup_s": {
           "max": 50.55536181200296,
           "median": 45.18224146589637,
@@ -1558,6 +1202,55 @@
       "backend": "genesis",
       "metrics": {
         "env_steps_per_s": {
+          "max": 756618.6359424689,
+          "median": 746543.0417337065,
+          "min": 711569.7743779528,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 711569.7743779528
+            },
+            {
+              "seed": 1,
+              "value": 756618.6359424689
+            },
+            {
+              "seed": 2,
+              "value": 746543.0417337065
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 123.50180644961074,
+          "median": 119.26365712611005,
+          "min": 91.50543946400285,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 91.50543946400285
+            },
+            {
+              "seed": 1,
+              "value": 123.50180644961074
+            },
+            {
+              "seed": 2,
+              "value": 119.26365712611005
+            }
+          ]
+        }
+      },
+      "mode": "rollout",
+      "num_envs": 8192,
+      "task": "cartpole",
+      "vision": "none"
+    },
+    {
+      "backend": "genesis",
+      "metrics": {
+        "env_steps_per_s": {
           "max": 5946.125880886774,
           "median": 4485.633042172366,
           "min": 4137.920798785727,
@@ -1574,26 +1267,6 @@
             {
               "seed": 2,
               "value": 4137.920798785727
-            }
-          ]
-        },
-        "physics_steps_per_s": {
-          "max": 23784.503523547097,
-          "median": 17942.532168689464,
-          "min": 16551.68319514291,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 17942.532168689464
-            },
-            {
-              "seed": 1,
-              "value": 23784.503523547097
-            },
-            {
-              "seed": 2,
-              "value": 16551.68319514291
             }
           ]
         },
@@ -1859,104 +1532,6 @@
     {
       "backend": "isaaclab",
       "metrics": {
-        "physics_steps_per_s": {
-          "max": 1317347.7071529469,
-          "median": 1315424.7079652841,
-          "min": 1312602.524903394,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 1315424.7079652841
-            },
-            {
-              "seed": 1,
-              "value": 1312602.524903394
-            },
-            {
-              "seed": 2,
-              "value": 1317347.7071529469
-            }
-          ]
-        },
-        "startup_s": {
-          "max": 12.408561405260116,
-          "median": 12.374023935291916,
-          "min": 10.00649720011279,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 12.408561405260116
-            },
-            {
-              "seed": 1,
-              "value": 10.00649720011279
-            },
-            {
-              "seed": 2,
-              "value": 12.374023935291916
-            }
-          ]
-        }
-      },
-      "mode": "physics",
-      "num_envs": 256,
-      "task": "cartpole",
-      "vision": "none"
-    },
-    {
-      "backend": "isaaclab",
-      "metrics": {
-        "physics_steps_per_s": {
-          "max": 16622429.705484085,
-          "median": 16613970.355973708,
-          "min": 16611934.65177266,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 16613970.355973708
-            },
-            {
-              "seed": 1,
-              "value": 16611934.65177266
-            },
-            {
-              "seed": 2,
-              "value": 16622429.705484085
-            }
-          ]
-        },
-        "startup_s": {
-          "max": 13.284037524368614,
-          "median": 12.713861932978034,
-          "min": 11.593335395213217,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 13.284037524368614
-            },
-            {
-              "seed": 1,
-              "value": 12.713861932978034
-            },
-            {
-              "seed": 2,
-              "value": 11.593335395213217
-            }
-          ]
-        }
-      },
-      "mode": "physics",
-      "num_envs": 4096,
-      "task": "cartpole",
-      "vision": "none"
-    },
-    {
-      "backend": "isaaclab",
-      "metrics": {
         "env_steps_per_s": {
           "max": 46377.832683309345,
           "median": 42851.87501814764,
@@ -1974,26 +1549,6 @@
             {
               "seed": 2,
               "value": 42716.68742324511
-            }
-          ]
-        },
-        "physics_steps_per_s": {
-          "max": 185511.33073323738,
-          "median": 171407.50007259057,
-          "min": 170866.74969298043,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 185511.33073323738
-            },
-            {
-              "seed": 1,
-              "value": 171407.50007259057
-            },
-            {
-              "seed": 2,
-              "value": 170866.74969298043
             }
           ]
         },
@@ -2046,26 +1601,6 @@
             }
           ]
         },
-        "physics_steps_per_s": {
-          "max": 3459708.4170166943,
-          "median": 2551443.052976702,
-          "min": 2539747.820390162,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 3459708.4170166943
-            },
-            {
-              "seed": 1,
-              "value": 2551443.052976702
-            },
-            {
-              "seed": 2,
-              "value": 2539747.820390162
-            }
-          ]
-        },
         "startup_s": {
           "max": 13.800720965024084,
           "median": 12.361573792994022,
@@ -2096,6 +1631,55 @@
       "backend": "isaaclab",
       "metrics": {
         "env_steps_per_s": {
+          "max": 1329737.4594560442,
+          "median": 1312294.6918999564,
+          "min": 1311906.9351963412,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 1311906.9351963412
+            },
+            {
+              "seed": 1,
+              "value": 1329737.4594560442
+            },
+            {
+              "seed": 2,
+              "value": 1312294.6918999564
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 15.045427169650793,
+          "median": 14.953292259946465,
+          "min": 12.811724283732474,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 14.953292259946465
+            },
+            {
+              "seed": 1,
+              "value": 15.045427169650793
+            },
+            {
+              "seed": 2,
+              "value": 12.811724283732474
+            }
+          ]
+        }
+      },
+      "mode": "rollout",
+      "num_envs": 8192,
+      "task": "cartpole",
+      "vision": "none"
+    },
+    {
+      "backend": "isaaclab",
+      "metrics": {
+        "env_steps_per_s": {
           "max": 11219.2821429599,
           "median": 11001.814536268035,
           "min": 9710.655421984595,
@@ -2112,26 +1696,6 @@
             {
               "seed": 2,
               "value": 9710.655421984595
-            }
-          ]
-        },
-        "physics_steps_per_s": {
-          "max": 44877.1285718396,
-          "median": 44007.25814507214,
-          "min": 38842.62168793838,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 44007.25814507214
-            },
-            {
-              "seed": 1,
-              "value": 44877.1285718396
-            },
-            {
-              "seed": 2,
-              "value": 38842.62168793838
             }
           ]
         },
@@ -2389,104 +1953,6 @@
     {
       "backend": "genesis",
       "metrics": {
-        "physics_steps_per_s": {
-          "max": 726111.9058071842,
-          "median": 528548.1451495325,
-          "min": 472425.5279951466,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 726111.9058071842
-            },
-            {
-              "seed": 1,
-              "value": 472425.5279951466
-            },
-            {
-              "seed": 2,
-              "value": 528548.1451495325
-            }
-          ]
-        },
-        "startup_s": {
-          "max": 139.64349231123924,
-          "median": 112.98223852319643,
-          "min": 105.47611651569605,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 112.98223852319643
-            },
-            {
-              "seed": 1,
-              "value": 139.64349231123924
-            },
-            {
-              "seed": 2,
-              "value": 105.47611651569605
-            }
-          ]
-        }
-      },
-      "mode": "physics",
-      "num_envs": 256,
-      "task": "franka",
-      "vision": "none"
-    },
-    {
-      "backend": "genesis",
-      "metrics": {
-        "physics_steps_per_s": {
-          "max": 11975414.845246343,
-          "median": 8508832.060933953,
-          "min": 7493874.773970608,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 7493874.773970608
-            },
-            {
-              "seed": 1,
-              "value": 11975414.845246343
-            },
-            {
-              "seed": 2,
-              "value": 8508832.060933953
-            }
-          ]
-        },
-        "startup_s": {
-          "max": 141.10402999306098,
-          "median": 121.36753208423033,
-          "min": 114.38345804531127,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 121.36753208423033
-            },
-            {
-              "seed": 1,
-              "value": 114.38345804531127
-            },
-            {
-              "seed": 2,
-              "value": 141.10402999306098
-            }
-          ]
-        }
-      },
-      "mode": "physics",
-      "num_envs": 4096,
-      "task": "franka",
-      "vision": "none"
-    },
-    {
-      "backend": "genesis",
-      "metrics": {
         "env_steps_per_s": {
           "max": 50979.23992647143,
           "median": 50686.84086349054,
@@ -2504,26 +1970,6 @@
             {
               "seed": 2,
               "value": 50979.23992647143
-            }
-          ]
-        },
-        "physics_steps_per_s": {
-          "max": 203916.95970588573,
-          "median": 202747.36345396217,
-          "min": 182868.77058940043,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 202747.36345396217
-            },
-            {
-              "seed": 1,
-              "value": 182868.77058940043
-            },
-            {
-              "seed": 2,
-              "value": 203916.95970588573
             }
           ]
         },
@@ -2576,26 +2022,6 @@
             }
           ]
         },
-        "physics_steps_per_s": {
-          "max": 3328137.271742712,
-          "median": 3049518.298527014,
-          "min": 2950606.5771729504,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 3328137.271742712
-            },
-            {
-              "seed": 1,
-              "value": 3049518.298527014
-            },
-            {
-              "seed": 2,
-              "value": 2950606.5771729504
-            }
-          ]
-        },
         "startup_s": {
           "max": 53.65611596824601,
           "median": 51.15536316530779,
@@ -2626,6 +2052,55 @@
       "backend": "genesis",
       "metrics": {
         "env_steps_per_s": {
+          "max": 1559019.0813968312,
+          "median": 1547165.6131716238,
+          "min": 1505327.4071743744,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 1505327.4071743744
+            },
+            {
+              "seed": 1,
+              "value": 1547165.6131716238
+            },
+            {
+              "seed": 2,
+              "value": 1559019.0813968312
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 128.16956298612058,
+          "median": 99.53693340858445,
+          "min": 99.06106194900349,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 99.53693340858445
+            },
+            {
+              "seed": 1,
+              "value": 128.16956298612058
+            },
+            {
+              "seed": 2,
+              "value": 99.06106194900349
+            }
+          ]
+        }
+      },
+      "mode": "rollout",
+      "num_envs": 8192,
+      "task": "franka",
+      "vision": "none"
+    },
+    {
+      "backend": "genesis",
+      "metrics": {
+        "env_steps_per_s": {
           "max": 5259.004154001082,
           "median": 4557.757176260164,
           "min": 4272.5964384829595,
@@ -2642,26 +2117,6 @@
             {
               "seed": 2,
               "value": 5259.004154001082
-            }
-          ]
-        },
-        "physics_steps_per_s": {
-          "max": 21036.016616004326,
-          "median": 18231.028705040655,
-          "min": 17090.385753931838,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 17090.385753931838
-            },
-            {
-              "seed": 1,
-              "value": 18231.028705040655
-            },
-            {
-              "seed": 2,
-              "value": 21036.016616004326
             }
           ]
         },
@@ -2919,104 +2374,6 @@
     {
       "backend": "isaaclab",
       "metrics": {
-        "physics_steps_per_s": {
-          "max": 717255.933626956,
-          "median": 716957.7015809494,
-          "min": 716235.6389732887,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 717255.933626956
-            },
-            {
-              "seed": 1,
-              "value": 716957.7015809494
-            },
-            {
-              "seed": 2,
-              "value": 716235.6389732887
-            }
-          ]
-        },
-        "startup_s": {
-          "max": 10.97204282740131,
-          "median": 10.72456339141354,
-          "min": 10.711999643594027,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 10.711999643594027
-            },
-            {
-              "seed": 1,
-              "value": 10.72456339141354
-            },
-            {
-              "seed": 2,
-              "value": 10.97204282740131
-            }
-          ]
-        }
-      },
-      "mode": "physics",
-      "num_envs": 256,
-      "task": "franka",
-      "vision": "none"
-    },
-    {
-      "backend": "isaaclab",
-      "metrics": {
-        "physics_steps_per_s": {
-          "max": 8346955.959327889,
-          "median": 8326472.007568035,
-          "min": 8283125.816018869,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 8346955.959327889
-            },
-            {
-              "seed": 1,
-              "value": 8326472.007568035
-            },
-            {
-              "seed": 2,
-              "value": 8283125.816018869
-            }
-          ]
-        },
-        "startup_s": {
-          "max": 15.302482455037534,
-          "median": 12.979666769038886,
-          "min": 12.914729138370603,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 15.302482455037534
-            },
-            {
-              "seed": 1,
-              "value": 12.979666769038886
-            },
-            {
-              "seed": 2,
-              "value": 12.914729138370603
-            }
-          ]
-        }
-      },
-      "mode": "physics",
-      "num_envs": 4096,
-      "task": "franka",
-      "vision": "none"
-    },
-    {
-      "backend": "isaaclab",
-      "metrics": {
         "env_steps_per_s": {
           "max": 87842.51084354115,
           "median": 74252.91946047249,
@@ -3034,26 +2391,6 @@
             {
               "seed": 2,
               "value": 74252.91946047249
-            }
-          ]
-        },
-        "physics_steps_per_s": {
-          "max": 351370.0433741646,
-          "median": 297011.67784188996,
-          "min": 289977.4739061196,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 351370.0433741646
-            },
-            {
-              "seed": 1,
-              "value": 289977.4739061196
-            },
-            {
-              "seed": 2,
-              "value": 297011.67784188996
             }
           ]
         },
@@ -3106,26 +2443,6 @@
             }
           ]
         },
-        "physics_steps_per_s": {
-          "max": 4568201.476106096,
-          "median": 4160185.043058655,
-          "min": 3808582.039066345,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 4568201.476106096
-            },
-            {
-              "seed": 1,
-              "value": 3808582.039066345
-            },
-            {
-              "seed": 2,
-              "value": 4160185.043058655
-            }
-          ]
-        },
         "startup_s": {
           "max": 13.622507877647877,
           "median": 12.982811552006751,
@@ -3156,6 +2473,55 @@
       "backend": "isaaclab",
       "metrics": {
         "env_steps_per_s": {
+          "max": 1733667.0480062475,
+          "median": 1721750.336426771,
+          "min": 1704599.5069171726,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 1733667.0480062475
+            },
+            {
+              "seed": 1,
+              "value": 1721750.336426771
+            },
+            {
+              "seed": 2,
+              "value": 1704599.5069171726
+            }
+          ]
+        },
+        "startup_s": {
+          "max": 20.077462945133448,
+          "median": 14.200546206906438,
+          "min": 14.175019123125821,
+          "n": 3,
+          "values": [
+            {
+              "seed": 0,
+              "value": 14.175019123125821
+            },
+            {
+              "seed": 1,
+              "value": 20.077462945133448
+            },
+            {
+              "seed": 2,
+              "value": 14.200546206906438
+            }
+          ]
+        }
+      },
+      "mode": "rollout",
+      "num_envs": 8192,
+      "task": "franka",
+      "vision": "none"
+    },
+    {
+      "backend": "isaaclab",
+      "metrics": {
+        "env_steps_per_s": {
           "max": 18959.0329858571,
           "median": 18892.84160075105,
           "min": 18315.306578381354,
@@ -3172,26 +2538,6 @@
             {
               "seed": 2,
               "value": 18892.84160075105
-            }
-          ]
-        },
-        "physics_steps_per_s": {
-          "max": 75836.1319434284,
-          "median": 75571.3664030042,
-          "min": 73261.22631352542,
-          "n": 3,
-          "values": [
-            {
-              "seed": 0,
-              "value": 73261.22631352542
-            },
-            {
-              "seed": 1,
-              "value": 75836.1319434284
-            },
-            {
-              "seed": 2,
-              "value": 75571.3664030042
             }
           ]
         },
@@ -3255,27 +2601,34 @@
     }
   ],
   "presentation": {
+    "extension_execution_note": "The 8,192-environment state rollouts were measured on 6 November 2026 using the original frozen runtime sources, physical inputs and per-task L40 UUIDs. Baseline and Franka cohorts ran concurrently on separate L40s on the same 16-vCPU host; each cohort ran cases serially with cpu_threads=8. Disk and JIT caches were reused. Separate untimed batch-boundary audits ran after all 18 timed cases and both timing drivers had finished.",
+    "extension_measurement_sha256": "fecea8fce1d6932de7243f66d113a645f206783db98d40971b66a1e4b0074e6f",
     "measurement_sha256": "f9143c50cd0bc82412288189c18784efc95b1fbebc46eec7a6aa158f4535f34b",
     "original_presentation": {
-      "archived_path": "appendix.html",
+      "archived_path": "original-report.html",
       "original_path": "index.html",
       "sha256": "dfe94eeef5e2c94e37cf08e1281c818530b7c0d7287e018d44db05f027ecba4c"
     },
     "schema_version": 1,
     "source_files_sha256": {
-      "render_visual_report.py": "340086887a04ce8c86a27a7e08704b57ca97c52f9cc248ae2ad5e3905c680106",
-      "visual-template.html": "75f4e32583ace71c2bfb8e61d27d7c065da8d5021a1def9aa2cf0a24445fe262",
-      "visual.css": "79755c7cd54f4af1867293e5c0b585e39f1e5110bb7ac01302e15414a5f80dbe",
-      "visual.js": "9fee7912de1ae6995dfc79c2736a3dd70034e5ad72cb293b9ee8efaf4dcbd6e6"
+      "appendix-template.html": "7ca23dc0470dc2e0e50bc8a7279b21d53cadffafeeb7edc66e418ceb9649c143",
+      "render_visual_report.py": "898446495f17e548f8557c3cf78b75ff5062bde979852d67070596b58e67bd01",
+      "visual-template.html": "b2d687ad832f9fe88c189dc220502d68b4d8d9512b0a8b4e6a6171a94d395e67",
+      "visual.css": "a58c647ee3b611474201182ebe253b1f0076d4316f6c43f128a4149dc65440c1",
+      "visual.js": "0504c44a94d6192869a289ed5c0874e07c6b694ed7cb55f9fad2171b1d593a79"
     }
   },
   "scope": {
+    "archived_original_runs": 126,
+    "extension_measured_date": "2026-11-06",
+    "extension_runs": 18,
     "hardware": "NVIDIA L40",
     "iterations": 500,
     "learning_num_envs": 512,
     "measured_date": "2026-11-05",
+    "omitted_physics_runs": 36,
     "presentation_date": "2026-11-06",
-    "runs": 126,
+    "runs": 108,
     "seeds": [
       0,
       1,
@@ -3289,9 +2642,9 @@
     "newton": "42f7def118c2c4299ce493457bafd4e8a22a696e"
   },
   "takeaway": {
-    "rollout_mjwarp_higher": 9,
+    "rollout_mjwarp_higher": 12,
     "rollout_ratio_max": 4.145205826049171,
-    "rollout_ratio_min": 1.225481988163786,
-    "rollout_settings": 9
+    "rollout_ratio_min": 1.1128416517073798,
+    "rollout_settings": 12
   }
 }

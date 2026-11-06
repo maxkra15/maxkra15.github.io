@@ -25,7 +25,6 @@
   ];
   const metrics = {
     rollout: { mode: "rollout", field: "env_steps_per_s", title: "Rollout throughput", unit: "Environment transitions / s · higher is faster" },
-    physics: { mode: "physics", field: "physics_steps_per_s", title: "Pure physics throughput", unit: "Environment physics steps / s · higher is faster" },
     startup: { mode: "rollout", field: "startup_s", title: "Rollout startup", unit: "Seconds · lower is faster" },
     ppo: { mode: "learning", field: "training_s", title: "Fixed-budget PPO time", unit: "Seconds · lower is faster for this budget" },
   };
@@ -57,7 +56,7 @@
 
   function selection() {
     const metric = metrics[state.metric];
-    const vision = state.metric === "physics" ? "none" : state.vision;
+    const vision = state.vision;
     const count = state.metric === "ppo" ? 512 : vision === "rgb" ? 64 : state.batch;
     return { ...metric, vision, count };
   }
@@ -71,7 +70,7 @@
   }
 
   function configureBatch(current) {
-    const values = state.metric === "ppo" ? [512] : current.vision === "rgb" ? [64] : [256, 4096];
+    const values = state.metric === "ppo" ? [512] : current.vision === "rgb" ? [64] : [256, 4096, 8192];
     batch.replaceChildren(...values.map((value) => {
       const option = node("option", "", whole.format(value));
       option.value = value;
@@ -152,7 +151,6 @@
     document.getElementById("chart-unit").textContent = current.unit;
     const notes = {
       rollout: `Four physics steps per transition, plus task observations, rewards and resets${current.vision === "rgb" ? ", and native 64 × 64 RGB rendering" : ""}. Batch: ${whole.format(current.count)} environments.`,
-      physics: "Engine stepping under prescribed controls; no task updates or rendering. The vision toggle still selects the learning results below.",
       startup: `Selected ${current.vision === "rgb" ? "RGB" : "state"} rollout workload: runtime imports through the first usable observation, excluding Python and site initialization. Fresh workers; disk and JIT caches reused.`,
       ppo: "Full 500-iteration PPO budget: 6.144M training transitions, including evaluation and excluding startup. Target counts describe quality separately; the bars are not time-to-success.",
     };

@@ -129,14 +129,15 @@
           <a href="reports/2026-11-05-genesis-isaaclab/">Genesis and Isaac Lab MJWarp: simulation, vision and learning</a>
         </h2>
         <p class="summary">
-          Compare simulation speed, startup and learning for ANYmal, Cartpole and Franka.
-          Switch vision and batch size in the visual report. MJWarp led rollout throughput;
-          learning outcomes varied by task.
+          Compare rollout speed, startup and learning for ANYmal, Cartpole and Franka.
+          State rollouts now include 8,192 environments. Switch vision and batch size
+          in the visual report; learning outcomes remain visible beside timing.
         </p>
         <ul class="chips" aria-label="Simulator comparison scope">
-          <li>126 runs</li>
+          <li>108 runs</li>
           <li>3 shared tasks</li>
           <li>3 seeds</li>
+          <li>Up to 8,192 environments</li>
           <li>64×64 RGB</li>
         </ul>
         <p class="method">NVIDIA L40 · paired comparisons within each task · original data and technical appendix retained</p>
@@ -144,12 +145,12 @@
         <figure>
           <div class="figure-preview" tabindex="0" role="region" aria-label="Scrollable simulation, startup and PPO overview">
             <img src="reports/2026-11-05-genesis-isaaclab/visuals/overview.svg"
-                 alt="Three task rows compare physics, RGB rollout speed, startup and fixed-budget PPO time, with reached-seed counts beside training times."
+                 alt="Three task rows compare state rollouts and startup at 8,192 environments, RGB rollout speed and PPO time, with reached-seed counts beside training times."
                  loading="lazy" decoding="async">
           </div>
           <figcaption>
-            Medians and ranges across three seeds. Physics: 4,096 environments, no rendering.
-            RGB rollout/startup: 64 environments. PPO: 512 environments, 500 iterations;
+            Medians and ranges across three seeds. State rollout/startup: 8,192 environments.
+            RGB rollout: 64 environments. PPO: 512 environments, 500 iterations;
             timing includes runs that missed the learning target. Native solvers and renderers differ.
             <span class="figure-help">Scroll horizontally on smaller screens to keep the figure labels readable.</span>
             <a href="reports/2026-11-05-genesis-isaaclab/visuals/overview.svg">Open the figure at full size</a>
