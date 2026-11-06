@@ -129,31 +129,30 @@
           <a href="reports/2026-11-05-genesis-isaaclab/">Genesis and Isaac Lab MJWarp: simulation, vision and learning</a>
         </h2>
         <p class="summary">
-          MJWarp had higher rollout medians in all nine matched settings (ratios of medians 1.2–4.1×);
-          pure physics results varied by task and batch. RGB Cartpole reached the target in 2/3 Genesis
-          seeds and 0/3 MJWarp seeds. No ANYmal seed reached its target; Franka reached 1/3 per engine
-          without RGB and 0/3 with RGB.
+          Compare simulation speed, startup and learning for ANYmal, Cartpole and Franka.
+          Switch vision and batch size in the visual report. MJWarp led rollout throughput;
+          learning outcomes varied by task.
         </p>
         <ul class="chips" aria-label="Simulator comparison scope">
-          <li>126 successful cases</li>
+          <li>126 runs</li>
           <li>3 shared tasks</li>
           <li>3 seeds</li>
           <li>64×64 RGB</li>
         </ul>
-        <p class="method">500 PPO iterations · 6.144M training transitions per learning seed · separate L40 cohorts on one 16-vCPU host</p>
-        <a class="read-report" href="reports/2026-11-05-genesis-isaaclab/">Read the matched comparison <span aria-hidden="true">→</span></a>
+        <p class="method">NVIDIA L40 · paired comparisons within each task · original data and technical appendix retained</p>
+        <a class="read-report" href="reports/2026-11-05-genesis-isaaclab/">Explore the visual comparison <span aria-hidden="true">→</span></a>
         <figure>
-          <div class="figure-preview" tabindex="0" role="region" aria-label="Scrollable RGB rollout throughput and startup comparisons">
-            <img src="reports/2026-11-05-genesis-isaaclab/figures/runtime-rollout-rgb-64x64.svg"
-                 alt="Matched RGB rollouts show higher MJWarp median throughput and lower startup clocks for ANYmal, Cartpole and Franka on L40 GPUs."
+          <div class="figure-preview" tabindex="0" role="region" aria-label="Scrollable simulation, startup and PPO overview">
+            <img src="reports/2026-11-05-genesis-isaaclab/visuals/overview.svg"
+                 alt="Three task rows compare physics, RGB rollout speed, startup and fixed-budget PPO time, with reached-seed counts beside training times."
                  loading="lazy" decoding="async">
           </div>
           <figcaption>
-            RGB rollouts at 64 parallel environments; medians and observed min–max across three seeds.
-            Native renderers differ in quality. Target counts use first observed reach within the fixed budget;
-            unreached seeds remain censored.
+            Medians and ranges across three seeds. Physics: 4,096 environments, no rendering.
+            RGB rollout/startup: 64 environments. PPO: 512 environments, 500 iterations;
+            timing includes runs that missed the learning target. Native solvers and renderers differ.
             <span class="figure-help">Scroll horizontally on smaller screens to keep the figure labels readable.</span>
-            <a href="reports/2026-11-05-genesis-isaaclab/figures/runtime-rollout-rgb-64x64.svg">Open the figure at full size</a>
+            <a href="reports/2026-11-05-genesis-isaaclab/visuals/overview.svg">Open the figure at full size</a>
           </figcaption>
         </figure>
       </article>
