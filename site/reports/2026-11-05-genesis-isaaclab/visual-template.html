@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
-  <meta name="description" content="126 measured runs comparing Genesis and Isaac Lab MJWarp: simulation, RGB rendering, startup and learning on three robot tasks.">
+  <meta name="description" content="Measured runs comparing Genesis and Isaac Lab MJWarp: rollouts, RGB rendering, startup and learning on three robot tasks.">
   <title>Genesis vs Isaac Lab MJWarp · Maximilian Krause</title>
   <link rel="stylesheet" href="visual.css">
 </head>
@@ -18,9 +18,9 @@
 
     <main>
       <section class="hero" aria-labelledby="report-title">
-        <p class="eyebrow">Simulation benchmark · 5 November 2026</p>
+        <p class="eyebrow">Simulation benchmark · 5–6 November 2026</p>
         <h1 id="report-title"><span class="genesis-text">Genesis</span> <span class="versus">vs</span><br><span class="isaaclab-text">Isaac Lab MJWarp</span></h1>
-        <p class="scope"><span>NVIDIA L40</span><span id="run-count">126 runs</span><span id="seed-count">3 seeds</span><span>3 tasks</span></p>
+        <p class="scope"><span>NVIDIA L40</span><span id="run-count">Measured runs</span><span id="seed-count">3 seeds</span><span>3 tasks</span></p>
         <p class="takeaway" id="takeaway">Compare simulation cost and held-out learning outcomes on the recorded L40 hardware.</p>
         <p class="scope-note">Same tasks and PPO; native solvers and renderers differ. RGB augments proprioception.</p>
       </section>
@@ -33,7 +33,6 @@
         <div class="controls js-only">
           <div class="metric-tabs" role="group" aria-label="Comparison metric">
             <button type="button" data-metric="rollout" aria-pressed="true">Rollouts</button>
-            <button type="button" data-metric="physics" aria-pressed="false">Pure physics</button>
             <button type="button" data-metric="startup" aria-pressed="false">Startup</button>
             <button type="button" data-metric="ppo" aria-pressed="false">PPO time</button>
           </div>
@@ -45,7 +44,7 @@
                 <label><input type="radio" name="vision" value="rgb"><span>State + RGB</span></label>
               </div>
             </fieldset>
-            <label class="batch-control" for="batch">Environments<select id="batch"><option value="256">256</option><option value="4096" selected>4,096</option></select></label>
+            <label class="batch-control" for="batch">Environments<select id="batch"><option value="256">256</option><option value="4096" selected>4,096</option><option value="8192">8,192</option></select></label>
           </div>
         </div>
         <div class="chart-heading"><h3 id="chart-title">Rollout throughput</h3><p id="chart-unit">Environment transitions / s · higher is faster</p></div>
@@ -55,7 +54,7 @@
         <p class="chart-key"><span><i class="sample-point"></i>Three seed measurements</span><span><i class="range-mark"></i>Minimum–maximum</span><span><i class="median-mark"></i>Median</span></p>
         <p class="chart-note" id="chart-note">Rollouts include physics, task observations, rewards and resets.</p>
         <p class="sr-only" id="chart-status" role="status" aria-live="polite" aria-atomic="true"></p>
-        <noscript><p class="fallback">Interactive selection needs JavaScript. <a href="visuals/overview.svg">Open the static overview</a>, <a href="data/measurements.csv">download the CSV</a> or <a href="appendix.html">read the full technical report</a>.</p></noscript>
+        <noscript><p class="fallback">Interactive selection needs JavaScript. <a href="visuals/overview.svg">Open the static overview</a>, <a href="data/report-measurements.csv">download the CSV</a> or <a href="appendix.html">read the full technical report</a>.</p></noscript>
       </section>
 
       <section class="learning-section" aria-labelledby="learning-heading">
@@ -78,14 +77,14 @@
           <summary>Methods &amp; downloads <span>Data, source and reproducibility</span></summary>
           <div class="drawer-body">
             <div class="method-grid">
-              <div><h3>What was measured</h3><p>ANYmal-C velocity tracking, Cartpole balance and fixed-base Franka reaching. Both backends use the same prepared robot inputs, controls, task code and PPO implementation.</p><p>Pure physics excludes task and rendering work. Rollouts add task updates; RGB adds native rendering. Startup uses the selected rollout workload. PPO time is the full fixed-budget cost, including evaluation.</p></div>
+              <div><h3>What was measured</h3><p>ANYmal-C velocity tracking, Cartpole balance and fixed-base Franka reaching. Both backends use the same prepared robot inputs, controls, task code and PPO implementation.</p><p>Rollouts include simulation and task updates; RGB adds native rendering. Startup uses the selected rollout workload. PPO time is the full fixed-budget cost, including evaluation.</p></div>
               <div><h3>What to keep in mind</h3><p>Genesis uses Newton with a 25-iteration maximum and native tolerance. MJWarp uses Newton, implicitfast, 100 solver / 50 line-search iterations, tolerance 1e-6 and one substep. These settings do not establish equal physical accuracy.</p><p>Each task pairs both backends on the same physical L40. The baseline and Franka cohorts overlapped on separate GPUs on the same host. Three seeds show an observed range, not a confidence interval.</p></div>
             </div>
             <h3>Measurements &amp; provenance</h3>
             <ul class="download-links">
-              <li><a href="data/measurements.csv">Measurements CSV</a></li><li><a href="data/measurements.json">Measurements JSON</a></li><li><a href="run_artifacts.zip">Raw run artifacts ZIP</a></li><li><a href="data/cohorts.json">Source and GPU cohorts</a></li><li><a href="data/provenance.json">Original study provenance</a></li><li><a href="data/presentation.json">Presentation provenance</a></li><li><a href="data/excluded_attempts.json">Excluded attempts</a></li><li><a href="SHA256SUMS">SHA-256 checksums</a></li>
+              <li><a href="data/report-measurements.csv">Measurements CSV</a></li><li><a href="data/report-measurements.json">Measurements JSON</a></li><li><a href="run_artifacts-8192.zip">8,192-env run archive</a></li><li><a href="data/measurements-8192.json">8,192-env measurements JSON</a></li><li><a href="run_artifacts.zip">Original run archive</a></li><li><a href="data/cohorts.json">Original source and GPU cohorts</a></li><li><a href="data/provenance.json">Original study provenance</a></li><li><a href="data/presentation.json">Presentation provenance</a></li><li><a href="data/excluded_attempts.json">Excluded attempts</a></li><li><a href="SHA256SUMS">SHA-256 checksums</a></li>
             </ul>
-            <p class="small-note">Original index archived as <a href="appendix.html">technical appendix</a>; presentation hashes in SHA256SUMS.</p>
+            <p class="small-note">Original index archived as original-report.html; the filtered <a href="appendix.html">technical appendix</a> is current. Presentation hashes are in SHA256SUMS.</p>
             <h3>Code &amp; rebuild</h3>
             <ul class="download-links"><li><a href="presentation-source.zip">Presentation source ZIP</a></li><li><a href="render_visual_report.py">Visual report renderer</a></li><li><a href="source-baseline.zip">Measured baseline source ZIP</a></li><li><a href="source-franka.zip">Measured Franka source ZIP</a></li><li><a href="source.zip">Original publisher source ZIP</a></li></ul>
             <pre class="rebuild-command"><code>uv run --no-project --with matplotlib python render_visual_report.py</code></pre>
@@ -94,7 +93,6 @@
             <h3>Standalone figures</h3>
             <ul class="figure-downloads" id="figure-downloads">
               <li><span>Visual overview</span><a href="visuals/overview.svg">SVG</a><a href="visuals/overview.png">PNG</a><a href="visuals/overview.pdf">PDF</a></li>
-              <li><span>Pure physics</span><a href="figures/runtime-physics-none-64x64.svg">SVG</a><a href="figures/runtime-physics-none-64x64.png">PNG</a><a href="figures/runtime-physics-none-64x64.pdf">PDF</a></li>
               <li><span>State rollouts</span><a href="figures/runtime-rollout-none-64x64.svg">SVG</a><a href="figures/runtime-rollout-none-64x64.png">PNG</a><a href="figures/runtime-rollout-none-64x64.pdf">PDF</a></li>
               <li><span>RGB rollouts</span><a href="figures/runtime-rollout-rgb-64x64.svg">SVG</a><a href="figures/runtime-rollout-rgb-64x64.png">PNG</a><a href="figures/runtime-rollout-rgb-64x64.pdf">PDF</a></li>
             </ul>
