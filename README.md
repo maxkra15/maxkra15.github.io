@@ -55,6 +55,18 @@ directory for a new experiment rather than replacing an earlier result.
 The [G1 provenance](site/reports/2026-10-09-g1-learning/data/provenance.json)
 illustrates how to distinguish published-file hashes from original-source hashes.
 
+## Robotics Simulation Learning Hub
+
+The hub keeps its original dated URL under [site/reports](site/reports/2026-11-20-newton-isaaclab-guide/). It uses static HTML and local CSS and JavaScript assets, so the existing GitHub Pages workflow serves it directly.
+
+- Add a topic as a `main > .chapter[data-ch]` with a stable ID and a matching link in the topic navigation. Give it a short reading path in ordinary HTML. Use native `details` for derivations, source walkthroughs and configuration.
+- Link directly to a section ID for deeper reading. `hub.js` selects the containing topic and opens disclosures around the target. Keep existing section IDs when revising lessons.
+- Put new interactive examples in topic-specific assets. Keep the explanation available as HTML. Start playback on request, give readers a pause or step control, and use `prefers-reduced-motion` for a static or stepped equivalent. The MPM cycle is an example.
+- Pin source links when implementation details depend on a revision. Mark experimental APIs and link to their current docs.
+- Preview at desktop and narrow mobile widths. Check keyboard controls, expanded links from a fresh load, and both motion preferences. From the lesson directory, refresh the manifest with `sha256sum index.html *.css *.js > SHA256SUMS`.
+
+The lesson structure follows [Diátaxis](https://diataxis.fr/). Progressive disclosure keeps the examples and the first reading path easy to find. The animation controls follow [W3C guidance on animation from interactions](https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html).
+
 ## Deployment
 
 Pushing changes to `site/` on `main` publishes automatically. The
