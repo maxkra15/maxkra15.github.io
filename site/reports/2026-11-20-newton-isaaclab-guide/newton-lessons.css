@@ -1,0 +1,120 @@
+.newton-flow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.newton-flow > li,
+.newton-flow > div,
+.newton-world {
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--node);
+  border-radius: 10px;
+  background: var(--surface);
+  min-width: 0;
+  padding: 14px;
+}
+
+.newton-flow h3 {
+  margin-bottom: 6px;
+}
+
+.newton-api {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.newton-api > div {
+  display: grid;
+  grid-template-columns: minmax(0, 15em) minmax(0, 1fr);
+  gap: 6px 14px;
+}
+
+.newton-api dd {
+  margin: 0;
+}
+
+.newton-shape {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  font-size: .9rem;
+}
+
+.newton-shape span,
+.newton-world span + span {
+  color: var(--muted);
+}
+
+.newton-worlds {
+  border: 0;
+  margin: 0;
+  min-width: 0;
+  padding: 0;
+}
+
+.newton-worlds legend {
+  margin-bottom: 7px;
+  padding: 0;
+  font-weight: 600;
+}
+
+.newton-world {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  border-top-width: 1px;
+}
+
+.newton-worlds:not(:disabled) .newton-world {
+  cursor: pointer;
+}
+
+.newton-world:has(:checked) {
+  border-color: var(--node);
+  background: color-mix(in srgb, var(--node) 7%, var(--surface));
+}
+
+.newton-world input {
+  margin: 0 .35rem 0 0;
+  accent-color: var(--node);
+}
+
+.newton-world span + span {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  font-size: .86rem;
+}
+
+.newton-world code {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+[data-ch="newton"] pre.code code,
+[data-ch="integration"] pre.code code {
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+}
+
+[data-ch="newton"] details > p,
+[data-ch="newton"] details > pre,
+[data-ch="integration"] details > p,
+[data-ch="integration"] details > pre,
+[data-ch="integration"] details > dl {
+  margin-top: 10px;
+}
+
+@media (max-width: 690px) {
+  .newton-flow,
+  .newton-api > div {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
