@@ -53,7 +53,9 @@
 
   function place(marker, state, visible) {
     const node = find(`[data-marker="${marker}"]`);
-    node.style.transform = `translateY(${-62 * state.height}%)`;
+    node.style.setProperty("--ball-height", state.height);
+    const key = find(`[data-marker-key="${marker}"]`);
+    if (key) key.hidden = !visible;
     node.dataset.visible = String(visible);
   }
 

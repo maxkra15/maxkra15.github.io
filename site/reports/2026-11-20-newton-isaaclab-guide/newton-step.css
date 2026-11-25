@@ -15,7 +15,13 @@
   gap: 16px;
 }
 
+.newton-step-figure {
+  margin: 0;
+  min-width: 0;
+}
 .newton-step-scene {
+  --floor-level: 75%;
+  --height-scale: 62%;
   position: relative;
   min-height: 225px;
   overflow: hidden;
@@ -44,7 +50,7 @@
 .newton-step-scale {
   position: absolute;
   left: 9px;
-  top: calc(75% - 62% * var(--level));
+  top: calc(var(--floor-level) - var(--height-scale) * var(--level));
   z-index: 1;
   transform: translateY(-50%);
   padding-right: 9px;
@@ -64,7 +70,7 @@
 
 .newton-step-ground {
   position: absolute;
-  inset: 75% 0 0;
+  inset: var(--floor-level) 0 0;
   color: var(--muted);
   border-top: 2px solid var(--muted);
   background: repeating-linear-gradient(135deg, transparent 0 6px, var(--grid) 6px 7px), var(--bg);
@@ -87,15 +93,15 @@
   inset: 0;
   opacity: 0;
   pointer-events: none;
-  color: var(--muted);
+  transform: translateY(calc(-1 * var(--height-scale) * var(--ball-height, 0)));
 }
 
 .newton-step-marker[data-visible="true"] { opacity: 1; }
 
 .newton-step-marker i {
   position: absolute;
-  bottom: 25%;
-  left: 47%;
+  bottom: calc(100% - var(--floor-level));
+  left: 50%;
   width: 31px;
   aspect-ratio: 1;
   transform: translateX(-50%);
@@ -103,33 +109,34 @@
   border: 2px solid currentColor;
 }
 
-.newton-step-marker span {
+.newton-step-axis {
   position: absolute;
-  left: calc(47% + 24px);
-  bottom: calc(25% + 6px);
-  padding: 2px 5px;
-  background: var(--bg);
-  color: inherit;
-  font: 500 .68rem var(--f-mono);
-  white-space: nowrap;
+  inset: 12px auto calc(100% - var(--floor-level)) 50%;
+  border-left: 1px dashed var(--line);
 }
-
 .newton-step-current { color: var(--newton-step-ball); z-index: 1; }
 .newton-step-current i {
   background: radial-gradient(circle at 30% 25%, color-mix(in srgb, var(--surface) 85%, var(--particle)), var(--newton-step-ball) 67%);
 }
+.newton-step-predicted { color: var(--muted); z-index: 3; }
 .newton-step-predicted i { border-style: dashed; }
 .newton-step-widget[data-contact="true"] .newton-step-predicted { color: var(--collider); }
-.newton-step-output { color: var(--node); z-index: 1; }
-.newton-step-output i { background: color-mix(in srgb, var(--node) 25%, transparent); }
-
-/* Separate overlays horizontally so similar heights remain legible. */
-.newton-step-predicted i,
-.newton-step-output i { left: 74%; }
-.newton-step-predicted span,
-.newton-step-output span { left: auto; right: calc(26% - 21px); bottom: calc(25% + 34px); }
-.newton-step-predicted[data-visible="true"] + .newton-step-output i { left: 57%; }
-.newton-step-predicted[data-visible="true"] + .newton-step-output span { right: auto; left: calc(57% + 18px); bottom: calc(25% + 6px); }
+.newton-step-output { color: var(--node); z-index: 2; }
+.newton-step-output i { background: color-mix(in srgb, var(--surface) 75%, var(--node)); }
+.newton-step-key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 13px;
+  min-height: 1.7rem;
+  padding-top: 6px;
+  color: var(--muted);
+  font: .73rem var(--f-mono);
+}
+.newton-step-key span { display: inline-flex; gap: 5px; align-items: center; color: inherit; }
+.newton-step-key i { border: 1px solid; border-radius: 50%; width: 10px; height: 10px; }
+.newton-step-key .newton-step-current i { border-color: var(--newton-step-ball); }
+.newton-step-key .newton-step-output i { border-color: var(--node); }
+.newton-step-widget[data-contact="true"] .newton-step-key .newton-step-predicted { color: var(--collider); }
 
 .newton-step-readout { display: grid; align-content: start; gap: 10px; min-width: 0; }
 .newton-step-rail { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin: 0; padding: 0; list-style: none; }
@@ -184,9 +191,4 @@
 @media (max-width: 720px) {
   .newton-step-grid { grid-template-columns: minmax(0, 1fr); }
   .newton-step-controls .btn { min-height: 44px; }
-}
-
-@media (max-width: 400px) {
-  .newton-step-marker span { font-size: .62rem; }
-  .newton-step-predicted[data-visible="true"] + .newton-step-output span { left: auto; right: calc(43% - 15px); bottom: calc(25% + 34px); }
 }
