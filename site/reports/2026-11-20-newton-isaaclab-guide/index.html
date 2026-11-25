@@ -96,17 +96,25 @@
     <p>Follow the ball to the floor. Each step reads one state buffer, predicts the motion, writes the solved result to the other buffer, then swaps their roles.</p>
   </div>
   <div class="newton-step-grid">
-    <div class="newton-step-scene" aria-hidden="true">
-      <div class="newton-step-time" data-step-time>t = 0.00 s</div>
-      <span class="newton-step-scale" style="--level: .6">0.6 m</span>
-      <span class="newton-step-scale" style="--level: .4">0.4 m</span>
-      <span class="newton-step-scale" style="--level: .2">0.2 m</span>
-      <span class="newton-step-scale" style="--level: 0">0 m</span>
-      <div class="newton-step-ground"><span>Floor</span></div>
-      <div class="newton-step-marker newton-step-current" data-marker="current"><i></i><span>Current</span></div>
-      <div class="newton-step-marker newton-step-predicted" data-marker="predicted"><i></i><span>Prediction</span></div>
-      <div class="newton-step-marker newton-step-output" data-marker="output"><i></i><span>Solved output</span></div>
-    </div>
+    <figure class="newton-step-figure">
+      <div class="newton-step-scene" aria-hidden="true">
+        <div class="newton-step-time" data-step-time>t = 0.00 s</div>
+        <span class="newton-step-scale" style="--level: .6">0.6 m</span>
+        <span class="newton-step-scale" style="--level: .4">0.4 m</span>
+        <span class="newton-step-scale" style="--level: .2">0.2 m</span>
+        <span class="newton-step-scale" style="--level: 0">0 m</span>
+        <div class="newton-step-ground"><span>Floor</span></div>
+        <div class="newton-step-axis"></div>
+        <div class="newton-step-marker newton-step-current" data-marker="current"><i></i></div>
+        <div class="newton-step-marker newton-step-predicted" data-marker="predicted"><i></i></div>
+        <div class="newton-step-marker newton-step-output" data-marker="output"><i></i></div>
+      </div>
+      <figcaption class="newton-step-key">
+        <span class="newton-step-current"><i aria-hidden="true"></i>Current</span>
+        <span class="newton-step-predicted" data-marker-key="predicted" hidden><i aria-hidden="true"></i>Prediction</span>
+        <span class="newton-step-output" data-marker-key="output" hidden><i aria-hidden="true"></i>Solved output</span>
+      </figcaption>
+    </figure>
     <div class="newton-step-readout">
       <ol class="newton-step-rail" aria-label="Phases of one step">
         <li aria-current="step">Read</li>
