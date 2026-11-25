@@ -10,6 +10,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="guide.css">
 <link rel="stylesheet" href="hub.css">
+<link rel="stylesheet" href="lab-interactions.css">
+<link rel="stylesheet" href="mdp2-step.css">
+<link rel="stylesheet" href="newton-step.css">
 <link rel="stylesheet" href="newton-lessons.css">
 <link rel="stylesheet" href="mpm-lesson.css">
 <script src="mpm-cycle.js" defer></script>
@@ -87,6 +90,65 @@
       <li><h3>Prepare</h3><p>Allocate a <code>State</code> for positions and velocities, and a <code>Control</code> for commands. A falling ball needs no motor input.</p></li>
       <li><h3>Step</h3><p>Find where shapes touch, then advance the state by <code>dt</code>. The solver computes the response to gravity and contact, including the floor pushing back.</p></li>
     </ol>
+<section class="newton-step-widget" data-newton-step hidden aria-labelledby="newton-step-widget-title">
+  <div class="intro">
+    <h3 id="newton-step-widget-title">Step through a falling ball</h3>
+    <p>Follow the ball to the floor. Each step reads one state buffer, predicts the motion, writes the solved result to the other buffer, then swaps their roles.</p>
+  </div>
+  <div class="newton-step-grid">
+    <div class="newton-step-scene" aria-hidden="true">
+      <div class="newton-step-time" data-step-time>t = 0.00 s</div>
+      <span class="newton-step-scale" style="--level: .6">0.6 m</span>
+      <span class="newton-step-scale" style="--level: .4">0.4 m</span>
+      <span class="newton-step-scale" style="--level: .2">0.2 m</span>
+      <span class="newton-step-scale" style="--level: 0">0 m</span>
+      <div class="newton-step-ground"><span>Floor</span></div>
+      <div class="newton-step-marker newton-step-current" data-marker="current"><i></i><span>Current</span></div>
+      <div class="newton-step-marker newton-step-predicted" data-marker="predicted"><i></i><span>Prediction</span></div>
+      <div class="newton-step-marker newton-step-output" data-marker="output"><i></i><span>Solved output</span></div>
+    </div>
+    <div class="newton-step-readout">
+      <ol class="newton-step-rail" aria-label="Phases of one step">
+        <li aria-current="step">Read</li>
+        <li>Predict</li>
+        <li>Solve</li>
+        <li>Swap</li>
+      </ol>
+      <p class="newton-step-message" data-step-message>Read buffer A. The ball starts 0.80 m above the floor.</p>
+      <div class="newton-step-buffers" role="group" aria-label="State buffer values">
+        <div class="newton-step-buffer" data-step-buffer>
+          <h4>State A <span data-buffer-role>Read</span></h4>
+          <p data-buffer-value>0.80 m · 0.00 m/s</p>
+        </div>
+        <div class="newton-step-buffer" data-step-buffer>
+          <h4>State B <span data-buffer-role>Write</span></h4>
+          <p data-buffer-value>Unwritten</p>
+        </div>
+      </div>
+      <p class="newton-step-units">Height is measured from the bottom of the ball. Positive velocity points up.</p>
+    </div>
+  </div>
+  <div class="newton-step-controls">
+    <div class="btns">
+      <button type="button" class="btn primary" data-step-next>Next phase</button>
+      <button type="button" class="btn" data-step-previous>Previous</button>
+      <button type="button" class="btn" data-step-play>Play</button>
+      <button type="button" class="btn" data-step-restart>Restart</button>
+    </div>
+    <label class="newton-step-rebound">Bounciness
+      <input data-step-rebound type="range" min="0" max="0.85" step="0.05" value="0.55" aria-describedby="newton-step-rebound-tip">
+      <output data-step-rebound-value>0.55</output>
+    </label>
+  </div>
+  <p class="newton-step-units" id="newton-step-rebound-tip">At 0 the ball stops on contact. At 0.55 it rebounds at 55% of its impact speed, before gravity slows it again.</p>
+  <p class="newton-step-sr" role="status" data-step-status></p>
+  <details class="lesson-detail">
+    <summary>How this model computes the bounce</summary>
+    <p>Each step spans 0.08 s. The prediction applies a constant downward acceleration of 9.81 m/s². If that prediction crosses the floor, the demo finds the first instant of impact, reverses the impact velocity, scales its magnitude by the bounciness, then applies gravity for the rest of the step. Very small bounces settle into rest.</p>
+    <p>The diagram uses a one-dimensional contact calculation. The Newton example below uses its collision pipeline and XPBD solver to handle the sphere and plane in 3D.</p>
+  </details>
+</section>
+
     <details class="lesson-detail panel">
       <summary>See one complete Newton step in Python</summary>
       <p>This XPBD example uses Newton’s collision pipeline. The two state buffers trade places after each step so the next call reads the latest result.</p>
@@ -256,74 +318,93 @@ arms.eval_fk(state, mask=mask)</code></pre>
 <section id="mpm-cycle" class="mpm-cycle" aria-labelledby="mpm-cycle-title">
   <div class="mpm-intro">
     <h2 id="mpm-cycle-title">Follow one point through a time step</h2>
-    <p>Imagine a small patch of sand just reaching the floor. Follow the highlighted orange point as its motion goes to the grid, gets corrected there, and comes back.</p>
+    <p>Drag the orange point near a corner, then choose <strong>Transfer</strong> to see how much of its mass goes there. Move it close to the floor and toggle contact to see where it lands.</p>
   </div>
   <div class="mpm-walkthrough">
-    <div class="mpm-phase-select" role="group" aria-label="Time-step stages" hidden>
-      <button type="button" data-mpm-phase aria-pressed="true"><span>1</span> Carry</button>
-      <button type="button" data-mpm-phase aria-pressed="false"><span>2</span> Share</button>
-      <button type="button" data-mpm-phase aria-pressed="false"><span>3</span> Solve</button>
-      <button type="button" data-mpm-phase aria-pressed="false"><span>4</span> Move</button>
+    <div class="mpm-phase-select" role="group" aria-label="Time step stages" data-mpm-enhanced hidden>
+      <button type="button" data-mpm-phase aria-pressed="true"><span aria-hidden="true">1</span> Carry</button>
+      <button type="button" data-mpm-phase aria-pressed="false"><span aria-hidden="true">2</span> Transfer</button>
+      <button type="button" data-mpm-phase aria-pressed="false"><span aria-hidden="true">3</span> Contact</button>
+      <button type="button" data-mpm-phase aria-pressed="false"><span aria-hidden="true">4</span> Move</button>
     </div>
     <div class="mpm-stage">
-      <figure>
-        <canvas role="img" aria-label="A patch of sand with one material point highlighted above a solid floor." hidden></canvas>
-        <figcaption>The highlighted point shares data with nearby grid corners. The dashed lines show those connections.</figcaption>
+      <figure class="mpm-figure" data-mpm-enhanced hidden>
+        <div class="mpm-plot">
+          <canvas aria-hidden="true"></canvas>
+          <button type="button" id="mpm-point" aria-label="Move the sample point" aria-describedby="mpm-input-hint"></button>
+        </div>
+        <figcaption id="mpm-input-hint">Drag the point or tap inside the cell. With the point focused, use the arrow keys.</figcaption>
+        <div class="mpm-parameters">
+          <label for="mpm-floor"><input type="checkbox" id="mpm-floor" checked> Floor contact</label>
+          <button type="button" class="btn" id="mpm-reset">Reset point</button>
+        </div>
+        <div class="mpm-sr-only" id="mpm-announcement" role="status"></div>
       </figure>
       <div class="mpm-stage-text">
-        <div class="mpm-phases" aria-live="polite">
-          <div class="mpm-phase" data-diagram="A dense patch of points above a floor. The highlighted point has a velocity arrow aimed down and to the right.">
-            <h3>Particles carry the material</h3>
-            <p>Each point tracks a small piece of the sand. It carries its position, motion and material history with it wherever it goes.</p>
-            <p class="mpm-observation">The highlighted point is moving toward the floor.</p>
-            <details>
-              <summary>What state travels with a point?</summary>
-              <p>The particle state includes velocity and elastic strain. Newton also stores quantities such as stress for a warm start and a hardening variable for materials whose yield behavior changes as they compact or dilate.</p>
-            </details>
-          </div>
-          <div class="mpm-phase" data-diagram="The highlighted point shares mass and momentum with four grid corners. The top-left corner receives 46.9 percent, the top-right 28.1, the bottom-left 15.6, and the bottom-right 9.4.">
-            <h3>Points share motion with a grid</h3>
-            <p>Newton lays a temporary grid over the sand. Nearby points contribute mass and momentum to the same corners, where their motion can be considered together.</p>
-            <p class="mpm-observation">The point is closest to the upper-left corner, which gets the largest share.</p>
-            <details>
-              <summary>Compute the four Q1 weights</summary>
-              <p>With local coordinates <code>u = 0.375</code> across the cell and <code>v = 0.25</code> down from the top, the 2D weights are bilinear. Each corner accumulates its share of every nearby point, then converts the momentum sum to a grid velocity. The matching 3D cell has eight corners.</p>
-              <div class="formula" aria-label="Bilinear weights">top left      (1 − u)(1 − v)  ≈ 46.9%
-top right          u(1 − v)  ≈ 28.1%
-bottom left   (1 − u)v        ≈ 15.6%
-bottom right       uv        ≈  9.4%</div>
-            </details>
-          </div>
-          <div class="mpm-phase" data-diagram="Dashed arrows point into the floor before the solve. The solid solved arrows along the floor point sideways. A shaded cell marks material stress.">
-            <h3>The grid solves for push-back</h3>
-            <p>Sand resists being squeezed. The floor blocks motion into it and friction resists sliding along it. Newton solves for these effects together because changing a corner's velocity can change both.</p>
-            <p class="mpm-observation">The dashed arrows show the starting velocities. After the solve, the floor arrows point along the surface.</p>
-            <details>
-              <summary>Why is the solve called implicit?</summary>
-              <p>Material stress and contact depend on the velocities being solved for. Those same stresses and contact impulses change the velocities. The solver iterates toward a compatible answer, up to its tolerance or iteration limit. A stable solve can still miss fast changes in motion or contact when the time step is too large. See <a href="#solve-deep">inside the implicit solve</a> for the operators and iteration strategies.</p>
-            </details>
-          </div>
-          <div class="mpm-phase" data-diagram="The highlighted point gathers the updated velocities from the same corners and advances mostly sideways.">
-            <h3>Points pick up the answer and move</h3>
-            <p>Each point blends the updated velocities from its neighbors and moves with the result. The points keep the new state. The grid is rebuilt as needed for the next step.</p>
-            <p class="mpm-observation">The highlighted point now moves mainly along the floor.</p>
-            <details>
-              <summary>From velocity to position and strain</summary>
-              <p>The weight sum gives the local velocity. A weighted sum using the basis gradients gives its spatial gradient, which describes nearby stretching, shearing and rotation. Newton updates particle strain and can carry a local affine velocity field for the next APIC transfer.</p>
-              <div class="formula" aria-label="Grid to particle update">vₚ ← Σᵢ wᵢₚ vᵢ
-xₚ ← xₚ + Δt vₚ</div>
-            </details>
-          </div>
+        <div class="mpm-phase">
+          <h3>Particles carry the material</h3>
+          <p>The orange point tracks a piece of sand. It carries its position and velocity as it moves. Three smaller points in the cell also contribute to the step.</p>
+          <dl class="mpm-readings" data-mpm-enhanced hidden>
+            <div><dt>Position (x, y)</dt><dd data-mpm-value="position"></dd></div>
+            <div><dt>Velocity (x, y)</dt><dd data-mpm-value="start"></dd></div>
+          </dl>
+          <details>
+            <summary>What else travels with a point?</summary>
+            <p>Newton carries material history such as elastic strain and a hardening variable. That lets each piece remember how it has deformed and how its behavior should change.</p>
+          </details>
         </div>
-        <div class="mpm-controls" hidden>
-          <button class="btn" type="button">Previous</button>
-          <button class="btn primary" type="button">Next stage</button>
-          <button class="btn" type="button">Play all stages</button>
+        <div class="mpm-phase">
+          <h3>Points share motion with the grid</h3>
+          <p>Each point gives a share of its mass and momentum to each of the four corners. Move it to see how the shares change.</p>
+          <dl class="mpm-weights" aria-label="Shares of the orange point’s mass" data-mpm-enhanced hidden>
+            <div data-mpm-weight><dt>Top left</dt><dd data-mpm-value="weight0"></dd></div>
+            <div data-mpm-weight><dt>Top right</dt><dd data-mpm-value="weight1"></dd></div>
+            <div data-mpm-weight><dt>Bottom left</dt><dd data-mpm-value="weight2"></dd></div>
+            <div data-mpm-weight><dt>Bottom right</dt><dd data-mpm-value="weight3"></dd></div>
+          </dl>
+          <details>
+            <summary>Compute the Q1 weights</summary>
+            <p>Within the cell, <var>x</var> measures the fraction across and <var>y</var> the fraction up from the floor. The four bilinear weights sum to one. Each corner divides the combined momentum by the combined mass of all four samples to get its velocity. Here gravity is included in the momentum transfer.</p>
+            <div class="formula">top       (1 − x)y        xy
+bottom    (1 − x)(1 − y)  x(1 − y)</div>
+            <p>A 3D Q1 cell has eight corners. This sketch uses the basic PIC transfer. Newton can also use APIC, which adds a local affine velocity field to the state carried by each point. <a href="https://doi.org/10.1145/2766996">The APIC method</a></p>
+          </details>
+        </div>
+        <div class="mpm-phase">
+          <h3>The floor changes the grid velocities</h3>
+          <p>With the floor on, compare the dashed arrows before contact to the solid arrows after it. The bottom corners can still slide along the floor.</p>
+          <dl class="mpm-readings" aria-label="Vertical grid velocities in metres per second" data-mpm-enhanced hidden>
+            <div><dt>Bottom left, m/s</dt><dd data-mpm-value="left"></dd></div>
+            <div><dt>Bottom right, m/s</dt><dd data-mpm-value="right"></dd></div>
+          </dl>
+          <details>
+            <summary>How does Newton handle contact and stress?</summary>
+            <p>This cell removes downward velocity at its floor nodes. Newton also accounts for wall friction and computes how the material pushes back as it deforms. It solves contact and stress together because either can change the velocities the other depends on. <a href="#solve-deep">Inside the implicit solve</a></p>
+          </details>
+        </div>
+        <div class="mpm-phase">
+          <h3>The point reads back its new motion</h3>
+          <p>The point blends the four grid velocities with the same weights, then moves. Turn floor contact off to see how that changes the result.</p>
+          <dl class="mpm-readings" data-mpm-enhanced hidden>
+            <div><dt>New velocity (x, y)</dt><dd data-mpm-value="velocity"></dd></div>
+            <div><dt>Travel over 0.10 s</dt><dd data-mpm-value="displacement"></dd></div>
+          </dl>
+          <details>
+            <summary>From velocity to position and strain</summary>
+            <p>Multiply the interpolated velocity by the time step to get the displacement. Newton also uses the spatial gradient of velocity to update material history. The point values persist between steps and the grid is rebuilt as needed.</p>
+            <div class="formula">vₚ ← Σᵢ wᵢₚ vᵢ
+xₚ ← xₚ + Δt vₚ</div>
+          </details>
         </div>
       </div>
     </div>
+    <div class="mpm-controls" data-mpm-enhanced hidden>
+      <label for="mpm-scrubber">Step progress</label>
+      <input type="range" id="mpm-scrubber" min="0" max="3" step="0.05" value="0">
+      <button class="btn" type="button" id="mpm-play">Play step</button>
+    </div>
   </div>
-  <p class="callout"><strong>Why use both representations?</strong> Particles follow the material and remember its history. Grid neighbors give the solver a common place to compute velocity changes due to stress and contact.</p>
+  <p class="callout"><strong>Why use both?</strong> The particles move with the sand and keep its history. The grid gives neighbors a shared place to work out how stress and contact change their motion.</p>
 </section>
 
 <section class="mpm-deeper" id="mpm-deeper" aria-labelledby="mpm-deeper-title">
@@ -434,15 +515,15 @@ xₚ ← xₚ + Δt vₚ</div>
       </div>
       <canvas id="vbCv" tabindex="0" aria-label="Velocity basis weights. Drag the particle or use arrow keys."></canvas>
       <div id="v3Wrap" class="v3wrap" hidden>
-        <canvas id="v3Cv" aria-label="3D view of the particle and every grid node it touches. Drag to orbit."></canvas>
-        <p class="cap" id="v3Msg" hidden>The 3D view needs WebGL and the three.js library, which did not load here. The 2D slice shows the same idea.</p>
+        <canvas id="v3Cv" tabindex="0" aria-label="3D grid and particle. Drag or use arrow keys to orbit."></canvas>
         <div class="v3ctl">
-          <label class="ctl" for="v3x">x<input type="range" id="v3x" min="1.02" max="3.98" step="0.01"><output id="o3x"></output></label>
-          <label class="ctl" for="v3y">y<input type="range" id="v3y" min="1.02" max="3.98" step="0.01"><output id="o3y"></output></label>
-          <label class="ctl" for="v3z">z (depth)<input type="range" id="v3z" min="1.02" max="3.98" step="0.01"><output id="o3z"></output></label>
+          <label class="ctl" for="v3x">x<input type="range" id="v3x" min="1.5" max="4.5" step="0.01"><output id="o3x"></output></label>
+          <label class="ctl" for="v3y">y<input type="range" id="v3y" min="1.5" max="4.5" step="0.01"><output id="o3y"></output></label>
+          <label class="ctl" for="v3z">z (depth)<input type="range" id="v3z" min="1.5" max="4.5" step="0.01"><output id="o3z"></output></label>
         </div>
         <div class="btns"><button class="btn primary" id="v3Anim">Move the particle</button><button class="btn" id="v3Reset">Reset view</button></div>
       </div>
+      <p class="cap" id="v3Msg" role="status" hidden>3D is unavailable in this browser. You can still drag the particle in the 2D slice.</p>
       <div class="cap" id="vbCap"></div>
     </div>
     <div class="panel">
@@ -456,7 +537,7 @@ xₚ ← xₚ + Δt vₚ</div>
         <button aria-pressed="true" data-v="1d">1D curves</button><button aria-pressed="false" data-v="3d">3D surface</button>
       </div>
       <canvas id="vbPlot" aria-label="1D basis functions"></canvas>
-      <canvas id="vbSurf" class="surf" hidden aria-label="3D surface of one node's weight or weight gradient. Drag to orbit."></canvas>
+      <canvas id="vbSurf" class="surf" tabindex="0" hidden aria-label="3D basis surface. Drag or use arrow keys to orbit."></canvas>
       <p class="cap" id="vbSurfMsg" hidden>The 3D surface needs WebGL and the three.js library, which did not load here.</p>
       <div class="cap" id="vbPlotCap"></div>
       <div class="facts" id="vbFacts"></div>
@@ -1149,22 +1230,39 @@ solver = newton.solvers.SolverVBD(
     </tbody>
   </table></div>
 
-  <div class="sub">
-    <h3><span class="num">&#x23F1;</span>Three clocks: policy, physics, solver</h3>
-    <p>One policy step (one <code>env.step</code>) runs <code>decimation</code> physics steps of <code>sim.dt</code>. Each physics step runs <code>num_substeps</code> solver steps. The animation ticks all three. The defaults are those of the ANYmal velocity task with the <code>newton_mjwarp</code> preset.</p>
-    <div class="canvas-box"><canvas id="ltCv" aria-label="Animated timeline of policy, physics and solver steps"></canvas>
-      <div class="stats" id="ltStats"></div></div>
-    <div class="two">
-      <div class="panel" style="gap:8px">
-        <label class="ctl" for="ltDt">sim.dt (ms)<input type="range" id="ltDt" min="1" max="20" step="0.5" value="5"><output id="oLtDt">5.0</output></label>
-        <label class="ctl" for="ltDec">decimation<input type="range" id="ltDec" min="1" max="10" step="1" value="4"><output id="oLtDec">4</output></label>
-        <label class="ctl" for="ltSub">num_substeps<input type="range" id="ltSub" min="1" max="8" step="1" value="2"><output id="oLtSub">2</output></label>
-        <label class="ctl" for="ltEp">episode_length_s<input type="range" id="ltEp" min="2" max="40" step="1" value="20"><output id="oLtEp">20</output></label>
-        <div class="btns"><button class="btn" id="ltStep">Next solver step</button><button class="btn primary" id="ltPlay">Play</button></div>
+  <div class="sub" id="lab-clocks">
+    <h3>Three clocks, one policy action</h3>
+    <p>Isaac Lab holds one action for <code>decimation</code> physics steps. The Newton backend divides each <code>sim.dt</code> into <code>num_substeps</code> solver steps. Change those settings, then scrub through the action to see which steps line up.</p>
+    <div class="clock-demo panel" data-clocks hidden>
+      <div class="clock-chart" aria-hidden="true">
+        <div class="clock-lane"><span>Policy</span><div class="clock-tiles" data-clock-lane="policy"></div></div>
+        <div class="clock-lane"><span>Physics</span><div class="clock-tiles" data-clock-lane="physics"></div></div>
+        <div class="clock-lane"><span>Solver</span><div class="clock-tiles" data-clock-lane="solver"></div></div>
       </div>
+      <div class="clock-axis" aria-hidden="true"><span>0 ms</span><span data-clock-end>20 ms</span></div>
+      <label class="clock-seek">Solver step <input type="range" data-clock-seek min="1" max="8" value="1"></label>
+      <p class="clock-status" data-clock-status></p>
+      <div class="btns">
+        <button type="button" class="btn" data-clock-next>Next solver step</button>
+        <button type="button" class="btn primary" data-clock-play>Play one action</button>
+      </div>
+      <dl class="clock-rates">
+        <div><dt>Policy</dt><dd data-clock-rate="policy"></dd></div>
+        <div><dt>Physics</dt><dd data-clock-rate="physics"></dd></div>
+        <div><dt>Solver</dt><dd data-clock-rate="solver"></dd></div>
+      </dl>
+      <div class="clock-config">
+        <label>Physics step · sim.dt<input type="range" id="ltDt" min="1" max="20" step="0.5" value="5"><output for="ltDt" id="oLtDt">5 ms</output></label>
+        <label>Physics steps · decimation<input type="range" id="ltDec" min="1" max="10" value="4"><output for="ltDec" id="oLtDec">4</output></label>
+        <label>Solver steps · num_substeps<input type="range" id="ltSub" min="1" max="8" value="2"><output for="ltSub" id="oLtSub">2</output></label>
+      </div>
+    </div>
+    <details class="lesson-detail panel">
+      <summary>Show the ANYmal timing and backend configuration</summary>
+      <p>At <code>sim.dt = 0.005</code> s and <code>decimation = 4</code>, a policy action lasts 20 ms. A 20 s episode therefore spans up to 1,000 policy steps if the robot stays up.</p>
       <pre class="code">sim = SimulationCfg(
-    dt=0.005,                     # physics step
-    render_interval=4,            # = decimation
+    dt=0.005,
+    render_interval=4,
     physics=NewtonCfg(
         solver_cfg=MJWarpSolverCfg(
             njmax=1000, nconmax=300,
@@ -1173,9 +1271,9 @@ solver = newton.solvers.SolverVBD(
         num_substeps=2,
         default_shape_cfg=NewtonShapeCfg(
             margin=0.0, ke=160000.0, kd=1100.0)))
-decimation = 4                    # policy runs at 50 Hz
-episode_length_s = 20.0           # 1000 policy steps</pre>
-    </div>
+decimation = 4
+episode_length_s = 20.0</pre>
+    </details>
   </div>
 </section>
 </details>
@@ -1186,15 +1284,20 @@ episode_length_s = 20.0           # 1000 policy steps</pre>
 <section id="lab-loop">
   <div class="intro">
     <h2>The RL loop: what one env.step does</h2>
-    <p><code>ManagerBasedRLEnv.step(action)</code> runs the same fixed sequence for all environments at once, as batched GPU tensors. Watch it below. On the right, 4,096 environments step together; each square is one robot, and squares flash when that robot's episode ends and it is reset.</p>
+    <p><code>ManagerBasedRLEnv.step(action)</code> runs the same fixed sequence for all environments at once, as batched GPU tensors. Watch it below. On the right, 4,096 environments step together; each square is one robot. A rose square marks a robot that reset on the most recent action.</p>
   </div>
   <div class="lab">
     <div class="canvas-box"><canvas id="lfCv" aria-label="Animated env.step pipeline"></canvas><div class="cap" id="lfCap"></div></div>
     <div class="panel">
       <canvas id="lgCv" aria-label="4096 environments"></canvas>
-      <div class="btns"><button class="btn primary" id="lfPlay">Play</button><button class="btn" id="lfStep">Next stage</button></div>
+      <div class="btns"><button class="btn primary" id="lfPlay">Play</button><button class="btn" id="lfStep">Next stage</button><button class="btn" id="lfResetStage">Advance to reset</button></div>
+      <div class="world-inspector">
+        <label>World <input id="lgWorld" type="number" min="0" max="4095" step="1" value="0"></label>
+        <button type="button" class="btn" id="lgFall">Queue a fall</button>
+        <p class="cap" id="lgSelected"></p>
+      </div>
       <div class="stats" id="lgStats"></div>
-      <p style="font-size:14px">Resets are per robot. A robot that falls (<code>base_contact</code>) or runs out of time (<code>time_out</code>, 20 s) is reset on the same step. The others keep going, so episodes are spread out in time.</p>
+      <p style="font-size:14px">Click a square or enter a world number, queue a fall, then advance to reset. This batch is a teaching model with synthetic episodes. Resets are per robot. A robot that falls (<code>base_contact</code>) or runs out of time (<code>time_out</code>, 20 s) is reset on the same step. The others keep going, so episodes are spread out in time.</p>
     </div>
   </div>
   <div class="facts" style="max-width:80ch"><dl>
@@ -1231,9 +1334,10 @@ time-out: r_t += &#x3B3; V(s_t) &#xB7; time_out   (bootstrap)</div>
     <p>A policy action for a legged robot is usually a <b>joint position target</b>: <code>target = default_pos + 0.5 &#xB7; action</code> (<code>JointPositionActionCfg(scale=0.5, use_default_offset=True)</code>). An <b>actuator</b> turns that target into torque. Below, one joint swings a weighted link under gravity at the physics rate. Change the actuator type and gains and watch it track the target. Then try IdealPD with maximum stiffness and damping at a 20&#xA0;ms physics step, and compare with Implicit.</p>
   </div>
   <div class="lab">
-    <div class="canvas-box"><canvas id="laCv" aria-label="One actuated joint tracking a target"></canvas><canvas id="laPlot" aria-label="Joint angle and torque over time"></canvas><div class="cap" id="laCap"></div></div>
+    <div class="canvas-box"><canvas id="laCv" aria-label="One actuated joint tracking a target"></canvas><p class="cap" id="laRead"></p><canvas id="laPlot" aria-label="Joint angle and torque over the last three seconds"></canvas><p class="cap">Last 3 s · angle (orange), target (dashed), torque as a share of the effort limit (teal)</p><div class="cap" id="laCap"></div></div>
     <div class="panel">
       <div class="seg" id="laType" role="group" aria-label="Actuator type"><button aria-pressed="true" data-v="imp">Implicit</button><button aria-pressed="false" data-v="pd">IdealPD</button><button aria-pressed="false" data-v="dc">DCMotor</button></div>
+      <label class="ctl" for="laTarget">Target angle<input type="range" id="laTarget" min="-1.4" max="1.4" step="0.01" value="1.1"><output id="oLaTarget">1.10 rad</output></label>
       <label class="ctl" for="laKp">stiffness<input type="range" id="laKp" min="0" max="3" step="0.05" value="1.6"><output id="oLaKp"></output></label>
       <label class="ctl" for="laKd">damping<input type="range" id="laKd" min="-1" max="1.5" step="0.05" value="0.7"><output id="oLaKd"></output></label>
       <label class="ctl" for="laTau">effort limit<input type="range" id="laTau" min="1" max="120" step="1" value="80"><output id="oLaTau"></output></label>
@@ -1268,11 +1372,11 @@ time-out: r_t += &#x3B3; V(s_t) &#xB7; time_out   (bootstrap)</div>
     <p>A policy only knows what its observations tell it. On rough terrain an ANYmal sees a <b>height scan</b>: a grid of rays cast down from 20 m above its base, 1.6 &#xD7; 1.0 m at 10 cm spacing, turned with the robot's yaw. Its feet carry <b>contact sensors</b> that track air time. Below: a side view of the scan as the robot walks.</p>
   </div>
   <div class="lab">
-    <div class="canvas-box"><canvas id="lsCv" aria-label="Height scan rays over terrain"></canvas><div class="cap" id="lsCap"></div></div>
+    <div class="canvas-box"><canvas id="lsCv" aria-label="Height scan rays over terrain"></canvas><p class="cap">Top strip · observed base height minus hit height and a 0.5 m offset, clipped to ±1.</p><div class="cap" id="lsCap"></div></div>
     <div class="panel">
       <div class="btns"><button class="btn" id="lsStep">Move forward</button><button class="btn primary" id="lsPlay">Play</button></div>
       <label class="chk"><input type="checkbox" id="lsNoise" checked> observation noise (&#xB1;0.1 m)</label>
-      <label class="chk"><input type="checkbox" id="lsBox"> a box rolls in (dynamic body)</label>
+      <label class="chk"><input type="checkbox" id="lsBox"> show a moving box</label>
       <div class="facts"><dl>
         <dt>RayCaster</dt><dd>On Newton it uses <code>newton.intersect_ray</code> against all shapes, so it also sees moving bodies, and ignores <code>mesh_prim_paths</code>. PhysX raycasts static meshes only.</dd>
         <dt>Contact</dt><dd><code>ContactSensorCfg(history_length=3, track_air_time=True)</code> on every body, wrapping <code>newton.sensors.SensorContact</code>. Air time drives the <code>feet_air_time</code> reward.</dd>
@@ -1380,6 +1484,44 @@ time-out: r_t += &#x3B3; V(s_t) &#xB7; time_out   (bootstrap)</div>
 
     <div class="intro" id="mdp2-step">
       <h3>Follow one Cartpole step</h3>
+      <div class="mdp2-lab panel" id="mdp2-lab" aria-label="Cartpole control-step exercise" hidden>
+        <div class="mdp2-instructions">
+          <p>Choose a push for each cart, then step all three worlds together. World B starts near the travel limit. World C is one step from timeout.</p>
+          <p class="cap">Schematic motion and a short episode timer illustrate the task logic. Dashed lines mark the travel limits.</p>
+        </div>
+        <ol class="mdp2-phases" aria-label="Control step stages">
+          <li data-mdp2-phase="physics">Physics</li>
+          <li data-mdp2-phase="evaluate">Evaluate</li>
+          <li data-mdp2-phase="reset">Reset</li>
+        </ol>
+        <div class="mdp2-worlds" data-mdp2-worlds></div>
+        <template data-mdp2-world-template>
+          <div class="mdp2-world">
+            <div class="mdp2-world-heading">
+              <h4 data-mdp2-name></h4>
+              <span data-mdp2-age></span>
+            </div>
+            <div class="mdp2-track" aria-hidden="true">
+              <span class="mdp2-cart"><span class="mdp2-pole"></span></span>
+            </div>
+            <label class="mdp2-push">
+              <span>Push <b data-mdp2-push></b></span>
+              <input type="range" min="-100" max="100" step="5">
+            </label>
+            <div class="mdp2-outcome" data-mdp2-outcome>Ready</div>
+          </div>
+        </template>
+        <div class="mdp2-result">
+          <div class="mdp2-mask"><span>Reset mask</span> <code data-mdp2-mask>—</code></div>
+          <p class="mdp2-status" data-mdp2-status role="status">Adjust a push and step the physics.</p>
+        </div>
+        <div class="btns mdp2-controls">
+          <button class="btn primary" type="button" data-mdp2-advance>Step physics</button>
+          <button class="btn" type="button" data-mdp2-restart>Restart demo</button>
+        </div>
+      </div>
+
+      <div data-mdp2-fallback>
       <ol class="steps">
         <li>
           <h4>Apply the action and advance Newton</h4>
@@ -1411,6 +1553,7 @@ time-out: r_t += &#x3B3; V(s_t) &#xB7; time_out   (bootstrap)</div>
           </details>
         </div>
       </details>
+      </div>
       <p class="cap"><a href="https://github.com/isaac-sim/IsaacLab/blob/5c40dd797baac01eb0dd3d0022eea6873db852d3/source/isaaclab_tasks/isaaclab_tasks/mdp2/cartpole/cartpole_env_cfg.py#L76-L125">Cartpole task configuration</a> · <a href="https://github.com/isaac-sim/IsaacLab/blob/5c40dd797baac01eb0dd3d0022eea6873db852d3/source/isaaclab_experimental/isaaclab_experimental/envs/mdp2_env.py#L208-L245">Evaluation and masked reset source</a></p>
     </div>
 
@@ -1486,6 +1629,9 @@ cart_speed_penalty = mdp2.Reward(
 <script src="hub.js" defer></script>
 <script src="newton-lessons.js" defer></script>
 <script src="solver-demos.js" defer></script>
+<script src="lab-interactions.js" defer></script>
+<script src="mdp2-step.js" defer></script>
+<script src="newton-step.js" defer></script>
 
 </body>
 </html>

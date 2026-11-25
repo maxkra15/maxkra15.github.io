@@ -9,7 +9,7 @@
 }
 
 .mpm-walkthrough {
-  overflow: hidden;
+  overflow: clip;
   border: 1px solid var(--line);
   border-radius: var(--mpm-radius);
   background: var(--surface);
@@ -74,30 +74,104 @@
   grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
 }
 
-.mpm-stage figure {
-  margin: 0;
+.mpm-figure {
   min-width: 0;
-  background: var(--surface);
+  margin: 0;
+  background: color-mix(in srgb, var(--bg) 45%, var(--surface));
+}
+
+.mpm-plot {
+  position: relative;
 }
 
 .mpm-stage canvas {
-  aspect-ratio: 600 / 330;
-  touch-action: auto;
+  width: 100%;
+  height: clamp(320px, 40vw, 375px);
+  touch-action: pan-y;
   border-radius: 0;
+  cursor: crosshair;
 }
 
-.mpm-stage figcaption {
-  min-height: 30px;
-  padding: 0 16px 14px;
-  font-size: 12px;
+#mpm-point {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  transform: translate(-50%, -50%);
+  cursor: grab;
+  touch-action: none;
+}
+
+#mpm-point::after {
+  content: "";
+  width: 14px;
+  height: 14px;
+  border: 3px solid var(--surface);
+  border-radius: 50%;
+  background: var(--particle);
+  box-shadow: 0 0 0 2px var(--particle);
+}
+
+.mpm-figure[data-stage="3"] #mpm-point::after {
+  background: var(--surface);
+}
+
+#mpm-point:active {
+  cursor: grabbing;
+}
+
+#mpm-point:focus-visible {
+  outline: 2px dashed var(--node);
+  outline-offset: -5px;
+}
+
+.mpm-figure figcaption {
+  padding: 0 16px 10px;
+  font-size: 13px;
   color: var(--muted);
+}
+
+.mpm-parameters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 14px;
+  padding: 0 16px 16px;
+}
+
+.mpm-parameters label {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.mpm-parameters input,
+.mpm-controls input {
+  accent-color: var(--node);
+}
+
+.mpm-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 .mpm-stage-text {
   min-width: 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   gap: 19px;
   padding: clamp(16px, 3vw, 32px);
   border-left: 1px solid var(--line);
@@ -126,10 +200,6 @@
   line-height: 1.5;
 }
 
-.mpm-phase .mpm-observation {
-  color: var(--muted);
-}
-
 .mpm-phase details {
   margin-top: 3px;
 }
@@ -150,20 +220,87 @@
   margin-top: 9px;
 }
 
+.mpm-readings,
+.mpm-weights {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 5px 0 2px;
+}
+
+.mpm-readings div,
+.mpm-weights div {
+  display: grid;
+  position: relative;
+  overflow: hidden;
+  gap: 3px;
+  padding: 9px 11px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.mpm-weights div {
+  padding-bottom: 13px;
+}
+
+.mpm-weights div::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: var(--share);
+  height: 3px;
+  content: "";
+  background: var(--node);
+}
+
+.mpm-readings dt,
+.mpm-weights dt {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.mpm-readings dd,
+.mpm-weights dd {
+  margin: 0;
+  font: 500 13px var(--f-mono);
+  font-variant-numeric: tabular-nums;
+}
+
 .mpm-controls {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 7px;
+  gap: 8px 14px;
+  padding: 10px 16px;
+  border-top: 1px solid var(--line);
 }
 
-.mpm-controls button {
+.mpm-controls label {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.mpm-controls input {
+  flex: 1 1 7rem;
+  min-height: 36px;
+}
+
+.mpm-controls button,
+.mpm-parameters button {
   min-height: 40px;
 }
 
-.mpm-controls button:disabled {
-  opacity: 0.55;
-  cursor: default;
+@media (prefers-reduced-motion: no-preference) {
+  .mpm-parameters .btn,
+  .mpm-controls .btn {
+    transition: transform 130ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .mpm-parameters .btn:active,
+  .mpm-controls .btn:active {
+    transform: scale(0.97);
+  }
 }
 
 .mpm-deeper {

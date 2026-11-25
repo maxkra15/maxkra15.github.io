@@ -1,0 +1,192 @@
+.newton-step-widget {
+  --newton-step-ball: color-mix(in srgb, var(--particle) 84%, var(--ink));
+  display: grid;
+  gap: 16px;
+  padding: clamp(14px, 3vw, 24px);
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius, 14px);
+  background: var(--surface);
+}
+
+.newton-step-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 16px;
+}
+
+.newton-step-scene {
+  position: relative;
+  min-height: 225px;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg);
+  background-image: linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+    linear-gradient(var(--grid) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+.newton-step-time {
+  position: absolute;
+  z-index: 1;
+  top: 11px;
+  right: 10px;
+  color: var(--muted);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font: 500 .72rem var(--f-mono);
+}
+
+.newton-step-scale {
+  position: absolute;
+  left: 9px;
+  top: calc(75% - 62% * var(--level));
+  z-index: 1;
+  transform: translateY(-50%);
+  padding-right: 9px;
+  color: var(--muted);
+  background: var(--bg);
+  font: 400 .68rem var(--f-mono);
+}
+
+.newton-step-scale::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 6px;
+  border-top: 1px solid var(--muted);
+}
+
+.newton-step-ground {
+  position: absolute;
+  inset: 75% 0 0;
+  color: var(--muted);
+  border-top: 2px solid var(--muted);
+  background: repeating-linear-gradient(135deg, transparent 0 6px, var(--grid) 6px 7px), var(--bg);
+  font: 500 .68rem var(--f-mono);
+  transition: border-color 130ms ease;
+}
+
+.newton-step-ground span {
+  position: absolute;
+  right: 11px;
+  top: 9px;
+  padding: 2px 5px;
+  background: var(--bg);
+}
+
+.newton-step-widget[data-contact="true"] .newton-step-ground { border-color: var(--collider); }
+
+.newton-step-marker {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  color: var(--muted);
+}
+
+.newton-step-marker[data-visible="true"] { opacity: 1; }
+
+.newton-step-marker i {
+  position: absolute;
+  bottom: 25%;
+  left: 47%;
+  width: 31px;
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  border: 2px solid currentColor;
+}
+
+.newton-step-marker span {
+  position: absolute;
+  left: calc(47% + 24px);
+  bottom: calc(25% + 6px);
+  padding: 2px 5px;
+  background: var(--bg);
+  color: inherit;
+  font: 500 .68rem var(--f-mono);
+  white-space: nowrap;
+}
+
+.newton-step-current { color: var(--newton-step-ball); z-index: 1; }
+.newton-step-current i {
+  background: radial-gradient(circle at 30% 25%, color-mix(in srgb, var(--surface) 85%, var(--particle)), var(--newton-step-ball) 67%);
+}
+.newton-step-predicted i { border-style: dashed; }
+.newton-step-widget[data-contact="true"] .newton-step-predicted { color: var(--collider); }
+.newton-step-output { color: var(--node); z-index: 1; }
+.newton-step-output i { background: color-mix(in srgb, var(--node) 25%, transparent); }
+
+/* Separate overlays horizontally so similar heights remain legible. */
+.newton-step-predicted i,
+.newton-step-output i { left: 74%; }
+.newton-step-predicted span,
+.newton-step-output span { left: auto; right: calc(26% - 21px); bottom: calc(25% + 34px); }
+.newton-step-predicted[data-visible="true"] + .newton-step-output i { left: 57%; }
+.newton-step-predicted[data-visible="true"] + .newton-step-output span { right: auto; left: calc(57% + 18px); bottom: calc(25% + 6px); }
+
+.newton-step-readout { display: grid; align-content: start; gap: 10px; min-width: 0; }
+.newton-step-rail { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin: 0; padding: 0; list-style: none; }
+.newton-step-rail li {
+  color: var(--muted);
+  border-radius: 4px;
+  text-align: center;
+  padding: 5px 2px;
+  background: var(--bg);
+  font: 500 .72rem var(--f-mono);
+  transition: background-color 130ms ease, color 130ms ease;
+}
+.newton-step-rail [aria-current] {
+  color: var(--ink);
+  background: color-mix(in srgb, var(--node) 16%, var(--surface));
+  box-shadow: inset 0 -2px var(--node);
+}
+.newton-step-message { min-height: 3.2em; font-size: .91rem; }
+.newton-step-buffers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.newton-step-buffer {
+  min-width: 0;
+  padding: 8px 9px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  transition: border-color 130ms ease, background-color 130ms ease;
+}
+.newton-step-buffer[data-current="true"] {
+  border-color: var(--node);
+  background: color-mix(in srgb, var(--node) 6%, var(--bg));
+}
+.newton-step-buffer h4 { margin: 0; font-size: .86rem; display: flex; gap: 4px 8px; flex-wrap: wrap; align-items: baseline; }
+.newton-step-buffer h4 span { color: var(--muted); font: 500 .67rem var(--f-mono); }
+.newton-step-buffer p { font: 500 .72rem/1.55 var(--f-mono); overflow-wrap: anywhere; }
+.newton-step-units { color: var(--muted); font-size: .76rem; }
+.newton-step-controls { display: flex; flex-wrap: wrap; gap: 10px 20px; align-items: center; justify-content: space-between; }
+.newton-step-controls .btn { min-height: 38px; }
+.newton-step-controls [aria-disabled="true"] { opacity: .55; cursor: default; }
+.newton-step-rebound { display: grid; grid-template-columns: auto minmax(70px, 120px) 2.6em; align-items: center; gap: 9px; font-size: .84rem; }
+.newton-step-rebound input { width: 100%; margin: 0; min-height: 36px; accent-color: var(--node); }
+.newton-step-rebound output { text-align: right; font: 500 .76rem var(--f-mono); }
+.newton-step-widget .lesson-detail { border-top: 1px solid var(--line); }
+.newton-step-widget .lesson-detail p { font-size: .88rem; color: var(--muted); margin-top: 7px; }
+.newton-step-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .newton-step-widget[data-playing] .newton-step-marker {
+    transition: transform 180ms cubic-bezier(.32, .72, 0, 1), opacity 120ms ease;
+  }
+}
+
+@media (max-width: 720px) {
+  .newton-step-grid { grid-template-columns: minmax(0, 1fr); }
+  .newton-step-controls .btn { min-height: 44px; }
+}
+
+@media (max-width: 400px) {
+  .newton-step-marker span { font-size: .62rem; }
+  .newton-step-predicted[data-visible="true"] + .newton-step-output span { left: auto; right: calc(43% - 15px); bottom: calc(25% + 34px); }
+}

@@ -7,14 +7,18 @@ const motion = matchMedia('(prefers-reduced-motion: reduce)');
 const players = new Map();
 const viewport = new IntersectionObserver(entries => {
   for (const entry of entries) {
-    if (!entry.isIntersecting) players.get(entry.target)?.stop();
+    if (entry.isIntersecting) continue;
+    for (const player of players.values()) {
+      if (player.region === entry.target) player.stop();
+    }
   }
 });
 
 function registerPlayback(id, stop, { keep = false } = {}) {
   const button = document.getElementById(id);
-  players.set(button, { stop, keep });
-  viewport.observe(button);
+  const region = button.closest('.lab') ?? button;
+  players.set(button, { region, stop, keep });
+  viewport.observe(region);
 }
 
 function syncPlayback() {
@@ -39,7 +43,7 @@ function hexRgb(h){ h=h.trim().replace('#',''); if(h.length===3) h=h.split('').m
 function readCols(){ const cs=getComputedStyle(document.documentElement); for(const k of ['bg','surface','ink','muted','line','grid','particle','node','strain','collider']){ const v=cs.getPropertyValue('--'+k).trim(); COL[k]=v; COL[k+'RGB']=hexRgb(v); } }
 function rgba(k,a){ const c=COL[k+'RGB']; return `rgba(${c[0]},${c[1]},${c[2]},${a})`; }
 function mix(k1,k2,t){ const a=COL[k1+'RGB'], b=COL[k2+'RGB']; return [a[0]+(b[0]-a[0])*t, a[1]+(b[1]-a[1])*t, a[2]+(b[2]-a[2])*t]; }
-function fit(cv, aspect){ const w=Math.max(200, cv.clientWidth || cv.parentElement.clientWidth); const h=Math.round(w*aspect); const d=window.devicePixelRatio||1; cv.style.height=h+'px'; cv.width=Math.round(w*d); cv.height=Math.round(h*d); const ctx=cv.getContext('2d'); ctx.setTransform(d,0,0,d,0,0); return {ctx,w,h}; }
+function fit(cv, aspect){ const w=Math.max(200, cv.clientWidth || cv.parentElement.clientWidth); const h=Math.round(w*aspect); const d=Math.min(2, window.devicePixelRatio || 1); cv.style.height=h+'px'; cv.width=Math.round(w*d); cv.height=Math.round(h*d); const ctx=cv.getContext('2d'); ctx.setTransform(d,0,0,d,0,0); return {ctx,w,h}; }
 function arrow(ctx,x0,y0,x1,y1,color,lw){ const dx=x1-x0, dy=y1-y0, L=Math.hypot(dx,dy); if(L<1) return; ctx.strokeStyle=color; ctx.fillStyle=color; ctx.lineWidth=lw; ctx.beginPath(); ctx.moveTo(x0,y0); ctx.lineTo(x1,y1); ctx.stroke(); const hh=Math.min(6,L*.45), a=Math.atan2(dy,dx); ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x1-hh*Math.cos(a-.45),y1-hh*Math.sin(a-.45)); ctx.lineTo(x1-hh*Math.cos(a+.45),y1-hh*Math.sin(a+.45)); ctx.closePath(); ctx.fill(); }
 function rng(seed){ let a=seed; return () => { a|=0; a=a+0x6D2B79F5|0; let t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
 function seg(id, onChange){ const el=$(id); el.addEventListener('click', e => { const b=e.target.closest('button'); if(!b) return; el.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed', x===b?'true':'false')); onChange(b.dataset.v); }); }
@@ -220,7 +224,7 @@ const VB = (() => {
     B3:{off:0, w:t=>{const a=Math.abs(t); return a<1?.5*a*a*a-a*a+2/3:a<2?(2-a)**3/6:0;}, d:t=>{const a=Math.abs(t); return a<1?(1.5*a*a-2*a)*Math.sign(t):a<2?-.5*(2-a)**2*Math.sign(t):0;}},
   };
   const FACTS={
-    Q1:{name:'Q1 \u00B7 trilinear (Lagrange)', touch:'2 nodes per axis: 4 in 2D, <b>8 in 3D</b>', smooth:'Value continuous. Gradient constant inside a cell, jumps at every cell face (C\u2070).', good:'Cheapest, tightest stencil, default. Interpolating: the field equals the node value at a node. <code>solver="auto"</code> \u2192 <code>gs</code>.', cost:'Cell-crossing noise: stress built from gradients jumps as particles move between cells.'},
+    Q1:{name:'Q1 \u00B7 bilinear / trilinear', touch:'2 nodes per axis: 4 in 2D, <b>8 in 3D</b>', smooth:'Weights are continuous. The normal derivative can jump across a cell face.', good:'Cheapest, tightest stencil, default. Interpolating: the field equals the node value at a node. <code>solver="auto"</code> \u2192 <code>gs</code>.', cost:'Cell-crossing noise: stress built from gradients jumps as particles move between cells.'},
     B2:{name:'B2 \u00B7 quadratic B-spline', touch:'3 nodes per axis: 9 in 2D, <b>27 in 3D</b>', smooth:'Gradient continuous (C\u00B9). Slopes change linearly as the particle moves.', good:'Smoother transfers and strain rates, much less cell-crossing noise. <code>solver="auto"</code> \u2192 <code>gs-batched</code>.', cost:'Wider coupling. Newton reserves 64 velocity nodes per active cell for B2/B3. Not interpolating, and a bit more smoothing.'},
     B3:{name:'B3 \u00B7 cubic B-spline', touch:'4 nodes per axis: 16 in 2D, <b>64 in 3D</b>', smooth:'C\u00B2: even the gradient\u2019s slope is continuous.', good:'Smoothest fields and gradients.', cost:'Widest stencil, most memory and solver coupling. Features blur over about 4 cells.'},
   };
@@ -273,13 +277,13 @@ const VB = (() => {
 // B2. Velocity basis in 3D (three.js)
 // =====================================================================
 const V3 = (() => {
-  const L=5, OFF=.5, MAXN=216, MAXA=64;
+  const L=6, MAXN=(L+1)**3, MAXA=64;
   let inited=false, ok=false, visible=false, R, scene, cam, mats={}, grey=[], act=[], arrows=[], links, linkPos, linkCol, cellBox, supBox, part, dragging=false, lx=0, ly=0, anim=0, t0=0;
   const sph={theta:.55, phi:1.12, r:12.5};
   const st={z:2.4};
-  const clampP=v=>Math.min(3.98,Math.max(1.02,v));
+  const clampP=v=>Math.min(4.5,Math.max(1.5,v));
   function setup(){
-    if(inited) return ok; inited=true;
+    if(inited) { $('#v3Msg').hidden=ok; return ok; } inited=true;
     if(!window.THREE){ $('#v3Msg').hidden=false; return false; }
     try{
       const cv=$('#v3Cv'); R=new THREE.WebGLRenderer({canvas:cv, antialias:true}); R.setPixelRatio(Math.min(2, window.devicePixelRatio||1));
@@ -296,9 +300,18 @@ const V3 = (() => {
       linkPos=new Float32Array(MAXA*6); linkCol=new Float32Array(MAXA*6); const lg=new THREE.BufferGeometry(); lg.setAttribute('position', new THREE.BufferAttribute(linkPos,3)); lg.setAttribute('color', new THREE.BufferAttribute(linkCol,3)); links=new THREE.LineSegments(lg, mats.link); scene.add(links);
       const eg=new THREE.EdgesGeometry(new THREE.BoxGeometry(1,1,1)); cellBox=new THREE.LineSegments(eg, mats.cell); scene.add(cellBox); supBox=new THREE.LineSegments(eg, mats.sup); scene.add(supBox);
       part=new THREE.Mesh(sg, mats.part); part.scale.setScalar(.12); scene.add(part);
-      cv.addEventListener('pointerdown', e=>{ dragging=true; lx=e.clientX; ly=e.clientY; cv.setPointerCapture(e.pointerId); });
+      const maxInclination = 2.8;
+      cv.addEventListener('pointerdown', e=>{ if (dragging) return; dragging=true; lx=e.clientX; ly=e.clientY; cv.setPointerCapture(e.pointerId); });
       cv.addEventListener('pointermove', e=>{ if(!dragging) return; sph.theta-=(e.clientX-lx)*.008; sph.phi=Math.min(2.8,Math.max(.25,sph.phi-(e.clientY-ly)*.008)); lx=e.clientX; ly=e.clientY; render(); });
-      cv.addEventListener('pointerup', ()=>{ dragging=false; });
+      cv.addEventListener('lostpointercapture', () => { dragging=false; });
+      cv.addEventListener('keydown', e => {
+        const offset = { ArrowLeft: [.12, 0], ArrowRight: [-.12, 0], ArrowUp: [0, -.09], ArrowDown: [0, .09] }[e.key];
+        if (!offset) return;
+        e.preventDefault();
+        sph.theta += offset[0];
+        sph.phi = Math.min(maxInclination, Math.max(.25, sph.phi + offset[1]));
+        render();
+      });
       ok=true;
     }catch(err){ $('#v3Msg').hidden=false; ok=false; }
     return ok;
@@ -308,7 +321,7 @@ const V3 = (() => {
   function update(){
     if(!visible || !ok) return;
     const S=VB.S, k=VB.K[S.basis], g=S.mode==='grad';
-    const x=S.x-OFF, y=S.y-OFF, z=st.z;
+    const x=S.x, y=S.y, z=st.z;
     for(const [id,v] of [['x',x],['y',y],['z',z]]){ $('#v3'+id).value=v.toFixed(2); $('#o3'+id).textContent=v.toFixed(2); }
     scene.background=new THREE.Color(COL.surface); mats.grey.color.set(COL.muted); mats.node.color.set(COL.node); mats.part.color.set(COL.particle); mats.grid.color.set(COL.line); mats.cell.color.set(COL.particle); mats.sup.color.set(COL.node);
     const ns=[]; for(let i=0;i<=L;i++){ const v=i+k.off; if(v<=L+1e-9) ns.push(v); }
@@ -335,23 +348,38 @@ const V3 = (() => {
     render();
   }
   async function show(on){
-    visible=on; $('#vbCv').hidden=on; $('#v3Wrap').hidden=!on;
+    visible=false;
+    $('#vbCv').hidden=false;
+    $('#v3Wrap').hidden=true;
+    $('#v3Msg').hidden=true;
+    stopAnim();
     if(on){
       await loadThree();
-      if(visible && setup()) size();
-    } else stopAnim();
+      const requested = $('#vbView [data-v="3d"]').getAttribute('aria-pressed') === 'true';
+      if (!requested) return;
+      visible=setup();
+      $('#vbCv').hidden=visible;
+      $('#v3Wrap').hidden=!visible;
+      if(visible) size();
+      else {
+        $('#vbView [data-v="2d"]').setAttribute('aria-pressed', 'true');
+        $('#vbView [data-v="3d"]').setAttribute('aria-pressed', 'false');
+      }
+    }
     VB.draw();
   }
   function stopAnim(){ if(anim){ cancelAnimationFrame(anim); anim=0; $('#v3Anim').textContent='Move the particle'; } }
-  function step(ts){ if(!t0) t0=ts; const t=(ts-t0)/1000*.55; VB.S.x=clampP(2.5+1.35*Math.sin(t*.9))+OFF; VB.S.y=clampP(2.5+1.3*Math.sin(t*.67+1.1))+OFF; st.z=clampP(2.5+1.3*Math.sin(t*.51+2.3)); VB.draw(); anim=requestAnimationFrame(step); }
+  let orbitStart;
+  function step(ts){ if(!t0) t0=ts; const t=(ts-t0)/1000*.65;
+    [VB.S.x, VB.S.y, st.z] = orbitStart.map((start, axis) => clampP(start + .55 * Math.sin(t * (1 + axis * .35)))); VB.draw(); anim=requestAnimationFrame(step); }
   function init(){
     registerPlayback('v3Anim', stopAnim);
     vbHooks.push(update);
     seg('#vbView', v=>show(v==='3d'));
-    $('#v3x').oninput=e=>{ VB.S.x=clampP(+e.target.value)+OFF; VB.draw(); };
-    $('#v3y').oninput=e=>{ VB.S.y=clampP(+e.target.value)+OFF; VB.draw(); };
-    $('#v3z').oninput=e=>{ st.z=clampP(+e.target.value); VB.draw(); };
-    $('#v3Anim').onclick=()=>{ if(anim) stopAnim(); else { t0=0; $('#v3Anim').textContent='Stop'; anim=requestAnimationFrame(step); } };
+    $('#v3x').oninput=e=>{ stopAnim(); VB.S.x=clampP(+e.target.value); VB.draw(); };
+    $('#v3y').oninput=e=>{ stopAnim(); VB.S.y=clampP(+e.target.value); VB.draw(); };
+    $('#v3z').oninput=e=>{ stopAnim(); st.z=clampP(+e.target.value); VB.draw(); };
+    $('#v3Anim').onclick=()=>{ if(anim) stopAnim(); else { orbitStart=[VB.S.x, VB.S.y, st.z]; t0=0; $('#v3Anim').textContent='Stop'; anim=requestAnimationFrame(step); } };
     $('#v3Reset').onclick=()=>{ sph.theta=.55; sph.phi=1.12; render(); };
   }
   function resize(){ if(visible && ok){ size(); update(); } }
@@ -366,7 +394,7 @@ const VS = (() => {
   let inited=false, ok=false, visible=false, R, scene, cam, geo, wgeo, mesh, wire, floor, nodeMk, partMk, partLine, dragging=false, lx=0, ly=0;
   const sph={theta:.75, phi:1.0, r:8.5};
   function setup(){
-    if(inited) return ok; inited=true;
+    if(inited) { $('#vbSurfMsg').hidden=ok; return ok; } inited=true;
     if(!window.THREE){ $('#vbSurfMsg').hidden=false; return false; }
     try{
       const cv=$('#vbSurf'); R=new THREE.WebGLRenderer({canvas:cv, antialias:true}); R.setPixelRatio(Math.min(2, window.devicePixelRatio||1));
@@ -382,9 +410,18 @@ const VS = (() => {
       nodeMk=new THREE.Mesh(sg, new THREE.MeshLambertMaterial()); nodeMk.scale.setScalar(.07); scene.add(nodeMk);
       partMk=new THREE.Mesh(sg, new THREE.MeshLambertMaterial()); partMk.scale.setScalar(.08); scene.add(partMk);
       partLine=new THREE.Line(new THREE.BufferGeometry(), new THREE.LineBasicMaterial()); scene.add(partLine);
-      cv.addEventListener('pointerdown', e=>{ dragging=true; lx=e.clientX; ly=e.clientY; cv.setPointerCapture(e.pointerId); });
+      const maxInclination = 1.55;
+      cv.addEventListener('pointerdown', e=>{ if (dragging) return; dragging=true; lx=e.clientX; ly=e.clientY; cv.setPointerCapture(e.pointerId); });
       cv.addEventListener('pointermove', e=>{ if(!dragging) return; sph.theta-=(e.clientX-lx)*.008; sph.phi=Math.min(1.55,Math.max(.2,sph.phi-(e.clientY-ly)*.008)); lx=e.clientX; ly=e.clientY; render(); });
-      cv.addEventListener('pointerup', ()=>{ dragging=false; });
+      cv.addEventListener('lostpointercapture', () => { dragging=false; });
+      cv.addEventListener('keydown', e => {
+        const offset = { ArrowLeft: [.12, 0], ArrowRight: [-.12, 0], ArrowUp: [0, -.09], ArrowDown: [0, .09] }[e.key];
+        if (!offset) return;
+        e.preventDefault();
+        sph.theta += offset[0];
+        sph.phi = Math.min(maxInclination, Math.max(.25, sph.phi + offset[1]));
+        render();
+      });
       ok=true;
     }catch(err){ $('#vbSurfMsg').hidden=false; ok=false; }
     return ok;
@@ -421,10 +458,22 @@ const VS = (() => {
     render();
   }
   async function show(on){
-    visible=on; $('#vbPlot').hidden=on; $('#vbSurf').hidden=!on;
+    visible=false;
+    $('#vbPlot').hidden=false;
+    $('#vbSurf').hidden=true;
+    $('#vbSurfMsg').hidden=true;
     if(on){
       await loadThree();
-      if(visible && setup()) size();
+      const requested = $('#vbPlotView [data-v="3d"]').getAttribute('aria-pressed') === 'true';
+      if (!requested) return;
+      visible=setup();
+      $('#vbSurf').hidden=!visible;
+      $('#vbPlot').hidden=visible;
+      if(visible) size();
+      else {
+        $('#vbPlotView [data-v="1d"]').setAttribute('aria-pressed', 'true');
+        $('#vbPlotView [data-v="3d"]').setAttribute('aria-pressed', 'false');
+      }
     }
     VB.draw();
   }
@@ -1262,43 +1311,13 @@ function bindPlayback(id, update) {
   return stop;
 }
 
-// ---------- L1: three clocks ----------
-const LT = (() => {
-  const S={dt:.005, dec:4, sub:2, ep:20, ph:0};
-  function draw(){
-    const cv=$('#ltCv'); const {ctx,w,h}=fit(cv,.3); ctx.fillStyle=COL.surface; ctx.fillRect(0,0,w,h);
-    const padL=78, padR=10, rows=[['policy',COL.strain],['physics',COL.node],['solver',COL.collider]], rh=(h-30)/3;
-    const span=2*S.dec*S.dt; const X=t=>padL+t/span*(w-padL-padR); const now=S.ph*span;
-    ctx.font=FONT_MONO; ctx.textBaseline='middle'; ctx.textAlign='right';
-    rows.forEach(([name,col],r)=>{ const y=8+r*rh; ctx.fillStyle=COL.muted; ctx.fillText(name, padL-8, y+rh/2-4);
-      const n = r===0?2 : r===1?2*S.dec : 2*S.dec*S.sub; const seg=span/n;
-      for(let i=0;i<n;i++){ const x0=X(i*seg)+1, x1=X((i+1)*seg)-1; const act= now>=i*seg && now<(i+1)*seg; ctx.fillStyle = act ? col : rgba(r===0?'strain':r===1?'node':'collider', .18); ctx.fillRect(x0, y+4, Math.max(1,x1-x0), rh-16); } });
-    ctx.strokeStyle=COL.ink; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(X(now),4); ctx.lineTo(X(now),h-22); ctx.stroke();
-    ctx.fillStyle=COL.muted; ctx.textAlign='center'; ctx.textBaseline='top'; for(let k=0;k<=2*S.dec;k++){ ctx.fillText((k*S.dt*1000).toFixed(0)+'ms', X(k*S.dt), h-18); if(2*S.dec>10 && k%2) continue; }
-    const pol=1/(S.dt*S.dec), steps=Math.ceil(S.ep/(S.dt*S.dec));
-    $('#ltStats').innerHTML=`<span>policy <b>${pol.toFixed(1)} Hz</b></span><span>physics <b>${(1/S.dt).toFixed(0)} Hz</b></span><span>solver <b>${(S.sub/S.dt).toFixed(0)} Hz</b> (dt ${(S.dt/S.sub*1000).toFixed(2)} ms)</span><span>solver steps per action <b>${S.dec*S.sub}</b></span><span>policy steps per episode <b>${steps}</b></span>`;
-  }
-  function init(){
-    const bind=(id,o,k,f,fmt)=>{ $('#'+id).oninput=e=>{ S[k]=f(+e.target.value); $('#'+o).textContent=fmt(+e.target.value); draw(); }; };
-    bind('ltDt','oLtDt','dt',v=>v/1000,v=>v.toFixed(1)); bind('ltDec','oLtDec','dec',v=>v,v=>v); bind('ltSub','oLtSub','sub',v=>v,v=>v); bind('ltEp','oLtEp','ep',v=>v,v=>v);
-    const stop = bindPlayback('ltPlay', dt => { S.ph=(S.ph+dt/3)%1; draw(); });
-    $('#ltStep').onclick = () => {
-      stop();
-      const count = 2 * S.dec * S.sub;
-      S.ph = ((Math.floor(S.ph * count + 1e-9) + 1) % count) / count;
-      draw();
-    };
-  }
-  return {init, draw};
-})();
-
 // ---------- L2: env.step flow + 4096 envs ----------
 const LF = (() => {
   const ST=[
     ['process_action','Action manager: raw action \u00D7 0.5 + default joint positions = joint targets for all 4,096 robots.',0],
     ['apply_action','Each action term pushes its targets to the robot (set_joint_position_target).',1],
     ['write_data_to_sim','Actuators turn targets into drive settings or torques and write them into Newton\u2019s Control.',1],
-    ['sim.step','Newton: collide, actuators, num_substeps solver steps. One CUDA graph.',1],
+    ['sim.step','Newton applies actuation and advances the configured solver substeps. Contact handling depends on the solver.',1],
     ['scene.update','Sensors and asset data refresh from Newton\u2019s new State (views, no copies).',1],
     ['terminations','Termination manager: time_out (20 s) or base_contact (body touched the ground) \u2192 done flags.',0],
     ['rewards','Reward manager: weighted sum of terms \u00D7 step_dt (velocity tracking, torques, air time\u2026).',0],
@@ -1307,25 +1326,52 @@ const LF = (() => {
     ['interval events','Event manager: e.g. push_robot every 10\u201315 s.',0],
     ['observations','Observation manager: compute terms, add noise, return obs for the policy.',0],
   ];
-  const S={cur:0, loop:0, t:0, dec:4};
-  const N=4096, GW=64; const ep=new Float32Array(N), flash=new Float32Array(N); const r=rng(9); for(let i=0;i<N;i++) ep[i]=Math.floor(r()*1000);
+  const S={cur:0, loop:0, t:0, dec:4, selected:0, queuedFall:null};
+  const N=4096, GW=64;
+  const ep=new Uint16Array(N), resetMask=new Uint8Array(N);
+  const r=rng(9);
+  for(let i=0;i<N;i++) ep[i]=Math.floor(r()*1000);
   let resets=0, steps=0;
-  function envStep(){ resets=0; for(let i=0;i<N;i++){ ep[i]+=1; const fall=r()<1/350; if(fall||ep[i]>=1000){ ep[i]=0; flash[i]=1; resets++; } } steps++; }
+  function envStep(){
+    resets=0;
+    resetMask.fill(0);
+    for(let i=0;i<N;i++){
+      ep[i]+=1;
+      const fall=r()<1/350 || S.queuedFall===i;
+      if(fall || ep[i]>=1000){
+        ep[i]=0;
+        resetMask[i]=1;
+        resets++;
+      }
+    }
+    S.queuedFall=null;
+    steps++;
+  }
   function advance(){ const [,,inLoop]=ST[S.cur]; if(inLoop && S.cur===4 && S.loop<S.dec-1){ S.loop++; S.cur=1; } else { if(S.cur===4) S.loop=0; S.cur=(S.cur+1)%ST.length; if(S.cur===7) envStep(); } }
   function draw(){
-    const cv=$('#lfCv'); const {ctx,w,h}=fit(cv,.78); ctx.fillStyle=COL.surface; ctx.fillRect(0,0,w,h);
-    const bx=16, bw=w-32, n=ST.length, gap=6, bh=(h-16-gap*(n-1))/n;
-    ctx.fillStyle=rgba('node',.07); const ly=8+1*(bh+gap)-3, lh=4*(bh+gap)+0; ctx.fillRect(bx-8,ly,bw+16,lh); ctx.strokeStyle=rgba('node',.5); ctx.setLineDash([5,4]); ctx.strokeRect(bx-8,ly,bw+16,lh); ctx.setLineDash([]);
-    ctx.font=FONT_MONO; ctx.fillStyle=COL.node; ctx.textAlign='right'; ctx.textBaseline='top'; ctx.fillText(`decimation loop  ${S.cur>=1&&S.cur<=4?S.loop+1:'-'} / ${S.dec}`, bx+bw+4, ly+3);
-    ST.forEach(([name],i)=>{ const y=8+i*(bh+gap); const act=i===S.cur; const col = i===0||i>=5&&i!==10 ? (i===10?'strain':'node') : (i===3?'collider':'particle');
+    const cv=$('#lfCv'); const {ctx,w,h}=fit(cv,Math.max(.78, 324 / Math.max(200, cv.clientWidth))); ctx.fillStyle=COL.surface; ctx.fillRect(0,0,w,h);
+    const bx=16, bw=w-32, n=ST.length, gap=6, top=29, bh=(h-top-8-gap*(n-1))/n;
+    ctx.fillStyle=rgba('node',.07); const ly=top+(bh+gap)-3, lh=4*(bh+gap)+0; ctx.fillRect(bx-8,ly,bw+16,lh); ctx.strokeStyle=rgba('node',.5); ctx.setLineDash([5,4]); ctx.strokeRect(bx-8,ly,bw+16,lh); ctx.setLineDash([]);
+    ctx.font=FONT_MONO; ctx.fillStyle=COL.node; ctx.textAlign='right'; ctx.textBaseline='top'; ctx.fillText(`decimation loop  ${S.cur>=1&&S.cur<=4?S.loop+1:'-'} / ${S.dec}`, bx+bw, 6);
+    ST.forEach(([name],i)=>{ const y=top+i*(bh+gap); const act=i===S.cur; const col = i===0||i>=5&&i!==10 ? (i===10?'strain':'node') : (i===3?'collider':'particle');
       ctx.fillStyle = act ? rgba(col,.9) : rgba(col,.14); ctx.fillRect(bx+(i>=1&&i<=4?14:0), y, bw-(i>=1&&i<=4?28:0), bh);
       ctx.fillStyle = act ? COL.surface : COL.ink; ctx.font=`600 ${Math.max(11,Math.min(14,bh*.45))}px 'JetBrains Mono', ui-monospace, monospace`; ctx.textAlign='left'; ctx.textBaseline='middle'; ctx.fillText(`${i+1}. ${name}`, bx+(i>=1&&i<=4?26:12), y+bh/2); });
-    $('#lfCap').textContent=ST[S.cur][1];
+    $('#lfCap').textContent=S.cur>=1 && S.cur<=4 ? `Physics step ${S.loop+1} of ${S.dec}. ${ST[S.cur][1]}` : ST[S.cur][1];
     drawGrid();
   }
   function drawGrid(){
     const cv=$('#lgCv'); const {ctx,w,h}=fit(cv,1); const c=w/GW; ctx.fillStyle=COL.surface; ctx.fillRect(0,0,w,h);
-    for(let i=0;i<N;i++){ const x=(i%GW)*c, y=((i/GW)|0)*c; if(flash[i]>0){ ctx.fillStyle=rgba('collider',.35+.65*flash[i]); } else { const p=ep[i]/1000; const m=mix('surface','node',.15+.7*p); ctx.fillStyle=`rgb(${m[0]|0},${m[1]|0},${m[2]|0})`; } ctx.fillRect(x+.5,y+.5,Math.max(1,c-1),Math.max(1,c-1)); }
+    for(let i=0;i<N;i++){ const x=(i%GW)*c, y=((i/GW)|0)*c; if(resetMask[i]){ ctx.fillStyle=COL.collider; } else { const p=ep[i]/1000; const m=mix('surface','node',.15+.7*p); ctx.fillStyle=`rgb(${m[0]|0},${m[1]|0},${m[2]|0})`; } ctx.fillRect(x+.5,y+.5,Math.max(1,c-1),Math.max(1,c-1)); }
+    const sx=(S.selected % GW)*c, sy=Math.floor(S.selected/GW)*c;
+    ctx.strokeStyle=COL.surface;
+    ctx.lineWidth=3;
+    ctx.strokeRect(sx,sy,c,c);
+    ctx.strokeStyle=COL.ink;
+    ctx.lineWidth=1.5;
+    ctx.strokeRect(sx,sy,c,c);
+    const queued = S.queuedFall===S.selected ? ' · Fall queued' : '';
+    const reset = resetMask[S.selected] ? ' · Reset in last action' : '';
+    $('#lgSelected').textContent=`World ${S.selected} · ${ep[S.selected]} policy steps into its episode${reset}${queued}`;
     let mean=0; for(let i=0;i<N;i++) mean+=ep[i]; mean/=N;
     $('#lgStats').innerHTML=`<span>env steps <b>${steps}</b></span><span>reset this step <b>${resets}</b></span><span>mean episode progress <b>${(mean/50).toFixed(1)} s</b></span><span>darker = longer into the episode</span>`;
   }
@@ -1334,11 +1380,29 @@ const LF = (() => {
       S.t += dt;
       if (S.t < .55) return;
       S.t = 0;
-      flash.fill(0);
       advance();
       draw();
     });
-    $('#lfStep').onclick = () => { stop(); flash.fill(0); advance(); draw(); };
+    $('#lfStep').onclick = () => { stop(); advance(); draw(); };
+    $('#lfResetStage').onclick = () => {
+      stop();
+      do advance(); while (S.cur!==7);
+      draw();
+    };
+    const world = $('#lgWorld');
+    function select(index){
+      S.selected = Math.max(0, Math.min(N-1, Math.round(index)));
+      world.value = S.selected;
+      drawGrid();
+    }
+    world.addEventListener('change', () => select(Number(world.value) || 0));
+    $('#lgCv').addEventListener('click', event => {
+      const rect = event.currentTarget.getBoundingClientRect();
+      const x = Math.min(GW-1, Math.floor((event.clientX-rect.left)*GW/rect.width));
+      const y = Math.min(GW-1, Math.floor((event.clientY-rect.top)*GW/rect.height));
+      select(y*GW+x);
+    });
+    $('#lgFall').onclick = () => { S.queuedFall=S.selected; drawGrid(); };
   }
   return {init, draw};
 })();
@@ -1390,7 +1454,12 @@ const LA = (() => {
     S.q+=dt*S.v; S.tau=tau; S.time+=dt;
     if(!isFinite(S.q)||Math.abs(S.v)>400){ S.unstable=true; S.q=.3; S.v=0; S.hist=[]; }
     S.hist.push([S.time,S.q,S.tgt,tau]); while(S.hist.length && S.hist[0][0]<S.time-3) S.hist.shift(); }
-  function tick(dt){ S.acc+=dt; let n=0; while(S.acc>=S.dt && n<4000){ physStep(); S.acc-=S.dt; n++; } if(S.auto){ S.tAuto+=dt; if(S.tAuto>1.2){ S.tAuto=0; S.tgt=(Math.random()*2-1)*1.4; } } draw(); }
+  function setTarget(target) {
+    S.tgt = target;
+    $('#laTarget').value = target;
+    $('#oLaTarget').textContent = `${target.toFixed(2)} rad`;
+  }
+  function tick(dt){ S.acc+=dt; let n=0; while(S.acc>=S.dt && n<4000){ physStep(); S.acc-=S.dt; n++; } if(S.auto){ S.tAuto+=dt; if(S.tAuto>1.2){ S.tAuto=0; setTarget((Math.random()*2-1)*1.4); } } draw(); }
   function draw(){
     const cv=$('#laCv'); const {ctx,w,h}=fit(cv,.5); ctx.fillStyle=COL.surface; ctx.fillRect(0,0,w,h);
     const px=w/2, py=h*.42, R=Math.min(w,h)*.42; const tip=a=>[px+R*Math.sin(a), py+R*Math.cos(a)];
@@ -1399,15 +1468,15 @@ const LA = (() => {
     ctx.fillStyle=COL.particle; ctx.beginPath(); ctx.arc(tp[0],tp[1],14,0,7); ctx.fill();
     const f=Math.max(-1,Math.min(1,S.tau/S.lim)); ctx.strokeStyle=S.clip?COL.collider:COL.node; ctx.lineWidth=5; ctx.beginPath(); const a0=-Math.PI/2; ctx.arc(px,py,30, f>=0?a0:a0+f*Math.PI, f>=0?a0+f*Math.PI:a0); ctx.stroke();
     ctx.fillStyle=COL.ink; ctx.beginPath(); ctx.arc(px,py,8,0,7); ctx.fill();
-    ctx.font=FONT_MONO; ctx.fillStyle=COL.muted; ctx.textAlign='left'; ctx.textBaseline='top'; ctx.fillText(`q ${S.q.toFixed(2)} rad   target ${S.tgt.toFixed(2)}   torque ${S.tau.toFixed(1)} N\u00B7m`, 8, 6);
+    $('#laRead').textContent = `Angle ${S.q.toFixed(2)} rad · target ${S.tgt.toFixed(2)} rad · torque ${S.tau.toFixed(1)} N·m`;
     const pc=$('#laPlot'); const P=fit(pc,.32), c2=P.ctx; c2.fillStyle=COL.surface; c2.fillRect(0,0,P.w,P.h);
     if(S.hist.length>1){ const t0=S.time-3, X=t=>(t-t0)/3*P.w, Yq=q=>P.h/2-q/1.8*(P.h/2-6), Yt=t=>P.h/2-t/Math.max(S.lim,1)*(P.h/2-6);
       c2.strokeStyle=COL.line; c2.beginPath(); c2.moveTo(0,P.h/2); c2.lineTo(P.w,P.h/2); c2.stroke();
       const line=(k,Y,col,lw,dash)=>{ c2.strokeStyle=col; c2.lineWidth=lw; c2.setLineDash(dash||[]); c2.beginPath(); S.hist.forEach((p,i)=>{ i?c2.lineTo(X(p[0]),Y(p[k])):c2.moveTo(X(p[0]),Y(p[k])); }); c2.stroke(); c2.setLineDash([]); };
       line(3,Yt,rgba('node',.7),1.5); line(2,Yq,COL.ink,1.5,[5,4]); line(1,Yq,COL.particle,2.4);
-      c2.font=FONT_MONO; c2.fillStyle=COL.muted; c2.textAlign='left'; c2.textBaseline='top'; c2.fillText('last 3 s: angle (orange) vs target (dashed), torque (teal, \u00B1 effort limit)', 6, 4); }
+       }
     const crit = 2/Math.sqrt(S.kp/I);
-    const msg = S.unstable ? ['floor','Unstable',`The explicit torque overshot every step and the joint blew up (reset). With dt = ${(S.dt*1000).toFixed(1)} ms and these gains, an explicit PD needs dt below about ${(Math.min(crit, 2*I/Math.max(S.kd,1e-9))*1000).toFixed(1)} ms. Implicit drives are stable with any gains.`]
+    const msg = S.unstable ? ['floor','Unstable',`The explicit torque overshot every step and the joint blew up (reset). With dt = ${(S.dt*1000).toFixed(1)} ms and these gains, an explicit PD needs dt below about ${(Math.min(crit, 2*I/Math.max(S.kd,1e-9))*1000).toFixed(1)} ms. Implicit integration can better tolerate stiff gains in this toy.`]
       : (S.type!=='imp' && S.fr>.3) ? ['floor','Chattering',`The explicit PD overshoots within one ${(S.dt*1000).toFixed(1)} ms step, so the torque flips between +limit and \u2212limit every step. Only the effort clamp keeps it bounded. Lower the gains or the physics dt (explicit PD needs dt below about ${(Math.min(crit, 2*I/Math.max(S.kd,1e-9))*1000).toFixed(1)} ms here), or use an implicit drive.`]
       : S.clip ? ['cell','Saturated',S.type==='dc'?'The DC-motor envelope limits torque: at speed q\u0307 it allows at most 120\u00B7(1 \u2212 q\u0307/7.5), capped at the effort limit.':'The PD law asks for more torque than the effort limit, so the torque is clipped and the joint moves at its torque limit.']
       : ['ok','Tracking',S.type==='imp'?'The solver applies the PD drive implicitly, using the end-of-step position and velocity, so even stiff gains stay stable.':'Explicit PD: torque computed from the current error, held for the whole physics step.'];
@@ -1420,7 +1489,14 @@ const LA = (() => {
     const bind=(id,o,set,show)=>{ const el=$('#'+id); const f=()=>{ set(+el.value); $('#'+o).textContent=show(); S.unstable=false; S.fr=0; }; el.oninput=()=>{ f(); draw(); }; f(); };
     bind('laKp','oLaKp',v=>S.kp=10**v,()=>fmt(S.kp)); bind('laKd','oLaKd',v=>S.kd=10**v,()=>fmt(S.kd)); bind('laTau','oLaTau',v=>S.lim=v,()=>S.lim.toFixed(0)); bind('laDt','oLaDt',v=>S.dt=v/1000,()=>(S.dt*1000).toFixed(1));
     const stop = bindPlayback('laPlay', tick);
-    $('#laJump').onclick=()=>{ S.tgt=(Math.random()*2-1)*1.4; S.unstable=false; draw(); };
+    $('#laTarget').oninput=e=>{
+      S.auto = false;
+      $('#laAuto').checked = false;
+      setTarget(+e.target.value);
+      S.unstable=false;
+      draw();
+    };
+    $('#laJump').onclick=()=>{ setTarget((Math.random()*2-1)*1.4); S.unstable=false; draw(); };
     $('#laStep').onclick=()=>{ stop(); tick(.2); };
     $('#laAuto').onchange=e=>{ S.auto=e.target.checked; };
   }
@@ -1440,13 +1516,13 @@ const LS = (() => {
     const bz=terr(S.x)+.55; ctx.fillStyle=COL.particle; ctx.fillRect(X(S.x-.45),Y(bz+.12),.9*sc,.24*sc*.9);
     for(const lx of [-.3,.3]){ ctx.strokeStyle=COL.particle; ctx.lineWidth=4; const ph=Math.sin(S.t*6+(lx>0?Math.PI:0)); ctx.beginPath(); ctx.moveTo(X(S.x+lx),Y(bz)); ctx.lineTo(X(S.x+lx+.1*ph),Y(terr(S.x+lx+.1*ph))); ctx.stroke(); }
     const vals=[]; const q=rng(Math.floor(S.t*20));
-    for(let i=-8;i<=8;i++){ const rx=S.x+i*.1, hz=hitZ(rx); ctx.strokeStyle=rgba('node',.35); ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(X(rx),0); ctx.lineTo(X(rx),Y(hz)); ctx.stroke();
+    for(let i=-8;i<=8;i++){ const rx=S.x+i*.1, hz=hitZ(rx); ctx.strokeStyle=rgba('node',.35); ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(X(rx),Y(bz+.35)); ctx.lineTo(X(rx),Y(hz)); ctx.stroke();
       ctx.fillStyle=COL.node; ctx.beginPath(); ctx.arc(X(rx),Y(hz),3,0,7); ctx.fill(); let v=bz-hz-.5; if(S.noise) v+=(q()*2-1)*.1; vals.push(Math.max(-1,Math.min(1,v))); }
     const sx=w*.05, sw=w*.9, sy=6, sh=26, cwid=sw/vals.length; vals.forEach((v,i)=>{ const c=mix('surface', v>=0?'node':'particle', Math.min(1,Math.abs(v))*.9); ctx.fillStyle=`rgb(${c.map(z=>z|0).join(',')})`; ctx.fillRect(sx+i*cwid,sy,cwid-1,sh); });
-    ctx.font=FONT_MONO; ctx.fillStyle=COL.muted; ctx.textAlign='left'; ctx.textBaseline='top'; ctx.fillText('observation: base height \u2212 hit height \u2212 0.5, clipped to \u00B11', sx, sy+sh+4);
+
     $('#lsCap').textContent=`Side slice of the scan: 17 of the rays, 10 cm apart. ${S.box?'The box is a moving body: Newton\u2019s ray caster hits it; a static-mesh ray caster would see through it.':''}`;
   }
-  function init(){ $('#lsNoise').onchange=e=>{ S.noise=e.target.checked; draw(); }; $('#lsBox').onchange=e=>{ S.box=e.target.checked; S.bx=S.x+2.2; draw(); };
+  function init(){ $('#lsNoise').onchange=e=>{ S.noise=e.target.checked; draw(); }; $('#lsBox').onchange=e=>{ S.box=e.target.checked; S.bx=S.x+.65; draw(); };
     const advance = dt => {
       S.t += dt; S.x += dt * .6;
       if (S.box) {
@@ -1485,7 +1561,7 @@ const demos = [
   ['#simCv', SIM], ['#zCv', ZOOM], ['#vbCap', VB], ['#v3Cv', V3], ['#vbSurf', VS],
   ['#sbTrue', SB], ['#cbCv', CB], ['#dpCv', DP], ['#gsCv', GSC], ['#cvCv', CVG],
   ['#vlCv', VL], ['#vtCv', VT], ['#vmCv', VM], ['#vbCv2', VBE], ['#vnCv', VN],
-  ['#vcCv', VC], ['#vdCv', VD], ['#vaCv', VA], ['#ltCv', LT], ['#lfCv', LF],
+  ['#vcCv', VC], ['#vdCv', VD], ['#vaCv', VA], ['#lfCv', LF],
   ['#lpCv', LP], ['#laCv', LA], ['#lsCv', LS], ['#ldCv', LD],
 ];
 
