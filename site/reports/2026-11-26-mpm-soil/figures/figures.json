@@ -1,0 +1,69 @@
+{
+ "captions": "taken from index.html when the paper contains the figure",
+ "figures": [
+  {
+   "id": "setups",
+   "number": 2,
+   "caption": "Experiments replicated in Newton. (a) Li et al. (2013) moved a thin aluminium plate at attack angle \u03b2 along a straight path at intrusion angle \u03b3 through a 24 \u00d7 22 \u00d7 15 cm bed of poppy seeds and reported the stress per unit depth \u03b1(\u03b2, \u03b3). (b) Zwanenburg et al. (2024) pushed rigid strip plates into soft kaolin clay at 100 g; the simulation models the half domain next to the plate\u2019s symmetry plane as a plane-strain slab. (c) A Franka FR3 drags a rake blade through a soil bin along a hold\u2013plunge\u2013drag\u2013lift stroke; only the drag is scored. Schematic, not to scale.",
+   "svg": "setups.svg",
+   "pdf": "setups.pdf",
+   "png": "setups.png"
+  },
+  {
+   "id": "rft-maps",
+   "number": 5,
+   "caption": "Stress per unit depth on the plate for loosely packed poppy seeds over the 78 distinct (\u03b2, \u03b3) pairs. Left: measured by Li et al. (2013, table S5). Centre: Newton MPM with literature parameters, no fitted parameter. Right: after calibration on the five training points marked by squares; the other 73 points are held out. Positive \u03b1z is lift; positive \u03b1x points along +x. Colour limits are \u00b10.40 and \u00b10.15 N/cm\u00b3.",
+   "svg": "rft-maps.svg",
+   "pdf": "rft-maps.pdf",
+   "png": "rft-maps.png"
+  },
+  {
+   "id": "rft-parity",
+   "number": 6,
+   "caption": "Simulated against measured stress per unit depth for the 73 held-out points (circles) with literature parameters (blue) and calibrated parameters (amber); squares mark the five training points of the calibrated model. The line marks equality. RMSE values in N/cm\u00b3 over held-out points only.",
+   "svg": "rft-parity.svg",
+   "pdf": "rft-parity.pdf",
+   "png": "rft-parity.png"
+  },
+  {
+   "id": "rft-search",
+   "number": 7,
+   "caption": "Calibration of the plate-intrusion replica. (a) Every simulated candidate in the parameter box, coloured by the training objective J over five points (darker is lower); triangles are qualification and sensitivity probes that precede the search. (b) Training objective of each CMA-ES candidate by generation and the best value so far; the search stopped after its budget of five generations. The dotted line is the held-out objective of the accepted candidate over 73 points (limit 1.0).",
+   "svg": "rft-search.svg",
+   "pdf": "rft-search.pdf",
+   "png": "rft-search.png"
+  },
+  {
+   "id": "clay-curves",
+   "number": 8,
+   "caption": "Load\u2013penetration curves of the four centrifuge tests (black) and the Newton MPM prediction with the laboratory SHANSEP strength at a 0.5 ms step (blue), without any fitted parameter. Shaded: the scored range, from 5 mm of penetration to where 12 mm of clay remain below the plate. (e) The laboratory undrained strength at 100 g; below the dashed line the clay is normally consolidated.",
+   "svg": "clay-curves.svg",
+   "pdf": "clay-curves.pdf",
+   "png": "clay-curves.png"
+  },
+  {
+   "id": "force-series",
+   "number": 4,
+   "caption": "Plate force at every step for one path of each validation case. (a) Centrifuge test 1: dotted lines mark the penetrations at which the plate underside reaches a layer of particle centres (1.25 mm lattice, two layers per voxel). About 0.1 mm before each layer the contact force collapses for two to three steps, and the scored 1 mm window means read 9\u201314 % below the window medians. (b) Broadside intrusion into poppy seeds, force divided by the fitted linear trend: the force alternates with the 6 mm voxel period (ticks) between about 0.7 and 1.3 times the trend. The depth fit averages over these oscillations; excluding their low phase would raise the fitted slope by 2.7 %.",
+   "svg": "force-series.svg",
+   "pdf": "force-series.pdf",
+   "png": "force-series.png"
+  },
+  {
+   "id": "rake-forces",
+   "number": 9,
+   "caption": "Soil force on the rake for the five strokes in the robot base frame: synthetic log (black), simulation with the baseline guess (blue, training strokes only) and with the calibrated parameters (amber). Shaded: the scored drag. Plunge and lift transients are simulated but not scored.",
+   "svg": "rake-forces.svg",
+   "pdf": "rake-forces.pdf",
+   "png": "rake-forces.png"
+  },
+  {
+   "id": "rake-search",
+   "number": 10,
+   "caption": "Calibration of the rake demonstration. (a, b) Every simulated candidate coloured by the training objective J (darker is lower), with the baseline guess, the hidden parameters that generated the synthetic logs and the accepted candidate. Low objectives lie along a valley in which cohesion trades against soil friction, while tool friction stays near the upper end of its range. (c) Training objective by CMA-ES generation and the best value so far; the search stopped after four generations without improvement. The dotted line is the held-out objective of the accepted candidate.",
+   "svg": "rake-search.svg",
+   "pdf": "rake-search.pdf",
+   "png": "rake-search.png"
+  }
+ ]
+}

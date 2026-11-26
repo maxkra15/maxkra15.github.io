@@ -1,0 +1,13 @@
+{
+ "schema": "mpm-soil-report/source-hashes/1",
+ "sha256": {
+  "examples/mpm_soil/archive/clay_sweep_laboratory.json": "fc5e0f3b958c40ed5a43969adc2f71414e09caa3786287d7b57063c8b6c7c3c9",
+  "examples/mpm_soil/archive/franka_rake_result.json": "81c1f67ff85c185116a4f7c8edf89e729d732ca35f5844380c7359b0926dc395",
+  "examples/mpm_soil/archive/rft_calibration.json": "30d6ba6a249c299b0e320ab2de6c79d6d71bda740824cbc602d9257d7cb14f16",
+  "examples/mpm_soil/archive/rft_sweep_calibrated.json": "0cdf799d6fdd800a66de00bb00cc8d0878ffca5942e48aaca78a301f1b04fe0f",
+  "examples/mpm_soil/archive/rft_sweep_literature.json": "69415cf10e5fccad4c16bbb40fd3342d912a8f27bd0350b03331fa2fc6ef1db8",
+  "workspace/mpm-rft/20261126T170803Z-66a3f4c8/run_state.json": "4c6f4e4616dd0d50ba4522a8f4652863c1475427691ee34b5025dffd70a31363",
+  "workspace/mpm-rake/20261126T205418Z-b222d887/run_state.json": "9445b29b1bfaecf186357654c3b56dcffc2b2969403bc44f0c58927290b770fd",
+  "workspace/mpm-rake/20261126T205418Z-b222d887/comparison.json": "3ed34a0df4fd533e7b6125429d5f75eef593d53c84ba4f50cf1c58dcb4606160"
+ }
+}

@@ -123,6 +123,38 @@
         <h1 id="page-title">Research reports</h1>
         <p>Short technical reports on robotics, learning, and simulation.</p>
       </section>
+      <article class="report-card" aria-labelledby="mpm-soil-title">
+        <p class="date"><time datetime="2026-11-26">26 November 2026</time></p>
+        <h2 id="mpm-soil-title"><a href="reports/2026-11-26-mpm-soil/">Implicit MPM soil in Newton: validation against experiments and a robot calibration workflow</a></h2>
+        <p class="summary">
+          Do simulated soil forces match measurements? Newton's implicit MPM is compared with published plate
+          intrusion in poppy seeds and strip-plate loading of clay in a centrifuge. The granular model passes a
+          calibration with numerical qualification and held-out validation; the clay replica exposes numerical
+          limits; and a Franka rake workflow calibrates soil from tool forces, demonstrated on synthetic logs.
+        </p>
+        <ul class="chips" aria-label="Report topics">
+          <li>Implicit MPM</li>
+          <li>Granular media</li>
+          <li>Clay at 100 g</li>
+          <li>Calibration and validation</li>
+          <li>Franka FR3</li>
+        </ul>
+        <p class="method">78 plate motions · 4 centrifuge tests · 5 synthetic rake strokes · literature-parameter prediction, CMA-ES calibration and held-out validation</p>
+        <a class="read-report" href="reports/2026-11-26-mpm-soil/">Read the paper <span aria-hidden="true">→</span></a>
+        <figure>
+          <div class="figure-preview" tabindex="0" role="region" aria-label="Scrollable plate-intrusion stress maps">
+            <img src="reports/2026-11-26-mpm-soil/figures/rft-maps.svg"
+                 alt="Heat maps of measured and simulated lift and drag per unit depth over attack and intrusion angle, with literature parameters and after calibration."
+                 loading="lazy" decoding="async">
+          </div>
+          <figcaption>
+            Stress per unit depth on a plate moved through poppy seeds: measured by Li et al. (2013), simulated
+            with literature parameters, and simulated after calibration on five of 78 motions.
+            <span class="figure-help">Scroll horizontally on smaller screens to keep the figure labels readable.</span>
+            <a href="reports/2026-11-26-mpm-soil/figures/rft-maps.svg">Open the figure at full size</a>
+          </figcaption>
+        </figure>
+      </article>
       <article class="report-card" aria-labelledby="ammi-worksite-title">
         <p class="date"><time datetime="2026-11-26">26 November 2026</time></p>
         <h2 id="ammi-worksite-title"><a href="reports/2026-11-26-ammi-worksite/">Moving earth with AMMI</a></h2>

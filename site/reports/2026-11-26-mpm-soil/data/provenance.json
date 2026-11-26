@@ -1,0 +1,124 @@
+{
+ "schema": "mpm-soil-report/provenance/1",
+ "report": "https://maxkra15.github.io/reports/2026-11-26-mpm-soil/",
+ "date": "2026-11-26",
+ "sources": {
+  "newton": {
+   "repository": "https://github.com/newton-physics/newton",
+   "revision": "9deb629c34716ca786ac27bae6cbf562e782534b",
+   "version": "1.9.0.dev0"
+  },
+  "warp": {
+   "repository": "https://github.com/NVIDIA/warp",
+   "version": "1.20.0.dev20261117"
+  },
+  "newton_calibration": {
+   "repository": "https://github.com/newton-physics/newton-calibration",
+   "base_revision": "c52a6ce34a679ab51720b338d2ce92fe9f1fbbef",
+   "case": "examples/mpm_soil",
+   "status": "prepared as a contribution on top of the base revision; not merged at the time of writing"
+  },
+  "python": "3.12.14",
+  "numpy": "2.5.5",
+  "cma": "4.6.0",
+  "matplotlib": "3.11.2"
+ },
+ "hardware": {
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition, 96 GB",
+  "driver": "615.71.09",
+  "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39"
+ },
+ "datasets": {
+  "li2013": {
+   "citation": "Li, Zhang & Goldman (2013), Science 339:1408, doi:10.1126/science.1229163, additional data table S5",
+   "download": "http://crablab.gatech.edu/pages/movies/files/Terradyn_table_s5.xls",
+   "bytes": 54784,
+   "sha256": "881a715f2b18ad23fc6f62113f20e20db68a6f977cad369fed7133265fe1e7a9",
+   "redistributed": false
+  },
+  "zwanenburg2023": {
+   "citation": "Zwanenburg et al. (2023), Zenodo, doi:10.5281/zenodo.8066899, CC BY 4.0; article Zwanenburg et al. (2024), doi:10.1061/JGGEFK.GTENG-12104",
+   "download": "measurement data.zip",
+   "bytes": 54277843,
+   "sha256": "f9079aebba4aecef8e374e558f13eca855dd9c21ffe4e7b93f70d37665be5b34",
+   "redistributed": "processed net-pressure curves of tests 1, 3, 6 and 8 in data/clay_laboratory.json"
+  }
+ },
+ "runs": {
+  "plate_intrusion_calibration": {
+   "run_directory": "20261126T170803Z-66a3f4c8",
+   "outcome": "accepted",
+   "termination": "generation_budget_exhausted",
+   "elapsed_s": 14064.3,
+   "run_id": "d25b5ea16397066bdea2"
+  },
+  "plate_intrusion_calibration_2ms": {
+   "run_directory": "rejected_numerics_dt2ms_20261126T164314Z-282c4fbe",
+   "outcome": "rejected_numerics"
+  },
+  "clay_laboratory_sweep": {
+   "archive": "clay_sweep_laboratory.json",
+   "dt_s": 0.0005
+  },
+  "clay_calibration_1ms": {
+   "outcome": "rejected_numerics"
+  },
+  "clay_calibration_0p5ms": {
+   "outcome": "stopped after baseline (objective 1.04 on test 1)"
+  },
+  "rake_calibration": {
+   "run_directory": "20261126T205418Z-b222d887",
+   "outcome": "accepted",
+   "termination": "stagnation",
+   "elapsed_s": 2311.8
+  },
+  "per_step_probes": {
+   "clay_test1": "data/clay_force_series_test1.json",
+   "plate_intrusion_beta0_gamma90": "data/rft_force_series.json"
+  }
+ },
+ "derived_files": {
+  "rft_points.json": "simulated alpha_z, alpha_x for 78 (beta, gamma) points, literature and calibrated parameters; measured values omitted",
+  "rft_calibration.json": "calibration summary of the plate-intrusion run; measured reference arrays removed",
+  "rft_search.json": "parameters and objectives of every simulated candidate of the plate-intrusion run",
+  "clay_laboratory.json": "scored clay pressures, measured curves (CC BY 4.0, processed) and the every-10th-step simulated history",
+  "rake_result.json": "rake calibration summary including the hidden parameters of the synthetic logs",
+  "rake_traces.json": "synthetic logged, baseline and calibrated rake forces per stroke",
+  "rake_search.json": "parameters and objectives of every simulated candidate of the rake run",
+  "source_hashes.json": "SHA-256 of the archived sources the files above were derived from",
+  "clay_force_series_test1.json": "simulated test-1 plate pressure at every step for the first 22 mm, with window means and medians",
+  "rft_force_series.json": "simulated vertical plate force at every step for beta 0, gamma 90 deg, with its voxel-phase profile",
+  "clay_laboratory_1ms.json": "clay predictions with the laboratory strength at the rejected 1 ms step",
+  "rejected_runs.json": "records of the rejected 2 ms plate-intrusion calibration, the rejected 1 ms clay calibration and the stopped 0.5 ms clay calibration"
+ },
+ "scripts": {
+  "scripts/export_data.py": "derives data/ from the newton-calibration archive and run directories",
+  "scripts/make_figures.py": "draws figures/ from data/ and the processed Li et al. table",
+  "scripts/probe_force_time_series.py": "runs the two per-step force probes and writes data/clay_dips_test1.json and data/rft_dips_probe.json"
+ },
+ "acceptance_limits": {
+  "plate_intrusion": {
+   "J_val_max": 1.0,
+   "e_max_scales": 3.0,
+   "scale": "0.03 N/cm^3",
+   "qualification_tolerance": "0.03 N/cm^3 per value"
+  },
+  "clay": {
+   "J_val_max": 1.0,
+   "e_max_scales": 3.0,
+   "scale": "10 kPa",
+   "qualification_tolerance": "8 kPa per sample"
+  },
+  "rake": {
+   "J_val_max": 1.0,
+   "e_max_scales": 4.0,
+   "scale": "2 N",
+   "qualification_tolerance": "3 N per sample"
+  }
+ },
+ "notes": [
+  "Run times were measured while other runs shared the GPU.",
+  "The plate-intrusion training set and bounds were chosen after the literature sweep and the rejected 2 ms calibration.",
+  "Clay tests 1 and 3 used the first clay batch, tests 6 and 8 the second; laboratory SHANSEP parameters come from the first batch."
+ ]
+}

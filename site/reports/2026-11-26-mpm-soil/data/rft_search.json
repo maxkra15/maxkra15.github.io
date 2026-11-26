@@ -1,0 +1,762 @@
+{
+ "schema": "mpm-soil-report/search/1",
+ "termination_reason": "generation_budget_exhausted",
+ "elapsed_s": 14064.335757221095,
+ "budget_usage": {
+  "baseline": {
+   "trials": 1,
+   "rollouts": 1
+  },
+  "qualification": {
+   "trials": 6,
+   "rollouts": 6
+  },
+  "analysis": {
+   "trials": 12,
+   "rollouts": 12
+  },
+  "train": {
+   "trials": 30,
+   "rollouts": 30
+  },
+  "training_retest": {
+   "trials": 1,
+   "rollouts": 1
+  },
+  "validation": {
+   "trials": 2,
+   "rollouts": 2
+  }
+ },
+ "identifiability": {
+  "rank": 2,
+  "singular_values": [
+   6.3516349883396375,
+   0.9781349642562687
+  ],
+  "conclusive": true,
+  "per_anchor_response_correlation": [
+   [
+    [
+     1.0,
+     -0.06469223835287911
+    ],
+    [
+     -0.06469223835287911,
+     1.0
+    ]
+   ],
+   [
+    [
+     1.0000000000000002,
+     0.43313000334147816
+    ],
+    [
+     0.43313000334147816,
+     1.0000000000000002
+    ]
+   ],
+   [
+    [
+     1.0000000000000002,
+     -0.1113657144581707
+    ],
+    [
+     -0.1113657144581707,
+     1.0
+    ]
+   ]
+  ]
+ },
+ "numerical": {
+  "mode": "refinement",
+  "scope": "declared_refinements",
+  "passed": true,
+  "probes": [
+   {
+    "template": "3484b607b1ca7a63dabe",
+    "feature_difference_max": 0.13676735878219703,
+    "passed": true
+   }
+  ],
+  "tolerance": 0.31622776601683794
+ },
+ "candidates": [
+  {
+   "batch": "batch-00000",
+   "purpose": "baseline",
+   "generation": null,
+   "trial": "baseline-0",
+   "parameters": {
+    "friction": 0.5877852522924731,
+    "plate_friction": 0.4
+   },
+   "objective": 1.430058369191528,
+   "max_normalized_error": 3.0978432859725467,
+   "valid": true
+  },
+  {
+   "batch": "batch-00001",
+   "purpose": "qualification",
+   "generation": null,
+   "trial": "qualification-0",
+   "parameters": {
+    "friction": 0.5877852522924731,
+    "plate_friction": 0.4
+   },
+   "objective": 1.4300583789126953,
+   "max_normalized_error": 3.0978433397787914,
+   "valid": true
+  },
+  {
+   "batch": "batch-00001",
+   "purpose": "qualification",
+   "generation": null,
+   "trial": "qualification-1",
+   "parameters": {
+    "friction": 0.5,
+    "plate_friction": 0.125
+   },
+   "objective": 3.3604080532134275,
+   "max_normalized_error": 5.242075156283658,
+   "valid": true
+  },
+  {
+   "batch": "batch-00001",
+   "purpose": "qualification",
+   "generation": null,
+   "trial": "qualification-2",
+   "parameters": {
+    "friction": 0.6000000000000001,
+    "plate_friction": 0.375
+   },
+   "objective": 2.347994034398468,
+   "max_normalized_error": 3.7155487224260773,
+   "valid": true
+  },
+  {
+   "batch": "batch-00002",
+   "purpose": "qualification",
+   "generation": null,
+   "trial": "qualification-0",
+   "parameters": {
+    "friction": 0.5877852522924731,
+    "plate_friction": 0.4
+   },
+   "objective": 1.925947467336887,
+   "max_normalized_error": 3.4634788511970145,
+   "valid": true
+  },
+  {
+   "batch": "batch-00002",
+   "purpose": "qualification",
+   "generation": null,
+   "trial": "qualification-1",
+   "parameters": {
+    "friction": 0.5,
+    "plate_friction": 0.125
+   },
+   "objective": 2.9846132241468135,
+   "max_normalized_error": 4.99583886542989,
+   "valid": true
+  },
+  {
+   "batch": "batch-00002",
+   "purpose": "qualification",
+   "generation": null,
+   "trial": "qualification-2",
+   "parameters": {
+    "friction": 0.6000000000000001,
+    "plate_friction": 0.375
+   },
+   "objective": 3.0297840269397853,
+   "max_normalized_error": 4.010018080646108,
+   "valid": true
+  },
+  {
+   "batch": "batch-00003",
+   "purpose": "analysis",
+   "generation": null,
+   "trial": "sensitivity-0-0",
+   "parameters": {
+    "friction": 0.5817852522924731,
+    "plate_friction": 0.4
+   },
+   "objective": 1.1200473305912566,
+   "max_normalized_error": 2.8228697400611553,
+   "valid": true
+  },
+  {
+   "batch": "batch-00003",
+   "purpose": "analysis",
+   "generation": null,
+   "trial": "sensitivity-0-1",
+   "parameters": {
+    "friction": 0.5937852522924731,
+    "plate_friction": 0.4
+   },
+   "objective": 1.823943630987453,
+   "max_normalized_error": 3.3558285590187578,
+   "valid": true
+  },
+  {
+   "batch": "batch-00003",
+   "purpose": "analysis",
+   "generation": null,
+   "trial": "sensitivity-0-2",
+   "parameters": {
+    "friction": 0.5877852522924731,
+    "plate_friction": 0.385
+   },
+   "objective": 1.3985247267273981,
+   "max_normalized_error": 3.0841326171975787,
+   "valid": true
+  },
+  {
+   "batch": "batch-00003",
+   "purpose": "analysis",
+   "generation": null,
+   "trial": "sensitivity-0-3",
+   "parameters": {
+    "friction": 0.5877852522924731,
+    "plate_friction": 0.41500000000000004
+   },
+   "objective": 1.4453189990119002,
+   "max_normalized_error": 3.0897130064662828,
+   "valid": true
+  },
+  {
+   "batch": "batch-00004",
+   "purpose": "analysis",
+   "generation": null,
+   "trial": "sensitivity-1-0",
+   "parameters": {
+    "friction": 0.494,
+    "plate_friction": 0.125
+   },
+   "objective": 3.711486617946034,
+   "max_normalized_error": 5.4808450459042195,
+   "valid": true
+  },
+  {
+   "batch": "batch-00004",
+   "purpose": "analysis",
+   "generation": null,
+   "trial": "sensitivity-1-1",
+   "parameters": {
+    "friction": 0.506,
+    "plate_friction": 0.125
+   },
+   "objective": 3.0106797102667433,
+   "max_normalized_error": 4.989192575747101,
+   "valid": true
+  },
+  {
+   "batch": "batch-00004",
+   "purpose": "analysis",
+   "generation": null,
+   "trial": "sensitivity-1-2",
+   "parameters": {
+    "friction": 0.5,
+    "plate_friction": 0.11
+   },
+   "objective": 3.41852102357538,
+   "max_normalized_error": 5.273499178125243,
+   "valid": true
+  },
+  {
+   "batch": "batch-00004",
+   "purpose": "analysis",
+   "generation": null,
+   "trial": "sensitivity-1-3",
+   "parameters": {
+    "friction": 0.5,
+    "plate_friction": 0.14
+   },
+   "objective": 3.3125223257238448,
+   "max_normalized_error": 5.218071384905617,
+   "valid": true
+  },
+  {
+   "batch": "batch-00005",
+   "purpose": "analysis",
+   "generation": null,
+   "trial": "sensitivity-2-0",
+   "parameters": {
+    "friction": 0.594,
+    "plate_friction": 0.375
+   },
+   "objective": 1.8101818206970552,
+   "max_normalized_error": 3.3945730076181655,
+   "valid": true
+  },
+  {
+   "batch": "batch-00005",
+   "purpose": "analysis",
+   "generation": null,
+   "trial": "sensitivity-2-1",
+   "parameters": {
+    "friction": 0.6060000000000001,
+    "plate_friction": 0.375
+   },
+   "objective": 3.002557266654544,
+   "max_normalized_error": 4.022202715024793,
+   "valid": true
+  },
+  {
+   "batch": "batch-00005",
+   "purpose": "analysis",
+   "generation": null,
+   "trial": "sensitivity-2-2",
+   "parameters": {
+    "friction": 0.6000000000000001,
+    "plate_friction": 0.36
+   },
+   "objective": 2.313570951703832,
+   "max_normalized_error": 3.7140632019290107,
+   "valid": true
+  },
+  {
+   "batch": "batch-00005",
+   "purpose": "analysis",
+   "generation": null,
+   "trial": "sensitivity-2-3",
+   "parameters": {
+    "friction": 0.6000000000000001,
+    "plate_friction": 0.39
+   },
+   "objective": 2.3443416011699516,
+   "max_normalized_error": 3.6561707146476823,
+   "valid": true
+  },
+  {
+   "batch": "batch-00006",
+   "purpose": "train",
+   "generation": 1,
+   "trial": "trial-00000-00000",
+   "parameters": {
+    "friction": 0.49568661981842776,
+    "plate_friction": 0.33333160635513825
+   },
+   "objective": 3.118071525352755,
+   "max_normalized_error": 5.073852679560892,
+   "valid": true
+  },
+  {
+   "batch": "batch-00006",
+   "purpose": "train",
+   "generation": 1,
+   "trial": "trial-00000-00001",
+   "parameters": {
+    "friction": 0.5821101394322248,
+    "plate_friction": 0.43795685278076824
+   },
+   "objective": 1.185330553278455,
+   "max_normalized_error": 2.8294578454649564,
+   "valid": true
+  },
+  {
+   "batch": "batch-00006",
+   "purpose": "train",
+   "generation": 1,
+   "trial": "trial-00000-00002",
+   "parameters": {
+    "friction": 0.6014335659291139,
+    "plate_friction": 0.4476804884989919
+   },
+   "objective": 2.6158996577950484,
+   "max_normalized_error": 3.717991875601669,
+   "valid": true
+  },
+  {
+   "batch": "batch-00006",
+   "purpose": "train",
+   "generation": 1,
+   "trial": "trial-00000-00003",
+   "parameters": {
+    "friction": 0.5907039696436844,
+    "plate_friction": 0.4820178217138564
+   },
+   "objective": 1.793469294046648,
+   "max_normalized_error": 3.2519359732513373,
+   "valid": true
+  },
+  {
+   "batch": "batch-00006",
+   "purpose": "train",
+   "generation": 1,
+   "trial": "trial-00000-00004",
+   "parameters": {
+    "friction": 0.5890099488687028,
+    "plate_friction": 0.4623188894915441
+   },
+   "objective": 1.5967616473382853,
+   "max_normalized_error": 3.1181976279042085,
+   "valid": true
+  },
+  {
+   "batch": "batch-00006",
+   "purpose": "train",
+   "generation": 1,
+   "trial": "trial-00000-00005",
+   "parameters": {
+    "friction": 0.6527201467422757,
+    "plate_friction": 0.2916188788966495
+   },
+   "objective": null,
+   "max_normalized_error": null,
+   "valid": false
+  },
+  {
+   "batch": "batch-00007",
+   "purpose": "train",
+   "generation": 2,
+   "trial": "trial-00001-00000",
+   "parameters": {
+    "friction": 0.6279863368477234,
+    "plate_friction": 0.28456515102592833
+   },
+   "objective": 6.186210122243034,
+   "max_normalized_error": 5.093439038658292,
+   "valid": true
+  },
+  {
+   "batch": "batch-00007",
+   "purpose": "train",
+   "generation": 2,
+   "trial": "trial-00001-00001",
+   "parameters": {
+    "friction": 0.5878563051670403,
+    "plate_friction": 0.43238171753737825
+   },
+   "objective": 1.4771362440039935,
+   "max_normalized_error": 3.0824300737012718,
+   "valid": true
+  },
+  {
+   "batch": "batch-00007",
+   "purpose": "train",
+   "generation": 2,
+   "trial": "trial-00001-00002",
+   "parameters": {
+    "friction": 0.5639441225542097,
+    "plate_friction": 0.23046052848993623
+   },
+   "objective": 0.7245444489974002,
+   "max_normalized_error": 2.096591699591652,
+   "valid": true
+  },
+  {
+   "batch": "batch-00007",
+   "purpose": "train",
+   "generation": 2,
+   "trial": "trial-00001-00003",
+   "parameters": {
+    "friction": 0.63529856636668,
+    "plate_friction": 0.31800120681689487
+   },
+   "objective": 8.164221917009021,
+   "max_normalized_error": 5.567648689790329,
+   "valid": true
+  },
+  {
+   "batch": "batch-00007",
+   "purpose": "train",
+   "generation": 2,
+   "trial": "trial-00001-00004",
+   "parameters": {
+    "friction": 0.5279202409536174,
+    "plate_friction": 0.45851244447845707
+   },
+   "objective": 1.4339635618099869,
+   "max_normalized_error": 3.4282410689911154,
+   "valid": true
+  },
+  {
+   "batch": "batch-00007",
+   "purpose": "train",
+   "generation": 2,
+   "trial": "trial-00001-00005",
+   "parameters": {
+    "friction": 0.6489245900890568,
+    "plate_friction": 0.5208403362222171
+   },
+   "objective": null,
+   "max_normalized_error": null,
+   "valid": false
+  },
+  {
+   "batch": "batch-00008",
+   "purpose": "train",
+   "generation": 3,
+   "trial": "trial-00002-00000",
+   "parameters": {
+    "friction": 0.48566728048812746,
+    "plate_friction": 0.19420468191486037
+   },
+   "objective": 3.976101262358167,
+   "max_normalized_error": 5.662278504897681,
+   "valid": true
+  },
+  {
+   "batch": "batch-00008",
+   "purpose": "train",
+   "generation": 3,
+   "trial": "trial-00002-00001",
+   "parameters": {
+    "friction": 0.5874999309322319,
+    "plate_friction": 0.2782574183463272
+   },
+   "objective": 1.2161545025933258,
+   "max_normalized_error": 3.0211169999382754,
+   "valid": true
+  },
+  {
+   "batch": "batch-00008",
+   "purpose": "train",
+   "generation": 3,
+   "trial": "trial-00002-00002",
+   "parameters": {
+    "friction": 0.5085865572595921,
+    "plate_friction": 0.27682274312186167
+   },
+   "objective": 2.4547897986644127,
+   "max_normalized_error": 4.557049784442219,
+   "valid": true
+  },
+  {
+   "batch": "batch-00008",
+   "purpose": "train",
+   "generation": 3,
+   "trial": "trial-00002-00003",
+   "parameters": {
+    "friction": 0.6363374127642909,
+    "plate_friction": 0.43980954597008887
+   },
+   "objective": 9.112251051727101,
+   "max_normalized_error": 5.686816043093445,
+   "valid": true
+  },
+  {
+   "batch": "batch-00008",
+   "purpose": "train",
+   "generation": 3,
+   "trial": "trial-00002-00004",
+   "parameters": {
+    "friction": 0.4749557671713317,
+    "plate_friction": 0.21106445351596664
+   },
+   "objective": 4.599871930298706,
+   "max_normalized_error": 6.036588660856197,
+   "valid": true
+  },
+  {
+   "batch": "batch-00008",
+   "purpose": "train",
+   "generation": 3,
+   "trial": "trial-00002-00005",
+   "parameters": {
+    "friction": 0.4650670493204577,
+    "plate_friction": 0.015081347187202165
+   },
+   "objective": 6.1218023458287565,
+   "max_normalized_error": 6.800993238243567,
+   "valid": true
+  },
+  {
+   "batch": "batch-00009",
+   "purpose": "train",
+   "generation": 4,
+   "trial": "trial-00003-00000",
+   "parameters": {
+    "friction": 0.4995659557578753,
+    "plate_friction": 0.09949075957611314
+   },
+   "objective": 3.487892008186681,
+   "max_normalized_error": 5.317441995703802,
+   "valid": true
+  },
+  {
+   "batch": "batch-00009",
+   "purpose": "train",
+   "generation": 4,
+   "trial": "trial-00003-00001",
+   "parameters": {
+    "friction": 0.6166900487278719,
+    "plate_friction": 0.24789872775098523
+   },
+   "objective": 3.9990971818289722,
+   "max_normalized_error": 4.520652533686878,
+   "valid": true
+  },
+  {
+   "batch": "batch-00009",
+   "purpose": "train",
+   "generation": 4,
+   "trial": "trial-00003-00002",
+   "parameters": {
+    "friction": 0.474362085107576,
+    "plate_friction": 0.38193545220628733
+   },
+   "objective": 4.390824443055716,
+   "max_normalized_error": 5.897426113529521,
+   "valid": true
+  },
+  {
+   "batch": "batch-00009",
+   "purpose": "train",
+   "generation": 4,
+   "trial": "trial-00003-00003",
+   "parameters": {
+    "friction": 0.5245812604280575,
+    "plate_friction": -0.010557371368938306
+   },
+   "objective": null,
+   "max_normalized_error": null,
+   "valid": false
+  },
+  {
+   "batch": "batch-00009",
+   "purpose": "train",
+   "generation": 4,
+   "trial": "trial-00003-00004",
+   "parameters": {
+    "friction": 0.5204715825678585,
+    "plate_friction": 0.17258038057858502
+   },
+   "objective": 2.1029645095711595,
+   "max_normalized_error": 4.217477013286959,
+   "valid": true
+  },
+  {
+   "batch": "batch-00009",
+   "purpose": "train",
+   "generation": 4,
+   "trial": "trial-00003-00005",
+   "parameters": {
+    "friction": 0.5101542620621025,
+    "plate_friction": 0.27713761101446166
+   },
+   "objective": 2.378814943674695,
+   "max_normalized_error": 4.492544971773837,
+   "valid": true
+  },
+  {
+   "batch": "batch-00010",
+   "purpose": "train",
+   "generation": 5,
+   "trial": "trial-00004-00000",
+   "parameters": {
+    "friction": 0.4730116413585612,
+    "plate_friction": 0.18774196220213094
+   },
+   "objective": 4.795092864225603,
+   "max_normalized_error": 6.144380014704282,
+   "valid": true
+  },
+  {
+   "batch": "batch-00010",
+   "purpose": "train",
+   "generation": 5,
+   "trial": "trial-00004-00001",
+   "parameters": {
+    "friction": 0.5928571109286243,
+    "plate_friction": 0.3392653796830558
+   },
+   "objective": 1.6927150115478071,
+   "max_normalized_error": 3.380743448387887,
+   "valid": true
+  },
+  {
+   "batch": "batch-00010",
+   "purpose": "train",
+   "generation": 5,
+   "trial": "trial-00004-00002",
+   "parameters": {
+    "friction": 0.6021089302009213,
+    "plate_friction": 0.3817047569266829
+   },
+   "objective": 2.570952093783349,
+   "max_normalized_error": 3.8152050445275245,
+   "valid": true
+  },
+  {
+   "batch": "batch-00010",
+   "purpose": "train",
+   "generation": 5,
+   "trial": "trial-00004-00003",
+   "parameters": {
+    "friction": 0.5878038640700222,
+    "plate_friction": 0.017664731827381486
+   },
+   "objective": 0.9877921892533147,
+   "max_normalized_error": 2.116904966591206,
+   "valid": true
+  },
+  {
+   "batch": "batch-00010",
+   "purpose": "train",
+   "generation": 5,
+   "trial": "trial-00004-00004",
+   "parameters": {
+    "friction": 0.5396806046838171,
+    "plate_friction": 0.022718540768098316
+   },
+   "objective": 1.8410121296185875,
+   "max_normalized_error": 3.81067472615942,
+   "valid": true
+  },
+  {
+   "batch": "batch-00010",
+   "purpose": "train",
+   "generation": 5,
+   "trial": "trial-00004-00005",
+   "parameters": {
+    "friction": 0.46117572893384107,
+    "plate_friction": 0.005007323500264171
+   },
+   "objective": 6.447393182383289,
+   "max_normalized_error": 6.946813035650622,
+   "valid": true
+  },
+  {
+   "batch": "batch-00011",
+   "purpose": "training_retest",
+   "generation": null,
+   "trial": "validation-0",
+   "parameters": {
+    "friction": 0.5639441225542097,
+    "plate_friction": 0.23046052848993617
+   },
+   "objective": 0.7245444757562015,
+   "max_normalized_error": 2.0965917867397663,
+   "valid": true
+  },
+  {
+   "batch": "batch-00012",
+   "purpose": "validation",
+   "generation": null,
+   "trial": "validation-0",
+   "parameters": {
+    "friction": 0.5639441225542097,
+    "plate_friction": 0.23046052848993617
+   },
+   "objective": 0.32539506269636703,
+   "max_normalized_error": 2.0498416560259307,
+   "valid": true
+  },
+  {
+   "batch": "batch-00013",
+   "purpose": "validation",
+   "generation": null,
+   "trial": "validation-0",
+   "parameters": {
+    "friction": 0.5639441225542097,
+    "plate_friction": 0.23046052848993617
+   },
+   "objective": 0.7631533079040221,
+   "max_normalized_error": 2.3386248097845472,
+   "valid": true
+  }
+ ]
+}

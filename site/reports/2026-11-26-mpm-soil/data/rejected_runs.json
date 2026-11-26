@@ -1,0 +1,69 @@
+{
+ "schema": "mpm-soil-report/rejected-runs/1",
+ "runs": {
+  "plate_intrusion_dt2ms": {
+   "run_directory": "rejected_numerics_dt2ms_20261126T164314Z-282c4fbe",
+   "outcome": "rejected_numerics",
+   "dt_s": 0.002,
+   "training_points_deg": [
+    [
+     0,
+     90
+    ],
+    [
+     90,
+     0
+    ],
+    [
+     30,
+     45
+    ],
+    [
+     -30,
+     45
+    ],
+    [
+     90,
+     90
+    ],
+    [
+     60,
+     -45
+    ]
+   ],
+   "bounds": {
+    "friction": [
+     0.35,
+     0.85
+    ],
+    "plate_friction": [
+     0.0,
+     0.6
+    ]
+   },
+   "qualification_feature_difference_max": 0.7938100147241061,
+   "qualification_tolerance": 0.2886751345948129,
+   "largest_change_N_per_cm3": 0.08249515662354902,
+   "tolerance_N_per_cm3": 0.03,
+   "run_state_sha256": "b0119a23e693b0033b78263f7de0c339e274de079723e2746686b7a2cbb24a92"
+  },
+  "clay_dt1ms": {
+   "run_directory": "20261126T190754Z-93c7a044",
+   "outcome": "rejected_numerics",
+   "dt_s": 0.001,
+   "baseline_objective_test1": 0.8830125364413919,
+   "qualification_feature_difference_max": 0.2613475499942326,
+   "qualification_tolerance": 0.1414213562373095,
+   "largest_change_kPa": 14.78404998779297,
+   "tolerance_kPa": 8.0,
+   "run_state_sha256": "7ad4240c1a45e13c9849f02573e97a5190f1a3f5bbbee96a5df2154be99dfb89"
+  },
+  "clay_dt05ms": {
+   "run_directory": "20261126T201005Z-49386ea6",
+   "outcome": "stopped after the baseline evaluation",
+   "dt_s": 0.0005,
+   "baseline_objective_test1": 1.0410508991317649,
+   "run_state_sha256": "2614da7d4c27f5fa19926b4ed42c78243b5fa657842554769bf125da4b6009d5"
+  }
+ }
+}

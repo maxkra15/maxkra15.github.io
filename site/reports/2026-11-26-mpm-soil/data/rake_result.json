@@ -1,0 +1,149 @@
+{
+ "case": "franka_rake",
+ "synthetic_logs": true,
+ "acceptance": "accepted",
+ "termination_reason": "stagnation",
+ "parameters": {
+  "hidden": {
+   "friction": 0.62,
+   "cohesion": 250.0,
+   "tool_friction": 0.35,
+   "bulk_density": 1500.0
+  },
+  "baseline": {
+   "friction": 0.5,
+   "cohesion": 100.0,
+   "tool_friction": 0.5,
+   "bulk_density": 1500.0
+  },
+  "calibrated": {
+   "friction": 0.6533234360914023,
+   "cohesion": 167.76243736373547,
+   "tool_friction": 0.5334125685636123
+  }
+ },
+ "objective": {
+  "best_training": 0.32551798981065233,
+  "validation": {
+   "passed": true,
+   "status": "evaluated",
+   "experiments": [
+    {
+     "experiment": "rake_holdout",
+     "passed": true,
+     "objective": 0.6702587706095052,
+     "max_error": 3.578637882232666,
+     "valid": true
+    }
+   ],
+   "numerical_retest": [
+    {
+     "passed": true,
+     "feature_difference_max": 0.06727389296219426
+    }
+   ],
+   "qualification_mode": "refinement"
+  }
+ },
+ "identifiability": {
+  "rank": 3,
+  "singular_values": [
+   16.537501964105672,
+   2.01401232449063,
+   1.5593712377635962
+  ],
+  "conclusive": true
+ },
+ "numerical": {
+  "mode": "refinement",
+  "scope": "declared_refinements",
+  "passed": true,
+  "probes": [
+   {
+    "template": "3174f80c8ec3f307c6ad",
+    "feature_difference_max": 0.06863023599691714,
+    "passed": true
+   }
+  ],
+  "tolerance": 0.08533201859828614
+ },
+ "strokes": {
+  "train_deep": {
+   "group": "rake-train",
+   "force_rmse_N": 1.3990540758875303,
+   "peak_drag_measured_N": 42.8835,
+   "peak_drag_predicted_N": 46.66089630126953
+  },
+  "train_pitched": {
+   "group": "rake-train",
+   "force_rmse_N": 1.01380928183954,
+   "peak_drag_measured_N": 22.6584,
+   "peak_drag_predicted_N": 23.33673667907715
+  },
+  "train_shallow": {
+   "group": "rake-train",
+   "force_rmse_N": 0.955448021165605,
+   "peak_drag_measured_N": 9.1265,
+   "peak_drag_predicted_N": 10.394721984863281
+  },
+  "holdout_fast_offset": {
+   "group": "rake-holdout",
+   "force_rmse_N": 0.9929264182717964,
+   "peak_drag_measured_N": 20.7121,
+   "peak_drag_predicted_N": 20.985916137695312
+  },
+  "holdout_pitched_back": {
+   "group": "rake-holdout",
+   "force_rmse_N": 1.963310508078676,
+   "peak_drag_measured_N": 34.8201,
+   "peak_drag_predicted_N": 33.53030014038086
+  }
+ },
+ "budget_usage": {
+  "baseline": {
+   "trials": 1,
+   "rollouts": 1
+  },
+  "qualification": {
+   "trials": 6,
+   "rollouts": 6
+  },
+  "analysis": {
+   "trials": 18,
+   "rollouts": 18
+  },
+  "train": {
+   "trials": 80,
+   "rollouts": 80
+  },
+  "training_retest": {
+   "trials": 1,
+   "rollouts": 1
+  },
+  "validation": {
+   "trials": 2,
+   "rollouts": 2
+  }
+ },
+ "wall_seconds": 2311.7537100217305,
+ "numeric_settings": {
+  "device": "cuda:0",
+  "voxel_size": 0.01,
+  "dt": 0.002,
+  "settle_time": 0.15,
+  "max_iterations": 250,
+  "tolerance": 1e-05,
+  "max_worlds": 24
+ },
+ "versions": {
+  "newton": "1.9.0.dev0",
+  "warp-lang": "1.20.0.dev20261117",
+  "numpy": "2.5.5",
+  "cma": "4.6.0"
+ },
+ "hidden_parameter_check": {
+  "training_objective": 0.345,
+  "max_error_N": 4.43,
+  "note": "Hidden parameters scored on rake_train with the calibration numerics, outside the Tuning run."
+ }
+}
