@@ -8,8 +8,16 @@
   <meta name="description" content="A research preview of machine learning, task planning and granular simulation for a shared worksite. Four short films follow excavation, loading, grading and cleanup.">
   <link rel="canonical" href="https://maxkra15.github.io/reports/2026-11-26-ammi-worksite/">
   <meta property="og:title" content="Moving earth with AMMI">
-  <meta property="og:description" content="How can a fleet work toward a terrain goal when every bucket changes the ground? A research preview in four short films.">
-  <meta property="og:image" content="https://maxkra15.github.io/reports/2026-11-26-ammi-worksite/figures/quarry.webp">
+  <meta property="og:description" content="Four machines, one changing worksite. Watch the one-minute AMMI film and explore the planner, machine skills and terrain survey.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://maxkra15.github.io/reports/2026-11-26-ammi-worksite/">
+  <meta property="og:image" content="https://maxkra15.github.io/reports/2026-11-26-ammi-worksite/figures/film-poster.webp">
+  <meta property="og:image:alt" content="AMMI worksite film, a one-minute look at the simulated quarry">
+  <meta property="og:video" content="https://maxkra15.github.io/reports/2026-11-26-ammi-worksite/media/ammi-worksite.mp4">
+  <meta property="og:video:type" content="video/mp4">
+  <meta property="og:video:width" content="1280">
+  <meta property="og:video:height" content="720">
+  <meta name="twitter:card" content="summary_large_image">
   <style>
     :root{color-scheme:light;--paper:#fafaf8;--ink:#192333;--muted:#48576a;--line:#d6dce2;--blue:#245cab;--deep:#25443e}
     *{box-sizing:border-box}
@@ -32,7 +40,9 @@
     figure{margin:0}
     figcaption,.note{font-size:.92rem;color:var(--muted);line-height:1.5}
     figcaption{margin-top:.65rem}
-    .hero img{width:100%;border-radius:.38rem}
+    .hero video{width:100%;aspect-ratio:16/9;background:#252a2c;border-radius:.38rem}
+    .hero figcaption{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.35rem 1.1rem}
+    .hero figcaption a{font-weight:600}
     section{padding:clamp(2.35rem,5.5vw,4rem) 0;border-bottom:1px solid var(--line);scroll-margin-top:1rem}
     section p{max-width:49rem;margin:0 0 .9rem}
     .graphic{margin:1.4rem 0}.graphic img{border:1px solid var(--line);border-radius:.4rem;background:white;width:100%}
@@ -66,8 +76,11 @@
       <p class="lede">How can a fleet work toward a terrain goal when every bucket changes the ground? AMMI studies that question by connecting a worksite planner, machine-level skills and a simulation in which soil can spill, settle and be moved again.</p>
     </div>
     <figure class="hero">
-      <img src="figures/quarry.webp" width="1536" height="692" alt="A skid steer and tracked excavator face the receiving hole from opposite sides, with the haul truck and articulated loader in the same quarry.">
-      <figcaption>Four machines share a receiving pit. Material left on the approach becomes the next machine’s assignment.</figcaption>
+      <video controls playsinline preload="none" poster="figures/film-poster.webp" width="1280" height="720" aria-label="AMMI worksite film, one minute. A tracked excavator digs near a buried pipe, the truck and loader deliver soil, and the excavator and skid steer grade and clean the pit.">
+        <source src="media/ammi-worksite.mp4" type="video/mp4">
+        <a href="media/ammi-worksite.mp4">Watch the one-minute film</a>
+      </video>
+      <figcaption><span>One minute in the simulated quarry · Silent film</span><a href="media/ammi-worksite.mp4" download="AMMI-worksite.mp4">Download the film (MP4)</a></figcaption>
     </figure>
     <nav aria-label="In this report"><a href="#architecture">Planner and skills</a><a href="#behaviors">Watch the work</a><a href="#machines">Available machines</a><a href="#survey">Final survey</a></nav>
     <section id="architecture">
