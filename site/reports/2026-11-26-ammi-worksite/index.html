@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
   <title>Moving earth with AMMI · Maximilian Krause</title>
-  <meta name="description" content="A research preview of machine learning, task planning and granular simulation for a shared worksite. Four short films follow excavation, loading, grading and cleanup.">
+  <meta name="description" content="Autonomous Material Moving Intelligence coordinates machine skills on changing ground. Compare two quarry films and see how the fleet measures soil delivery and surface grade.">
   <link rel="canonical" href="https://maxkra15.github.io/reports/2026-11-26-ammi-worksite/">
   <meta property="og:title" content="Moving earth with AMMI">
-  <meta property="og:description" content="Four machines, one changing worksite. Watch the one-minute AMMI film and explore the planner, machine skills and terrain survey.">
+  <meta property="og:description" content="Four machines, one changing worksite. Watch the original one-minute film and a continuous quarry run showing the planner’s machine skills.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://maxkra15.github.io/reports/2026-11-26-ammi-worksite/">
   <meta property="og:image" content="https://maxkra15.github.io/reports/2026-11-26-ammi-worksite/figures/film-poster.webp?cut=2">
@@ -73,7 +73,7 @@
     <div class="intro">
       <p class="date">Research preview · <time datetime="2026-11-26">26 November 2026</time></p>
       <h1>Moving earth with AMMI</h1>
-      <p class="lede">Each scoop changes the ground that the next machine has to work on. AMMI studies how a planner can coordinate machine skills around those changes, from choosing where to dig to measuring the surface left behind.</p>
+      <p class="lede">AMMI stands for <strong>Autonomous Material Moving Intelligence</strong>. Each scoop changes the ground for the next machine. AMMI studies how a planner can coordinate digging, hauling and grading skills using measurements of what moved and what remains.</p>
     </div>
     <figure class="hero" id="film">
       <video controls playsinline preload="none" poster="figures/film-poster.webp?cut=2" width="1920" height="1080" aria-label="AMMI worksite film, one minute. A tracked excavator digs near a buried pipe, the truck and loader deliver soil, and the excavator and skid steer grade and clean the pit.">
@@ -82,14 +82,32 @@
       </video>
       <figcaption><span>One minute in the simulated quarry · 1080p · Silent film</span><a href="media/ammi-worksite.mp4?cut=2" download="AMMI-worksite.mp4">Download the film (MP4)</a></figcaption>
     </figure>
-    <nav aria-label="In this report"><a href="#architecture">Planner and skills</a><a href="#behaviors">Watch the work</a><a href="#machines">Available machines</a><a href="#survey">Final survey</a></nav>
+    <nav aria-label="In this report"><a href="#continuous-film">Continuous run</a><a href="#architecture">Planner and skills</a><a href="#behaviors">Watch the work</a><a href="#machines">Available machines</a><a href="#survey">Final survey</a></nav>
+    <section id="continuous-film">
+      <h2>Follow a load from cut to cleanup</h2>
+      <p>Watch a second run from its first cut to its last cleanup pass. The clock shows simulation time throughout all 403 simulated seconds. Playback slows for bucket contact and speeds up for travel between machines.</p>
+      <figure class="hero">
+        <video controls playsinline preload="none" poster="figures/two-boulder-cycle.webp" width="1920" height="1080" aria-label="Continuous quarry run following two rock-bearing excavator scoops, a truck delivery, a front-loader delivery, grading and two skid-steer passes.">
+          <source src="media/two-boulder-cycle.mp4" type="video/mp4">
+          <a href="media/two-boulder-cycle.mp4">Watch the continuous run</a>
+        </video>
+        <figcaption><span>2 min 15 s · Continuous simulation · Variable playback speed</span><a href="media/two-boulder-cycle.mp4" download="AMMI-two-boulder-cycle.mp4">Download this run (MP4)</a></figcaption>
+      </figure>
+      <p>The excavator carried about 0.38 m³ of soil in each raised bucket. Its two cuts put 1.30 tonnes of soil and two boulders weighing 83 kg and 50 kg into the truck. The front loader then lifted 1.54 tonnes from the stockpile and placed 1.29 tonnes inside the pit.</p>
+      <p>Two 4 m excavator sweeps reduced the root-mean-square surface error from 22.3 cm to 4.7 cm. The skid steer recovered another 309 kg and 282 kg on separate strips. With that material added, the final error was 16.0 cm and 140 kg of the tracked soil remained outside the pit.</p>
+      <details>
+        <summary>What made the front loader jump?</summary>
+        <p>A matched pickup from the same settled stockpile isolated a road-contact artifact. Giving the level driving strip its own planar collider reduced the largest wheel rise from 14.6 cm to about 1 mm. Four coupled substeps per 60 Hz tick also reduced the chassis jolt as the loader braked under load.</p>
+        <figure class="graphic"><a href="figures/loader-contact.png"><img src="figures/loader-contact.png" alt="Matched pickup traces show a 14.6 cm wheel rise on the earlier road. The planar road trace stays near zero while soil force still peaks above 90 kilonewtons." loading="lazy"></a><figcaption>Separate matched pickup tests. Wheel height was sampled at 10 Hz. The lower graph shows the magnitude of the summed particle forces on the loader wheels and bucket, sampled at 15 Hz. <a href="figures/loader-contact.png">Enlarge measurements</a></figcaption></figure>
+      </details>
+    </section>
     <section id="architecture">
       <h2>From site goals to bucket motion</h2>
       <p>A mission identifies where to remove material and where it should end up. The planner can inspect the site, list available skills, ask a particular machine to run one, or stop. Each skill accepts a target and reports a measured outcome. If a bucket encounters a buried pipe or leaves a spill, the next decision can use the changed site state.</p>
       <figure class="graphic"><a href="figures/skill-loop.webp" aria-label="Open the planner and skill diagram at full resolution"><img src="figures/skill-loop.webp" alt="A terrain goal and site survey go to a high-level planner. It selects a machine and skill. A learned policy or feedback controller operates the machine. Measured load, clearance and terrain shape feed back to the planner." loading="lazy"></a><figcaption>The planner decides which job to attempt. A local controller owns actuator commands for the duration of that job. <a href="figures/skill-loop.webp">Enlarge diagram</a></figcaption></figure>
       <div class="roles">
         <p><strong>Learning a skill.</strong> An excavator policy learns with proximal policy optimization (PPO). It observes joint motion and local terrain and practices cutting, curling and lifting a retained load. A fast analytical soil model supports repeated trials. Particle simulation provides a second test of contact, retention and transfer.</p>
-        <p><strong>Calling a skill.</strong> In a separate three-machine experiment, a language model called eight predefined skills, including learned truck positioning, skid-steer approach and bucket posture. The four-machine quarry film below used a local dispatcher, feedback controllers and supervised recoveries.</p>
+        <p><strong>Calling a skill.</strong> In a separate three-machine experiment, a language model called eight predefined skills, including learned truck positioning, skid-steer approach and bucket posture. The original four-machine quarry film used a local dispatcher, feedback controllers and supervised recoveries.</p>
       </div>
     </section>
     <section id="behaviors">
@@ -126,7 +144,7 @@
       </dl>
     </section>
     <section id="survey">
-      <h2>Where did the soil end up?</h2>
+      <h2>Where did the soil end up in the original run?</h2>
       <p>Delivery and finish quality are different measurements. Tracking the same 49,206 delivered grains let us weigh what settled inside the pit. A separate survey compared the surface against the target elevation in 120 quarter-metre grid cells.</p>
       <dl class="results">
         <div><dt>99.77%</dt><dd>of the tracked 5.293 t settled inside</dd></div>
