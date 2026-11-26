@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Moving earth with AMMI · Maximilian Krause</title>
+  <meta name="description" content="A research preview of machine learning, task planning and granular simulation for a shared worksite. Four short films follow excavation, loading, grading and cleanup.">
+  <link rel="canonical" href="https://maxkra15.github.io/reports/2026-11-26-ammi-worksite/">
+  <meta property="og:title" content="Moving earth with AMMI">
+  <meta property="og:description" content="How can a fleet work toward a terrain goal when every bucket changes the ground? A research preview in four short films.">
+  <meta property="og:image" content="https://maxkra15.github.io/reports/2026-11-26-ammi-worksite/figures/quarry.webp">
+  <style>
+    :root{color-scheme:light;--paper:#fafaf8;--ink:#192333;--muted:#48576a;--line:#d6dce2;--blue:#245cab;--deep:#25443e}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--paper);color:var(--ink);font:1rem/1.6 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    a{color:var(--blue);text-underline-offset:.2em}a:hover{text-decoration-thickness:2px}a:focus-visible,video:focus-visible{outline:3px solid var(--blue);outline-offset:4px}
+    .skip{position:absolute;top:-5rem;left:1rem;background:white;padding:.6rem;z-index:2}.skip:focus{top:0}
+    .wrap{max-width:72rem;margin:0 auto;padding:0 clamp(1.15rem,5vw,3.3rem)}
+    header,footer{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+    header{border-bottom:1px solid var(--line);padding:1.45rem 0}header a{text-decoration:none}header .by{color:var(--ink);font-weight:650}
+    h1,h2,h3{font-family:Georgia,"Times New Roman",serif;font-weight:400;letter-spacing:-.035em;line-height:1.08}
+    h1{font-size:clamp(3.1rem,7vw,5.5rem);margin:.45rem 0 1.1rem}
+    h2{font-size:clamp(2rem,4.3vw,3.15rem);margin:0 0 1.15rem}
+    h3{font-size:1.65rem;margin:.8rem 0 .4rem}
+    .intro{padding:clamp(2.5rem,6vw,4.7rem) 0 1.8rem}
+    .date{font-size:.9rem;color:var(--muted);margin:0}
+    .lede{font:clamp(1.25rem,2.4vw,1.65rem)/1.43 Georgia,serif;max-width:52rem;margin:0}
+    nav{display:flex;flex-wrap:wrap;gap:.35rem 1.3rem;padding:1rem 0;border-block:1px solid var(--line);margin-top:1.7rem}
+    nav a{font-size:.94rem}
+    img,video{display:block;max-width:100%;height:auto}
+    figure{margin:0}
+    figcaption,.note{font-size:.92rem;color:var(--muted);line-height:1.5}
+    figcaption{margin-top:.65rem}
+    .hero img{width:100%;border-radius:.38rem}
+    section{padding:clamp(2.35rem,5.5vw,4rem) 0;border-bottom:1px solid var(--line);scroll-margin-top:1rem}
+    section p{max-width:49rem;margin:0 0 .9rem}
+    .graphic{margin:1.4rem 0}.graphic img{border:1px solid var(--line);border-radius:.4rem;background:white;width:100%}
+    .graphic figcaption{max-width:56rem}
+    .roles{display:grid;grid-template-columns:1fr 1fr;gap:1rem 2.2rem;margin-top:1.35rem}
+    .roles p,.film p{margin:0}
+    .roles strong{color:var(--deep)}
+    .films{display:grid;grid-template-columns:1fr 1fr;gap:2rem 1.4rem;margin-top:1.6rem}
+    .film{min-width:0}.film video{width:100%;aspect-ratio:16/9;background:#1d272b;border-radius:.35rem}
+    .film figcaption{color:var(--ink);font-size:1rem}.film figcaption a{display:inline-block;font-size:.88rem;margin-top:.35rem}
+    .fleet{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem 2.1rem;margin-top:1.6rem}
+    .fleet div{border-top:1px solid var(--line);padding-top:.7rem}
+    dt{font-weight:650}dd{margin:.18rem 0 0;color:var(--muted)}
+    .results{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.3rem;margin:1.5rem 0 1.8rem}
+    .results div{border-left:2px solid #987b36;padding-left:.9rem}
+    .results dt{font:clamp(1.8rem,4vw,2.8rem)/1.2 Georgia,serif}.results dd{font-size:.93rem}
+    .publication{font:1.18rem/1.5 Georgia,serif;margin:1.6rem 0}
+    footer{color:var(--muted);font-size:.9rem;padding:1rem 0 2.3rem;border-top:1px solid var(--line)}
+    @media(max-width:42rem){.roles,.films,.fleet{grid-template-columns:1fr}.results{gap:.8rem}.results dd{font-size:.88rem}.results div{padding-left:.5rem}.intro{padding-top:2rem}.films{gap:1.5rem}.graphic figcaption a{display:inline-block}}
+    @media(max-width:26rem){.results{grid-template-columns:1fr}.results div{display:flex;gap:.9rem;align-items:baseline}.results dt{white-space:nowrap}.results dd{margin:0}}
+  </style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to report</a>
+<div class="wrap">
+  <header><a href="../../" class="by">Maximilian Krause</a><a href="../../">Research reports</a></header>
+  <main id="main">
+    <div class="intro">
+      <p class="date">Research preview · <time datetime="2026-11-26">26 November 2026</time></p>
+      <h1>Moving earth with AMMI</h1>
+      <p class="lede">How can a fleet work toward a terrain goal when every bucket changes the ground? AMMI studies that question by connecting a worksite planner, machine-level skills and a simulation in which soil can spill, settle and be moved again.</p>
+    </div>
+    <figure class="hero">
+      <img src="figures/quarry.webp" width="1536" height="692" alt="A skid steer and tracked excavator face the receiving hole from opposite sides, with the haul truck and articulated loader in the same quarry.">
+      <figcaption>Four machines share a receiving pit. Material left on the approach becomes the next machine’s assignment.</figcaption>
+    </figure>
+    <nav aria-label="In this report"><a href="#architecture">Planner and skills</a><a href="#behaviors">Watch the work</a><a href="#machines">Available machines</a><a href="#survey">Final survey</a></nav>
+    <section id="architecture">
+      <h2>From site goals to bucket motion</h2>
+      <p>A mission identifies where to remove material and where it should end up. The planner can inspect the site, list available skills, ask a particular machine to run one, or stop. Each skill accepts a target and reports a measured outcome. If a bucket encounters a buried pipe or leaves a spill, the next decision can use the changed site state.</p>
+      <figure class="graphic"><a href="figures/skill-loop.webp" aria-label="Open the planner and skill diagram at full resolution"><img src="figures/skill-loop.webp" alt="A terrain goal and site survey go to a high-level planner. It selects a machine and skill. A learned policy or feedback controller operates the machine. Measured load, clearance and terrain shape feed back to the planner." loading="lazy"></a><figcaption>The planner decides which job to attempt. A local controller owns actuator commands for the duration of that job. <a href="figures/skill-loop.webp">Enlarge diagram</a></figcaption></figure>
+      <div class="roles">
+        <p><strong>Learning a skill.</strong> An excavator policy learns with proximal policy optimization (PPO). It observes joint motion and local terrain and practices cutting, curling and lifting a retained load. A fast analytical soil model supports repeated trials. Particle simulation provides a second test of contact, retention and transfer.</p>
+        <p><strong>Calling a skill.</strong> In a separate three-machine experiment, a language model called eight predefined skills, including learned truck positioning, skid-steer approach and bucket posture. The four-machine quarry film below used a local dispatcher, feedback controllers and supervised recoveries.</p>
+      </div>
+    </section>
+    <section id="behaviors">
+      <h2>Watch the work</h2>
+      <p>The excavator digs through layered soil next to a buried pipe. A truck carries the load to a receiving pit, a wheel loader adds material, and two machines shape the fill. Isaac Lab and Newton simulate the articulated machines and the soil together. The material point method (MPM) tracks moving soil and transmits contact forces back to the machines.</p>
+      <div class="films">
+        <figure class="film">
+          <video controls playsinline preload="none" poster="media/dig.webp" aria-label="Second excavation cut, lift and truck delivery"><source src="media/dig.mp4" type="video/mp4"></video>
+          <figcaption><h3>Dig and load</h3><p>The bucket curls through the second cut, lifts and tips soil and rock into the waiting truck.</p><a href="media/dig.mp4">Open digging clip · 8 s</a></figcaption>
+        </figure>
+        <figure class="film">
+          <video controls playsinline preload="none" poster="media/loader.webp" aria-label="Front loader fills its bucket and adds stockpile material to the pit"><source src="media/loader.mp4" type="video/mp4"></video>
+          <figcaption><h3>Fill from the stockpile</h3><p>The articulated loader drives into the pile, reverses with a full bucket and tips the load into the pit.</p><a href="media/loader.mp4">Open loading clip · 10 s</a></figcaption>
+        </figure>
+        <figure class="film">
+          <video controls playsinline preload="none" poster="media/grade.webp" aria-label="Tracked excavator sweeps the interior in two lateral passes"><source src="media/grade.mp4" type="video/mp4"></video>
+          <figcaption><h3>Grade the interior</h3><p>The excavator uses the side of its bucket to move soil from high spots toward low spots. The longer of these two sweeps spans 4.22 m.</p><a href="media/grade.mp4">Open grading clip · 10 s</a></figcaption>
+        </figure>
+        <figure class="film">
+          <video controls playsinline preload="none" poster="media/cleanup.webp" aria-label="Skid steer scrapes spilled material off the approach and into the receiving pit"><source src="media/cleanup.mp4" type="video/mp4"></video>
+          <figcaption><h3>Recover the spill</h3><p>The skid steer lowers its cutting edge, pushes a strip of spilled soil into the opening and backs away for another pass.</p><a href="media/cleanup.mp4">Open cleanup clip · 6 s</a></figcaption>
+        </figure>
+      </div>
+      <p class="note" style="margin-top:1.5rem">Silent excerpts from the same rendered simulation sequence. Playback speed varies by operation. The sequence includes a staged restart after the truck tips, with matched geometry and reinitialized soil stress and contact history.</p>
+    </section>
+    <section id="machines">
+      <h2>The machines</h2>
+      <dl class="fleet">
+        <div><dt>Tracked excavator</dt><dd>Cuts and curls a load, swings to the truck, and grades with the side of the bucket.</dd></div>
+        <div><dt>Dump truck</dt><dd>Hauls between work areas, positions at the receiver and raises the bed to discharge.</dd></div>
+        <div><dt>Articulated wheel loader</dt><dd>Steers at the chassis joint and carries large stockpile loads into the fill area.</dd></div>
+        <div><dt>Skid steer</dt><dd>Works the narrow approach with short, ground-following pushes and repeated passes.</dd></div>
+        <div><dt>Grab crane · separate port scene</dt><dd>Closes a clamshell grab in a ship’s hold, hoists and swings the load, then opens above a shore hopper.</dd></div>
+      </dl>
+    </section>
+    <section id="survey">
+      <h2>Where did the soil end up?</h2>
+      <p>Delivery and finish quality are different measurements. Tracking the same 49,206 delivered grains let us weigh what settled inside the pit. A separate survey compared the surface against the target elevation in 120 quarter-metre grid cells.</p>
+      <dl class="results">
+        <div><dt>99.77%</dt><dd>of the tracked 5.293 t settled inside</dd></div>
+        <div><dt>12.38 kg</dt><dd>of the tracked delivery remained outside</dd></div>
+        <div><dt>22.6 cm</dt><dd>final root-mean-square height error</dd></div>
+      </dl>
+      <figure class="graphic"><a href="figures/survey.png"><img src="figures/survey.png" loading="lazy" alt="Before and after maps of spilled soil and surface height. Most spill was recovered. A crown and a low edge remain inside the final fill."></a><figcaption>All 120 cells contained soil at the end. The remaining crown and low edge show why a mass-delivery target alone cannot measure a level finish. <a href="figures/survey.png">Enlarge survey</a></figcaption></figure>
+    </section>
+    <p class="publication"><strong>No code is being released.</strong> Updates will follow soon.</p>
+  </main>
+  <footer><span>Maximilian Krause · November 2026</span><a href="../../">All research reports</a></footer>
+</div>
+</body>
+</html>
