@@ -32,6 +32,16 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+      - name: Assemble report videos
+        shell: bash
+        run: |
+          shopt -s nullglob
+          for parts in site/reports/*/media/*.mp4.parts; do
+            video=${parts%.parts}
+            cat "$parts"/part-* > "$video"
+            printf '%s  %s\n' "$(cat "$parts/SHA256")" "$video" | sha256sum --check --status
+            rm -r -- "$parts"
+          done
       - name: Configure Pages
         uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
       - name: Upload site
