@@ -11,12 +11,12 @@
   <meta property="og:description" content="Four machines, one changing worksite. Watch the one-minute AMMI film and explore the planner, machine skills and terrain survey.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://maxkra15.github.io/reports/2026-11-26-ammi-worksite/">
-  <meta property="og:image" content="https://maxkra15.github.io/reports/2026-11-26-ammi-worksite/figures/film-poster.webp">
+  <meta property="og:image" content="https://maxkra15.github.io/reports/2026-11-26-ammi-worksite/figures/film-poster.webp?cut=2">
   <meta property="og:image:alt" content="AMMI worksite film, a one-minute look at the simulated quarry">
-  <meta property="og:video" content="https://maxkra15.github.io/reports/2026-11-26-ammi-worksite/media/ammi-worksite.mp4">
+  <meta property="og:video" content="https://maxkra15.github.io/reports/2026-11-26-ammi-worksite/media/ammi-worksite.mp4?cut=2">
   <meta property="og:video:type" content="video/mp4">
-  <meta property="og:video:width" content="1280">
-  <meta property="og:video:height" content="720">
+  <meta property="og:video:width" content="1920">
+  <meta property="og:video:height" content="1080">
   <meta name="twitter:card" content="summary_large_image">
   <style>
     :root{color-scheme:light;--paper:#fafaf8;--ink:#192333;--muted:#48576a;--line:#d6dce2;--blue:#245cab;--deep:#25443e}
@@ -73,14 +73,14 @@
     <div class="intro">
       <p class="date">Research preview · <time datetime="2026-11-26">26 November 2026</time></p>
       <h1>Moving earth with AMMI</h1>
-      <p class="lede">How can a fleet work toward a terrain goal when every bucket changes the ground? AMMI studies that question by connecting a worksite planner, machine-level skills and a simulation in which soil can spill, settle and be moved again.</p>
+      <p class="lede">Each scoop changes the ground that the next machine has to work on. AMMI studies how a planner can coordinate machine skills around those changes, from choosing where to dig to measuring the surface left behind.</p>
     </div>
-    <figure class="hero">
-      <video controls playsinline preload="none" poster="figures/film-poster.webp" width="1280" height="720" aria-label="AMMI worksite film, one minute. A tracked excavator digs near a buried pipe, the truck and loader deliver soil, and the excavator and skid steer grade and clean the pit.">
-        <source src="media/ammi-worksite.mp4" type="video/mp4">
-        <a href="media/ammi-worksite.mp4">Watch the one-minute film</a>
+    <figure class="hero" id="film">
+      <video controls playsinline preload="none" poster="figures/film-poster.webp?cut=2" width="1920" height="1080" aria-label="AMMI worksite film, one minute. A tracked excavator digs near a buried pipe, the truck and loader deliver soil, and the excavator and skid steer grade and clean the pit.">
+        <source src="media/ammi-worksite.mp4?cut=2" type="video/mp4">
+        <a href="media/ammi-worksite.mp4?cut=2">Watch the one-minute film</a>
       </video>
-      <figcaption><span>One minute in the simulated quarry · Silent film</span><a href="media/ammi-worksite.mp4" download="AMMI-worksite.mp4">Download the film (MP4)</a></figcaption>
+      <figcaption><span>One minute in the simulated quarry · 1080p · Silent film</span><a href="media/ammi-worksite.mp4?cut=2" download="AMMI-worksite.mp4">Download the film (MP4)</a></figcaption>
     </figure>
     <nav aria-label="In this report"><a href="#architecture">Planner and skills</a><a href="#behaviors">Watch the work</a><a href="#machines">Available machines</a><a href="#survey">Final survey</a></nav>
     <section id="architecture">
@@ -101,8 +101,8 @@
           <figcaption><h3>Dig and load</h3><p>The bucket curls through the second cut, lifts and tips soil and rock into the waiting truck.</p><a href="media/dig.mp4">Open digging clip · 8 s</a></figcaption>
         </figure>
         <figure class="film">
-          <video controls playsinline preload="none" poster="media/loader.webp" aria-label="Front loader fills its bucket and adds stockpile material to the pit"><source src="media/loader.mp4" type="video/mp4"></video>
-          <figcaption><h3>Fill from the stockpile</h3><p>The articulated loader drives into the pile, reverses with a full bucket and tips the load into the pit.</p><a href="media/loader.mp4">Open loading clip · 10 s</a></figcaption>
+          <video controls playsinline preload="none" poster="media/loader.webp?cut=2" aria-label="Continuous real-time view of the front loader working into the pile, curling the second load and reversing"><source src="media/loader.mp4?cut=2" type="video/mp4"></video>
+          <figcaption><h3>Fill from the stockpile</h3><p>On the second pickup, the loader eases back under resistance, curls a 1.54-tonne load and reverses out. A fixed camera shows the whole maneuver in real time.</p><a href="media/loader.mp4?cut=2">Open second pickup · 27 s</a></figcaption>
         </figure>
         <figure class="film">
           <video controls playsinline preload="none" poster="media/grade.webp" aria-label="Tracked excavator sweeps the interior in two lateral passes"><source src="media/grade.mp4" type="video/mp4"></video>
@@ -113,7 +113,7 @@
           <figcaption><h3>Recover the spill</h3><p>The skid steer lowers its cutting edge, pushes a strip of spilled soil into the opening and backs away for another pass.</p><a href="media/cleanup.mp4">Open cleanup clip · 6 s</a></figcaption>
         </figure>
       </div>
-      <p class="note" style="margin-top:1.5rem">Silent excerpts from the same rendered simulation sequence. Playback speed varies by operation. The sequence includes a staged restart after the truck tips, with matched geometry and reinitialized soil stress and contact history.</p>
+      <p class="note" style="margin-top:1.5rem">The opening film follows the work in chronological order. Both loader pickups play in real time. The renderer uses the recorded 15 Hz machine and soil states and interpolates the positions and joint motion between samples for 30 fps playback. Other operations are condensed. The sequence includes a staged restart after the truck tips, with matched geometry and reinitialized soil stress and contact history.</p>
     </section>
     <section id="machines">
       <h2>The machines</h2>
