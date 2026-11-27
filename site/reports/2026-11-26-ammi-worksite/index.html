@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
   <title>Moving earth with AMMI · Maximilian Krause</title>
-  <meta name="description" content="Autonomous Material Moving Intelligence coordinates machine skills on changing ground. Compare one and two front-loader deliveries and see how the fleet measures soil transfer and surface grade.">
+  <meta name="description" content="Autonomous Material Moving Intelligence coordinates digging, hauling and grading on changing ground. Watch a continuous quarry shift and see how the simulated fleet measures its work.">
   <link rel="canonical" href="https://maxkra15.github.io/reports/2026-11-26-ammi-worksite/">
   <meta property="og:title" content="Moving earth with AMMI">
-  <meta property="og:description" content="Four machines share one changing quarry. Compare two continuous earthmoving runs and their measured final grades.">
+  <meta property="og:description" content="Watch four simulated machines dig, transport soil, recover spills and grade a shared worksite.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://maxkra15.github.io/reports/2026-11-26-ammi-worksite/">
-  <meta property="og:image" content="https://maxkra15.github.io/reports/2026-11-26-ammi-worksite/figures/film-poster.webp?cut=2">
-  <meta property="og:image:alt" content="AMMI worksite film, a one-minute look at the simulated quarry">
-  <meta property="og:video" content="https://maxkra15.github.io/reports/2026-11-26-ammi-worksite/media/ammi-worksite.mp4?cut=2">
+  <meta property="og:image" content="https://maxkra15.github.io/reports/2026-11-26-ammi-worksite/figures/quarry-finish-poster.webp">
+  <meta property="og:image:alt" content="Four machines working in the AMMI quarry simulation">
+  <meta property="og:video" content="https://maxkra15.github.io/reports/2026-11-26-ammi-worksite/media/quarry-finish.mp4">
   <meta property="og:video:type" content="video/mp4">
   <meta property="og:video:width" content="1920">
   <meta property="og:video:height" content="1080">
@@ -71,113 +71,76 @@
   <header><a href="../../" class="by">Maximilian Krause</a><a href="../../">Research reports</a></header>
   <main id="main">
     <div class="intro">
-      <p class="date">Research preview · <time datetime="2026-11-26">26 November 2026</time></p>
+      <p class="date">Research preview · <time datetime="2026-11-27">27 November 2026</time></p>
       <h1>Moving earth with AMMI</h1>
-      <p class="lede">AMMI stands for <strong>Autonomous Material Moving Intelligence</strong>. Each scoop changes the ground for the next machine. AMMI studies how a planner can coordinate digging, hauling and grading skills using measurements of what moved and what remains.</p>
+      <p class="lede"><strong>Autonomous Material Moving Intelligence</strong> studies how machines can work toward one terrain goal. In this simulated quarry, the job is to fill a pit to road level. Each machine must work on the ground the last one left behind.</p>
     </div>
     <figure class="hero" id="film">
-      <video controls playsinline preload="none" poster="figures/film-poster.webp?cut=2" width="1920" height="1080" aria-label="AMMI worksite film, one minute. A tracked excavator digs near a buried pipe, the truck and loader deliver soil, and the excavator and skid steer grade and clean the pit.">
-        <source src="media/ammi-worksite.mp4?cut=2" type="video/mp4">
-        <a href="media/ammi-worksite.mp4?cut=2">Watch the one-minute film</a>
+      <video controls playsinline preload="none" poster="figures/quarry-finish-poster.webp" width="1920" height="1080" aria-label="Continuous quarry film, from excavation and stockpile delivery to skid-steer cleanup and excavator grading">
+        <source src="media/quarry-finish.mp4" type="video/mp4">
+        <source src="media/quarry-finish-browser.mp4" type="video/mp4">
+        <a href="media/quarry-finish-browser.mp4">Watch the quarry film</a>
       </video>
-      <figcaption><span>One minute in the simulated quarry · 1080p · Silent film</span><a href="media/ammi-worksite.mp4?cut=2" download="AMMI-worksite.mp4">Download the film (MP4)</a></figcaption>
+      <figcaption><span>3 min 18 s · 12 min 48 s in simulation · Variable playback speed</span><span><a href="media/quarry-finish.mp4" download="AMMI-quarry.mp4">Download 1080p</a> · <a href="media/quarry-finish-browser.mp4" download="AMMI-quarry-720p.mp4">Smaller file</a></span></figcaption>
     </figure>
-    <nav aria-label="In this report"><a href="#two-load-film">Two loader scoops</a><a href="#continuous-film">One loader scoop</a><a href="#architecture">Planner and skills</a><a href="#behaviors">Watch the work</a><a href="#machines">Available machines</a><a href="#survey">Final survey</a></nav>
-    <section id="two-load-film">
-      <h2>Two front-loader scoops</h2>
-      <p>The excavator collects two buried boulders and loads them into the truck. After the truck tips, the front loader makes two trips from separate strips of the stockpile. The opening is 25 cm shorter than in the one-trip run. Its footprint is 5.25 × 2.00 m, and its maximum depth is 0.60 m, twice the previous depth.</p>
-      <figure class="hero">
-        <video controls playsinline preload="none" poster="figures/two-load-cycle.webp" width="1920" height="1080" aria-label="Two front-loader trips to the smaller opening after excavator and truck delivery, followed by excavator grading and skid-steer cleanup">
-          <source src="media/two-load-cycle-hq.mp4" type="video/mp4">
-          <source src="media/two-load-cycle.mp4" type="video/mp4">
-          <a href="media/two-load-cycle.mp4">Watch the two-scoop delivery</a>
-        </video>
-        <figcaption><span id="two-load-runtime">2 min 35 s · 8 min 26 s simulated · Variable playback speed</span><span><a href="media/two-load-cycle-hq.mp4" download="AMMI-two-loader-scoops.mp4">Download 1080p</a> · <a href="media/two-load-cycle.mp4" download="AMMI-two-loader-scoops-small.mp4">Smaller file</a></span></figcaption>
-      </figure>
-      <p><a href="media/two-load-cycle-hq.mp4#t=51.8">0:52 · First stockpile pickup</a> &nbsp; <a href="media/two-load-cycle-hq.mp4#t=78">1:18 · Second stockpile pickup</a> &nbsp; <a href="media/two-load-cycle-hq.mp4#t=116.93">1:57 · Excavator grading sweep</a></p>
-      <p>The front loader placed 1.53 tonnes from its first scoop and 1.29 tonnes from its second. The measured floor averaged 12.4 cm below road level after the first delivery and 1.6 cm above it after the second. Most of the excess lay on the stockpile side, leaving the excavator to redistribute it across the pit.</p>
-      <p id="two-delivery-measurements">The excavator reduced the root-mean-square height error from 34.0 to 18.0 cm. The two skid-steer pushes brought another 278 and 237 kg of tracked soil in from the apron. A total of 4.26 tonnes of tracked soil settled inside the pit. The final surface averaged 3.6 cm above road level. A low west end and a high east end left 22.2 cm RMS error, with 385 kg of tracked soil still outside.</p>
-      <details><summary>How did the front loader move under load?</summary><p>The bucket was 81% full before the first tip and 79% full before the second. Across the two trips, the smallest measured bucket-to-tire clearance was 17 cm and the loader stayed at least 41 cm from the retaining walls. The largest measured wheel rise during the two pickups was 10 mm and 3 mm. The wheels rose about 4 cm on each loaded crossing over loose material.</p></details>
-      <figure class="graphic"><a href="figures/receiver-comparison.png"><img src="figures/receiver-comparison.png" alt="Measured soil height on the two receiving floors after excavator grading and after the two skid-steer pushes. Blue cells lie below road grade and orange cells above it." loading="lazy"></a><figcaption>Each cell measures a 25 × 25 cm patch of the pit floor. All four maps use the same height scale. Gray marks ground outside the surveyed floor. Both the opening and the depth changed between runs. <a href="figures/receiver-comparison.png">Enlarge the surveys</a></figcaption></figure>
-    </section>
-    <section id="continuous-film">
-      <h2>One front-loader scoop</h2>
-      <p>Follow the one-trip comparison from its first cut to its last cleanup pass. The clock shows simulation time throughout all 403 simulated seconds. Playback slows for bucket contact and speeds up for travel between machines.</p>
-      <figure class="hero">
-        <video controls playsinline preload="none" poster="figures/two-boulder-cycle.webp" width="1920" height="1080" aria-label="Continuous quarry run following two rock-bearing excavator scoops, a truck delivery, a front-loader delivery, grading and two skid-steer passes.">
-          <source src="media/two-boulder-cycle-hq.mp4" type="video/mp4">
-          <source src="media/two-boulder-cycle.mp4" type="video/mp4">
-          <a href="media/two-boulder-cycle.mp4">Watch the continuous run</a>
-        </video>
-        <figcaption><span>2 min 15 s · Continuous simulation · Variable playback speed</span><span><a href="media/two-boulder-cycle-hq.mp4" download="AMMI-two-boulder-cycle.mp4">Download 1080p (88 MB)</a> · <a href="media/two-boulder-cycle.mp4" download="AMMI-two-boulder-cycle-small.mp4">Smaller file (32 MB)</a></span></figcaption>
-      </figure>
-      <p>The excavator carried about 0.38 m³ of soil in each raised bucket. Its two cuts put 1.30 tonnes of soil and two boulders weighing 83 kg and 50 kg into the truck. The front loader then lifted 1.54 tonnes from the stockpile and placed 1.29 tonnes inside the pit.</p>
-      <p>Two 4 m excavator sweeps reduced the root-mean-square surface error from 22.3 cm to 4.7 cm. The skid steer recovered another 309 kg and 282 kg on separate strips. With that material added, the final error was 16.0 cm and 140 kg of the tracked soil remained outside the pit.</p>
-      <details>
-        <summary>What made the front loader jump?</summary>
-        <p>A matched pickup from the same settled stockpile isolated a road-contact artifact. Giving the level driving strip its own planar collider reduced the largest wheel rise from 14.6 cm to about 1 mm. Four coupled substeps per 60 Hz tick also reduced the chassis jolt as the loader braked under load.</p>
-        <figure class="graphic"><a href="figures/loader-contact.png"><img src="figures/loader-contact.png" alt="Matched pickup traces show a 14.6 cm wheel rise on the earlier road. The planar road trace stays near zero while soil force still peaks above 90 kilonewtons." loading="lazy"></a><figcaption>Separate matched pickup tests. Wheel height was sampled at 10 Hz. The lower graph shows the magnitude of the summed particle forces on the loader wheels and bucket, sampled at 15 Hz. <a href="figures/loader-contact.png">Enlarge measurements</a></figcaption></figure>
-      </details>
-    </section>
+    <nav aria-label="In this report"><a href="#architecture">Planner and skills</a><a href="#behaviors">The worksite in action</a><a href="#survey">Ground survey</a><a href="#machines">Machines</a></nav>
     <section id="architecture">
-      <h2>From site goals to bucket motion</h2>
-      <p>A mission names the places where work happens and the steps that depend on one another. To move soil from a cut to a fill bay, for example, the truck must wait until the excavator has loaded it and cleared the bed. The planner chooses the next ready job. A controller on the selected machine handles the steering, boom or bucket motion.</p>
-      <figure class="graphic"><a href="figures/skill-loop.webp" aria-label="Open the planner and skill diagram at full resolution"><img src="figures/skill-loop.webp" alt="A terrain goal and site survey go to a high-level planner. It selects a machine and skill. A learned policy or feedback controller operates the machine. Measured load, clearance and terrain shape feed back to the planner." loading="lazy"></a><figcaption>The planner decides which job to attempt. A local controller owns actuator commands for the duration of that job. <a href="figures/skill-loop.webp">Enlarge diagram</a></figcaption></figure>
+      <h2>How the fleet decides what to do</h2>
+      <p>A mission defines where soil should come from, where it should go, and which machines share a work area. The planner chooses a ready job, such as sending the truck to the pit. The truck controller steers and brakes the loaded vehicle, then reports its arrival. A separate tipping skill raises the bed and measures how much soil reached the pit. The planner uses those measurements to choose the next job.</p>
+      <figure class="graphic"><a href="figures/skill-loop.webp"><img src="figures/skill-loop.webp" alt="A terrain goal and survey guide the planner. It selects a machine and skill. The controller moves the machine, then reports the load, clearance or terrain back to the planner." loading="lazy"></a><figcaption>A delivery changes the site twice. The truck becomes empty, and the ground in the receiving pit gains material. Both matter for the next decision.</figcaption></figure>
       <h3>What can the planner ask?</h3>
       <dl class="fleet">
-        <div><dt>Inspect the site</dt><dd>Read where the machines are, what they carry and which jobs have finished. This check advances no simulation time.</dd></div>
-        <div><dt>List available skills</dt><dd>See what each machine can do now. A waiting job gives its reason, such as the truck still occupying the fill bay.</dd></div>
-        <div><dt>Run one skill</dt><dd>Select a machine and a job from the mission, such as hauling to the fill bay. The machine returns an outcome and measurements before the planner chooses again.</dd></div>
-        <div><dt>Stop</dt><dd>End the mission and record why, whether the work is complete or the planner decides to halt.</dd></div>
+        <div><dt>Inspect the site</dt><dd>Check machine positions, payloads and progress. A ground survey shows where the pit surface lies above or below the target.</dd></div>
+        <div><dt>Find a ready skill</dt><dd>See which jobs the fleet can start. The skid steer can wait for the truck to leave their shared approach.</dd></div>
+        <div><dt>Run a skill</dt><dd>Give one machine a job and a time budget. Its controller reports what happened, including an obstruction or a load that missed the receiver.</dd></div>
+        <div><dt>Stop</dt><dd>End dispatch between jobs and record the reason. A machine can also interrupt its own movement when it encounters an obstacle.</dd></div>
       </dl>
       <div class="roles">
-        <p><strong>Learning a skill.</strong> An excavator policy learns with proximal policy optimization (PPO). It observes joint motion and local terrain and practices cutting, curling and lifting a retained load. A fast analytical soil model supports repeated trials. Particle simulation provides a second test of contact, retention and transfer.</p>
-        <p><strong>A measured handoff.</strong> In a separate three-machine simulation, GPT‑6.2 Sol called eight skills. Once the excavator reported 192 kg in the truck and its bucket clear of the bed, the model dispatched the truck. The truck delivered 190 kg. After it cleared the bay, the skid steer moved in to spread the soil.</p>
+        <p><strong>Machine control.</strong> The quarry film uses a local dispatcher and feedback controllers. In a separate three-machine test, the GPT‑6.2 Sol planner dispatched a truck after the excavator reported 192 kg in its bed. The truck delivered 190 kg and cleared the bay before the skid steer entered.</p>
+        <p><strong>Robot learning.</strong> A separate excavator policy learns to cut, curl and lift using proximal policy optimization (PPO). It observes joint motion and nearby terrain. Fast analytical soil supports repeated training, and particle simulation tests whether the bucket retains material under contact.</p>
       </div>
-      <p class="note" style="margin-top:1.35rem">The two continuous quarry films use a local dispatcher and feedback controllers. The language-model experiment used learned policies for truck positioning, skid-steer approach and bucket posture. The original one-minute film also includes supervised recoveries.</p>
     </section>
     <section id="behaviors">
-      <h2>Watch the work</h2>
-      <p>The excavator digs through layered soil next to a buried pipe. A truck carries the load to a receiving pit, a wheel loader adds material, and two machines shape the fill. Isaac Lab and Newton simulate the articulated machines and the soil together. The material point method (MPM) tracks moving soil and transmits contact forces back to the machines.</p>
+      <h2>The worksite in action</h2>
+      <p>Isaac Lab and Newton simulate the vehicles and layered soil together. The material point method (MPM) follows the soil as it moves and feeds contact forces back to the machines. The excavator and truck supply the first loads. The front loader adds two stockpile loads, the skid steer pushes overflow into the pit in three passes, and the excavator grades the surface. Each clip is taken from the continuous run above.</p>
       <div class="films">
         <figure class="film">
-          <video controls playsinline preload="none" poster="media/dig.webp" aria-label="Second excavation cut, lift and truck delivery"><source src="media/dig.mp4" type="video/mp4"></video>
-          <figcaption><h3>Dig and load</h3><p>The bucket curls through the second cut, lifts and tips soil and rock into the waiting truck.</p><a href="media/dig.mp4">Open digging clip · 8 s</a></figcaption>
+          <video controls playsinline preload="none" poster="media/finish-dig.webp" width="1280" height="720" aria-label="Dig and lift"><source src="media/finish-dig.mp4" type="video/mp4"><a href="media/finish-dig.mp4">Watch dig and lift</a></video>
+          <figcaption><h3>Dig and lift</h3><p>The excavator curls into its second cut after clearing the buried pipe. The two raised buckets contain 820 and 703 kg of soil, each with a boulder.</p><a href="media/finish-dig.mp4" aria-label="Open dig and lift clip">Open clip · 8 s</a></figcaption>
         </figure>
         <figure class="film">
-          <video controls playsinline preload="none" poster="media/loader.webp?cut=2" aria-label="Continuous real-time view of the front loader working into the pile, curling the second load and reversing"><source src="media/loader.mp4?cut=2" type="video/mp4"></video>
-          <figcaption><h3>Fill from the stockpile</h3><p>On the second pickup, the loader eases back under resistance, curls a 1.54-tonne load and reverses out. A fixed camera shows the whole maneuver in real time.</p><a href="media/loader.mp4?cut=2">Open second pickup · 27 s</a></figcaption>
+          <video controls playsinline preload="none" poster="media/finish-loader.webp" width="1280" height="720" aria-label="Gather a stockpile load"><source src="media/finish-loader.mp4" type="video/mp4"><a href="media/finish-loader.mp4">Watch gather a stockpile load</a></video>
+          <figcaption><h3>Gather a stockpile load</h3><p>The wheel loader advances into the second stockpile lane, curls and lifts. After a brief carry hold, its raised bucket holds 1.47 tonnes.</p><a href="media/finish-loader.mp4" aria-label="Open gather a stockpile load clip">Open clip · 12 s</a></figcaption>
         </figure>
         <figure class="film">
-          <video controls playsinline preload="none" poster="media/grade.webp" aria-label="Tracked excavator sweeps the interior in two lateral passes"><source src="media/grade.mp4" type="video/mp4"></video>
-          <figcaption><h3>Grade the interior</h3><p>The excavator uses the side of its bucket to move soil from high spots toward low spots. The longer of these two sweeps spans 4.22 m.</p><a href="media/grade.mp4">Open grading clip · 10 s</a></figcaption>
+          <video controls playsinline preload="none" poster="media/finish-cleanup.webp" width="1280" height="720" aria-label="Recover apron spill"><source src="media/finish-cleanup.mp4" type="video/mp4"><a href="media/finish-cleanup.mp4">Watch recover apron spill</a></video>
+          <figcaption><h3>Recover apron spill</h3><p>The skid steer scrapes 2.05 m on its third strip. This pass returns 12 kg of tracked material to the apron on balance. Across all three, the measured amount outside the pit falls from 870 to 385 kg.</p><a href="media/finish-cleanup.mp4" aria-label="Open recover apron spill clip">Open clip · 8 s</a></figcaption>
         </figure>
         <figure class="film">
-          <video controls playsinline preload="none" poster="media/cleanup.webp" aria-label="Skid steer scrapes spilled material off the approach and into the receiving pit"><source src="media/cleanup.mp4" type="video/mp4"></video>
-          <figcaption><h3>Recover the spill</h3><p>The skid steer lowers its cutting edge, pushes a strip of spilled soil into the opening and backs away for another pass.</p><a href="media/cleanup.mp4">Open cleanup clip · 6 s</a></figcaption>
+          <video controls playsinline preload="none" poster="media/finish-grade.webp" width="1280" height="720" aria-label="Grade the fill"><source src="media/finish-grade.mp4" type="video/mp4"><a href="media/finish-grade.mp4">Watch grade the fill</a></video>
+          <figcaption><h3>Grade the fill</h3><p>The excavator rakes soil in from its side of the pit, then sweeps the interior using the side of its bucket. It completes ten strokes, with a maximum crawler drift of 3.6 cm in any one stroke.</p><a href="media/finish-grade.mp4" aria-label="Open grade the fill clip">Open clip · 10 s</a></figcaption>
         </figure>
       </div>
-      <p class="note" style="margin-top:1.5rem">The opening film follows the work in chronological order. Both loader pickups play in real time. The renderer uses the recorded 15 Hz machine and soil states and interpolates the positions and joint motion between samples for 30 fps playback. Other operations are condensed. The sequence includes a staged restart after the truck tips, with matched geometry and reinitialized soil stress and contact history.</p>
+    </section>
+    <section id="survey">
+      <h2>Where the soil settles</h2>
+      <p>The simulation tracks 477,680 material points. After grading and settling, all 114 floor cells contain soil. Each cell measures 25 × 25 cm. The survey compares the top of the soil in each cell with road elevation.</p>
+      <dl class="results">
+        <div><dt>4.37 t</dt><dd>Tracked soil settled in the receiver</dd></div>
+        <div><dt>10.3 cm</dt><dd>Root-mean-square height error</dd></div>
+        <div><dt>89 / 114</dt><dd>Cells within 10 cm of road grade</dd></div>
+      </dl>
+      <figure class="graphic"><a href="figures/quarry-finish-survey.png"><img src="figures/quarry-finish-survey.png" alt="Measured height of the soil surface inside the receiving pit before and after the final excavator grading pass. Blue lies below road level and orange above." loading="lazy"></a><figcaption>The maps use the same height scale. The RMS error was 34.7 cm after the skid steer and 10.3 cm after excavator grading and settlement. The final survey ranges from -39 to +23 cm relative to road level. 463 kg of tracked material remained outside the receiver.</figcaption></figure>
     </section>
     <section id="machines">
       <h2>The machines</h2>
       <dl class="fleet">
-        <div><dt>Tracked excavator</dt><dd>Cuts and curls a load, swings to the truck, and grades with the side of the bucket.</dd></div>
-        <div><dt>Dump truck</dt><dd>Hauls between work areas, positions at the receiver and raises the bed to discharge.</dd></div>
-        <div><dt>Articulated wheel loader</dt><dd>Steers at the chassis joint and carries large stockpile loads into the fill area.</dd></div>
-        <div><dt>Skid steer</dt><dd>Works the narrow approach with short, ground-following pushes and repeated passes.</dd></div>
-        <div><dt>Grab crane · separate port scene</dt><dd>Closes a clamshell grab in a ship’s hold, hoists and swings the load, then opens above a shore hopper.</dd></div>
+        <div><dt>Tracked excavator</dt><dd>Cuts and curls a load, swings to the truck, and sweeps loose soil with the side of its bucket.</dd></div>
+        <div><dt>Dump truck</dt><dd>Hauls between work areas, positions at the pit, raises its bed to discharge, then clears the approach.</dd></div>
+        <div><dt>Articulated wheel loader</dt><dd>Steers at the chassis joint, fills its bucket at the stockpile and transports material to the pit.</dd></div>
+        <div><dt>Skid steer</dt><dd>Scrapes narrow strips of spilled soil from the apron and pushes them over the lip of the pit.</dd></div>
+        <div><dt>Grab crane · separate port scene</dt><dd>Closes a clamshell grab in a ship’s hold, hoists and swings the load, then opens it above a shore hopper.</dd></div>
       </dl>
-    </section>
-    <section id="survey">
-      <h2>Where did the soil end up in the original run?</h2>
-      <p>Delivery and finish quality are different measurements. Tracking the same 49,206 delivered grains let us weigh what settled inside the pit. A separate survey compared the surface against the target elevation in 120 quarter-metre grid cells.</p>
-      <dl class="results">
-        <div><dt>99.77%</dt><dd>of the tracked 5.293 t settled inside</dd></div>
-        <div><dt>12.38 kg</dt><dd>of the tracked delivery remained outside</dd></div>
-        <div><dt>22.6 cm</dt><dd>final root-mean-square height error</dd></div>
-      </dl>
-      <figure class="graphic"><a href="figures/survey.png"><img src="figures/survey.png" loading="lazy" alt="Before and after maps of spilled soil and surface height. Most spill was recovered. A crown and a low edge remain inside the final fill."></a><figcaption>All 120 cells contained soil at the end. The remaining crown and low edge show why a mass-delivery target alone cannot measure a level finish. <a href="figures/survey.png">Enlarge survey</a></figcaption></figure>
     </section>
     <p class="publication"><strong>No code is being released.</strong> Updates will follow soon.</p>
   </main>
