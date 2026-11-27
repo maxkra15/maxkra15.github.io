@@ -1,0 +1,10 @@
+{
+ "newton": {
+  "url": "https://codeload.github.com/newton-physics/newton/tar.gz/9deb629c34716ca786ac27bae6cbf562e782534b",
+  "sha256": "455b14d4dd3af4e966036b54ad945975ed9e6a927f9074ed0def046db4f51efe"
+ },
+ "newton-calibration": {
+  "url": "https://codeload.github.com/newton-physics/newton-calibration/tar.gz/c52a6ce34a679ab51720b338d2ce92fe9f1fbbef",
+  "sha256": "83f1823e5818b22a8613e270e50eb44eb7f5e84100e449a894ada1dab5cc59c4"
+ }
+}

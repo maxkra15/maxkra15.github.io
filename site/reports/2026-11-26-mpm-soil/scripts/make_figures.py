@@ -68,8 +68,12 @@ plt.rcParams.update(
         "svg.fonttype": "path",
         "pdf.fonttype": 42,
         "savefig.dpi": 220,
+        "svg.hashsalt": "mpm-soil-report",
     }
 )
+
+# No creation dates, so that rerunning the script reproduces the published files byte for byte.
+METADATA = {"svg": {"Date": None}, "pdf": {"CreationDate": None}, "png": {}}
 
 CAPTIONS: dict[str, str] = {}
 
@@ -112,7 +116,7 @@ def marker_legend(figure, entries, ncol):
 def save(figure, name: str, caption: str):
     FIGURES.mkdir(parents=True, exist_ok=True)
     for suffix in ("svg", "pdf", "png"):
-        figure.savefig(FIGURES / f"{name}.{suffix}", bbox_inches="tight", pad_inches=0.03)
+        figure.savefig(FIGURES / f"{name}.{suffix}", bbox_inches="tight", pad_inches=0.03, metadata=METADATA[suffix])
     plt.close(figure)
     CAPTIONS[name] = caption
     print(f"wrote figures/{name}.{{svg,pdf,png}}")
@@ -437,6 +441,96 @@ def figure_rft_search():
     )
 
 
+MEDIA_LABELS = {
+    "poppy_seeds_LP": "Poppy seeds, LP",
+    "poppy_seeds_CP": "Poppy seeds, CP",
+    "glass_0p3mm_LP": "0.3 mm glass, LP",
+    "glass_0p3mm_CP": "0.3 mm glass, CP",
+    "glass_3mm_CP": "3 mm glass, CP",
+}
+
+
+def _outcome(entry) -> str:
+    """Short calibration outcome for a panel title."""
+    names = {"accepted": "accepted", "rejected_validation": "rejected in validation", "rejected_numerics": "time-step check failed"}
+    parts = []
+    for key, label in (("dt_1ms", "1 ms"), ("dt_0.5ms", "0.5 ms")):
+        record = entry["calibrations"].get(key)
+        if record:
+            parts.append(f"{label}: {names.get(record['acceptance'], record['acceptance'])}")
+    return "\n".join(parts) if parts else "not calibrated"
+
+
+def figure_rft_media(li_path: Path):
+    path = DATA / "rft_media.json"
+    if not path.is_file():
+        print("skip rft-media (no data)")
+        return
+    record = json.loads(path.read_text())
+    li = json.loads(Path(li_path).read_text())
+    train = np.asarray(record["training_points_rad"])
+    media = list(record["media"])
+    figure, axes = plt.subplots(2, len(media), figsize=(7.8, 3.75), layout="constrained")
+    for col, medium in enumerate(media):
+        entry = record["media"][medium]
+        data = li["media"][medium]
+        betas, gammas = np.asarray(data["beta_rad"]), np.asarray(data["gamma_rad"])
+        points = np.asarray(entry["points_rad"])
+        measured = np.array(
+            [
+                [
+                    data["alpha_z_N_per_cm3"][int(np.argmin(np.abs(betas - b)))][int(np.argmin(np.abs(gammas - g)))],
+                    data["alpha_x_N_per_cm3"][int(np.argmin(np.abs(betas - b)))][int(np.argmin(np.abs(gammas - g)))],
+                ]
+                for b, g in points
+            ]
+        )
+        held = ~np.array([np.isclose(train, p, atol=1e-3).all(axis=1).any() for p in points])
+        literature = np.asarray(entry["literature"])
+        calibrated = np.asarray(entry["calibrated"]) if "calibrated" in entry else None
+        for row, name in enumerate(("z", "x")):
+            ax = axes[row, col]
+            grid(ax)
+            obs = measured[:, row]
+            series = [literature[:, row]] + ([calibrated[:, row]] if calibrated is not None else [])
+            low = min(obs.min(), *(v.min() for v in series))
+            high = max(obs.max(), *(v.max() for v in series))
+            pad = 0.06 * (high - low)
+            ax.plot([low - pad, high + pad], [low - pad, high + pad], color=MUTED, lw=0.6, zorder=1)
+            ax.scatter(obs[held], literature[held, row], s=7, color=BLUE, edgecolor="none", zorder=3)
+            text = f"lit {np.sqrt(np.mean((literature[held, row] - obs[held]) ** 2)):.3f}"
+            if calibrated is not None:
+                ax.scatter(obs[held], calibrated[held, row], s=7, color=AMBER, edgecolor="none", zorder=4)
+                text += f"\ncal {np.sqrt(np.mean((calibrated[held, row] - obs[held]) ** 2)):.3f}"
+            ax.text(0.04, 0.96, text, transform=ax.transAxes, fontsize=5.6, va="top", ha="left", color=INK)
+            ax.set_xlim(low - pad, high + pad)
+            ax.set_ylim(low - pad, high + pad)
+            ax.tick_params(labelsize=5.5, length=2)
+            if row == 0:
+                ax.set_title(
+                    f"{MEDIA_LABELS[medium]}\n{entry['angle_deg']:g}°, {entry['bulk_density']:g} kg/m³\n{_outcome(entry)}",
+                    fontsize=6.2,
+                )
+            if col == 0:
+                ax.set_ylabel(f"MPM α$_{name}$ [N/cm³]", fontsize=6.5)
+            ax.set_xlabel(f"measured α$_{name}$ [N/cm³]", fontsize=6.5)
+    marker_legend(
+        figure,
+        [
+            ("literature parameters", "o", 4.5, BLUE, BLUE),
+            ("calibrated", "o", 4.5, AMBER, AMBER),
+        ],
+        ncol=2,
+    )
+    save(
+        figure,
+        "rft-media",
+        "Simulated against measured stress per unit depth for the five media of Li et al. (2013), 73 held-out points "
+        "each: with literature parameters (blue; friction from the table S1 angle, plate friction 0.40) and after "
+        "calibration where one was accepted (amber). Numbers are held-out RMSE in N/cm³. Axes differ between media.",
+    )
+
+
 # ----------------------------------------------------------------------------- clay
 
 
@@ -704,6 +798,7 @@ def main():
     figure_rft_maps(args.li)
     figure_rft_parity(args.li)
     figure_rft_search()
+    figure_rft_media(args.li)
     figure_clay()
     figure_force_series()
     figure_rake_forces()

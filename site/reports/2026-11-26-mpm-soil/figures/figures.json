@@ -34,8 +34,16 @@
    "png": "rft-search.png"
   },
   {
-   "id": "clay-curves",
+   "id": "rft-media",
    "number": 8,
+   "caption": "Simulated against measured stress per unit depth for the five media of Li et al. (2013), 73 held-out motions each: with literature parameters (blue) and after calibration (amber). Panel titles give the tabulated angle, the bulk density and the calibration outcome; numbers are held-out RMSE in N/cm\u00b3. Axes differ between media.",
+   "svg": "rft-media.svg",
+   "pdf": "rft-media.pdf",
+   "png": "rft-media.png"
+  },
+  {
+   "id": "clay-curves",
+   "number": 9,
    "caption": "Load\u2013penetration curves of the four centrifuge tests (black) and the Newton MPM prediction with the laboratory SHANSEP strength at a 0.5 ms step (blue), without any fitted parameter. Shaded: the scored range, from 5 mm of penetration to where 12 mm of clay remain below the plate. (e) The laboratory undrained strength at 100 g; below the dashed line the clay is normally consolidated.",
    "svg": "clay-curves.svg",
    "pdf": "clay-curves.pdf",
@@ -51,7 +59,7 @@
   },
   {
    "id": "rake-forces",
-   "number": 9,
+   "number": 10,
    "caption": "Soil force on the rake for the five strokes in the robot base frame: synthetic log (black), simulation with the baseline guess (blue, training strokes only) and with the calibrated parameters (amber). Shaded: the scored drag. Plunge and lift transients are simulated but not scored.",
    "svg": "rake-forces.svg",
    "pdf": "rake-forces.pdf",
@@ -59,7 +67,7 @@
   },
   {
    "id": "rake-search",
-   "number": 10,
+   "number": 11,
    "caption": "Calibration of the rake demonstration. (a, b) Every simulated candidate coloured by the training objective J (darker is lower), with the baseline guess, the hidden parameters that generated the synthetic logs and the accepted candidate. Low objectives lie along a valley in which cohesion trades against soil friction, while tool friction stays near the upper end of its range. (c) Training objective by CMA-ES generation and the best value so far; the search stopped after four generations without improvement. The dotted line is the held-out objective of the accepted candidate.",
    "svg": "rake-search.svg",
    "pdf": "rake-search.pdf",

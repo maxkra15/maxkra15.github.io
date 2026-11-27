@@ -10,7 +10,9 @@
   },
   "warp": {
    "repository": "https://github.com/NVIDIA/warp",
-   "version": "1.20.0.dev20261117"
+   "version": "1.20.0.dev20261117",
+   "version_osmo": "1.20.0.dev20261120",
+   "note": "1.20.0.dev20261117 on the workstation; it was no longer distributed for the OSMO runs, which used 1.20.0.dev20261120"
   },
   "newton_calibration": {
    "repository": "https://github.com/newton-physics/newton-calibration",
@@ -24,9 +26,18 @@
   "matplotlib": "3.11.2"
  },
  "hardware": {
-  "gpu": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition, 96 GB",
-  "driver": "615.71.09",
-  "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39"
+  "workstation": {
+   "gpu": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition, 96 GB",
+   "driver": "615.71.09",
+   "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39"
+  },
+  "osmo": {
+   "service": "NVIDIA OSMO, one single-GPU task per job",
+   "gpu": "NVIDIA L40S, 48 GB",
+   "driver": "580.95.05",
+   "image": "ghcr.io/astral-sh/uv:python3.12-bookworm",
+   "resources": "8 CPU, 1 GPU, 64 GiB memory per task"
+  }
  },
  "datasets": {
   "li2013": {
@@ -74,7 +85,186 @@
   },
   "per_step_probes": {
    "clay_test1": "data/clay_force_series_test1.json",
-   "plate_intrusion_beta0_gamma90": "data/rft_force_series.json"
+   "plate_intrusion_beta0_gamma90": "data/rft_force_series.json",
+   "clay_test1_dt025": "data/clay_force_series_test1_dt025.json"
+  },
+  "osmo": {
+   "jobs": {
+    "clay-dt025-test1": {
+     "workflow": "mpm-soil-clay-dt025-test1-20261127-1",
+     "kind": "clay_sweep",
+     "dt": 0.00025,
+     "wall_seconds": 1032.3,
+     "payload": "v1"
+    },
+    "clay-dt025-test3": {
+     "workflow": "mpm-soil-clay-dt025-test3-20261127-1",
+     "kind": "clay_sweep",
+     "dt": 0.00025,
+     "wall_seconds": 1025.7,
+     "payload": "v1"
+    },
+    "clay-dt025-test6": {
+     "workflow": "mpm-soil-clay-dt025-test6-20261127-1",
+     "kind": "clay_sweep",
+     "dt": 0.00025,
+     "wall_seconds": 980.3,
+     "payload": "v1"
+    },
+    "clay-dt025-test8": {
+     "workflow": "mpm-soil-clay-dt025-test8-20261127-1",
+     "kind": "clay_sweep",
+     "dt": 0.00025,
+     "wall_seconds": 961.1,
+     "payload": "v1"
+    },
+    "rft-cal-glass03-cp": {
+     "workflow": "mpm-soil-rft-cal-glass03-cp-20261127-1",
+     "kind": "rft_calibrate",
+     "medium": "glass_0p3mm_CP",
+     "outcome": "rejected_validation",
+     "wall_seconds": 7428.9,
+     "payload": "v1",
+     "osmo_status": "FAILED (task exit code 1 for a rejected_validation outcome; outputs complete; task.py now exits 0 for every lifecycle outcome)"
+    },
+    "rft-cal-glass03-lp": {
+     "workflow": "mpm-soil-rft-cal-glass03-lp-20261127-1",
+     "kind": "rft_calibrate",
+     "medium": "glass_0p3mm_LP",
+     "outcome": "accepted",
+     "wall_seconds": 6894.0,
+     "payload": "v1"
+    },
+    "rft-cal-glass3-cp": {
+     "workflow": "mpm-soil-rft-cal-glass3-cp-20261127-1",
+     "kind": "rft_calibrate",
+     "medium": "glass_3mm_CP",
+     "outcome": "accepted",
+     "wall_seconds": 6711.3,
+     "payload": "v1"
+    },
+    "rft-cal-poppy-cp": {
+     "workflow": "mpm-soil-rft-cal-poppy-cp-20261127-1",
+     "kind": "rft_calibrate",
+     "medium": "poppy_seeds_CP",
+     "outcome": "rejected_numerics",
+     "wall_seconds": 1065.4,
+     "payload": "v1"
+    },
+    "rft-cal-poppy-cp-dt05": {
+     "workflow": "mpm-soil-rft-cal-poppy-cp-dt05-20261127-1",
+     "kind": "rft_calibrate",
+     "medium": "poppy_seeds_CP",
+     "dt": 0.0005,
+     "outcome": "rejected_validation",
+     "wall_seconds": 12025.4,
+     "payload": "v2",
+     "osmo_status": "FAILED (task exit code 1 for a rejected_validation outcome; outputs complete; task.py now exits 0 for every lifecycle outcome)"
+    },
+    "rft-sweep-glass03-cp": {
+     "workflow": "mpm-soil-rft-sweep-glass03-cp-20261127-1",
+     "kind": "rft_sweep",
+     "medium": "glass_0p3mm_CP",
+     "parameters": "literature",
+     "wall_seconds": 2453.9,
+     "payload": "v1"
+    },
+    "rft-sweep-glass03-lp": {
+     "workflow": "mpm-soil-rft-sweep-glass03-lp-20261127-1",
+     "kind": "rft_sweep",
+     "medium": "glass_0p3mm_LP",
+     "parameters": "literature",
+     "wall_seconds": 2338.6,
+     "payload": "v1"
+    },
+    "rft-sweep-glass3-cp": {
+     "workflow": "mpm-soil-rft-sweep-glass3-cp-20261127-1",
+     "kind": "rft_sweep",
+     "medium": "glass_3mm_CP",
+     "parameters": "literature",
+     "wall_seconds": 2192.5,
+     "payload": "v1"
+    },
+    "rft-sweep-poppy-cp": {
+     "workflow": "mpm-soil-rft-sweep-poppy-cp-20261127-1",
+     "kind": "rft_sweep",
+     "medium": "poppy_seeds_CP",
+     "parameters": "literature",
+     "wall_seconds": 2638.9,
+     "payload": "v1"
+    },
+    "rft-sweep-poppy-cp-dt05": {
+     "workflow": "mpm-soil-rft-sweep-poppy-cp-dt05-20261127-1",
+     "kind": "rft_sweep",
+     "medium": "poppy_seeds_CP",
+     "dt": 0.0005,
+     "parameters": "literature",
+     "wall_seconds": 4278.5,
+     "payload": "v2"
+    },
+    "rft-sweep-poppy-lp": {
+     "workflow": "mpm-soil-rft-sweep-poppy-lp-20261127-1",
+     "kind": "rft_sweep",
+     "medium": "poppy_seeds_LP",
+     "parameters": "literature",
+     "wall_seconds": 2529.2,
+     "payload": "v1"
+    },
+    "rft-sweep-poppy-lp-dt05-cal": {
+     "workflow": "mpm-soil-rft-sweep-poppy-lp-dt05-cal-20261127-1",
+     "kind": "rft_sweep",
+     "medium": "poppy_seeds_LP",
+     "dt": 0.0005,
+     "parameters": {
+      "friction": 0.5639441225542097,
+      "plate_friction": 0.23046052848993623
+     },
+     "wall_seconds": 3594.9,
+     "payload": "v1"
+    },
+    "rft-sweep-poppy-lp-dt05-lit": {
+     "workflow": "mpm-soil-rft-sweep-poppy-lp-dt05-lit-20261127-1",
+     "kind": "rft_sweep",
+     "medium": "poppy_seeds_LP",
+     "dt": 0.0005,
+     "parameters": "literature",
+     "wall_seconds": 3760.7,
+     "payload": "v1"
+    }
+   },
+   "payload_sha256_v1": {
+    "examples/mpm_soil/__init__.py": "dfb2603505defb339a6e92d5489a7804e1f38f580fc6eece1d74920cffad0a53",
+    "examples/mpm_soil/verify.py": "3624e31af0b83470912c952bfc3913819f97bd53f8dfd8d0b63a381a8beb3ce7",
+    "examples/mpm_soil/common/__init__.py": "dfb2603505defb339a6e92d5489a7804e1f38f580fc6eece1d74920cffad0a53",
+    "examples/mpm_soil/common/mpm.py": "5f6ded9102ad4029dc9bcddc5941bdae836ca2c6f9d89843c1e4bc5c8c6de7d5",
+    "examples/mpm_soil/common/presentation.py": "387487462d60090b89e8a14a4efc58659a90ba3be67e3de046f725b4c55862b6",
+    "examples/mpm_soil/rft_plate/__init__.py": "dfb2603505defb339a6e92d5489a7804e1f38f580fc6eece1d74920cffad0a53",
+    "examples/mpm_soil/rft_plate/protocol.py": "e13a8d6e0fa20137dcbda9de145df941ab365b86f5b241673755d53dd3acec60",
+    "examples/mpm_soil/rft_plate/backend.py": "26d4a4585d2b122f575f821b776c42b991370cad89588c744e9000b73e3068d4",
+    "examples/mpm_soil/rft_plate/run.py": "b4aab58e958c8f3d0a71248807d705b2ed779b0ab62e498f35defb1799e58771",
+    "examples/mpm_soil/clay_plate/__init__.py": "dfb2603505defb339a6e92d5489a7804e1f38f580fc6eece1d74920cffad0a53",
+    "examples/mpm_soil/clay_plate/protocol.py": "231f5a775d19336d49f04ad060c2ed58a6bbbdb1567ba7dc6ba88d4244ebbded",
+    "examples/mpm_soil/clay_plate/backend.py": "a5faf274fcc1f4f934a51888945728b43052001f5151a4ee918014b0b45184e9",
+    "examples/mpm_soil/clay_plate/run.py": "1f46a5b453d1c4a0cffedec2c5d59cdb8b301bc61188acba4b4c06e89cd32b51",
+    "examples/mpm_soil/data/__init__.py": "dfb2603505defb339a6e92d5489a7804e1f38f580fc6eece1d74920cffad0a53",
+    "examples/mpm_soil/data/li2013_rft.json": "1f0ea8111e52a86bb90b48a112cc29c7e45a5e1a720aaddfb526a6aff3c648ee",
+    "examples/mpm_soil/data/zwanenburg2024_clay.json": "f4c3f013cef4c087b04e1713e3b6e80d26499738ec375153183b40a939240d14"
+   },
+   "payload_sha256_v2_changes": {
+    "examples/mpm_soil/rft_plate/run.py": "efc512b7eff9c592504d8327f5d26d1662313d250e14cb4d7b020e4dd3990bfc"
+   },
+   "payload_v2_change": "refinement step of rft_plate/run.py is half the base step instead of a fixed 0.5 ms; used by the two poppy_seeds_CP jobs at 0.5 ms",
+   "sources": {
+    "newton": {
+     "url": "https://codeload.github.com/newton-physics/newton/tar.gz/9deb629c34716ca786ac27bae6cbf562e782534b",
+     "sha256": "455b14d4dd3af4e966036b54ad945975ed9e6a927f9074ed0def046db4f51efe"
+    },
+    "newton-calibration": {
+     "url": "https://codeload.github.com/newton-physics/newton-calibration/tar.gz/c52a6ce34a679ab51720b338d2ce92fe9f1fbbef",
+     "sha256": "83f1823e5818b22a8613e270e50eb44eb7f5e84100e449a894ada1dab5cc59c4"
+    }
+   },
+   "cloud_control": "rft-sweep-poppy-lp reproduces the published 78-point poppy-seed LP sweep to within 0.00033 N/cm^3 (RMS 0.00006)"
   }
  },
  "derived_files": {
@@ -89,19 +279,25 @@
   "clay_force_series_test1.json": "simulated test-1 plate pressure at every step for the first 22 mm, with window means and medians",
   "rft_force_series.json": "simulated vertical plate force at every step for beta 0, gamma 90 deg, with its voxel-phase profile",
   "clay_laboratory_1ms.json": "clay predictions with the laboratory strength at the rejected 1 ms step",
-  "rejected_runs.json": "records of the rejected 2 ms plate-intrusion calibration, the rejected 1 ms clay calibration and the stopped 0.5 ms clay calibration"
+  "rejected_runs.json": "records of the rejected 2 ms plate-intrusion calibration, the rejected 1 ms clay calibration and the stopped 0.5 ms clay calibration",
+  "rft_media.json": "five media of Li et al. (2013): literature and calibrated predictions for 78 points, calibration records at 1 ms and 0.5 ms; measured values omitted",
+  "rft_time_step.json": "loosely packed poppy seeds at a 0.5 ms step, literature and calibrated parameters, 78 points",
+  "clay_laboratory_dt025.json": "clay predictions with the laboratory strength at a 0.25 ms step",
+  "clay_force_series_test1_dt025.json": "simulated test-1 plate pressure at every step at a 0.25 ms step, with window means and medians"
  },
  "scripts": {
   "scripts/export_data.py": "derives data/ from the newton-calibration archive and run directories",
   "scripts/make_figures.py": "draws figures/ from data/ and the processed Li et al. table",
-  "scripts/probe_force_time_series.py": "runs the two per-step force probes and writes data/clay_dips_test1.json and data/rft_dips_probe.json"
+  "scripts/probe_force_time_series.py": "runs the per-step force probes and writes data/clay_force_series_test1.json (and _dt025 with --clay-dt 0.00025) and data/rft_force_series.json",
+  "scripts/export_media.py": "collects the five-media sweeps and calibrations into data/rft_media.json",
+  "scripts/osmo/": "OSMO job generator, bootstrap, task runner and pinned sources of the revision-2 runs"
  },
  "acceptance_limits": {
   "plate_intrusion": {
    "J_val_max": 1.0,
    "e_max_scales": 3.0,
-   "scale": "0.03 N/cm^3",
-   "qualification_tolerance": "0.03 N/cm^3 per value"
+   "scale": "8.5 % of the largest measured lift of each medium (0.03 N/cm^3 for poppy seeds LP)",
+   "qualification_tolerance": "one scale per value"
   },
   "clay": {
    "J_val_max": 1.0,
@@ -119,6 +315,19 @@
  "notes": [
   "Run times were measured while other runs shared the GPU.",
   "The plate-intrusion training set and bounds were chosen after the literature sweep and the rejected 2 ms calibration.",
-  "Clay tests 1 and 3 used the first clay batch, tests 6 and 8 the second; laboratory SHANSEP parameters come from the first batch."
+  "Clay tests 1 and 3 used the first clay batch, tests 6 and 8 the second; laboratory SHANSEP parameters come from the first batch.",
+  "The other four media used the training points of poppy seeds LP and bounds and scales from rules fixed before their runs: friction sin(phi - 9.3 deg) to sin(phi + 4.5 deg), scale 8.5 % of the largest measured lift.",
+  "Li et al. measured the plate friction 0.40 for aluminium on poppy seeds only; the glass literature runs assume the same value."
+ ],
+ "revised": "2026-11-27",
+ "revisions": [
+  {
+   "date": "2026-11-26",
+   "summary": "first version: loosely packed poppy seeds, centrifuge clay at 0.5 ms, rake workflow"
+  },
+  {
+   "date": "2026-11-27",
+   "summary": "four further media of Li et al. (2013), held-out plate-intrusion results at 0.5 ms, clay results at 0.25 ms, cloud rerun of the published poppy-seed sweep; earlier numbers unchanged"
+  }
  ]
 }

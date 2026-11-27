@@ -38,11 +38,12 @@ def _dips(values: np.ndarray, position: np.ndarray, width: int, fraction: float,
     return np.split(index, np.flatnonzero(np.diff(index) > 1) + 1)
 
 
-def clay_probe() -> dict:
+def clay_probe(dt: float = 0.0005) -> dict:
     from examples.mpm_soil.clay_plate.backend import ClayAsset  # noqa: PLC0415
     from examples.mpm_soil.clay_plate.protocol import load_dataset  # noqa: PLC0415
     from examples.mpm_soil.clay_plate.run import NUMERIC_SETTINGS, _template, laboratory_parameters  # noqa: PLC0415
 
+    NUMERIC_SETTINGS["dt"] = float(dt)
     dataset = load_dataset()
     values = laboratory_parameters(dataset)
     fixed = {"shansep_exponent": 0.8}
@@ -53,7 +54,8 @@ def clay_probe() -> dict:
     )
     environment.run(depths, seed=0, deadline=None)
     penetration, pressure = (np.asarray(v) for v in environment.histories[0])
-    groups = _dips(pressure, penetration, width=21, fraction=0.5, start=1.0)
+    width = 2 * int(round(0.5 / (NUMERIC_SETTINGS["speed"] * 1000.0 * dt))) + 1  # about 1 mm of travel
+    groups = _dips(pressure, penetration, width=width, fraction=0.5, start=1.0)
     window = [np.abs(penetration - d) <= 0.5 for d in depths]
     mean = np.array([pressure[w].mean() for w in window])
     median = np.array([np.median(pressure[w]) for w in window])
@@ -65,7 +67,7 @@ def clay_probe() -> dict:
     layers = np.sort(layers[(layers > 0) & (layers < penetration.max() + 0.5)])
     return {
         "schema": "mpm-soil-report/clay-dips/1",
-        "description": "Centrifuge test 1 with the laboratory SHANSEP strength: plate pressure at every 0.5 ms step",
+        "description": f"Centrifuge test 1 with the laboratory SHANSEP strength: plate pressure at every {dt * 1000:g} ms step",
         "numeric_settings": {
             "voxel_size_m": NUMERIC_SETTINGS["voxel_size"],
             "particles_per_cell_axis": 2,
@@ -159,8 +161,16 @@ def rft_probe() -> dict:
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--out", type=Path, required=True)
+    parser.add_argument("--clay-dt", type=float, nargs="*", default=[0.0005], help="clay steps [s]; 0.5 ms is the default")
+    parser.add_argument("--no-rft", action="store_true", help="skip the granular probe")
     args = parser.parse_args()
-    for name, record in (("clay_force_series_test1.json", clay_probe()), ("rft_force_series.json", rft_probe())):
+    records = []
+    for dt in args.clay_dt:
+        suffix = "" if abs(dt - 0.0005) < 1e-12 else f"_dt{round(dt * 1e5):03d}"
+        records.append((f"clay_force_series_test1{suffix}.json", clay_probe(dt)))
+    if not args.no_rft:
+        records.append(("rft_force_series.json", rft_probe()))
+    for name, record in records:
         path = args.out / name
         path.write_text(json.dumps(record, indent=1) + "\n")
         print(f"wrote {path}")
