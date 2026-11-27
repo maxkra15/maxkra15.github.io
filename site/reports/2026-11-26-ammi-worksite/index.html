@@ -81,7 +81,7 @@
         <source src="media/quarry-finish-browser.mp4" type="video/mp4">
         <a href="media/quarry-finish-browser.mp4">Watch the quarry film</a>
       </video>
-      <figcaption><span>3 min 18 s · 12 min 48 s in simulation · Variable playback speed</span><span><a href="media/quarry-finish.mp4" download="AMMI-quarry.mp4">Download 1080p</a> · <a href="media/quarry-finish-browser.mp4" download="AMMI-quarry-720p.mp4">Smaller file</a></span></figcaption>
+      <figcaption><span>3 min 19 s · 12 min 23 s in simulation · Variable playback speed</span><span><a href="media/quarry-finish.mp4" download="AMMI-quarry.mp4">Download 1080p</a> · <a href="media/quarry-finish-browser.mp4" download="AMMI-quarry-720p.mp4">Smaller file</a></span></figcaption>
     </figure>
     <nav aria-label="In this report"><a href="#architecture">Planner and skills</a><a href="#behaviors">The worksite in action</a><a href="#survey">Ground survey</a><a href="#machines">Machines</a></nav>
     <section id="architecture">
@@ -102,41 +102,45 @@
     </section>
     <section id="behaviors">
       <h2>The worksite in action</h2>
-      <p>Isaac Lab and Newton simulate the vehicles and layered soil together. The material point method (MPM) follows the soil as it moves and feeds contact forces back to the machines. The excavator and truck supply the first loads. The front loader adds two stockpile loads, the skid steer pushes overflow into the pit in three passes, and the excavator grades the surface. Each clip is taken from the continuous run above.</p>
+      <p>Isaac Lab and Newton simulate the vehicles and layered soil together. The material point method (MPM) follows the soil as it moves and feeds contact forces back to the machines. The excavator and truck supply the first loads. The front loader adds two stockpile loads, the skid steer pushes overflow into the pit in three passes, and the excavator grades the surface. A moving visual section exposes the buried layers during the cut. The simulator keeps the entire bed present throughout. The pipe contact interrupts the dig. The bucket backs away before the next cut. Each clip comes from the continuous run above.</p>
       <div class="films">
         <figure class="film">
           <video controls playsinline preload="none" poster="media/finish-dig.webp" width="1280" height="720" aria-label="Dig and lift"><source src="media/finish-dig.mp4" type="video/mp4"><a href="media/finish-dig.mp4">Watch dig and lift</a></video>
-          <figcaption><h3>Dig and lift</h3><p>The excavator curls into its second cut after clearing the buried pipe. The two raised buckets contain 820 and 703 kg of soil, each with a boulder.</p><a href="media/finish-dig.mp4" aria-label="Open dig and lift clip">Open clip · 8 s</a></figcaption>
+          <figcaption><h3>Dig and lift</h3><p>The excavator curls into the second cut after clearing the buried pipe. Its raised buckets hold 1,807 and 1,488 kg of soil. Across the two scoops, 2 raised boulders reach the articulated truck bed. A 3D survey of the bucket interior estimates that grains and boulders occupy 77% and 65% of the cavity at the two lifts. Material heaped above its rim is outside this measurement.</p><a href="media/finish-dig.mp4" aria-label="Open dig and lift clip">Open clip · 14 s</a></figcaption>
+        </figure>
+        <figure class="film">
+          <video controls playsinline preload="none" poster="media/finish-truck.webp" width="1280" height="720" aria-label="Tip and clear the pit"><source src="media/finish-truck.mp4" type="video/mp4"><a href="media/finish-truck.mp4">Watch tip and clear the pit</a></video>
+          <figcaption><h3>Tip and clear the pit</h3><p>The truck tips both excavator loads into the receiver. It lowers the bed and pulls 2.05 m onto the gravel to make room for the loader.</p><a href="media/finish-truck.mp4" aria-label="Open tip and clear the pit clip">Open clip · 10 s</a></figcaption>
         </figure>
         <figure class="film">
           <video controls playsinline preload="none" poster="media/finish-loader.webp" width="1280" height="720" aria-label="Gather a stockpile load"><source src="media/finish-loader.mp4" type="video/mp4"><a href="media/finish-loader.mp4">Watch gather a stockpile load</a></video>
-          <figcaption><h3>Gather a stockpile load</h3><p>The wheel loader advances into the second stockpile lane, curls and lifts. After a brief carry hold, its raised bucket holds 1.47 tonnes.</p><a href="media/finish-loader.mp4" aria-label="Open gather a stockpile load clip">Open clip · 12 s</a></figcaption>
+          <figcaption><h3>Gather a stockpile load</h3><p>The loader advances into the stockpile, curls, and reverses with its bucket raised. It lifts 1.66 and 1.48 tonnes on its two trips to the pit. At delivery, 1,538 kg of the first bucket&#x27;s tracked soil and 1,171 kg of the second bucket&#x27;s tracked soil reach the receiver.</p><a href="media/finish-loader.mp4" aria-label="Open gather a stockpile load clip">Open clip · 11 s</a></figcaption>
         </figure>
         <figure class="film">
           <video controls playsinline preload="none" poster="media/finish-cleanup.webp" width="1280" height="720" aria-label="Recover apron spill"><source src="media/finish-cleanup.mp4" type="video/mp4"><a href="media/finish-cleanup.mp4">Watch recover apron spill</a></video>
-          <figcaption><h3>Recover apron spill</h3><p>The skid steer scrapes 2.05 m on its third strip. This pass returns 12 kg of tracked material to the apron on balance. Across all three, the measured amount outside the pit falls from 870 to 385 kg.</p><a href="media/finish-cleanup.mp4" aria-label="Open recover apron spill clip">Open clip · 8 s</a></figcaption>
+          <figcaption><h3>Recover apron spill</h3><p>The skid steer pushes three strips back toward the pit. The measured spill outside the pit drops by 406, 93 and 43 kg on the successive passes. It scrapes 2.52 m near road level on the final pass.</p><a href="media/finish-cleanup.mp4" aria-label="Open recover apron spill clip">Open clip · 8 s</a></figcaption>
         </figure>
         <figure class="film">
           <video controls playsinline preload="none" poster="media/finish-grade.webp" width="1280" height="720" aria-label="Grade the fill"><source src="media/finish-grade.mp4" type="video/mp4"><a href="media/finish-grade.mp4">Watch grade the fill</a></video>
-          <figcaption><h3>Grade the fill</h3><p>The excavator rakes soil in from its side of the pit, then sweeps the interior using the side of its bucket. It completes ten strokes, with a maximum crawler drift of 3.6 cm in any one stroke.</p><a href="media/finish-grade.mp4" aria-label="Open grade the fill clip">Open clip · 10 s</a></figcaption>
+          <figcaption><h3>Grade the fill</h3><p>The excavator makes 11 grading strokes. Its crawler moves at most 10.3 cm during any one stroke as the side of the bucket pushes soil across the pit.</p><a href="media/finish-grade.mp4" aria-label="Open grade the fill clip">Open clip · 10 s</a></figcaption>
         </figure>
       </div>
     </section>
     <section id="survey">
       <h2>Where the soil settles</h2>
-      <p>The simulation tracks 477,680 material points. After grading and settling, all 114 floor cells contain soil. Each cell measures 25 × 25 cm. The survey compares the top of the soil in each cell with road elevation.</p>
+      <p>The simulation tracks 475,778 material points. After grading and settling, 102 of the 102 cells on the central pit floor contain soil. Each cell measures 25 × 25 cm. On that central floor the four deliveries close 91% of the original surface deficit. Cleanup and grading bring this to more than 99%. The survey compares the soil surface in each cell with road elevation.</p>
       <dl class="results">
-        <div><dt>4.37 t</dt><dd>Tracked soil settled in the receiver</dd></div>
-        <div><dt>10.3 cm</dt><dd>Root-mean-square height error</dd></div>
-        <div><dt>89 / 114</dt><dd>Cells within 10 cm of road grade</dd></div>
+        <div><dt>6.13 t</dt><dd>Tracked soil settled in the receiver</dd></div>
+        <div><dt>13.9 cm</dt><dd>Root-mean-square height error</dd></div>
+        <div><dt>48 / 102</dt><dd>Cells within 10 cm of road grade</dd></div>
       </dl>
-      <figure class="graphic"><a href="figures/quarry-finish-survey.png"><img src="figures/quarry-finish-survey.png" alt="Measured height of the soil surface inside the receiving pit before and after the final excavator grading pass. Blue lies below road level and orange above." loading="lazy"></a><figcaption>The maps use the same height scale. The RMS error was 34.7 cm after the skid steer and 10.3 cm after excavator grading and settlement. The final survey ranges from -39 to +23 cm relative to road level. 463 kg of tracked material remained outside the receiver.</figcaption></figure>
+      <figure class="graphic"><a href="figures/quarry-finish-survey.png"><img src="figures/quarry-finish-survey.png" alt="Four surveys of the receiving pit from its empty state through loading, skid-steer cleanup and final grading. Blue lies below road level and orange above." loading="lazy"></a><figcaption>The four maps use the same height scale. Low cells still account for less than 0.01 m³ below grade, and raised cells contain 0.75 m³ above it. The RMS error was 30.6 cm after the skid steer and 13.9 cm after excavator grading and settlement. The final survey ranges from -1 to +34 cm relative to road level. 629 kg of tracked material remained outside the receiver. Including the sloped margins gives 152 cells across the entire opening. Of these, 63 finish within 10 cm of road level, with 15.6 cm RMS error and 0.03 m³ of low spots. The closing check missed the 11 cm RMS grading tolerance.</figcaption></figure>
     </section>
     <section id="machines">
       <h2>The machines</h2>
       <dl class="fleet">
         <div><dt>Tracked excavator</dt><dd>Cuts and curls a load, swings to the truck, and sweeps loose soil with the side of its bucket.</dd></div>
-        <div><dt>Dump truck</dt><dd>Hauls between work areas, positions at the pit, raises its bed to discharge, then clears the approach.</dd></div>
+        <div><dt>Dump truck</dt><dd>Hauls the excavated loads to the pit, reverses into its tipping position and lowers its bed after discharge. After discharge it pulls 2.05 m onto the gravel. During the rest of the shift its chassis stays within 15 cm of its final parked position.</dd></div>
         <div><dt>Articulated wheel loader</dt><dd>Steers at the chassis joint, fills its bucket at the stockpile and transports material to the pit.</dd></div>
         <div><dt>Skid steer</dt><dd>Scrapes narrow strips of spilled soil from the apron and pushes them over the lip of the pit.</dd></div>
         <div><dt>Grab crane · separate port scene</dt><dd>Closes a clamshell grab in a ship’s hold, hoists and swings the load, then opens it above a shore hopper.</dd></div>
