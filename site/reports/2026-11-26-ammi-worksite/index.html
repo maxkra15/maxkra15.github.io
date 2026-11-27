@@ -121,12 +121,20 @@
     </section>
     <section id="architecture">
       <h2>From site goals to bucket motion</h2>
-      <p>A mission identifies where to remove material and where it should end up. The planner can inspect the site, list available skills, ask a particular machine to run one, or stop. Each skill accepts a target and reports a measured outcome. If a bucket encounters a buried pipe or leaves a spill, the next decision can use the changed site state.</p>
+      <p>A mission names the places where work happens and the steps that depend on one another. To move soil from a cut to a fill bay, for example, the truck must wait until the excavator has loaded it and cleared the bed. The planner chooses the next ready job. A controller on the selected machine handles the steering, boom or bucket motion.</p>
       <figure class="graphic"><a href="figures/skill-loop.webp" aria-label="Open the planner and skill diagram at full resolution"><img src="figures/skill-loop.webp" alt="A terrain goal and site survey go to a high-level planner. It selects a machine and skill. A learned policy or feedback controller operates the machine. Measured load, clearance and terrain shape feed back to the planner." loading="lazy"></a><figcaption>The planner decides which job to attempt. A local controller owns actuator commands for the duration of that job. <a href="figures/skill-loop.webp">Enlarge diagram</a></figcaption></figure>
+      <h3>What can the planner ask?</h3>
+      <dl class="fleet">
+        <div><dt>Inspect the site</dt><dd>Read where the machines are, what they carry and which jobs have finished. This check advances no simulation time.</dd></div>
+        <div><dt>List available skills</dt><dd>See what each machine can do now. A waiting job gives its reason, such as the truck still occupying the fill bay.</dd></div>
+        <div><dt>Run one skill</dt><dd>Select a machine and a job from the mission, such as hauling to the fill bay. The machine returns an outcome and measurements before the planner chooses again.</dd></div>
+        <div><dt>Stop</dt><dd>End the mission and record why, whether the work is complete or the planner decides to halt.</dd></div>
+      </dl>
       <div class="roles">
         <p><strong>Learning a skill.</strong> An excavator policy learns with proximal policy optimization (PPO). It observes joint motion and local terrain and practices cutting, curling and lifting a retained load. A fast analytical soil model supports repeated trials. Particle simulation provides a second test of contact, retention and transfer.</p>
-        <p><strong>Calling a skill.</strong> In a separate three-machine experiment, a language model called eight predefined skills, including learned truck positioning, skid-steer approach and bucket posture. The two continuous quarry runs use a local dispatcher and feedback controllers. Bucket loads and soil heights determine when a machine can proceed. The original one-minute film also includes supervised recoveries.</p>
+        <p><strong>A measured handoff.</strong> In a separate three-machine simulation, GPT‑6.2 Sol called eight skills. Once the excavator reported 192 kg in the truck and its bucket clear of the bed, the model dispatched the truck. The truck delivered 190 kg. After it cleared the bay, the skid steer moved in to spread the soil.</p>
       </div>
+      <p class="note" style="margin-top:1.35rem">The two continuous quarry films use a local dispatcher and feedback controllers. The language-model experiment used learned policies for truck positioning, skid-steer approach and bucket posture. The original one-minute film also includes supervised recoveries.</p>
     </section>
     <section id="behaviors">
       <h2>Watch the work</h2>
