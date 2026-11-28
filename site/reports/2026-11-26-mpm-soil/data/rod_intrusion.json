@@ -1,0 +1,919 @@
+{
+ "schema": "mpm-soil-report/rod/1",
+ "sand": {
+  "scale_N_per_m": 21.3,
+  "critical_fraction": 0.59,
+  "friction_deg": 31.5,
+  "grain_density": 2500.0,
+  "literature": {
+   "parameters": {
+    "mu_loose": 0.5224985647159488,
+    "mu_c": 0.5224985647159488,
+    "mu_dense": 0.5224985647159488,
+    "packing_loose": 0.55,
+    "critical_fraction": 0.59,
+    "packing_dense": 0.615,
+    "grain_density": 2500.0,
+    "rod_friction": 0.3,
+    "gravity": 9.81
+   },
+   "packings": [
+    0.55,
+    0.555,
+    0.56,
+    0.565,
+    0.57,
+    0.575,
+    0.58,
+    0.585,
+    0.59,
+    0.595,
+    0.6,
+    0.605,
+    0.61,
+    0.615
+   ],
+   "measured": [
+    109.38,
+    100.54,
+    121.46,
+    126.98,
+    144.95,
+    171.37,
+    175.23,
+    229.29,
+    216.58,
+    259.04,
+    290.53,
+    391.04,
+    366.83,
+    695.19
+   ],
+   "measured_std": [
+    11.162588236567446,
+    15.030016325505448,
+    10.330119160387524,
+    7.343621770586969,
+    13.11113115474163,
+    23.811596943762147,
+    22.198824674334016,
+    17.832511829727345,
+    25.46522277687943,
+    20.482646899132305,
+    67.07456850337779,
+    34.95037057775334,
+    51.18260902660991,
+    69.225507974389
+   ],
+   "runs": [
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    3,
+    2
+   ],
+   "predicted": [
+    133.1,
+    132.47,
+    132.68,
+    137.56,
+    136.92,
+    138.31,
+    139.49,
+    139.3,
+    141.5,
+    146.51,
+    145.27,
+    146.54,
+    147.0,
+    144.86
+   ],
+   "ratio": [
+    1.217,
+    1.318,
+    1.092,
+    1.083,
+    0.945,
+    0.807,
+    0.796,
+    0.608,
+    0.653,
+    0.566,
+    0.5,
+    0.375,
+    0.401,
+    0.208
+   ],
+   "rmse_N_per_m": 181.80185053163171
+  },
+  "calibration_runs": {
+   "rod-sand-cal3": {
+    "acceptance": "run_failed",
+    "termination_reason": "execution_error",
+    "max_iterations": 1000,
+    "devices": null,
+    "time_step_check": {
+     "passed": true,
+     "tolerance": 0.4472135954999579,
+     "difference_max": [
+      0.3824593529942728
+     ]
+    },
+    "budget_usage": {
+     "baseline": {
+      "trials": 1,
+      "rollouts": 1
+     },
+     "qualification": {
+      "trials": 6,
+      "rollouts": 6
+     },
+     "analysis": {
+      "trials": 18,
+      "rollouts": 18
+     }
+    },
+    "elapsed_s": 21624.80705367698,
+    "best_candidate": null,
+    "search_trials": 0,
+    "invalid_search_trials": 0
+   },
+   "rod-sand-cal4": {
+    "acceptance": "rejected_training",
+    "termination_reason": "generation_budget_exhausted",
+    "max_iterations": 1000,
+    "devices": [
+     "cuda:0",
+     "cuda:1",
+     "cuda:2",
+     "cuda:3"
+    ],
+    "time_step_check": {
+     "passed": true,
+     "tolerance": 0.4472135954999579,
+     "difference_max": [
+      0.3824592101359183
+     ]
+    },
+    "budget_usage": {
+     "baseline": {
+      "trials": 1,
+      "rollouts": 1
+     },
+     "qualification": {
+      "trials": 6,
+      "rollouts": 6
+     },
+     "analysis": {
+      "trials": 18,
+      "rollouts": 18
+     },
+     "train": {
+      "trials": 30,
+      "rollouts": 30
+     }
+    },
+    "elapsed_s": 14762.029585795477,
+    "best_candidate": {
+     "trial_id": "trial-00004-00005",
+     "parameters": {
+      "mu_loose": 0.34240262519725634,
+      "mu_c": 0.6016412241435358,
+      "mu_dense": 0.7073327344123701
+     },
+     "objective": 3.7697727614065513,
+     "max_error": 3.6676430314120214,
+     "batch_ref": "batches/batch-00010.json"
+    },
+    "search_trials": 30,
+    "invalid_search_trials": 16
+   },
+   "rod-sand-cal5": {
+    "acceptance": "rejected_training",
+    "termination_reason": "generation_budget_exhausted",
+    "max_iterations": 1000,
+    "devices": [
+     "cuda:0",
+     "cuda:1",
+     "cuda:2",
+     "cuda:3"
+    ],
+    "time_step_check": {
+     "passed": true,
+     "tolerance": 0.4472135954999579,
+     "difference_max": [
+      0.3824592636142423
+     ]
+    },
+    "budget_usage": {
+     "baseline": {
+      "trials": 1,
+      "rollouts": 1
+     },
+     "qualification": {
+      "trials": 6,
+      "rollouts": 6
+     },
+     "analysis": {
+      "trials": 18,
+      "rollouts": 18
+     },
+     "train": {
+      "trials": 48,
+      "rollouts": 48
+     }
+    },
+    "elapsed_s": 19624.74101726571,
+    "best_candidate": {
+     "trial_id": "trial-00005-00003",
+     "parameters": {
+      "mu_loose": 0.4590779223168361,
+      "mu_c": 0.5599739425325037,
+      "mu_dense": 0.7025047783150538
+     },
+     "objective": 1.4156817086794038,
+     "max_error": 2.061190245925112,
+     "batch_ref": "batches/batch-00011.json"
+    },
+    "search_trials": 48,
+    "invalid_search_trials": 0
+   }
+  },
+  "calibration": {
+   "run": "rod-sand-cal5",
+   "acceptance": "rejected_training",
+   "termination_reason": "generation_budget_exhausted",
+   "parameters": {
+    "mu_loose": 0.4590779223168361,
+    "mu_c": 0.5599739425325037,
+    "mu_dense": 0.7025047783150538
+   },
+   "best_candidate": {
+    "trial_id": "trial-00005-00003",
+    "parameters": {
+     "mu_loose": 0.4590779223168361,
+     "mu_c": 0.5599739425325037,
+     "mu_dense": 0.7025047783150538
+    },
+    "objective": 1.4156817086794038,
+    "max_error": 2.061190245925112,
+    "batch_ref": "batches/batch-00011.json"
+   },
+   "identifiability": {
+    "rank": 3,
+    "raw_dimension": 3,
+    "conclusive": true,
+    "singular_values": [
+     34.62392030275486,
+     19.27417416190385,
+     12.658026781812893
+    ]
+   },
+   "validation": null,
+   "training_retest": null,
+   "train_packings": [
+    0.55,
+    0.565,
+    0.58,
+    0.595,
+    0.61
+   ],
+   "holdout_packings": [
+    0.555,
+    0.56,
+    0.57,
+    0.575,
+    0.585,
+    0.59,
+    0.6,
+    0.605,
+    0.615
+   ],
+   "train_measured": [
+    109.38,
+    126.98,
+    175.23,
+    259.04,
+    366.83
+   ],
+   "train_calibrated": [
+    NaN,
+    NaN,
+    NaN,
+    NaN,
+    NaN
+   ],
+   "holdout_measured": [
+    100.54,
+    121.46,
+    144.95,
+    171.37,
+    229.29,
+    216.58,
+    290.53,
+    391.04,
+    695.19
+   ],
+   "holdout_calibrated": [
+    NaN,
+    NaN,
+    NaN,
+    NaN,
+    NaN,
+    NaN,
+    NaN,
+    NaN,
+    NaN
+   ]
+  },
+  "best_law_sweep": {
+   "note": "diagnostic outside the lifecycle: the best training candidate of the rejected calibration, simulated at every packing with the sweep seed",
+   "parameters": {
+    "mu_loose": 0.4590779223168361,
+    "mu_c": 0.5599739425325037,
+    "mu_dense": 0.7025047783150538,
+    "packing_loose": 0.55,
+    "critical_fraction": 0.59,
+    "packing_dense": 0.615,
+    "grain_density": 2500.0,
+    "rod_friction": 0.3,
+    "gravity": 9.81
+   },
+   "packings": [
+    0.55,
+    0.555,
+    0.56,
+    0.565,
+    0.57,
+    0.575,
+    0.58,
+    0.585,
+    0.59,
+    0.595,
+    0.6,
+    0.605,
+    0.61,
+    0.615
+   ],
+   "measured": [
+    109.38,
+    100.54,
+    121.46,
+    126.98,
+    144.95,
+    171.37,
+    175.23,
+    229.29,
+    216.58,
+    259.04,
+    290.53,
+    391.04,
+    366.83,
+    695.19
+   ],
+   "predicted": [
+    90.23,
+    99.53,
+    107.56,
+    117.18,
+    129.35,
+    137.25,
+    149.51,
+    167.61,
+    179.39,
+    215.93,
+    252.76,
+    292.72,
+    345.3,
+    393.74
+   ],
+   "error_scales": [
+    -0.899,
+    -0.048,
+    -0.652,
+    -0.46,
+    -0.732,
+    -1.602,
+    -1.207,
+    -2.896,
+    -1.746,
+    -2.024,
+    -1.773,
+    -4.616,
+    -1.011,
+    -14.152
+   ],
+   "train_packings": [
+    0.55,
+    0.565,
+    0.58,
+    0.595,
+    0.61
+   ],
+   "holdout_packings": [
+    0.555,
+    0.56,
+    0.57,
+    0.575,
+    0.585,
+    0.59,
+    0.6,
+    0.605,
+    0.615
+   ]
+  }
+ },
+ "glass_beads": {
+  "scale_N_per_m": 9.1,
+  "critical_fraction": 0.595,
+  "friction_deg": 23.9,
+  "grain_density": 2500.0,
+  "literature": {
+   "parameters": {
+    "mu_loose": 0.4051415867798625,
+    "mu_c": 0.4051415867798625,
+    "mu_dense": 0.4051415867798625,
+    "packing_loose": 0.56,
+    "critical_fraction": 0.595,
+    "packing_dense": 0.625,
+    "grain_density": 2500.0,
+    "rod_friction": 0.3,
+    "gravity": 9.81
+   },
+   "packings": [
+    0.56,
+    0.565,
+    0.57,
+    0.575,
+    0.58,
+    0.585,
+    0.59,
+    0.595,
+    0.6,
+    0.605,
+    0.61,
+    0.615,
+    0.62,
+    0.625
+   ],
+   "measured": [
+    42.28,
+    46.59,
+    46.36,
+    57.94,
+    71.2,
+    73.22,
+    88.87,
+    97.26,
+    121.53,
+    128.2,
+    156.45,
+    174.72,
+    211.34,
+    208.28
+   ],
+   "measured_std": [
+    2.3952700830898506,
+    4.929384288977889,
+    10.04648988909389,
+    4.334675424093332,
+    3.260206500497977,
+    3.5934488499407933,
+    2.4047877853539283,
+    3.255097527702234,
+    4.663038114683763,
+    12.490826112945607,
+    5.328643717848654,
+    0.8507267189738333,
+    0.3427886661715743,
+    8.80878914977274
+   ],
+   "runs": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    2,
+    2,
+    2,
+    4
+   ],
+   "predicted": [
+    60.93,
+    62.61,
+    62.41,
+    62.31,
+    63.87,
+    64.17,
+    65.37,
+    65.19,
+    65.79,
+    66.75,
+    67.21,
+    67.24,
+    68.19,
+    69.4
+   ],
+   "ratio": [
+    1.441,
+    1.344,
+    1.346,
+    1.075,
+    0.897,
+    0.876,
+    0.736,
+    0.67,
+    0.541,
+    0.521,
+    0.43,
+    0.385,
+    0.323,
+    0.333
+   ],
+   "rmse_N_per_m": 70.09039247322018
+  },
+  "calibration_runs": {
+   "rod-glass-cal3": {
+    "acceptance": "rejected_numerics",
+    "termination_reason": "numerical_config_unavailable",
+    "max_iterations": 1000,
+    "devices": null,
+    "time_step_check": {
+     "passed": false,
+     "tolerance": 0.4472135954999579,
+     "difference_max": [
+      1.9809422136375687
+     ]
+    },
+    "budget_usage": {
+     "baseline": {
+      "trials": 1,
+      "rollouts": 1
+     },
+     "qualification": {
+      "trials": 6,
+      "rollouts": 6
+     }
+    },
+    "elapsed_s": 7009.3469125520205,
+    "best_candidate": null,
+    "search_trials": 0,
+    "invalid_search_trials": 0
+   }
+  },
+  "calibration": {
+   "run": "rod-glass-cal3",
+   "acceptance": "rejected_numerics",
+   "termination_reason": "numerical_config_unavailable",
+   "parameters": null,
+   "best_candidate": null,
+   "identifiability": {
+    "rank": null,
+    "raw_dimension": null,
+    "conclusive": null,
+    "singular_values": null
+   },
+   "validation": null,
+   "training_retest": null,
+   "train_packings": [
+    0.56,
+    0.575,
+    0.59,
+    0.605,
+    0.62
+   ],
+   "holdout_packings": [
+    0.565,
+    0.57,
+    0.58,
+    0.585,
+    0.595,
+    0.6,
+    0.61,
+    0.615,
+    0.625
+   ],
+   "train_measured": [
+    42.28,
+    57.94,
+    88.87,
+    128.2,
+    211.34
+   ],
+   "train_calibrated": [
+    NaN,
+    NaN,
+    NaN,
+    NaN,
+    NaN
+   ],
+   "holdout_measured": [
+    46.59,
+    46.36,
+    71.2,
+    73.22,
+    97.26,
+    121.53,
+    156.45,
+    174.72,
+    208.28
+   ],
+   "holdout_calibrated": [
+    NaN,
+    NaN,
+    NaN,
+    NaN,
+    NaN,
+    NaN,
+    NaN,
+    NaN,
+    NaN
+   ]
+  }
+ },
+ "lhs1": {
+  "scale_N_per_m": 14.8,
+  "critical_fraction": 0.53,
+  "friction_deg": 35.8,
+  "grain_density": 2670.0,
+  "literature": {
+   "parameters": {
+    "mu_loose": 0.5849576749872154,
+    "mu_c": 0.5849576749872154,
+    "mu_dense": 0.5849576749872154,
+    "packing_loose": 0.49,
+    "critical_fraction": 0.53,
+    "packing_dense": 0.58,
+    "grain_density": 2670.0,
+    "rod_friction": 0.3,
+    "gravity": 9.81
+   },
+   "packings": [
+    0.49,
+    0.5,
+    0.51,
+    0.52,
+    0.53,
+    0.54,
+    0.55,
+    0.56,
+    0.57,
+    0.58
+   ],
+   "measured": [
+    89.59,
+    45.45,
+    49.75,
+    60.61,
+    70.03,
+    162.69,
+    263.75,
+    316.89,
+    414.38,
+    723.41
+   ],
+   "measured_std": [
+    null,
+    8.064233954435682,
+    5.73706260246892,
+    7.913732306303426,
+    21.570201543592468,
+    14.815188333128683,
+    18.93174395716029,
+    76.91111673999032,
+    4.663373529657056,
+    64.74289073021633
+   ],
+   "runs": [
+    1,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    2,
+    2
+   ],
+   "predicted": [
+    184.75,
+    184.56,
+    191.34,
+    197.34,
+    200.2,
+    204.02,
+    205.71,
+    213.65,
+    212.12,
+    218.57
+   ],
+   "ratio": [
+    2.062,
+    4.061,
+    3.846,
+    3.256,
+    2.859,
+    1.254,
+    0.78,
+    0.674,
+    0.512,
+    0.302
+   ],
+   "rmse_N_per_m": 198.89929226480606
+  },
+  "calibration_runs": {
+   "rod-lhs1-cal": {
+    "acceptance": "rejected_numerics",
+    "termination_reason": "numerical_config_unavailable",
+    "max_iterations": 250,
+    "devices": null,
+    "time_step_check": {
+     "passed": false,
+     "tolerance": 0.5,
+     "difference_max": [
+      85.10819837767005
+     ]
+    },
+    "budget_usage": {
+     "baseline": {
+      "trials": 1,
+      "rollouts": 1
+     },
+     "qualification": {
+      "trials": 6,
+      "rollouts": 6
+     }
+    },
+    "elapsed_s": 1414.8119401610456,
+    "best_candidate": null,
+    "search_trials": 0,
+    "invalid_search_trials": 0
+   },
+   "rod-lhs1-cal3": {
+    "acceptance": "rejected_numerics",
+    "termination_reason": "numerical_config_unavailable",
+    "max_iterations": 1000,
+    "devices": null,
+    "time_step_check": {
+     "passed": false,
+     "tolerance": 0.5,
+     "difference_max": [
+      0.8824604264138962
+     ]
+    },
+    "budget_usage": {
+     "baseline": {
+      "trials": 1,
+      "rollouts": 1
+     },
+     "qualification": {
+      "trials": 6,
+      "rollouts": 6
+     }
+    },
+    "elapsed_s": 6105.655919296005,
+    "best_candidate": null,
+    "search_trials": 0,
+    "invalid_search_trials": 0
+   }
+  },
+  "calibration": {
+   "run": "rod-lhs1-cal3",
+   "acceptance": "rejected_numerics",
+   "termination_reason": "numerical_config_unavailable",
+   "parameters": null,
+   "best_candidate": null,
+   "identifiability": {
+    "rank": null,
+    "raw_dimension": null,
+    "conclusive": null,
+    "singular_values": null
+   },
+   "validation": null,
+   "training_retest": null,
+   "train_packings": [
+    0.49,
+    0.52,
+    0.55,
+    0.58
+   ],
+   "holdout_packings": [
+    0.5,
+    0.51,
+    0.53,
+    0.54,
+    0.56,
+    0.57
+   ],
+   "train_measured": [
+    89.59,
+    60.61,
+    263.75,
+    723.41
+   ],
+   "train_calibrated": [
+    NaN,
+    NaN,
+    NaN,
+    NaN
+   ],
+   "holdout_measured": [
+    45.45,
+    49.75,
+    70.03,
+    162.69,
+    316.89,
+    414.38
+   ],
+   "holdout_calibrated": [
+    NaN,
+    NaN,
+    NaN,
+    NaN,
+    NaN,
+    NaN
+   ]
+  }
+ },
+ "sand_checks": {
+  "base": {
+   "0.550": 125.77,
+   "0.590": 130.74,
+   "0.615": 137.72,
+   "change_pct": {
+    "0.550": 0.0,
+    "0.590": 0.0,
+    "0.615": 0.0
+   }
+  },
+  "bed26": {
+   "0.550": 126.83,
+   "0.590": 135.14,
+   "0.615": 140.65,
+   "change_pct": {
+    "0.550": 0.8,
+    "0.590": 3.4,
+    "0.615": 2.1
+   }
+  },
+  "dt05": {
+   "0.550": 130.3,
+   "0.590": 140.87,
+   "0.615": 143.44,
+   "change_pct": {
+    "0.550": 3.6,
+    "0.590": 7.7,
+    "0.615": 4.2
+   }
+  },
+  "speed2": {
+   "0.550": 98.49,
+   "0.590": 109.59,
+   "0.615": 118.83,
+   "change_pct": {
+    "0.550": -21.7,
+    "0.590": -16.2,
+    "0.615": -13.7
+   }
+  },
+  "v2": {
+   "0.550": 128.69,
+   "0.590": 137.53,
+   "0.615": 143.08,
+   "change_pct": {
+    "0.550": 2.3,
+    "0.590": 5.2,
+    "0.615": 3.9
+   }
+  },
+  "width15": {
+   "0.550": 118.45,
+   "0.590": 127.62,
+   "0.615": 133.37,
+   "change_pct": {
+    "0.550": -5.8,
+    "0.590": -2.4,
+    "0.615": -3.2
+   }
+  }
+ },
+ "sources_sha256": {
+  "summary.json": "e78234d6304018d9b06d898cf59ab6f46e3a3496455903bdecc660fc1e4f210a"
+ }
+}

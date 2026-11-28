@@ -1,0 +1,496 @@
+{
+ "schema": "mpm-soil/exploratory-runs/1",
+ "description": "Exploratory runs made with standalone scripts before the revision 3 cases were written, at 1 ms and at most 250 rheology iterations. They support three statements of the report: the plate half-width check of Table 3, and the dilatancy and compaction-hardening trials of the discussion. Curves are omitted.",
+ "groups": {
+  "plate_half_width": {
+   "description": "plate sinkage replica (experiment E), pressure at the given sinkage, density as wet bulk density [kg/m3], cohesion [Pa]",
+   "runs": [
+    {
+     "run": "plate_v10_base",
+     "numeric": {
+      "device": "cuda:0",
+      "voxel_size": 0.01,
+      "particles_per_cell_axis": 2,
+      "dt": 0.001,
+      "speed": 0.05,
+      "settle_time": 0.2,
+      "gap": 0.005,
+      "max_depth": 0.08,
+      "half_width": 0.3,
+      "bed_depth": 0.5,
+      "max_iterations": 250,
+      "tolerance": 1e-05
+     },
+     "results": [
+      {
+       "case": {
+        "density": 1638,
+        "mu": 0.5446
+       },
+       "pressure_kPa_at": {
+        "10mm": 14.185281753540037,
+        "20mm": 18.565664291381836,
+        "40mm": 28.164318084716793,
+        "60mm": 36.53406524658203,
+        "80mm": 44.77708435058594
+       }
+      },
+      {
+       "case": {
+        "density": 1638,
+        "mu": 0.6018
+       },
+       "pressure_kPa_at": {
+        "10mm": 21.557727813720703,
+        "20mm": 28.168670654296875,
+        "40mm": 41.61836242675785,
+        "60mm": 53.85779571533205,
+        "80mm": 66.00115966796875
+       }
+      },
+      {
+       "case": {
+        "density": 1609,
+        "mu": 0.5446
+       },
+       "pressure_kPa_at": {
+        "10mm": 13.909335136413574,
+        "20mm": 18.233165740966797,
+        "40mm": 27.682119369506854,
+        "60mm": 35.8956069946289,
+        "80mm": 44.023189544677734
+       }
+      },
+      {
+       "case": {
+        "density": 1480,
+        "mu": 0.5446
+       },
+       "pressure_kPa_at": {
+        "10mm": 12.79828357696533,
+        "20mm": 16.799837112426758,
+        "40mm": 25.477266311645508,
+        "60mm": 32.979446411132805,
+        "80mm": 40.61081314086914
+       }
+      },
+      {
+       "case": {
+        "density": 1638,
+        "mu": 0.5446,
+        "cohesion": 2000
+       },
+       "pressure_kPa_at": {
+        "10mm": 77.44948577880858,
+        "20mm": 85.93695068359375,
+        "40mm": 97.88040161132812,
+        "60mm": 113.24938964843754,
+        "80mm": 118.63218688964844
+       }
+      }
+     ]
+    },
+    {
+     "run": "plate_v10_cohesion",
+     "numeric": {
+      "device": "cuda:0",
+      "voxel_size": 0.01,
+      "particles_per_cell_axis": 2,
+      "dt": 0.001,
+      "speed": 0.05,
+      "settle_time": 0.2,
+      "gap": 0.005,
+      "max_depth": 0.08,
+      "half_width": 0.3,
+      "bed_depth": 0.5,
+      "max_iterations": 250,
+      "tolerance": 1e-05
+     },
+     "results": [
+      {
+       "case": {
+        "density": 1638,
+        "mu": 0.5446,
+        "cohesion": 5000
+       },
+       "pressure_kPa_at": {
+        "10mm": 162.0540313720703,
+        "20mm": 175.15151977539062,
+        "40mm": 198.59259033203136,
+        "60mm": 208.1541595458985,
+        "80mm": 212.7067413330078
+       }
+      },
+      {
+       "case": {
+        "density": 1638,
+        "mu": 0.5446,
+        "cohesion": 10000
+       },
+       "pressure_kPa_at": {
+        "10mm": 301.26330566406244,
+        "20mm": 317.8447570800781,
+        "40mm": 355.5435791015623,
+        "60mm": 357.1405029296877,
+        "80mm": 369.2979431152344
+       }
+      },
+      {
+       "case": {
+        "density": 1638,
+        "mu": 0.5446,
+        "cohesion": 15000
+       },
+       "pressure_kPa_at": {
+        "10mm": 431.6699829101562,
+        "20mm": 469.93011474609375,
+        "40mm": 507.0614013671873,
+        "60mm": 514.8435668945312,
+        "80mm": 522.9912109375
+       }
+      },
+      {
+       "case": {
+        "density": 1480,
+        "mu": 0.5446,
+        "cohesion": 5000
+       },
+       "pressure_kPa_at": {
+        "10mm": 160.0440673828125,
+        "20mm": 171.69317626953125,
+        "40mm": 194.95167541503906,
+        "60mm": 202.6290435791016,
+        "80mm": 206.18348693847656
+       }
+      },
+      {
+       "case": {
+        "density": 1480,
+        "mu": 0.5446,
+        "cohesion": 10000
+       },
+       "pressure_kPa_at": {
+        "10mm": 298.48022460937494,
+        "20mm": 315.02154541015625,
+        "40mm": 351.06442260742193,
+        "60mm": 354.4436950683594,
+        "80mm": 362.0553894042969
+       }
+      },
+      {
+       "case": {
+        "density": 1638,
+        "mu": 0.768
+       },
+       "pressure_kPa_at": {
+        "10mm": 80.6078567504883,
+        "20mm": 99.08242797851562,
+        "40mm": 136.49154663085935,
+        "60mm": 170.51812744140628,
+        "80mm": 195.82351684570312
+       }
+      },
+      {
+       "case": {
+        "density": 1480,
+        "mu": 0.768
+       },
+       "pressure_kPa_at": {
+        "10mm": 72.90360260009767,
+        "20mm": 89.57093811035156,
+        "40mm": 123.2398529052734,
+        "60mm": 156.2757263183593,
+        "80mm": 176.0675048828125
+       }
+      },
+      {
+       "case": {
+        "density": 1638,
+        "mu": 0.768,
+        "cohesion": 5000
+       },
+       "pressure_kPa_at": {
+        "10mm": 390.66271972656256,
+        "20mm": 422.99365234375,
+        "40mm": 435.0739440917973,
+        "60mm": 440.00012207031256,
+        "80mm": 466.0667419433594
+       }
+      }
+     ]
+    },
+    {
+     "run": "plate_v10_c10_wide",
+     "numeric": {
+      "device": "cuda:0",
+      "voxel_size": 0.01,
+      "particles_per_cell_axis": 2,
+      "dt": 0.001,
+      "speed": 0.05,
+      "settle_time": 0.2,
+      "gap": 0.005,
+      "max_depth": 0.08,
+      "half_width": 0.45,
+      "bed_depth": 0.5,
+      "max_iterations": 250,
+      "tolerance": 1e-05
+     },
+     "results": [
+      {
+       "case": {
+        "density": 1638,
+        "mu": 0.5446,
+        "cohesion": 10000
+       },
+       "pressure_kPa_at": {
+        "10mm": 305.4426574707032,
+        "20mm": 319.23046875,
+        "40mm": 375.26644897460966,
+        "60mm": 414.02755737304716,
+        "80mm": 461.3018798828125
+       }
+      }
+     ]
+    },
+    {
+     "run": "plate_v10_wide06",
+     "numeric": {
+      "device": "cuda:0",
+      "voxel_size": 0.01,
+      "particles_per_cell_axis": 2,
+      "dt": 0.001,
+      "speed": 0.05,
+      "settle_time": 0.2,
+      "gap": 0.005,
+      "max_depth": 0.08,
+      "half_width": 0.6,
+      "bed_depth": 0.5,
+      "max_iterations": 250,
+      "tolerance": 1e-05
+     },
+     "results": [
+      {
+       "case": {
+        "density": 1638,
+        "mu": 0.5446
+       },
+       "pressure_kPa_at": {
+        "10mm": 14.356921195983885,
+        "20mm": 18.369670867919922,
+        "40mm": 27.746278762817372,
+        "60mm": 36.84476089477541,
+        "80mm": 45.467044830322266
+       }
+      },
+      {
+       "case": {
+        "density": 1638,
+        "mu": 0.5446,
+        "cohesion": 10000
+       },
+       "pressure_kPa_at": {
+        "10mm": 293.6468811035156,
+        "20mm": 319.4160461425781,
+        "40mm": 373.58142089843716,
+        "60mm": 415.4171752929687,
+        "80mm": 464.4172058105469
+       }
+      },
+      {
+       "case": {
+        "density": 1638,
+        "mu": 0.5446,
+        "cohesion": 15000
+       },
+       "pressure_kPa_at": {
+        "10mm": 423.6398010253906,
+        "20mm": 463.7587890625,
+        "40mm": 534.4665527343752,
+        "60mm": 594.2373657226566,
+        "80mm": 659.4168090820312
+       }
+      },
+      {
+       "case": {
+        "density": 1480,
+        "mu": 0.5446,
+        "cohesion": 5000
+       },
+       "pressure_kPa_at": {
+        "10mm": 164.2191009521484,
+        "20mm": 171.61705017089844,
+        "40mm": 204.6989746093749,
+        "60mm": 227.39602661132815,
+        "80mm": 251.37631225585938
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "plate_hardening": {
+   "description": "plate sinkage replica with compaction hardening of the yield pressure (Newton's sinh law), loose method-1 density",
+   "runs": [
+    {
+     "run": "plate_v10_hardening",
+     "numeric": {
+      "device": "cuda:0",
+      "voxel_size": 0.01,
+      "particles_per_cell_axis": 2,
+      "dt": 0.001,
+      "speed": 0.05,
+      "settle_time": 0.2,
+      "gap": 0.005,
+      "max_depth": 0.08,
+      "half_width": 0.3,
+      "bed_depth": 0.5,
+      "max_iterations": 250,
+      "tolerance": 1e-05
+     },
+     "results": [
+      {
+       "case": {
+        "density": 1330,
+        "mu": 0.5446,
+        "yield_pressure": 50000,
+        "hardening": 10
+       },
+       "pressure_kPa_at": {
+        "10mm": 0.0,
+        "20mm": 3.6778693199157715,
+        "40mm": 5.4785814285278365,
+        "60mm": 6.644938468933102,
+        "80mm": 7.517309665679932
+       }
+      },
+      {
+       "case": {
+        "density": 1330,
+        "mu": 0.5446,
+        "yield_pressure": 200000,
+        "hardening": 10
+       },
+       "pressure_kPa_at": {
+        "10mm": 7.29292392730713,
+        "20mm": 9.272713661193848,
+        "40mm": 12.32994365692139,
+        "60mm": 14.834877967834478,
+        "80mm": 16.36574363708496
+       }
+      },
+      {
+       "case": {
+        "density": 1330,
+        "mu": 0.5446,
+        "yield_pressure": 50000,
+        "hardening": 30
+       },
+       "pressure_kPa_at": {
+        "10mm": 5.650147438049317,
+        "20mm": 7.4809675216674805,
+        "40mm": 10.659393310546884,
+        "60mm": 12.788040161132821,
+        "80mm": 14.910449028015137
+       }
+      },
+      {
+       "case": {
+        "density": 1330,
+        "mu": 0.5446
+       },
+       "pressure_kPa_at": {
+        "10mm": 11.496762275695799,
+        "20mm": 15.084441184997559,
+        "40mm": 22.883563995361325,
+        "60mm": 29.69693183898925,
+        "80mm": 36.46341323852539
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "rod_dilatancy": {
+   "description": "rod intrusion replica (experiment B) in sand at phi = 0.615 with the literature friction; slope K fitted between 1 and 9 cm",
+   "runs": [
+    {
+     "run": "smoke_v3",
+     "numeric": {
+      "device": "cuda:0",
+      "voxel_size": 0.003,
+      "particles_per_cell_axis": 2,
+      "dt": 0.001,
+      "speed": 0.1,
+      "settle_time": 0.2,
+      "gap": 0.005,
+      "max_depth": 0.1,
+      "half_width": 0.108,
+      "bed_depth": 0.15,
+      "max_iterations": 250,
+      "tolerance": 1e-05
+     },
+     "results": [
+      {
+       "case": {
+        "phi": 0.615,
+        "mu": 0.5225
+       },
+       "K_N_per_m": 131.17841920989312,
+       "intercept_N": -1.4884091144779468,
+       "force_at_8cm_N": 9.437633514404293
+      }
+     ]
+    },
+    {
+     "run": "v3_dilatancy",
+     "numeric": {
+      "device": "cuda:0",
+      "voxel_size": 0.003,
+      "particles_per_cell_axis": 2,
+      "dt": 0.001,
+      "speed": 0.1,
+      "settle_time": 0.2,
+      "gap": 0.005,
+      "max_depth": 0.1,
+      "half_width": 0.108,
+      "bed_depth": 0.15,
+      "max_iterations": 250,
+      "tolerance": 1e-05
+     },
+     "results": [
+      {
+       "case": {
+        "phi": 0.615,
+        "mu": 0.5225,
+        "dilatancy": 0.25
+       },
+       "K_N_per_m": 159.20486920827327,
+       "intercept_N": -1.9381726633906144,
+       "force_at_8cm_N": 10.444327354431163
+      },
+      {
+       "case": {
+        "phi": 0.615,
+        "mu": 0.5225,
+        "dilatancy": 0.5
+       },
+       "K_N_per_m": 170.19715160062995,
+       "intercept_N": -2.1344585113630523,
+       "force_at_8cm_N": 11.181903839111254
+      },
+      {
+       "case": {
+        "phi": 0.615,
+        "mu": 0.5225,
+        "dilatancy": 1.0
+       },
+       "K_N_per_m": 152.54244376303444,
+       "intercept_N": -1.6863691795400626,
+       "force_at_8cm_N": 11.238218307495167
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

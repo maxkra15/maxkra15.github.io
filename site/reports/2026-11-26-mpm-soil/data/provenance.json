@@ -53,6 +53,35 @@
    "bytes": 54277843,
    "sha256": "f9079aebba4aecef8e374e558f13eca855dd9c21ffe4e7b93f70d37665be5b34",
    "redistributed": "processed net-pressure curves of tests 1, 3, 6 and 8 in data/clay_laboratory.json"
+  },
+  "ruck2025": {
+   "citation": "Ruck et al. (2025), EarthArXiv doi:10.31223/X5246P; data Zenodo doi:10.5281/zenodo.15610745, CC BY 4.0",
+   "download": "UnifiedGranularIntrusionDynamics-v1.0.1.zip",
+   "bytes": 52383982,
+   "sha256": "9a4b099bd3ae10ba71d9d2e8d00920b4255d126c3644458a571ade4c902d10a8",
+   "redistributed": "derived force-depth slopes per packing in data/rod_intrusion.json"
+  },
+  "douglas2026": {
+   "citation": "Douglas et al. (2026), JGR Earth Surface doi:10.1029/2025JF008680; data Harvard Dataverse doi:10.7910/DVN/VXRLSK, CC0 1.0",
+   "download": "DataSummary.csv and 23 trace files (hashes in newton-calibration data/douglas2026.py)",
+   "redistributed": "published peak forces in data/rod_pullout.json"
+  },
+  "mishra2018": {
+   "citation": "Mishra et al. (2018), PLOS ONE doi:10.1371/journal.pone.0197411; data Zenodo doi:10.5281/zenodo.1211631, CC BY 4.0",
+   "download": "Experimental_data sets.rar",
+   "bytes": 34375116,
+   "sha256": "c2b54876d8aae20afb43d41af0d8dbec177b22f89ed96019bc77975cb80083e5",
+   "redistributed": "mean probe forces in data/probe_penetration.json"
+  },
+  "kruger2025": {
+   "citation": "Kruger (2025), Zenodo doi:10.5281/zenodo.17584463, CC BY 4.0; Kruger, Els & Hamersma (2023) doi:10.1016/j.jterra.2023.06.002",
+   "downloads": {
+    "All_Bevameter_plate_sinkage_tests_data.obj": "9f10fce45ad98809d1536d4d18e43c05f545d6b54a43caeaec63606aea7a6bb3",
+    "All_triaxial_tests_data.obj": "af64304b64f29accb9681282b94408688fb7c9ce1a502a79b10ec56b31d20f32",
+    "All_Bevameter_shear_test_data.obj": "c989fd5d0f86b6483cc4f5a80869cea4d2062c7b9230611134da51bff3667c84"
+   },
+   "note": "Python pickles read by a restricted unpickler that never executes code from the files",
+   "redistributed": "mean pressure-sinkage curves in data/plate_sinkage.json"
   }
  },
  "runs": {
@@ -265,6 +294,381 @@
     }
    },
    "cloud_control": "rft-sweep-poppy-lp reproduces the published 78-point poppy-seed LP sweep to within 0.00033 N/cm^3 (RMS 0.00006)"
+  },
+  "osmo_revision_3": {
+   "service": "NVIDIA OSMO, one task per job on NVIDIA L40S GPUs (48 GB): one GPU per job, four for sand_and_soil/rod-sand-cal4 and -cal5, two for sand_and_soil/rod-sand-best",
+   "environment": "Newton 9deb629, newton-calibration c52a6ce plus the examples/mpm_soil case, Warp 1.20.0.dev20261120, Python 3.12",
+   "scripts": "scripts/osmo-rev3/",
+   "jobs": {
+    "resolution_study/clay-v125-dt025-test1": {
+     "kind": "clay_variants",
+     "wall_seconds": 5009.7
+    },
+    "resolution_study/clay-v125-dt025-test3": {
+     "kind": "clay_variants",
+     "wall_seconds": 4977.1
+    },
+    "resolution_study/clay-v125-dt05": {
+     "kind": "clay_variants",
+     "wall_seconds": 4983.1
+    },
+    "resolution_study/clay-v25": {
+     "kind": "clay_variants",
+     "wall_seconds": 6616.9
+    },
+    "resolution_study/rft-glass03-cp-coarse": {
+     "kind": "rft_variants",
+     "wall_seconds": 7549.7,
+     "medium": "glass_0p3mm_CP"
+    },
+    "resolution_study/rft-glass03-cp-v3": {
+     "kind": "rft_variants",
+     "wall_seconds": 5741.3,
+     "medium": "glass_0p3mm_CP"
+    },
+    "resolution_study/rft-glass03-lp-coarse": {
+     "kind": "rft_variants",
+     "wall_seconds": 7151.8,
+     "medium": "glass_0p3mm_LP"
+    },
+    "resolution_study/rft-glass03-lp-v3": {
+     "kind": "rft_variants",
+     "wall_seconds": 5673.5,
+     "medium": "glass_0p3mm_LP"
+    },
+    "resolution_study/rft-glass3-cp-coarse": {
+     "kind": "rft_variants",
+     "wall_seconds": 7025.8,
+     "medium": "glass_3mm_CP"
+    },
+    "resolution_study/rft-glass3-cp-v3": {
+     "kind": "rft_variants",
+     "wall_seconds": 5463.8,
+     "medium": "glass_3mm_CP"
+    },
+    "resolution_study/rft-poppy-cp-coarse": {
+     "kind": "rft_variants",
+     "wall_seconds": 13558.6,
+     "medium": "poppy_seeds_CP"
+    },
+    "resolution_study/rft-poppy-cp-v3": {
+     "kind": "rft_variants",
+     "wall_seconds": 10733.3,
+     "medium": "poppy_seeds_CP"
+    },
+    "resolution_study/rft-poppy-lp-coarse": {
+     "kind": "rft_variants",
+     "wall_seconds": 7657.1,
+     "medium": "poppy_seeds_LP"
+    },
+    "resolution_study/rft-poppy-lp-v3": {
+     "kind": "rft_variants",
+     "wall_seconds": 5720.5,
+     "medium": "poppy_seeds_LP"
+    },
+    "sand_and_soil/plate-cal": {
+     "kind": "plate_calibrate",
+     "wall_seconds": 4347.8,
+     "outcome": "rejected_numerics"
+    },
+    "sand_and_soil/plate-cal2": {
+     "kind": "plate_calibrate",
+     "wall_seconds": 2652.2,
+     "outcome": "rejected_numerics"
+    },
+    "sand_and_soil/plate-checks": {
+     "kind": "plate_variants",
+     "wall_seconds": 3014.8,
+     "parameters": {
+      "friction": 0.567,
+      "cohesion": 10000.0
+     },
+     "methods": [
+      4
+     ]
+    },
+    "sand_and_soil/plate-grid-m3": {
+     "kind": "plate_variants",
+     "wall_seconds": 1481.9,
+     "parameters": "lab",
+     "methods": [
+      3
+     ]
+    },
+    "sand_and_soil/plate-grid-m4": {
+     "kind": "plate_variants",
+     "wall_seconds": 1488.9,
+     "parameters": "lab",
+     "methods": [
+      4
+     ]
+    },
+    "sand_and_soil/plate-grid-m5": {
+     "kind": "plate_variants",
+     "wall_seconds": 1483.2,
+     "parameters": "lab",
+     "methods": [
+      5
+     ]
+    },
+    "sand_and_soil/plate-iter": {
+     "kind": "plate_variants",
+     "wall_seconds": 1968.1,
+     "parameters": "lab"
+    },
+    "sand_and_soil/plate-lab": {
+     "kind": "plate_sweep",
+     "wall_seconds": 1134.6,
+     "parameters": "lab"
+    },
+    "sand_and_soil/plate-lab2": {
+     "kind": "plate_sweep",
+     "wall_seconds": 697.9,
+     "parameters": "lab"
+    },
+    "sand_and_soil/probe-cal": {
+     "kind": "probe_calibrate",
+     "wall_seconds": 2639.3,
+     "numeric": {
+      "max_iterations": 1000
+     },
+     "max_hours": 14,
+     "outcome": "rejected_numerics"
+    },
+    "sand_and_soil/probe-cal2": {
+     "kind": "probe_calibrate",
+     "wall_seconds": 5116.3,
+     "numeric": {
+      "dt": 0.0005,
+      "max_iterations": 1000
+     },
+     "max_hours": 18,
+     "outcome": "rejected_numerics"
+    },
+    "sand_and_soil/probe-lit": {
+     "kind": "probe_sweep",
+     "wall_seconds": 4832.4,
+     "numeric": {
+      "max_iterations": 1000
+     },
+     "parameters": "generic",
+     "diameters": [
+      11.0,
+      9.0,
+      7.0
+     ]
+    },
+    "sand_and_soil/probe-lit2": {
+     "kind": "probe_sweep",
+     "wall_seconds": 9518.2,
+     "numeric": {
+      "dt": 0.0005,
+      "max_iterations": 1000
+     },
+     "parameters": "generic",
+     "diameters": [
+      11.0,
+      9.0,
+      7.0
+     ]
+    },
+    "sand_and_soil/pullout-cal": {
+     "kind": "pullout_calibrate",
+     "wall_seconds": 1604.8,
+     "numeric": {
+      "max_iterations": 1000
+     },
+     "outcome": "no_feasible_candidate"
+    },
+    "sand_and_soil/pullout-cal2": {
+     "kind": "pullout_calibrate",
+     "wall_seconds": 302.2,
+     "numeric": {
+      "max_iterations": 1000
+     },
+     "sand_friction": true,
+     "outcome": "rejected_numerics"
+    },
+    "sand_and_soil/pullout-cal3": {
+     "kind": "pullout_calibrate",
+     "wall_seconds": 1494.6,
+     "numeric": {
+      "max_iterations": 1000,
+      "dt": 0.0005
+     },
+     "sand_friction": true,
+     "outcome": "no_feasible_candidate"
+    },
+    "sand_and_soil/pullout-corner": {
+     "kind": "pullout_sweep",
+     "wall_seconds": 629.1,
+     "numeric": {
+      "max_iterations": 1000,
+      "dt": 0.0005
+     },
+     "parameters": {
+      "rod_friction": 1.0,
+      "friction": 0.95
+     }
+    },
+    "sand_and_soil/pullout-lit": {
+     "kind": "pullout_sweep",
+     "wall_seconds": 411.6,
+     "numeric": {
+      "max_iterations": 1000
+     },
+     "parameters": "literature"
+    },
+    "sand_and_soil/rod-glass-cal3": {
+     "kind": "rod_calibrate",
+     "wall_seconds": 7012.6,
+     "medium": "glass_beads",
+     "numeric": {
+      "max_iterations": 1000
+     },
+     "outcome": "rejected_numerics"
+    },
+    "sand_and_soil/rod-glass-lit": {
+     "kind": "rod_sweep",
+     "wall_seconds": 540.0,
+     "medium": "glass_beads",
+     "parameters": "literature"
+    },
+    "sand_and_soil/rod-glass-lit3": {
+     "kind": "rod_sweep",
+     "wall_seconds": 1953.4,
+     "medium": "glass_beads",
+     "numeric": {
+      "max_iterations": 1000
+     },
+     "parameters": "literature"
+    },
+    "sand_and_soil/rod-lhs1-cal": {
+     "kind": "rod_calibrate",
+     "wall_seconds": 1417.4,
+     "medium": "lhs1",
+     "outcome": "rejected_numerics"
+    },
+    "sand_and_soil/rod-lhs1-cal3": {
+     "kind": "rod_calibrate",
+     "wall_seconds": 6108.4,
+     "medium": "lhs1",
+     "numeric": {
+      "max_iterations": 1000
+     },
+     "outcome": "rejected_numerics"
+    },
+    "sand_and_soil/rod-lhs1-lit": {
+     "kind": "rod_sweep",
+     "wall_seconds": 426.2,
+     "medium": "lhs1",
+     "parameters": "literature"
+    },
+    "sand_and_soil/rod-lhs1-lit3": {
+     "kind": "rod_sweep",
+     "wall_seconds": 1665.8,
+     "medium": "lhs1",
+     "numeric": {
+      "max_iterations": 1000
+     },
+     "parameters": "literature"
+    },
+    "sand_and_soil/rod-sand-best": {
+     "kind": "rod_sweep",
+     "wall_seconds": 1309.2,
+     "medium": "sand",
+     "numeric": {
+      "max_iterations": 1000,
+      "devices": [
+       "cuda:0",
+       "cuda:1"
+      ]
+     },
+     "parameters": {
+      "mu_loose": 0.4590779223168361,
+      "mu_c": 0.5599739425325037,
+      "mu_dense": 0.7025047783150538
+     },
+     "gpus": 2
+    },
+    "sand_and_soil/rod-sand-cal3": {
+     "kind": "rod_calibrate",
+     "wall_seconds": 21627.6,
+     "medium": "sand",
+     "numeric": {
+      "max_iterations": 1000
+     },
+     "outcome": "run_failed"
+    },
+    "sand_and_soil/rod-sand-cal4": {
+     "kind": "rod_calibrate",
+     "wall_seconds": 14766.2,
+     "medium": "sand",
+     "numeric": {
+      "max_iterations": 1000,
+      "devices": [
+       "cuda:0",
+       "cuda:1",
+       "cuda:2",
+       "cuda:3"
+      ]
+     },
+     "max_hours": 16,
+     "gpus": 4,
+     "outcome": "rejected_training"
+    },
+    "sand_and_soil/rod-sand-cal5": {
+     "kind": "rod_calibrate",
+     "wall_seconds": 19630.5,
+     "medium": "sand",
+     "numeric": {
+      "max_iterations": 1000,
+      "devices": [
+       "cuda:0",
+       "cuda:1",
+       "cuda:2",
+       "cuda:3"
+      ]
+     },
+     "max_hours": 20,
+     "gpus": 4,
+     "outcome": "rejected_training"
+    },
+    "sand_and_soil/rod-sand-checks": {
+     "kind": "rod_variants",
+     "wall_seconds": 1529.6,
+     "medium": "sand",
+     "parameters": "literature"
+    },
+    "sand_and_soil/rod-sand-lit": {
+     "kind": "rod_sweep",
+     "wall_seconds": 548.5,
+     "medium": "sand",
+     "parameters": "literature"
+    },
+    "sand_and_soil/rod-sand-lit3": {
+     "kind": "rod_sweep",
+     "wall_seconds": 2239.7,
+     "medium": "sand",
+     "numeric": {
+      "max_iterations": 1000
+     },
+     "parameters": "literature"
+    },
+    "sand_and_soil/rod-speed-a": {
+     "kind": "rod_variants",
+     "wall_seconds": 1227.0,
+     "medium": "sand",
+     "parameters": "literature"
+    },
+    "sand_and_soil/rod-speed-b": {
+     "kind": "rod_variants",
+     "wall_seconds": 614.2,
+     "medium": "sand",
+     "parameters": "literature"
+    }
+   },
+   "superseded": "where a job exists in several versions, the report uses the latest (highest suffix); earlier versions ran with settings corrected later (three-anchor packing law, 0.5 ms, 1000 iterations, narrower bounds). rod-sand-cal3 exhausted its 6 h budget during the sensitivity analysis and was rerun as rod-sand-cal4 with a 16 h budget, its batches spread over four GPUs. rod-sand-cal4 searched in the rotated combination coordinates of the sensitivity analysis, where 16 of 30 search trials decoded outside the bounds (rejected_training); rod-sand-cal5 searches the parameter box itself with up to 8 generations"
   }
  },
  "derived_files": {
@@ -283,14 +687,23 @@
   "rft_media.json": "five media of Li et al. (2013): literature and calibrated predictions for 78 points, calibration records at 1 ms and 0.5 ms; measured values omitted",
   "rft_time_step.json": "loosely packed poppy seeds at a 0.5 ms step, literature and calibrated parameters, 78 points",
   "clay_laboratory_dt025.json": "clay predictions with the laboratory strength at a 0.25 ms step",
-  "clay_force_series_test1_dt025.json": "simulated test-1 plate pressure at every step at a 0.25 ms step, with window means and medians"
+  "clay_force_series_test1_dt025.json": "simulated test-1 plate pressure at every step at a 0.25 ms step, with window means and medians",
+  "resolution_study.json": "discretization study: 11 diagnostic plate motions per medium under six numerical variants; clay tests 1 and 3 by voxel size, step and contact basis",
+  "rod_intrusion.json": "rod intrusion: measured and simulated slopes per packing, calibration records and the diagnostic sweep of the best sand law",
+  "rod_pullout.json": "rod pull-out: measured and simulated peak forces, calibration records, the check at the stiffest corner of the calibration box",
+  "probe_penetration.json": "probe penetration: measured and simulated forces at 20-100 mm per tip and diameter, calibration record",
+  "plate_sinkage.json": "plate sinkage: measured mean curves, lab-parameter predictions, friction-cohesion grid, sensitivity checks, calibration record",
+  "exploratory_runs.json": "exploratory runs behind the plate half-width check and the dilatancy and compaction-hardening trials (1 ms, at most 250 iterations)"
  },
  "scripts": {
   "scripts/export_data.py": "derives data/ from the newton-calibration archive and run directories",
   "scripts/make_figures.py": "draws figures/ from data/ and the processed Li et al. table",
   "scripts/probe_force_time_series.py": "runs the per-step force probes and writes data/clay_force_series_test1.json (and _dt025 with --clay-dt 0.00025) and data/rft_force_series.json",
   "scripts/export_media.py": "collects the five-media sweeps and calibrations into data/rft_media.json",
-  "scripts/osmo/": "OSMO job generator, bootstrap, task runner and pinned sources of the revision-2 runs"
+  "scripts/osmo/": "OSMO job generator, bootstrap, task runner and pinned sources of the revision-2 runs",
+  "scripts/export_studies.py": "collects the revision 3 study summaries into data/",
+  "scripts/figures_rev3.py": "draws the revision 3 figures",
+  "scripts/osmo-rev3/": "cluster job generators, task runners and analysis of revision 3"
  },
  "acceptance_limits": {
   "plate_intrusion": {
@@ -317,9 +730,10 @@
   "The plate-intrusion training set and bounds were chosen after the literature sweep and the rejected 2 ms calibration.",
   "Clay tests 1 and 3 used the first clay batch, tests 6 and 8 the second; laboratory SHANSEP parameters come from the first batch.",
   "The other four media used the training points of poppy seeds LP and bounds and scales from rules fixed before their runs: friction sin(phi - 9.3 deg) to sin(phi + 4.5 deg), scale 8.5 % of the largest measured lift.",
-  "Li et al. measured the plate friction 0.40 for aluminium on poppy seeds only; the glass literature runs assume the same value."
+  "Li et al. measured the plate friction 0.40 for aluminium on poppy seeds only; the glass literature runs assume the same value.",
+  "Revision 3 runs use at most 1000 rheology iterations, except the plate sinkage of experiment E (250; 1000 changes it by less than 1 %); revisions 1 and 2 used 250 (Section 3.1 quantifies the difference)."
  ],
- "revised": "2026-11-27",
+ "revised": "2026-11-28",
  "revisions": [
   {
    "date": "2026-11-26",
@@ -328,6 +742,10 @@
   {
    "date": "2026-11-27",
    "summary": "four further media of Li et al. (2013), held-out plate-intrusion results at 0.5 ms, clay results at 0.25 ms, cloud rerun of the published poppy-seed sweep; earlier numbers unchanged"
+  },
+  {
+   "date": "2026-11-28",
+   "summary": "revision 3: rod intrusion at controlled packing (Ruck et al. 2025), rod pull-out (Douglas et al. 2026), probe penetration in dry loam (Mishra et al. 2018), plate sinkage in moist field sand (Kruger et al. 2023; Kruger 2025); study of numerical uncertainty; restructured text with Appendix A"
   }
  ]
 }

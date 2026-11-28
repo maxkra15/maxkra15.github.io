@@ -124,23 +124,24 @@
         <p>Short technical reports on robotics, learning, and simulation.</p>
       </section>
       <article class="report-card" aria-labelledby="mpm-soil-title">
-        <p class="date"><time datetime="2026-11-26">26 November 2026</time></p>
-        <h2 id="mpm-soil-title"><a href="reports/2026-11-26-mpm-soil/">Implicit MPM soil in Newton: validation against experiments and a robot calibration workflow</a></h2>
+        <p class="date"><time datetime="2026-11-26">26 November 2026</time> · revised <time datetime="2026-11-28">28 November 2026</time></p>
+        <h2 id="mpm-soil-title"><a href="reports/2026-11-26-mpm-soil/">Implicit MPM soil in Newton: validation against published granular, sand, soil and clay experiments</a></h2>
         <p class="summary">
-          Do simulated soil forces match measurements? Newton's implicit MPM is compared with published plate
-          intrusion in five granular media and strip-plate loading of clay in a centrifuge. Calibrations with
-          numerical qualification and held-out validation are accepted for three media and rejected for the two
-          closely packed fine ones; the clay replica exposes numerical limits; and a Franka rake workflow
-          calibrates soil from tool forces, demonstrated on synthetic logs.
+          Do simulated soil forces match measurements? Newton's implicit MPM is tested against six published
+          experiments: plate intrusion in five granular media, rod intrusion at controlled packing, rod pull-out,
+          probe penetration in dry loam, plate sinkage in moist field sand and clay at 100 g. Loose and coarse
+          media are predicted from independent parameters; packing- and state-dependent strength is the missing
+          physics; a study of numerical uncertainty separates artefacts from model error.
         </p>
         <ul class="chips" aria-label="Report topics">
           <li>Implicit MPM</li>
           <li>Granular media</li>
+          <li>Sand and soil</li>
           <li>Clay at 100 g</li>
           <li>Calibration and validation</li>
           <li>Franka FR3</li>
         </ul>
-        <p class="method">78 plate motions · 4 centrifuge tests · 5 synthetic rake strokes · literature-parameter prediction, CMA-ES calibration and held-out validation</p>
+        <p class="method">5 granular media · 38 packings · 15 pulled rods · 15 probes · 3 sand preparations · 4 centrifuge tests · prediction from independent parameters, calibration and held-out validation</p>
         <a class="read-report" href="reports/2026-11-26-mpm-soil/">Read the paper <span aria-hidden="true">→</span></a>
         <figure>
           <div class="figure-preview" tabindex="0" role="region" aria-label="Scrollable plate-intrusion stress maps">

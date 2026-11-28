@@ -1,0 +1,622 @@
+{
+ "schema": "mpm-soil-report/pullout/1",
+ "literature": {
+  "parameters": {
+   "friction": 0.49999999999999994,
+   "bulk_density": 1630.0,
+   "gravity": 9.81,
+   "rod_friction": 0.3838640350354158
+  },
+  "geometries": [
+   "Dowel_10cmLong_1-2diam",
+   "Dowel_15cmLong_1-2diam",
+   "Dowel_10cmLong_3-16diam",
+   "Dowel_10cmLong_1-4diam",
+   "Dowel_10cmLong_5-16diam",
+   "3dPrint_10cmLong_1-4diam",
+   "3dPrint_10cmLong_3-8diam",
+   "3dPrint_10cmLong_1-2diam",
+   "Dowel_5cmLong_00cmDepth",
+   "Dowel_20cmLong_1-2diam",
+   "Dowel_25cmLong_1-2diam",
+   "Dowel_5cmLong_05cmDepth",
+   "Dowel_5cmLong_10cmDepth",
+   "Dowel_5cmLong_15cmDepth",
+   "Dowel_5cmLong_20cmDepth"
+  ],
+  "measured_N": [
+   3.3103,
+   7.5393,
+   1.4697,
+   1.7895,
+   2.5577,
+   1.9526,
+   3.7687,
+   2.8645,
+   0.963,
+   18.8769,
+   21.8334,
+   3.0653,
+   11.1655,
+   17.4759,
+   30.744
+  ],
+  "std_N": [
+   0.4455,
+   0.841,
+   0.3477,
+   0.4328,
+   0.3631,
+   0.2959,
+   0.5338,
+   0.5736,
+   0.2627,
+   3.1307,
+   3.5736,
+   0.9174,
+   1.3794,
+   2.2289,
+   3.0247
+  ],
+  "predicted_N": [
+   0.9024679990125506,
+   2.019703622108202,
+   0.4021047807614008,
+   0.49609263408531223,
+   0.5715379065682338,
+   0.4960909380978869,
+   0.7431784063260849,
+   1.0398080150857132,
+   0.2459676967106776,
+   3.9330336302411557,
+   6.179112797194261,
+   1.4961602936331073,
+   4.998350450345553,
+   9.42236955069065,
+   12.940990682468414
+  ],
+  "normalized_error": [
+   -5.404785636335464,
+   -6.56313481318882,
+   -3.0704492931797502,
+   -2.988464338989574,
+   -5.4700140276281095,
+   -4.922301662393083,
+   -5.667893581254992,
+   -3.1811227073122157,
+   -2.7294720338383036,
+   -4.773330683156752,
+   -4.38053705025905,
+   -1.7104204342346772,
+   -4.470892815466469,
+   -3.6132309432048766,
+   -5.88587605961966
+  ],
+  "rmse_N": 7.953272757054636,
+  "normalized_rmse": 4.524576550897864,
+  "details": {
+   "Dowel_10cmLong_1-2diam": {
+    "voxel_size": 0.003175,
+    "particles": 215774,
+    "resting_force_N": 0.8419944643974304,
+    "material_peak_N": 0.8043679990125506,
+    "peak_rise_m": 0.0015875,
+    "rod_weight_N": 0.0981
+   },
+   "Dowel_15cmLong_1-2diam": {
+    "voxel_size": 0.003175,
+    "particles": 289085,
+    "resting_force_N": 1.8802270889282227,
+    "material_peak_N": 1.8823636221082023,
+    "peak_rise_m": 0.0015875,
+    "rod_weight_N": 0.13734000000000002
+   },
+   "Dowel_10cmLong_3-16diam": {
+    "voxel_size": 0.001190625,
+    "particles": 627840,
+    "resting_force_N": -0.1409991979598999,
+    "material_peak_N": 0.35305478076140084,
+    "peak_rise_m": 0.0008929687500000001,
+    "rod_weight_N": 0.04905
+   },
+   "Dowel_10cmLong_1-4diam": {
+    "voxel_size": 0.0015875,
+    "particles": 433846,
+    "resting_force_N": -0.03656894713640213,
+    "material_peak_N": 0.4372326340853122,
+    "peak_rise_m": 0.00079375,
+    "rod_weight_N": 0.05886
+   },
+   "Dowel_10cmLong_5-16diam": {
+    "voxel_size": 0.001984375,
+    "particles": 346609,
+    "resting_force_N": 0.523662805557251,
+    "material_peak_N": 0.5126779065682338,
+    "peak_rise_m": 0.0009921875,
+    "rod_weight_N": 0.05886
+   },
+   "3dPrint_10cmLong_1-4diam": {
+    "voxel_size": 0.0015875,
+    "particles": 433846,
+    "resting_force_N": -0.03670058399438858,
+    "material_peak_N": 0.4372309380978869,
+    "peak_rise_m": 0.00079375,
+    "rod_weight_N": 0.05886
+   },
+   "3dPrint_10cmLong_3-8diam": {
+    "voxel_size": 0.00238125,
+    "particles": 289220,
+    "resting_force_N": 0.6098767518997192,
+    "material_peak_N": 0.5960284063260849,
+    "peak_rise_m": 0.001190625,
+    "rod_weight_N": 0.14715
+   },
+   "3dPrint_10cmLong_1-2diam": {
+    "voxel_size": 0.003175,
+    "particles": 215774,
+    "resting_force_N": 0.8419944643974304,
+    "material_peak_N": 0.8043680150857132,
+    "peak_rise_m": 0.0015875,
+    "rod_weight_N": 0.23544
+   },
+   "Dowel_5cmLong_00cmDepth": {
+    "voxel_size": 0.003175,
+    "particles": 144747,
+    "resting_force_N": 0.20499905943870544,
+    "material_peak_N": 0.18710769671067762,
+    "peak_rise_m": 0.0015875,
+    "rod_weight_N": 0.05886
+   },
+   "Dowel_20cmLong_1-2diam": {
+    "voxel_size": 0.003175,
+    "particles": 360123,
+    "resting_force_N": 3.4916088581085205,
+    "material_peak_N": 3.7662636302411556,
+    "peak_rise_m": 0.0031749999999999994,
+    "rod_weight_N": 0.16677000000000003
+   },
+   "Dowel_25cmLong_1-2diam": {
+    "voxel_size": 0.003175,
+    "particles": 433447,
+    "resting_force_N": 5.630423069000244,
+    "material_peak_N": 5.982912797194261,
+    "peak_rise_m": 0.0023812499999999997,
+    "rod_weight_N": 0.1962
+   },
+   "Dowel_5cmLong_05cmDepth": {
+    "voxel_size": 0.003175,
+    "particles": 216169,
+    "resting_force_N": 1.1561025381088257,
+    "material_peak_N": 1.4373002936331074,
+    "peak_rise_m": 0.0015875,
+    "rod_weight_N": 0.05886
+   },
+   "Dowel_5cmLong_10cmDepth": {
+    "voxel_size": 0.003175,
+    "particles": 289897,
+    "resting_force_N": 1.929956078529358,
+    "material_peak_N": 4.939490450345553,
+    "peak_rise_m": 0.0023812499999999997,
+    "rod_weight_N": 0.05886
+   },
+   "Dowel_5cmLong_15cmDepth": {
+    "voxel_size": 0.003175,
+    "particles": 361329,
+    "resting_force_N": 1.6206104755401611,
+    "material_peak_N": 9.363509550690651,
+    "peak_rise_m": 0.0031749999999999994,
+    "rod_weight_N": 0.05886
+   },
+   "Dowel_5cmLong_20cmDepth": {
+    "voxel_size": 0.003175,
+    "particles": 435057,
+    "resting_force_N": 2.033273458480835,
+    "material_peak_N": 12.882130682468414,
+    "peak_rise_m": 0.003968749999999999,
+    "rod_weight_N": 0.05886
+   }
+  }
+ },
+ "calibration_grid": {
+  "acceptance": "no_feasible_candidate",
+  "termination_reason": "candidate_space_exhausted",
+  "parameters": null,
+  "baseline_parameters": {
+   "rod_friction": 0.3838640350354158
+  },
+  "validation": null,
+  "training_retest": null,
+  "identifiability": {
+   "rank": 1,
+   "raw_dimension": 1,
+   "conclusive": true,
+   "singular_values": [
+    3.7177835092276035
+   ]
+  },
+  "numerical": {
+   "mode": "refinement",
+   "scope": "declared_refinements",
+   "passed": true,
+   "probes": [
+    {
+     "template": "01ef4711cb6f889e5c66",
+     "feature_difference_max": 0.10335792165691915,
+     "passed": true
+    }
+   ],
+   "tolerance": 0.7071067811865475
+  },
+  "experiments": {
+   "pullout_train": {
+    "role": "train",
+    "times": [
+     0.0,
+     1.0
+    ],
+    "reference": [
+     [
+      3.3103
+     ],
+     [
+      7.5393
+     ]
+    ],
+    "scale": 0.4455,
+    "baseline": [
+     [
+      0.8491185938202933
+     ],
+     [
+      1.9899957496424472
+     ]
+    ],
+    "calibrated": null
+   },
+   "pullout_diameter": {
+    "role": "validation",
+    "times": [
+     0.0,
+     1.0,
+     2.0
+    ],
+    "reference": [
+     [
+      1.4697
+     ],
+     [
+      1.7895
+     ],
+     [
+      2.5577
+     ]
+    ],
+    "scale": 0.3477,
+    "baseline": null,
+    "calibrated": null
+   },
+   "pullout_print": {
+    "role": "validation",
+    "times": [
+     0.0,
+     1.0,
+     2.0
+    ],
+    "reference": [
+     [
+      1.9526
+     ],
+     [
+      3.7687
+     ],
+     [
+      2.8645
+     ]
+    ],
+    "scale": 0.2959,
+    "baseline": null,
+    "calibrated": null
+   },
+   "pullout_length": {
+    "role": "validation",
+    "times": [
+     0.0,
+     1.0,
+     2.0
+    ],
+    "reference": [
+     [
+      0.963
+     ],
+     [
+      18.8769
+     ],
+     [
+      21.8334
+     ]
+    ],
+    "scale": 0.2627,
+    "baseline": null,
+    "calibrated": null
+   },
+   "pullout_depth": {
+    "role": "validation",
+    "times": [
+     0.0,
+     1.0,
+     2.0,
+     3.0
+    ],
+    "reference": [
+     [
+      3.0653
+     ],
+     [
+      11.1655
+     ],
+     [
+      17.4759
+     ],
+     [
+      30.744
+     ]
+    ],
+    "scale": 0.9174,
+    "baseline": null,
+    "calibrated": null
+   }
+  }
+ },
+ "calibration": {
+  "acceptance": "no_feasible_candidate",
+  "termination_reason": "generation_budget_exhausted",
+  "parameters": null,
+  "baseline_parameters": {
+   "rod_friction": 0.3838640350354158,
+   "friction": 0.49999999999999994
+  },
+  "validation": null,
+  "training_retest": null,
+  "identifiability": {
+   "rank": 2,
+   "raw_dimension": 2,
+   "conclusive": true,
+   "singular_values": [
+    3.686689875452309,
+    1.827437772687372
+   ]
+  },
+  "numerical": {
+   "mode": "refinement",
+   "scope": "declared_refinements",
+   "passed": true,
+   "probes": [
+    {
+     "template": "b55ebdcbd4f961bcd7f7",
+     "feature_difference_max": 0.35418545382118793,
+     "passed": true
+    }
+   ],
+   "tolerance": 0.7071067811865475
+  },
+  "experiments": {
+   "pullout_train": {
+    "role": "train",
+    "times": [
+     0.0,
+     1.0
+    ],
+    "reference": [
+     [
+      3.3103
+     ],
+     [
+      7.5393
+     ]
+    ],
+    "scale": 0.4455,
+    "baseline": [
+     [
+      0.8412452994266253
+     ],
+     [
+      2.039506717736296
+     ]
+    ],
+    "calibrated": null
+   },
+   "pullout_diameter": {
+    "role": "validation",
+    "times": [
+     0.0,
+     1.0,
+     2.0
+    ],
+    "reference": [
+     [
+      1.4697
+     ],
+     [
+      1.7895
+     ],
+     [
+      2.5577
+     ]
+    ],
+    "scale": 0.3477,
+    "baseline": null,
+    "calibrated": null
+   },
+   "pullout_print": {
+    "role": "validation",
+    "times": [
+     0.0,
+     1.0,
+     2.0
+    ],
+    "reference": [
+     [
+      1.9526
+     ],
+     [
+      3.7687
+     ],
+     [
+      2.8645
+     ]
+    ],
+    "scale": 0.2959,
+    "baseline": null,
+    "calibrated": null
+   },
+   "pullout_length": {
+    "role": "validation",
+    "times": [
+     0.0,
+     1.0,
+     2.0
+    ],
+    "reference": [
+     [
+      0.963
+     ],
+     [
+      18.8769
+     ],
+     [
+      21.8334
+     ]
+    ],
+    "scale": 0.2627,
+    "baseline": null,
+    "calibrated": null
+   },
+   "pullout_depth": {
+    "role": "validation",
+    "times": [
+     0.0,
+     1.0,
+     2.0,
+     3.0
+    ],
+    "reference": [
+     [
+      3.0653
+     ],
+     [
+      11.1655
+     ],
+     [
+      17.4759
+     ],
+     [
+      30.744
+     ]
+    ],
+    "scale": 0.9174,
+    "baseline": null,
+    "calibrated": null
+   }
+  },
+  "search_trials": 30,
+  "invalid_search_trials": 10
+ },
+ "corner_check": {
+  "parameters": {
+   "friction": 0.95,
+   "bulk_density": 1630.0,
+   "gravity": 9.81,
+   "rod_friction": 1.0
+  },
+  "geometries": [
+   "Dowel_10cmLong_1-2diam",
+   "Dowel_15cmLong_1-2diam",
+   "Dowel_10cmLong_3-16diam",
+   "Dowel_10cmLong_1-4diam",
+   "Dowel_10cmLong_5-16diam",
+   "3dPrint_10cmLong_1-4diam",
+   "3dPrint_10cmLong_3-8diam",
+   "3dPrint_10cmLong_1-2diam",
+   "Dowel_5cmLong_00cmDepth",
+   "Dowel_20cmLong_1-2diam",
+   "Dowel_25cmLong_1-2diam",
+   "Dowel_5cmLong_05cmDepth",
+   "Dowel_5cmLong_10cmDepth",
+   "Dowel_5cmLong_15cmDepth",
+   "Dowel_5cmLong_20cmDepth"
+  ],
+  "measured_N": [
+   3.3103,
+   7.5393,
+   1.4697,
+   1.7895,
+   2.5577,
+   1.9526,
+   3.7687,
+   2.8645,
+   0.963,
+   18.8769,
+   21.8334,
+   3.0653,
+   11.1655,
+   17.4759,
+   30.744
+  ],
+  "predicted_N": [
+   0.9877489531806345,
+   8.027159933673527,
+   0.44152443343772263,
+   0.5703113643800396,
+   0.6941810639495116,
+   0.5703968676512209,
+   0.8430257165360124,
+   1.1250889669097943,
+   0.27150534117130753,
+   18.45100519585076,
+   36.38690494644285,
+   2.5790819024133147,
+   13.422730524620825,
+   32.44830100207231,
+   45.75054820719081
+  ],
+  "normalized_error": [
+   -5.213358129785331,
+   0.5800950459851691,
+   -2.957076694168183,
+   -2.8169792874768036,
+   -5.1322471386683794,
+   -4.671183279313211,
+   -5.4808435433945055,
+   -3.0324460130582387,
+   -2.6322598356630853,
+   -0.13603820364430874,
+   4.072505301780515,
+   -0.5299957462248588,
+   1.636385765275355,
+   6.7173946799193835,
+   4.9613344157076105
+  ],
+  "rmse_N": 6.793668433174834,
+  "normalized_rmse": 3.897178969682736,
+  "ratio": [
+   0.29838653692433753,
+   1.0647089164343542,
+   0.30041806725027054,
+   0.31869872276056976,
+   0.27140832151914285,
+   0.2921217185553728,
+   0.2236913833778259,
+   0.3927697562959659,
+   0.28193701056210546,
+   0.9774383079769857,
+   1.6665707103081904,
+   0.84137993097358,
+   1.20216116829706,
+   1.8567456326754166,
+   1.4881130694506508
+  ]
+ },
+ "sources_sha256": {
+  "summary.json": "e78234d6304018d9b06d898cf59ab6f46e3a3496455903bdecc660fc1e4f210a"
+ }
+}

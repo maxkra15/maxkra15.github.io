@@ -1,0 +1,264 @@
+{
+ "plate-cal2": {
+  "kind": "plate_calibrate",
+  "hours": 20
+ },
+ "plate-iter": {
+  "kind": "plate_variants",
+  "parameters": "lab",
+  "variants": [
+   {
+    "name": "it250",
+    "numeric": {}
+   },
+   {
+    "name": "it1000",
+    "numeric": {
+     "max_iterations": 1000
+    }
+   }
+  ],
+  "hours": 4
+ },
+ "plate-lab2": {
+  "kind": "plate_sweep",
+  "parameters": "lab",
+  "hours": 8
+ },
+ "probe-cal": {
+  "kind": "probe_calibrate",
+  "numeric": {
+   "max_iterations": 1000
+  },
+  "max_hours": 14,
+  "hours": 16
+ },
+ "probe-cal2": {
+  "kind": "probe_calibrate",
+  "numeric": {
+   "dt": 0.0005,
+   "max_iterations": 1000
+  },
+  "max_hours": 18,
+  "hours": 20
+ },
+ "probe-lit": {
+  "kind": "probe_sweep",
+  "parameters": "generic",
+  "diameters": [
+   11.0,
+   9.0,
+   7.0
+  ],
+  "shapes": [
+   "cylindrical",
+   "elliptical",
+   "parabolic",
+   "conical",
+   "root_like"
+  ],
+  "numeric": {
+   "max_iterations": 1000
+  },
+  "hours": 12
+ },
+ "probe-lit2": {
+  "kind": "probe_sweep",
+  "parameters": "generic",
+  "diameters": [
+   11.0,
+   9.0,
+   7.0
+  ],
+  "shapes": [
+   "cylindrical",
+   "elliptical",
+   "parabolic",
+   "conical",
+   "root_like"
+  ],
+  "numeric": {
+   "dt": 0.0005,
+   "max_iterations": 1000
+  },
+  "hours": 16
+ },
+ "pullout-cal": {
+  "kind": "pullout_calibrate",
+  "numeric": {
+   "max_iterations": 1000
+  },
+  "hours": 16
+ },
+ "pullout-cal2": {
+  "kind": "pullout_calibrate",
+  "sand_friction": true,
+  "numeric": {
+   "max_iterations": 1000
+  },
+  "hours": 16
+ },
+ "pullout-cal3": {
+  "kind": "pullout_calibrate",
+  "sand_friction": true,
+  "numeric": {
+   "max_iterations": 1000,
+   "dt": 0.0005
+  },
+  "hours": 16
+ },
+ "pullout-corner": {
+  "kind": "pullout_sweep",
+  "parameters": {
+   "rod_friction": 1.0,
+   "friction": 0.95
+  },
+  "numeric": {
+   "max_iterations": 1000,
+   "dt": 0.0005
+  },
+  "hours": 6
+ },
+ "pullout-lit": {
+  "kind": "pullout_sweep",
+  "parameters": "literature",
+  "numeric": {
+   "max_iterations": 1000
+  },
+  "hours": 8
+ },
+ "rod-glass-cal3": {
+  "kind": "rod_calibrate",
+  "medium": "glass_beads",
+  "numeric": {
+   "max_iterations": 1000
+  },
+  "hours": 20
+ },
+ "rod-glass-lit3": {
+  "kind": "rod_sweep",
+  "medium": "glass_beads",
+  "parameters": "literature",
+  "numeric": {
+   "max_iterations": 1000
+  },
+  "hours": 8
+ },
+ "rod-lhs1-cal3": {
+  "kind": "rod_calibrate",
+  "medium": "lhs1",
+  "numeric": {
+   "max_iterations": 1000
+  },
+  "hours": 20
+ },
+ "rod-lhs1-lit3": {
+  "kind": "rod_sweep",
+  "medium": "lhs1",
+  "parameters": "literature",
+  "numeric": {
+   "max_iterations": 1000
+  },
+  "hours": 8
+ },
+ "rod-sand-cal3": {
+  "kind": "rod_calibrate",
+  "medium": "sand",
+  "numeric": {
+   "max_iterations": 1000
+  },
+  "hours": 20
+ },
+ "rod-sand-cal4": {
+  "kind": "rod_calibrate",
+  "medium": "sand",
+  "gpus": 4,
+  "max_hours": 16,
+  "numeric": {
+   "max_iterations": 1000,
+   "devices": [
+    "cuda:0",
+    "cuda:1",
+    "cuda:2",
+    "cuda:3"
+   ]
+  },
+  "hours": 20
+ },
+ "rod-sand-cal5": {
+  "kind": "rod_calibrate",
+  "medium": "sand",
+  "gpus": 4,
+  "max_hours": 20,
+  "numeric": {
+   "max_iterations": 1000,
+   "devices": [
+    "cuda:0",
+    "cuda:1",
+    "cuda:2",
+    "cuda:3"
+   ]
+  },
+  "hours": 24
+ },
+ "rod-sand-lit3": {
+  "kind": "rod_sweep",
+  "medium": "sand",
+  "parameters": "literature",
+  "numeric": {
+   "max_iterations": 1000
+  },
+  "hours": 8
+ },
+ "rod-speed-a": {
+  "kind": "rod_variants",
+  "medium": "sand",
+  "parameters": "literature",
+  "packings": [
+   0.55,
+   0.59,
+   0.615
+  ],
+  "variants": [
+   {
+    "name": "s2-it1000",
+    "numeric": {
+     "speed": 0.02,
+     "max_iterations": 1000
+    }
+   }
+  ],
+  "hours": 6
+ },
+ "rod-speed-b": {
+  "kind": "rod_variants",
+  "medium": "sand",
+  "parameters": "literature",
+  "packings": [
+   0.55,
+   0.59,
+   0.615
+  ],
+  "variants": [
+   {
+    "name": "s10-settle1",
+    "numeric": {
+     "settle_time": 1.0
+    }
+   },
+   {
+    "name": "s10-it1000",
+    "numeric": {
+     "max_iterations": 1000
+    }
+   },
+   {
+    "name": "s5",
+    "numeric": {
+     "speed": 0.05
+    }
+   }
+  ],
+  "hours": 6
+ }
+}

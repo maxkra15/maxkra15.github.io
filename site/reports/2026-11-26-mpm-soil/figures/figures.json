@@ -3,15 +3,15 @@
  "figures": [
   {
    "id": "setups",
-   "number": 2,
-   "caption": "Experiments replicated in Newton. (a) Li et al. (2013) moved a thin aluminium plate at attack angle \u03b2 along a straight path at intrusion angle \u03b3 through a 24 \u00d7 22 \u00d7 15 cm bed of poppy seeds and reported the stress per unit depth \u03b1(\u03b2, \u03b3). (b) Zwanenburg et al. (2024) pushed rigid strip plates into soft kaolin clay at 100 g; the simulation models the half domain next to the plate\u2019s symmetry plane as a plane-strain slab. (c) A Franka FR3 drags a rake blade through a soil bin along a hold\u2013plunge\u2013drag\u2013lift stroke; only the drag is scored. Schematic, not to scale.",
+   "number": 1,
+   "caption": "Experiments carried over from revisions 1 and 2. (a) Li et al. (2013) moved a thin aluminium plate at attack angle \u03b2 along a straight path at intrusion angle \u03b3 through a 24 \u00d7 22 \u00d7 15 cm bed of five granular media and reported the stress per unit depth \u03b1(\u03b2, \u03b3). (b) Zwanenburg et al. (2024) pushed rigid strip plates into soft kaolin clay at 100 g; the simulation models the half domain next to the plate\u2019s symmetry plane as a plane-strain slab. (c) A Franka FR3 drags a rake blade through a soil bin along a hold\u2013plunge\u2013drag\u2013lift stroke; only the drag is scored. Schematic, not to scale.",
    "svg": "setups.svg",
    "pdf": "setups.pdf",
    "png": "setups.png"
   },
   {
    "id": "rft-maps",
-   "number": 5,
+   "number": "A1",
    "caption": "Stress per unit depth on the plate for loosely packed poppy seeds over the 78 distinct (\u03b2, \u03b3) pairs. Left: measured by Li et al. (2013, table S5). Centre: Newton MPM with literature parameters, no fitted parameter. Right: after calibration on the five training points marked by squares; the other 73 points are held out. Positive \u03b1z is lift; positive \u03b1x points along +x. Colour limits are \u00b10.40 and \u00b10.15 N/cm\u00b3.",
    "svg": "rft-maps.svg",
    "pdf": "rft-maps.pdf",
@@ -19,7 +19,7 @@
   },
   {
    "id": "rft-parity",
-   "number": 6,
+   "number": "A2",
    "caption": "Simulated against measured stress per unit depth for the 73 held-out points (circles) with literature parameters (blue) and calibrated parameters (amber); squares mark the five training points of the calibrated model. The line marks equality. RMSE values in N/cm\u00b3 over held-out points only.",
    "svg": "rft-parity.svg",
    "pdf": "rft-parity.pdf",
@@ -27,7 +27,7 @@
   },
   {
    "id": "rft-search",
-   "number": 7,
+   "number": "A3",
    "caption": "Calibration of the plate-intrusion replica. (a) Every simulated candidate in the parameter box, coloured by the training objective J over five points (darker is lower); triangles are qualification and sensitivity probes that precede the search. (b) Training objective of each CMA-ES candidate by generation and the best value so far; the search stopped after its budget of five generations. The dotted line is the held-out objective of the accepted candidate over 73 points (limit 1.0).",
    "svg": "rft-search.svg",
    "pdf": "rft-search.pdf",
@@ -35,7 +35,7 @@
   },
   {
    "id": "rft-media",
-   "number": 8,
+   "number": 5,
    "caption": "Simulated against measured stress per unit depth for the five media of Li et al. (2013), 73 held-out motions each: with literature parameters (blue) and after calibration (amber). Panel titles give the tabulated angle, the bulk density and the calibration outcome; numbers are held-out RMSE in N/cm\u00b3. Axes differ between media.",
    "svg": "rft-media.svg",
    "pdf": "rft-media.pdf",
@@ -43,7 +43,7 @@
   },
   {
    "id": "clay-curves",
-   "number": 9,
+   "number": 10,
    "caption": "Load\u2013penetration curves of the four centrifuge tests (black) and the Newton MPM prediction with the laboratory SHANSEP strength at a 0.5 ms step (blue), without any fitted parameter. Shaded: the scored range, from 5 mm of penetration to where 12 mm of clay remain below the plate. (e) The laboratory undrained strength at 100 g; below the dashed line the clay is normally consolidated.",
    "svg": "clay-curves.svg",
    "pdf": "clay-curves.pdf",
@@ -51,7 +51,7 @@
   },
   {
    "id": "force-series",
-   "number": 4,
+   "number": "A4",
    "caption": "Plate force at every step for one path of each validation case. (a) Centrifuge test 1: dotted lines mark the penetrations at which the plate underside reaches a layer of particle centres (1.25 mm lattice, two layers per voxel). About 0.1 mm before each layer the contact force collapses for two to three steps, and the scored 1 mm window means read 9\u201314 % below the window medians. (b) Broadside intrusion into poppy seeds, force divided by the fitted linear trend: the force alternates with the 6 mm voxel period (ticks) between about 0.7 and 1.3 times the trend. The depth fit averages over these oscillations; excluding their low phase would raise the fitted slope by 2.7 %.",
    "svg": "force-series.svg",
    "pdf": "force-series.pdf",
@@ -59,7 +59,7 @@
   },
   {
    "id": "rake-forces",
-   "number": 10,
+   "number": "A5",
    "caption": "Soil force on the rake for the five strokes in the robot base frame: synthetic log (black), simulation with the baseline guess (blue, training strokes only) and with the calibrated parameters (amber). Shaded: the scored drag. Plunge and lift transients are simulated but not scored.",
    "svg": "rake-forces.svg",
    "pdf": "rake-forces.pdf",
@@ -67,11 +67,59 @@
   },
   {
    "id": "rake-search",
-   "number": 11,
+   "number": "A6",
    "caption": "Calibration of the rake demonstration. (a, b) Every simulated candidate coloured by the training objective J (darker is lower), with the baseline guess, the hidden parameters that generated the synthetic logs and the accepted candidate. Low objectives lie along a valley in which cohesion trades against soil friction, while tool friction stays near the upper end of its range. (c) Training objective by CMA-ES generation and the best value so far; the search stopped after four generations without improvement. The dotted line is the held-out objective of the accepted candidate.",
    "svg": "rake-search.svg",
    "pdf": "rake-search.pdf",
    "png": "rake-search.png"
+  },
+  {
+   "id": "setups-sand",
+   "number": 2,
+   "caption": "Experiments added in revision 3. (a) Ruck et al. (2025) pushed a 12.7 mm rod into air-fluidized beds of sand, glass beads or LHS-1 simulant prepared at packing fractions \u03c6 from 0.49 to 0.625 and report the slope K of force against depth. (b) Douglas et al. (2026) pulled vertical rods of length L, buried with their top at depth d in medium sand, and report the peak force. (c) Mishra et al. (2018) pushed probes with five tip shapes into oven-dried sandy loam. (d) Kruger et al. (2023) pushed a 150 mm plate into moist Cullinan sand prepared in five ways. Schematic, not to scale.",
+   "svg": "setups-sand.svg",
+   "pdf": "setups-sand.pdf",
+   "png": "setups-sand.png"
+  },
+  {
+   "id": "discretization",
+   "number": 4,
+   "caption": "Numerical uncertainty. (a) Largest change, in observation scales, of the 11 diagnostic plate motions of experiment A in each of the five media when the 6 mm configuration is changed: a second particle arrangement (the noise floor), 4 and 3 mm voxels, 27 instead of 8 particles per voxel, the pic27 contact basis and the P1d strain basis. Circles: literature parameters; squares: calibrated parameters; dashed: the acceptance limit of a single held-out error. (b) RMSE of clay tests 1 (100 mm, smooth) and 3 (20 mm, smooth) for voxel size, time step and contact basis.",
+   "svg": "discretization.svg",
+   "pdf": "discretization.pdf",
+   "png": "discretization.png"
+  },
+  {
+   "id": "rod-packing",
+   "number": 6,
+   "caption": "Rod intrusion against packing (experiment B). (a\u2013c) Slope K of force against depth between 2 and 9 cm: measured mean and standard deviation over runs (black) and the replica with a constant friction from the tabulated angle (blue) and, for sand, with the best packing law of its calibration, which the lifecycle rejected in training (amber, dashed; open squares training, open circles held-out packings; simulated as a diagnostic outside the lifecycle). (d) That law against the distance from the critical packing (amber) and the constant friction of the tabulated angle (blue, dashed). Dashed vertical lines: the critical packing fraction.",
+   "svg": "rod-packing.svg",
+   "pdf": "rod-packing.pdf",
+   "png": "rod-packing.png"
+  },
+  {
+   "id": "plate-sinkage",
+   "number": 9,
+   "caption": "Plate sinkage in moist Cullinan sand (experiment E): measured pressure of preparation methods 3, 4 and 5 (black; methods 1 and 2 grey, without measured density), predictions with the friction of the drained triaxial tests at each density and no cohesion (blue) and, as a diagnostic outside the lifecycle, the best point of a friction\u2013cohesion grid for each method (amber; 1 ms, 50 mm/s).",
+   "svg": "plate-sinkage.svg",
+   "pdf": "plate-sinkage.pdf",
+   "png": "plate-sinkage.png"
+  },
+  {
+   "id": "pullout",
+   "number": 7,
+   "caption": "Rod pull-out (experiment C). (a) Simulated against measured peak force for the 15 straight rods with the literature rod\u2013sand friction (blue; bars: trial standard deviation) and at the stiffest corner of the calibration box, sand friction 0.95 and rod friction 1.0 (grey). (b) Ratio of simulated to measured peak force by series for both parameter sets: dowel diameter, print diameter, dowel length and burial depth.",
+   "svg": "pullout.svg",
+   "pdf": "pullout.pdf",
+   "png": "pullout.png"
+  },
+  {
+   "id": "probe",
+   "number": 8,
+   "caption": "Probe penetration in dry sandy loam (experiment D): measured mean force (solid) and simulation (dashed) for five tip shapes at 11, 9 and 7 mm diameter, with a generic soil (friction 35\u00b0, cohesion 2 kPa).",
+   "svg": "probe.svg",
+   "pdf": "probe.pdf",
+   "png": "probe.png"
   }
  ]
 }

@@ -15,6 +15,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import sys
 from pathlib import Path
 
 import matplotlib
@@ -145,7 +146,7 @@ def figure_setups():
 
     # (a) Li et al. plate intrusion: side view in the plane of motion.
     ax = axes[0]
-    _panel_title(ax, "a", "Plate intrusion, poppy seeds", r"Li et al. (2013); $\sigma = \alpha(\beta,\gamma)\,|z|$")
+    _panel_title(ax, "a", "Plate intrusion, five media", r"Li et al. (2013); $\sigma = \alpha(\beta,\gamma)\,|z|$")
     ax.add_patch(patches.Rectangle((-12, -15), 24, 15, facecolor=SOIL, edgecolor="none"))
     ax.plot([-12, -12, 12, 12], [1.5, -15, -15, 1.5], color=MUTED, lw=1.2)
     ax.plot([-12, 12], [0, 0], color=MUTED, lw=0.5)
@@ -166,7 +167,7 @@ def figure_setups():
     ax.text(centre[0] - 2.0, centre[1] - 4.9, r"$\mathbf{v}$", fontsize=8, color=AMBER)
     _arrow(ax, (9.0, 0.0), (9.0, centre[1]), color=MUTED, lw=0.6, style="<|-|>")
     ax.text(9.5, 0.5 * centre[1], r"$|z|$", fontsize=7.5, color=MUTED, va="center")
-    ax.text(-11.2, -14.0, "poppy seeds, loosely packed", fontsize=6.2, color=MUTED)
+    ax.text(-11.2, -14.0, "poppy seeds or glass beads", fontsize=6.2, color=MUTED)
     _arrow(ax, (-12, -16.4), (12, -16.4), color=MUTED, lw=0.5, style="<|-|>")
     ax.text(0, -18.0, "24 cm wide, 15 cm deep", ha="center", fontsize=6.2, color=MUTED, va="top")
     ax.set_xlim(-13, 13)
@@ -783,10 +784,11 @@ def _captions_from_paper() -> dict:
     html = path.read_text()
     out = {}
     for match in re.finditer(
-        r'<img src="figures/([\w-]+)\.svg".*?<figcaption><strong>Figure (\d+)\.</strong>(.*?)</figcaption>', html, re.S
+        r'<img src="figures/([\w-]+)\.svg".*?<figcaption><strong>Figure (A?\d+)\.</strong>(.*?)</figcaption>', html, re.S
     ):
         text = re.sub(r"<[^>]+>", "", match.group(3))
-        out[match.group(1)] = {"number": int(match.group(2)), "caption": " ".join(text.split())}
+        number = match.group(2)
+        out[match.group(1)] = {"number": int(number) if number.isdigit() else number, "caption": " ".join(text.split())}
     return out
 
 
@@ -803,6 +805,15 @@ def main():
     figure_force_series()
     figure_rake_forces()
     figure_rake_search()
+    # figures_rev3 imports this module by name; register the running script under that name so that its
+    # figures record their captions in the CAPTIONS used for figures.json.
+    sys.modules.setdefault("make_figures", sys.modules[__name__])
+    import figures_rev3  # noqa: PLC0415 (revision 3 figures; imports this module)
+
+    figure_rev3 = (figures_rev3.figure_setups_sand, figures_rev3.figure_discretization, figures_rev3.figure_rod_packing,
+                   figures_rev3.figure_plate_sinkage, figures_rev3.figure_pullout, figures_rev3.figure_probe)
+    for function in figure_rev3:
+        function()
     paper = _captions_from_paper()
     manifest = {
         "captions": "taken from index.html when the paper contains the figure",

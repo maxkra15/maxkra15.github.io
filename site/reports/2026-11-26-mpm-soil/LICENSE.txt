@@ -22,5 +22,25 @@ granular media. Science, 339(6126), 1408-1412. doi:10.1126/science.1229163.
 The measured stress-per-depth slopes of the article's additional data table S5 are shown
 in figures for comparison and cited; they are not redistributed in data/.
 
+Ruck, J., Pradeep, S., Bush, J., Sigg, E., Qian, F., & Jerolmack, D. (2025). Unified granular
+intrusion dynamics for planetary materials. EarthArXiv, doi:10.31223/X5246P. Data and code: Zenodo,
+doi:10.5281/zenodo.15610745, licensed CC BY 4.0. data/rod_intrusion.json contains force-depth slopes
+derived from these measurements (processing described in the report, Appendix A2).
+
+Douglas, M. M., Colicci, V., Sandu, N. A., Yilmaz, L., Kamrin, K., & Perron, J. T. (2026). Effects of root
+architecture on plant anchoring in noncohesive sediment. JGR Earth Surface 131(8), e2025JF008680.
+Data: Harvard Dataverse, doi:10.7910/DVN/VXRLSK, CC0 1.0. data/rod_pullout.json contains the
+published peak forces.
+
+Mishra, A. K., Tramacere, F., Guarino, R., Pugno, N. M., & Mazzolai, B. (2018). A study on plant root
+apex morphology as a model for soft robots moving in soil. PLOS ONE 13(6), e0197411. Data: Zenodo,
+doi:10.5281/zenodo.1211631, licensed CC BY 4.0. data/probe_penetration.json contains mean forces
+derived from these measurements (Appendix A4).
+
+Kruger, R. (2025). Multi-scale Cullinan sand (fine sand) dataset. Zenodo, doi:10.5281/zenodo.17584463,
+licensed CC BY 4.0; protocol in Kruger, Els & Hamersma (2023), J. Terramechanics 109:45-62.
+data/plate_sinkage.json contains mean pressure-sinkage curves derived from these measurements
+(Appendix A5).
+
 The Franka FR3 robot model rendered in media/franka-rake.gif is loaded from the Newton
 assets repository (https://github.com/newton-physics/newton-assets) under its licence.
